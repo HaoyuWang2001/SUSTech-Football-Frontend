@@ -1,0 +1,169 @@
+/* pages/management/team_events/team_events.wxss */
+.container {
+  background-color: #f5f5f5;
+  padding-bottom: 20rpx;
+}
+
+/* 球队选择器 */
+.team-selector {
+  background-color: transparent;
+  padding: 20rpx 30rpx;
+  display: flex;
+  align-items: center;
+}
+
+.selector-label {
+  font-size: 28rpx;
+  color: #666;
+  margin-right: 20rpx;
+  white-space: nowrap;
+}
+
+.picker-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background-color: #f9f9f9;
+  padding: 15rpx 20rpx;
+  border-radius: 10rpx;
+}
+
+.team-logo {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 8rpx;
+  margin-right: 15rpx;
+  background-color: #eee;
+}
+
+.team-name {
+  flex: 1;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.arrow-icon {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+/* 赛事列表 */
+.event-list {
+  background-color: transparent;
+  margin-top: 20rpx;
+  padding: 20rpx 30rpx;
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20rpx;
+  padding-bottom: 15rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.event-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.event-item:last-child {
+  border-bottom: none;
+}
+
+.event-info {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.event-icon {
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.event-details {
+  display: flex;
+  flex-direction: column;
+  gap: 6rpx;
+  min-width: 0;
+  flex: 1;
+}
+
+.event-name {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.event-meta {
+  display: flex;
+  gap: 15rpx;
+}
+
+.meta-item {
+  font-size: 22rpx;
+  color: #999;
+}
+
+/* 大名单状态 */
+.roster-status {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  flex-shrink: 0;
+}
+
+.status-badge {
+  padding: 6rpx 12rpx;
+  border-radius: 6rpx;
+  font-size: 22rpx;
+}
+
+.status-badge.set {
+  background-color: #e6f7ff;
+  color: #1890ff;
+}
+
+.status-badge.unset {
+  background-color: #fff7e6;
+  color: #fa8c16;
+}
+
+.roster-count {
+  font-size: 22rpx;
+  color: #666;
+}
+
+.arrow {
+  width: 28rpx;
+  height: 28rpx;
+  opacity: 0.5;
+}
+
+/* 空状态 */
+.empty-tip {
+  text-align: center;
+  padding: 40rpx 0;
+  color: #999;
+  font-size: 28rpx;
+}
+
+/* 加载状态 */
+.loading {
+  text-align: center;
+  padding: 40rpx 0;
+  color: #999;
+  font-size: 28rpx;
+}

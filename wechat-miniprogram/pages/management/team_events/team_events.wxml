@@ -1,0 +1,53 @@
+<!--pages/management/team_events/team_events.wxml-->
+<view class="container">
+  <!-- 球队选择器 -->
+  <view class="team-selector" wx:if="{{teamList.length > 0}}">
+    <text class="selector-label">选择球队：</text>
+    <picker mode="selector" range="{{teamList}}" range-key="name" value="{{selectedTeamIndex}}" bindchange="onTeamChange">
+      <view class="picker-content">
+        <image class="team-logo" src="{{selectedTeam.logoUrl}}" mode="aspectFill" />
+        <text class="team-name">{{selectedTeam.name}}</text>
+        <image class="arrow-icon" src="/assets/down333.png" mode="aspectFit" />
+      </view>
+    </picker>
+  </view>
+
+  <!-- 赛事列表 -->
+  <view class="event-list" wx:if="{{!isLoading}}">
+    <view class="section-title">参与的赛事</view>
+    
+    <view wx:if="{{eventList.length === 0}}" class="empty-tip">
+      <text>该球队暂未参与任何赛事</text>
+    </view>
+
+    <view wx:for="{{eventList}}" wx:key="eventId" class="event-item" bindtap="gotoRosterPage" data-event="{{item}}">
+      <view class="event-info">
+        <image class="event-icon" src="/assets/cup.svg" mode="aspectFit" />
+        <view class="event-details">
+          <text class="event-name">{{item.name}}</text>
+          <view class="event-meta">
+            <text class="meta-item">{{item.matchPlayerCount || 11}}人制</text>
+            <text class="meta-item">大名单上限：{{item.rosterSize || 23}}人</text>
+          </view>
+        </view>
+      </view>
+      <view class="roster-status">
+        <view class="status-badge {{item.hasRoster ? 'set' : 'unset'}}">
+          <text>{{item.hasRoster ? '已设置' : '未设置'}}</text>
+        </view>
+        <text class="roster-count" wx:if="{{item.hasRoster}}">{{item.rosterCount}}人</text>
+        <image class="arrow" src="/assets/more.png" mode="aspectFit" />
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载中 -->
+  <view wx:if="{{isLoading}}" class="loading">
+    <text>加载中...</text>
+  </view>
+
+  <!-- 无球队提示 -->
+  <view wx:if="{{teamList.length === 0 && !isLoading}}" class="empty-tip">
+    <text>您还没有管理的球队</text>
+  </view>
+</view>
