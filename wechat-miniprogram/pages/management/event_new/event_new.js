@@ -28,6 +28,11 @@ Page({
     gNumber: 0,
     tNumber: 0,
     tuNumber: 0,
+    
+    // 比赛人数和大名单人数
+    matchPlayerCountList: [5, 7, 8, 11],
+    matchPlayerCount: 0,
+    rosterSize: 0,
   },
 
   /**
@@ -119,6 +124,20 @@ Page({
     });
   },
 
+  matchPlayerCountChange: function (e) {
+    const matchPlayerCount = this.data.matchPlayerCountList[e.detail.value]
+    this.setData({
+      matchPlayerCount: matchPlayerCount
+    });
+  },
+
+  inputRosterSize: function (e) {
+    const rosterSize = parseInt(e.detail.value) || 0
+    this.setData({
+      rosterSize: rosterSize
+    });
+  },
+
   // 点击确认创建按钮，弹出确认修改模态框
   showCreateModal() {
     var that = this
@@ -167,6 +186,21 @@ Page({
     } else if (that.data.tuNumber === 0 && that.data.eventType === '联赛') {
       wx.showToast({
         title: '请选择联赛轮数',
+        icon: "error",
+      });
+    } else if (that.data.matchPlayerCount === 0) {
+      wx.showToast({
+        title: '请选择比赛人数',
+        icon: "error",
+      });
+    } else if (that.data.rosterSize === 0) {
+      wx.showToast({
+        title: '请输入大名单人数',
+        icon: "error",
+      });
+    } else if (that.data.rosterSize < that.data.matchPlayerCount) {
+      wx.showToast({
+        title: '大名单人数不能小于比赛人数',
         icon: "error",
       });
     } else {
@@ -272,6 +306,8 @@ Page({
         name: this.data.name,
         description: this.data.description,
         stageList: stageList,
+        matchPlayerCount: this.data.matchPlayerCount,
+        rosterSize: this.data.rosterSize,
       };
       wx.showLoading({
         title: '正在创建',
