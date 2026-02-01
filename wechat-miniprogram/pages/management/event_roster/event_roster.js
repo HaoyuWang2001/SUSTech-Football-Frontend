@@ -14,6 +14,8 @@ Page({
     allPlayers: [], // 球队所有球员
     selectedPlayers: [], // 已选择的球员
     isLoading: false,
+    isExpired: false, // 是否已过截止日期
+    isAllSelected: false, // 是否全选
   },
 
   onLoad: function(options) {
@@ -24,6 +26,7 @@ Page({
       teamName: decodeURIComponent(options.teamName || ''),
       rosterSize: parseInt(options.rosterSize) || 23,
       matchPlayerCount: parseInt(options.matchPlayerCount) || 11,
+      isExpired: options.isExpired === '1',
     });
 
     this.fetchTeamPlayers();
@@ -105,6 +108,16 @@ Page({
   // 切换球员选择状态
   togglePlayer: function(e) {
     var that = this;
+    
+    // 如果已过截止日期，不允许修改
+    if (that.data.isExpired) {
+      wx.showToast({
+        title: '已过截止日期，无法修改',
+        icon: 'none'
+      });
+      return;
+    }
+    
     var playerId = e.currentTarget.dataset.playerid;
     var allPlayers = that.data.allPlayers;
     var selectedPlayers = that.data.selectedPlayers;
@@ -148,13 +161,80 @@ Page({
 
     that.setData({
       allPlayers: allPlayers,
-      selectedPlayers: newSelectedPlayers
+      selectedPlayers: newSelectedPlayers,
+      isAllSelected: newSelectedPlayers.length === allPlayers.length && allPlayers.length > 0
     });
+  },
+
+  // 全选/取消全选
+  toggleSelectAll: function() {
+    var that = this;
+    
+    // 如果已过截止日期，不允许修改
+    if (that.data.isExpired) {
+      wx.showToast({
+        title: '已过截止日期，无法修改',
+        icon: 'none'
+      });
+      return;
+    }
+    
+    var allPlayers = that.data.allPlayers;
+    var isAllSelected = that.data.isAllSelected;
+    var rosterSize = that.data.rosterSize;
+    
+    if (isAllSelected) {
+      // 取消全选
+      for (var i = 0; i < allPlayers.length; i++) {
+        allPlayers[i].selected = false;
+      }
+      that.setData({
+        allPlayers: allPlayers,
+        selectedPlayers: [],
+        isAllSelected: false
+      });
+    } else {
+      // 全选（但不超过上限）
+      var selectedPlayers = [];
+      var count = 0;
+      for (var j = 0; j < allPlayers.length; j++) {
+        if (count < rosterSize) {
+          allPlayers[j].selected = true;
+          selectedPlayers.push(allPlayers[j]);
+          count++;
+        } else {
+          allPlayers[j].selected = false;
+        }
+      }
+      
+      if (allPlayers.length > rosterSize) {
+        wx.showToast({
+          title: '已达上限' + rosterSize + '人',
+          icon: 'none'
+        });
+      }
+      
+      that.setData({
+        allPlayers: allPlayers,
+        selectedPlayers: selectedPlayers,
+        isAllSelected: selectedPlayers.length === allPlayers.length
+      });
+    }
   },
 
   // 提交大名单
   submitRoster: function() {
     var that = this;
+    
+    // 如果已过截止日期，不允许提交
+    if (that.data.isExpired) {
+      wx.showToast({
+        title: '已过截止日期，无法修改',
+        icon: 'none'
+      });
+      return;
+    }
+    
     var selectedCount = that.data.selectedPlayers.length;
 
     if (selectedCount === 0) {

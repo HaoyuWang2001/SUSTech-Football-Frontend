@@ -1,73 +1,105 @@
 <!--pages/management/event_roster/event_roster.wxml-->
-<view class="container">
+<view class="page-container">
   
-  <!-- 头部信息 -->
-  <view class="header">
-    <view class="header-item">
-      <text class="label">赛事：</text>
-      <text class="value">{{eventName}}</text>
+  <!-- 截止日期提示 -->
+  <view class="expired-banner" wx:if="{{isExpired}}">
+    <text class="expired-icon">⏰</text>
+    <text class="expired-text">大名单提交已截止，当前为只读模式</text>
+  </view>
+  
+  <!-- 头部卡片 -->
+  <view class="info-card">
+    <view class="info-header">
+      <image class="event-icon" src="/assets/cup.svg" mode="aspectFit" />
+      <view class="event-info">
+        <text class="event-name">{{eventName}}</text>
+        <text class="team-name">{{teamName}}</text>
+      </view>
     </view>
-    <view class="header-item">
-      <text class="label">球队：</text>
-      <text class="value">{{teamName}}</text>
+    <view class="info-stats">
+      <view class="stat-item">
+        <text class="stat-value">{{matchPlayerCount}}</text>
+        <text class="stat-label">人制</text>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-item">
+        <text class="stat-value highlight">{{selectedPlayers.length}}</text>
+        <text class="stat-label">已选</text>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-item">
+        <text class="stat-value">{{rosterSize}}</text>
+        <text class="stat-label">上限</text>
+      </view>
     </view>
-    <view class="header-item">
-      <text class="label">大名单人数：</text>
-      <text class="value {{selectedPlayers.length < matchPlayerCount ? 'warning' : ''}}">{{selectedPlayers.length}} / {{rosterSize}}</text>
+    <view class="progress-bar">
+      <view class="progress-fill" style="width: {{selectedPlayers.length / rosterSize * 100}}%"></view>
     </view>
-    <view class="hint">
-      <text>提示：本赛事为{{matchPlayerCount}}人制比赛，需选择{{matchPlayerCount}}-{{rosterSize}}名球员</text>
+    <view class="info-hint" wx:if="{{!isExpired}}">
+      需选择 {{matchPlayerCount}}-{{rosterSize}} 名球员进入大名单
     </view>
   </view>
 
-  <!-- 球员列表 - 表格形式 -->
-  <view class="player-list">
-    <view class="section-title">选择球员进入大名单</view>
-    
-    <view class="table" wx:if="{{allPlayers.length > 0}}">
-      <!-- 表头 -->
-      <view class="row header">
-        <view class="cell cell-check">选择</view>
-        <view class="cell cell-number">号码</view>
-        <view class="cell cell-player">球员</view>
-        <view class="cell cell-stats">出场</view>
-        <view class="cell cell-stats">进/助</view>
-      </view>
-
-      <!-- 球员信息 -->
-      <view 
-        class="row {{item.selected ? 'selected' : ''}}" 
-        wx:for="{{allPlayers}}" 
-        wx:key="playerId"
-        bindtap="togglePlayer"
-        data-playerid="{{item.playerId}}"
-      >
-        <view class="cell cell-check">
-          <icon wx:if="{{item.selected}}" type="success" size="20" color="#07c160"/>
-          <icon wx:else type="circle" size="20" color="#ddd"/>
-        </view>
-        <view class="cell cell-number">{{item.number || '-'}}</view>
-        <view class="cell cell-player">
-          <image src="{{item.photoUrl || '/assets/user.png'}}" class="player-avatar"></image>
-          <text class="player-name">{{item.name}}</text>
-        </view>
-        <view class="cell cell-stats">{{item.appearances || 0}}</view>
-        <view class="cell cell-stats">{{item.goals || 0}}/{{item.assists || 0}}</view>
-      </view>
+  <!-- 操作栏 -->
+  <view class="action-bar" wx:if="{{!isExpired && allPlayers.length > 0}}">
+    <view class="action-left">
+      <text class="player-count">共 {{allPlayers.length}} 名球员</text>
     </view>
-
-    <view wx:if="{{allPlayers.length === 0}}" class="empty">
-      <text>暂无球员，请先添加球员到球队</text>
+    <view class="action-right">
+      <view class="action-btn {{isAllSelected ? 'active' : ''}}" bindtap="toggleSelectAll">
+        <icon type="{{isAllSelected ? 'success' : 'circle'}}" size="16" color="{{isAllSelected ? '#07c160' : '#999'}}"/>
+        <text>{{isAllSelected ? '取消全选' : '全选'}}</text>
+      </view>
     </view>
   </view>
 
-  <!-- 底部按钮 -->
-  <view class="footer">
-    <view class="footer-info">
-      <text class="selected-count">已选 {{selectedPlayers.length}} 人</text>
-      <text class="limit-hint">（需{{matchPlayerCount}}-{{rosterSize}}人）</text>
+  <!-- 球员列表 -->
+  <view class="player-list" wx:if="{{allPlayers.length > 0}}">
+    <view 
+      class="player-card {{item.selected ? 'selected' : ''}} {{isExpired && !item.selected ? 'hidden' : ''}}" 
+      wx:for="{{allPlayers}}" 
+      wx:key="playerId"
+      bindtap="togglePlayer"
+      data-playerid="{{item.playerId}}"
+    >
+      <view class="player-check" wx:if="{{!isExpired}}">
+        <view class="checkbox {{item.selected ? 'checked' : ''}}">
+          <icon wx:if="{{item.selected}}" type="success_no_circle" size="14" color="#fff"/>
+        </view>
+      </view>
+      <view class="player-number">{{item.number || '-'}}</view>
+      <image class="player-avatar" src="{{item.photoUrl || '/assets/user.png'}}" mode="aspectFill" />
+      <view class="player-info">
+        <text class="player-name">{{item.name}}</text>
+        <view class="player-stats">
+          <text class="stat">出场 {{item.appearances || 0}}</text>
+          <text class="stat">进球 {{item.goals || 0}}</text>
+          <text class="stat">助攻 {{item.assists || 0}}</text>
+        </view>
+      </view>
+      <view class="player-badge" wx:if="{{item.selected}}">
+        <text>已选</text>
+      </view>
     </view>
-    <button class="submit-btn {{selectedPlayers.length >= matchPlayerCount && selectedPlayers.length <= rosterSize ? '' : 'disabled'}}" bindtap="submitRoster">
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{allPlayers.length === 0 && !isLoading}}">
+    <image class="empty-icon" src="/assets/user.png" mode="aspectFit" />
+    <text class="empty-text">暂无球员</text>
+    <text class="empty-hint">请先在球队管理中添加球员</text>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar" wx:if="{{!isExpired}}">
+    <view class="bottom-info">
+      <text class="count-text">已选 <text class="count-number">{{selectedPlayers.length}}</text> 人</text>
+      <text class="limit-text">（{{matchPlayerCount}}-{{rosterSize}}人）</text>
+    </view>
+    <button 
+      class="submit-btn {{selectedPlayers.length >= matchPlayerCount && selectedPlayers.length <= rosterSize ? '' : 'disabled'}}" 
+      bindtap="submitRoster"
+    >
       提交大名单
     </button>
   </view>

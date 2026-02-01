@@ -1,7 +1,6 @@
 // pages/management/team_events/team_events.js
 const appInstance = getApp()
 const URL = appInstance.globalData.URL
-const userId = appInstance.globalData.userId
 
 Page({
   data: {
@@ -33,6 +32,7 @@ Page({
   // 获取用户管理的所有球队
   fetchTeamList: function() {
     var that = this;
+    var userId = appInstance.globalData.userId;
     wx.showLoading({ title: '加载中...' });
     wx.request({
       url: URL + '/user/getUserManageTeam?userId=' + userId,
@@ -78,8 +78,8 @@ Page({
       success: function(res) {
         if (res.statusCode === 200) {
           var events = res.data || [];
-          // 检查每个赛事的大名单状态
-          that.checkRosterStatus(events, teamId);
+          // 先获取每个赛事的详细信息（包括rosterDeadline）
+          that.fetchEventDetails(events, teamId);
         } else {
           that.setData({
             eventList: [],
@@ -97,6 +97,48 @@ Page({
     });
   },
 
+  // 获取每个赛事的详细信息
+  fetchEventDetails: function(events, teamId) {
+    var that = this;
+    if (events.length === 0) {
+      that.setData({
+        eventList: [],
+        isLoading: false
+      });
+      return;
+    }
+
+    var completedCount = 0;
+    var detailedEvents = [];
+
+    for (var i = 0; i < events.length; i++) {
+      (function(index) {
+        var event = events[index];
+        wx.request({
+          url: URL + '/event/get?id=' + event.eventId,
+          method: 'GET',
+          success: function(res) {
+            if (res.statusCode === 200 && res.data) {
+              detailedEvents[index] = res.data;
+            } else {
+              detailedEvents[index] = event;
+            }
+          },
+          fail: function() {
+            detailedEvents[index] = event;
+          },
+          complete: function() {
+            completedCount++;
+            if (completedCount === events.length) {
+              // 所有赛事详情获取完成，检查大名单状态
+              that.checkRosterStatus(detailedEvents, teamId);
+            }
+          }
+        });
+      })(i);
+    }
+  },
+
   // 检查每个赛事的大名单状态
   checkRosterStatus: function(events, teamId) {
     var that = this;
@@ -110,14 +152,32 @@ Page({
 
     var completedCount = 0;
     var updatedEvents = [];
+    var now = new Date();
+    
     for (var i = 0; i < events.length; i++) {
       var event = events[i];
+      var deadlineStr = '';
+      var isExpired = false;
+      
+      if (event.rosterDeadline) {
+        var deadline = new Date(event.rosterDeadline);
+        deadlineStr = deadline.getFullYear() + '-' + 
+                     String(deadline.getMonth() + 1).padStart(2, '0') + '-' + 
+                     String(deadline.getDate()).padStart(2, '0') + ' ' +
+                     String(deadline.getHours()).padStart(2, '0') + ':' +
+                     String(deadline.getMinutes()).padStart(2, '0');
+        isExpired = now > deadline;
+      }
+      
       updatedEvents.push({
         eventId: event.eventId,
         name: event.name,
         description: event.description,
         matchPlayerCount: event.matchPlayerCount,
         rosterSize: event.rosterSize,
+        rosterDeadline: event.rosterDeadline,
+        deadlineStr: deadlineStr,
+        isExpired: isExpired,
         hasRoster: false,
         rosterCount: 0
       });
@@ -178,7 +238,7 @@ Page({
     var team = this.data.selectedTeam;
     
     wx.navigateTo({
-      url: '/pages/management/event_roster/event_roster?eventId=' + event.eventId + '&teamId=' + team.teamId + '&eventName=' + encodeURIComponent(event.name) + '&teamName=' + encodeURIComponent(team.name) + '&rosterSize=' + (event.rosterSize || 23) + '&matchPlayerCount=' + (event.matchPlayerCount || 11)
+      url: '/pages/management/event_roster/event_roster?eventId=' + event.eventId + '&teamId=' + team.teamId + '&eventName=' + encodeURIComponent(event.name) + '&teamName=' + encodeURIComponent(team.name) + '&rosterSize=' + (event.rosterSize || 23) + '&matchPlayerCount=' + (event.matchPlayerCount || 11) + '&isExpired=' + (event.isExpired ? '1' : '0')
     });
   }
 })
