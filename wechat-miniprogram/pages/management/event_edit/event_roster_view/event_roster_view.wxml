@@ -1,0 +1,56 @@
+<!--pages/management/event_edit/event_roster_view/event_roster_view.wxml-->
+<view class="container">
+  <!-- 头部信息 -->
+  <view class="header">
+    <view class="team-info">
+      <image class="team-logo" src="{{teamLogo || '/assets/team.png'}}" mode="aspectFill"></image>
+      <text class="team-name">{{teamName}}</text>
+    </view>
+    <view class="roster-count" wx:if="{{hasRoster}}">大名单人数：{{rosterList.length}} 人</view>
+  </view>
+
+  <!-- 加载中 -->
+  <view wx:if="{{isLoading}}" class="loading">
+    <text>加载中...</text>
+  </view>
+
+  <!-- 球员列表 - 表格形式 -->
+  <view class="player-list" wx:if="{{!isLoading && hasRoster}}">
+    <view class="section-title">大名单球员</view>
+    
+    <view class="table">
+      <!-- 表头 -->
+      <view class="row header">
+        <view class="cell cell-number">号码</view>
+        <view class="cell cell-player">球员</view>
+        <view class="cell cell-stats">出场</view>
+        <view class="cell cell-stats">进/助</view>
+        <view class="cell cell-stats">黄/红</view>
+      </view>
+
+      <!-- 球员信息 -->
+      <view 
+        class="row" 
+        wx:for="{{rosterList}}" 
+        wx:key="playerId"
+        bindtap="gotoPlayerPage"
+        data-id="{{item.playerId}}"
+      >
+        <view class="cell cell-number">{{item.number || '-'}}</view>
+        <view class="cell cell-player">
+          <image src="{{item.photoUrl || '/assets/user.png'}}" class="player-avatar"></image>
+          <text class="player-name">{{item.name}}</text>
+        </view>
+        <view class="cell cell-stats">{{item.appearances || 0}}</view>
+        <view class="cell cell-stats">{{item.goals || 0}}/{{item.assists || 0}}</view>
+        <view class="cell cell-stats">{{item.yellowCards || 0}}/{{item.redCards || 0}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 未设置大名单 -->
+  <view wx:if="{{!isLoading && !hasRoster}}" class="empty-tip">
+    <image src="/assets/no_results.svg" class="empty-icon" mode="aspectFit"></image>
+    <text>该球队尚未设置大名单</text>
+  </view>
+</view>

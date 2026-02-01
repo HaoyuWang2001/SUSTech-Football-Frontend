@@ -1,0 +1,268 @@
+/* pages/management/team_events/team_events.wxss */
+.page-container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+/* 球队选择卡片 */
+.team-card {
+  background: #ffffff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.team-card-content {
+  display: flex;
+  align-items: center;
+}
+
+.team-avatar {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 16rpx;
+  background: #f5f5f5;
+  margin-right: 24rpx;
+}
+
+.team-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.team-name {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.team-hint {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.switch-icon {
+  width: 36rpx;
+  height: 36rpx;
+  opacity: 0.4;
+}
+
+/* 列表标题区域 */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10rpx;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.event-count {
+  font-size: 26rpx;
+  color: #999;
+}
+
+/* 赛事卡片列表 */
+.event-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+/* 赛事卡片 */
+.event-card {
+  background: #ffffff;
+  border-radius: 20rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.event-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28rpx 30rpx;
+  background: linear-gradient(135deg, #fff9f5 0%, #ffffff 100%);
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.event-title-row {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  flex: 1;
+  min-width: 0;
+}
+
+.event-trophy {
+  width: 48rpx;
+  height: 48rpx;
+  flex-shrink: 0;
+}
+
+.event-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1a1a1a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.roster-badge {
+  padding: 10rpx 20rpx;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.roster-badge.set {
+  background: #e8f5e9;
+  color: #43a047;
+}
+
+.roster-badge.unset {
+  background: #fff3e0;
+  color: #ef6c00;
+}
+
+/* 赛事信息网格 */
+.event-card-body {
+  padding: 24rpx 30rpx;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20rpx;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.info-label {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.info-value {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.info-value.highlight {
+  color: #eb6c00;
+}
+
+.info-value.expired {
+  color: #f44336;
+}
+
+/* 赛事底部 */
+.event-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 30rpx;
+  background: #fafafa;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.deadline-status {
+  flex: 1;
+}
+
+.status-text {
+  font-size: 24rpx;
+}
+
+.status-text.active {
+  color: #43a047;
+}
+
+.status-text.expired {
+  color: #f44336;
+}
+
+.action-hint {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  font-size: 26rpx;
+  color: #eb6c00;
+  font-weight: 500;
+}
+
+.arrow-text {
+  font-size: 32rpx;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100rpx 40rpx;
+}
+
+.empty-icon {
+  width: 160rpx;
+  height: 160rpx;
+  opacity: 0.3;
+  margin-bottom: 30rpx;
+}
+
+.empty-text {
+  font-size: 30rpx;
+  color: #666;
+  margin-bottom: 16rpx;
+}
+
+.empty-hint {
+  font-size: 26rpx;
+  color: #999;
+}
+
+/* 加载状态 */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100rpx 40rpx;
+}
+
+.loading-spinner {
+  width: 60rpx;
+  height: 60rpx;
+  border: 4rpx solid #f0f0f0;
+  border-top-color: #eb6c00;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 20rpx;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-text {
+  font-size: 28rpx;
+  color: #999;
+}

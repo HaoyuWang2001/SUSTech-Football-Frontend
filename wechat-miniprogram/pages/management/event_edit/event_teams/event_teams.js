@@ -442,4 +442,14 @@ Page({
     })
   },
 
+  gotoViewRoster: function(e) {
+    var that = this;
+    var teamId = e.currentTarget.dataset.teamid;
+    var teamName = e.currentTarget.dataset.teamname;
+    var teamLogo = e.currentTarget.dataset.teamlogo || '';
+    wx.navigateTo({
+      url: '/pages/management/event_edit/event_roster_view/event_roster_view?eventId=' + that.data.eventId + '&teamId=' + teamId + '&teamName=' + encodeURIComponent(teamName) + '&teamLogo=' + encodeURIComponent(teamLogo)
+    })
+  },
+
 })

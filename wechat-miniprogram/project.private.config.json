@@ -3,6 +3,6 @@
   "projectname": "SUSTech-Football-Frontend",
   "setting": {
     "compileHotReLoad": true,
-    "urlCheck": true
+    "urlCheck": false
   }
 }

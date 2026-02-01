@@ -1,6 +1,5 @@
 // pages/pub/team/team.js
 const appInstance = getApp()
-const URL = appInstance.globalData.URL
 const userId = appInstance.globalData.userId
 const {
   formatTime
@@ -89,6 +88,8 @@ Page({
 
   // 获取基本数据
   fetchData: function (id) {
+    const URL = getApp().globalData.URL
+    console.log("URL:", URL, "id:", id)
     // 显示加载提示框，提示用户正在加载
     wx.showLoading({
       title: '加载中',
@@ -119,7 +120,8 @@ Page({
         })
       },
       fail(err) {
-        console.log("请求失败，错误码为：" + err.statusCode + "；错误信息为：" + err.message)
+        console.log("请求失败：", err)
+        console.log("errMsg:", err.errMsg)
       },
       complete() {
         // 无论请求成功还是失败都会执行
@@ -184,6 +186,7 @@ Page({
 
   // 获取用户是否关注该比赛
   isFavorite(userId, id) {
+    const URL = getApp().globalData.URL
     let that = this
     wx.request({
       url: URL + '/isFavorite',
@@ -208,6 +211,7 @@ Page({
 
   // 关注球队
   favorite() {
+    const URL = getApp().globalData.URL
     let that = this
     wx.showLoading({
       title: '收藏中',
@@ -235,6 +239,7 @@ Page({
 
   // 取消关注
   unfavorite() {
+    const URL = getApp().globalData.URL
     let that = this
     wx.showLoading({
       title: '取消收藏中',

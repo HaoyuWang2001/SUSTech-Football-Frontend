@@ -48,6 +48,30 @@
         <view class="block-more" style="color: darkred; font-weight: bold;">不可更改！</view>
       </view>
       <view class="block-main">
+        <!-- 赛制和大名单信息 -->
+        <view class="event-info-row">
+          <text class="info-label">赛制：</text>
+          <text class="info-value">{{matchPlayerCount}}人制</text>
+        </view>
+        <view class="event-info-row">
+          <text class="info-label">大名单人数上限：</text>
+          <text class="info-value">{{rosterSize}}人</text>
+        </view>
+        <view class="event-info-row deadline-row">
+          <text class="info-label">大名单截止日期：</text>
+          <text class="info-value" wx:if="{{savedDeadline}}">{{savedDeadline}}</text>
+          <text class="info-value deadline-not-set" wx:else>未设置</text>
+        </view>
+        <view class="deadline-picker-row">
+          <picker mode="date" value="{{rosterDeadlineDate}}" bindchange="onDeadlineDateChange">
+            <view class="picker-value">{{rosterDeadlineDate || '选择日期'}}</view>
+          </picker>
+          <picker mode="time" value="{{rosterDeadlineTime}}" bindchange="onDeadlineTimeChange">
+            <view class="picker-value">{{rosterDeadlineTime || '选择时间'}}</view>
+          </picker>
+          <view class="deadline-confirm-btn" bindtap="confirmDeadline">确认</view>
+        </view>
+        
         <!-- 赛事阶段 -->
         <view class="stage-container">
           <view wx:for="{{stageList}}" wx:key="name">

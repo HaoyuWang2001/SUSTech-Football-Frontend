@@ -58,6 +58,26 @@
     </view>
   </view>
 
+  <!-- 比赛人数 -->
+  <view class="block-space">
+    <picker class="eventType-container" mode="selector" range="{{matchPlayerCountList}}" bindchange="matchPlayerCountChange">
+      <text style="margin-left: 3%;">比赛人数：</text>
+      <text wx:if="{{matchPlayerCount === 0}}" class="prompt">{{'点击选择比赛人数（几人制）'}}</text>
+      <text wx:else="">{{matchPlayerCount}}人制</text>
+    </picker>
+  </view>
+
+  <!-- 大名单人数 -->
+  <view class="block-space">
+    <view class="discription-container">
+      <text style="margin-left: 3%;">大名单人数：</text>
+      <view class="description-content">
+        <input class="text" type="number" bindinput="inputRosterSize" placeholder="请输入每支球队的大名单人数" value="{{rosterSize || ''}}"></input>
+      </view>
+    </view>
+    <view class="hint">提示：大名单人数是指每支参赛球队可以报名的球员总数，必须大于或等于比赛人数。</view>
+  </view>
+
   <view class="btn-container">
     <button class="confirm-btn" bindtap="showCreateModal">确认创建</button>
   </view>
