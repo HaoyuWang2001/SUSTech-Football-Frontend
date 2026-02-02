@@ -4,6 +4,7 @@ const URL = app.globalData.URL
 const {
   formatTime
 } = require("../../../utils/timeFormatter")
+const {showModal} = require("../../../utils/modal")
 
 Page({
 
@@ -402,39 +403,37 @@ Page({
 
   showRefereeEventInvitationModal(e) {
     let eventId = e.currentTarget.dataset.id
-    wx.showModal({
+    showModal({
       title: '赛事执法',
       content: `是否接受赛事执法邀请？`,
       cancelText: '拒绝',
       cancelColor: '#FF0000',
       confirmText: '接受',
       confirmColor: '#1cb72d',
-      success: (res) => {
-        if (res.confirm) {
-          this.refereeReplyEventInvitation(true, eventId);
-        } else if (res.cancel) {
-          this.refereeReplyEventInvitation(false, eventId);
-        }
-      }
+      onComfirm: () => {
+        this.refereeReplyEventInvitation(true, eventId);
+      },
+      onCancel: () => {
+        this.refereeReplyEventInvitation(false, eventId);
+      },
     });
   },
 
   showRefereeMatchInvitationModal(e) {
     let matchId = e.currentTarget.dataset.id
-    wx.showModal({
+    showModal({
       title: '比赛执法',
       content: `是否接受比赛执法邀请？`,
       cancelText: '拒绝',
       cancelColor: '#FF0000',
       confirmText: '接受',
       confirmColor: '#1cb72d',
-      success: (res) => {
-        if (res.confirm) {
-          this.refereeReplyMatchInvitation(true, matchId);
-        } else if (res.cancel) {
-          this.refereeReplyMatchInvitation(false, matchId);
-        }
-      }
+      onComfirm: () => {
+        this.refereeReplyMatchInvitation(true, matchId);
+      },
+      onCancel: () => {
+        this.refereeReplyMatchInvitation(false, matchId);
+      },
     });
   },
 

@@ -1,5 +1,6 @@
 const appInstance = getApp()
 const URL = appInstance.globalData.URL
+const { showModal } = require("../../../utils/modal")
 // const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
 
 Page({
@@ -143,9 +144,6 @@ Page({
 
   },
 
-  // ------------------
-  // fetch data
-
   fetchUserId(userId) {
     const that = this
     that.setData({
@@ -155,10 +153,7 @@ Page({
 
   // 根据userId获取本页面全部数据
   fetchData: function (userId) {
-
     const that = this
-
-    //球队管理员身份
     that.fetchManageTeamList(userId)
   },
 
@@ -1252,143 +1247,130 @@ Page({
 
   showPlayerTeamInvitationModal(e) {
     let teamId = e.currentTarget.dataset.id
-    wx.showModal({
+    showModal({
       title: '球队邀请',
       content: `是否加入球队？`,
       cancelText: '拒绝',
       cancelColor: '#FF0000',
       confirmText: '接受',
       confirmColor: '#1cb72d',
-      success: (res) => {
-        if (res.confirm) {
-          this.playerReplyTeamInvitation(true, teamId);
-        } else if (res.cancel) {
-          this.playerReplyTeamInvitation(false, teamId);
-        }
-      }
+      onConfirm: () => {
+        this.playerReplyTeamInvitation(true, teamId);
+      },
+      onCancel: () => {
+        this.playerReplyTeamInvitation(false, teamId);
+      },
     });
   },
 
   showCoachTeamInvitationModal(e) {
     let teamId = e.currentTarget.dataset.id
-    wx.showModal({
+    showModal({
       title: '执教邀请',
       content: `是否接受球队执教邀请？`,
       cancelText: '拒绝',
       cancelColor: '#FF0000',
       confirmText: '接受',
       confirmColor: '#1cb72d',
-      success: (res) => {
-        if (res.confirm) {
-          this.coachReplyTeamInvitation(true, teamId);
-        } else if (res.cancel) {
-          this.coachReplyTeamInvitation(false, teamId);
-        }
-      }
+      onConfirm: () => {
+        this.coachReplyTeamInvitation(true, teamId);
+      },
+      onCancel: () => {
+        this.coachReplyTeamInvitation(false, teamId);
+      },
     });
   },
 
   showRefereeEventInvitationModal(e) {
     let eventId = e.currentTarget.dataset.id
-    wx.showModal({
+    showModal({
       title: '赛事执法',
       content: `是否接受赛事执法邀请？`,
       cancelText: '拒绝',
       cancelColor: '#FF0000',
       confirmText: '接受',
       confirmColor: '#1cb72d',
-      success: (res) => {
-        if (res.confirm) {
-          this.refereeReplyEventInvitation(true, eventId);
-        } else if (res.cancel) {
-          this.refereeReplyEventInvitation(false, eventId);
-        }
-      }
+      onConfirm: () => {
+        this.refereeReplyEventInvitation(true, eventId);
+      },
+      onCancel: () => {
+        this.refereeReplyEventInvitation(false, eventId);
+      },
     });
   },
 
   showRefereeMatchInvitationModal(e) {
     let matchId = e.currentTarget.dataset.id
-    wx.showModal({
+    showModal({
       title: '比赛执法',
       content: `是否接受比赛执法邀请？`,
       cancelText: '拒绝',
       cancelColor: '#FF0000',
       confirmText: '接受',
       confirmColor: '#1cb72d',
-      success: (res) => {
-        if (res.confirm) {
-          this.refereeReplyMatchInvitation(true, matchId);
-        } else if (res.cancel) {
-          this.refereeReplyMatchInvitation(false, matchId);
-        }
-      }
+      onConfirm: () => {
+        this.refereeReplyMatchInvitation(true, matchId);
+      },
+      onCancel: () => {
+        this.refereeReplyMatchInvitation(false, matchId);
+      },
     });
   },
 
   showManageTeamApplicationModal(e) {
     let playerId = e.currentTarget.dataset.playerId
     let teamId = e.currentTarget.dataset.teamId
-    console.log(playerId)
-    console.log(teamId)
-    wx.showModal({
+    showModal({
       title: '球员申请',
       content: `是否同意该球员加入球队？`,
       cancelText: '拒绝',
       cancelColor: '#FF0000',
       confirmText: '接受',
       confirmColor: '#1cb72d',
-      success: (res) => {
-        if (res.confirm) {
-          this.teamManagerReplyApplication(true, playerId, teamId);
-        } else if (res.cancel) {
-          this.teamManagerReplyApplication(false, playerId, teamId);
-        }
-      }
+      onConfirm: () => {
+        this.teamManagerReplyApplication(true, playerId, teamId);
+      },
+      onCancel: () => {
+        this.teamManagerReplyApplication(false, playerId, teamId);
+      },
     });
   },
 
   showManageTeamInvitationMatchModal(e) {
     let matchId = e.currentTarget.dataset.matchId
     let teamId = e.currentTarget.dataset.teamId
-    console.log(matchId)
-    console.log(teamId)
-    wx.showModal({
+    showModal({
       title: '比赛邀请',
       content: `是否同意参与该比赛？`,
       cancelText: '拒绝',
       cancelColor: '#FF0000',
       confirmText: '接受',
       confirmColor: '#1cb72d',
-      success: (res) => {
-        if (res.confirm) {
-          this.teamManagerReplyInvitationMatch(true, matchId, teamId);
-        } else if (res.cancel) {
-          this.teamManagerReplyInvitationMatch(false, matchId, teamId);
-        }
-      }
+      onConfirm: () => {
+        this.teamManagerReplyInvitationMatch(true, matchId, teamId);
+      },
+      onCancel: () => {
+        this.teamManagerReplyInvitationMatch(false, matchId, teamId);
+      },
     });
   },
 
   showManageTeamInvitationEventModal(e) {
     let eventId = e.currentTarget.dataset.eventId
     let teamId = e.currentTarget.dataset.teamId
-    console.log(eventId)
-    console.log(teamId)
-    wx.showModal({
+    showModal({
       title: '比赛邀请',
       content: `是否同意参与该比赛？`,
       cancelText: '拒绝',
       cancelColor: '#FF0000',
       confirmText: '接受',
       confirmColor: '#1cb72d',
-      success: (res) => {
-        if (res.confirm) {
-          this.teamManagerReplyInvitationEvent(true, eventId, teamId);
-        } else if (res.cancel) {
-          this.teamManagerReplyInvitationEvent(false, eventId, teamId);
-        }
-      }
+      onConfirm: () => {
+        this.teamManagerReplyInvitationEvent(true, eventId, teamId);
+      },
+      onCancel: () => {
+        this.teamManagerReplyInvitationEvent(false, eventId, teamId);
+      },
     });
   },
   // ------------------

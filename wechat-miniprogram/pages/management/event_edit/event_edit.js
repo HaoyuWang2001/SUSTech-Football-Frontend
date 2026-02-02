@@ -5,6 +5,7 @@ const userId = appInstance.globalData.userId
 const {
   formatTime
 } = require("../../../utils/timeFormatter")
+const { showModal } = require("../../../utils/modal")
 Page({
 
   /**
@@ -12,7 +13,7 @@ Page({
    */
   data: {
     icon: '/assets/cup.svg',
-    modalHiddenEname: true, // 控制模态框显示隐藏
+    modalHiddenEname: true,
     modalHiddenEdes: true,
 
     eventId: 0,
@@ -107,14 +108,12 @@ Page({
   },
 
   fetchData: function () {
-    // 显示加载提示框，提示用户正在加载
     wx.showLoading({
       title: '加载中',
-      mask: true // 创建一个蒙层，防止用户操作
+      mask: true
     });
 
     var that = this;
-    // 模拟网络请求
     wx.request({
       url: URL + '/event/get?id=' + that.data.eventId,
       success(res) {
@@ -131,7 +130,6 @@ Page({
           match.strTime = formatTime(date)
           match.hasBegun = match.status == 'PENDING' ? false : true
         }
-        // 基本数据
         that.setData({
           eventId: res.data.eventId,
           name: res.data.name,
@@ -186,16 +184,14 @@ Page({
         console.log('请求失败', err);
       },
       complete() {
-        // 无论请求成功还是失败都会执行
         that.fetchReferee();
-        wx.hideLoading(); // 关闭加载提示框
+        wx.hideLoading();
       }
     });
   },
 
   fetchReferee: function () {
     var that = this;
-    // 模拟网络请求
     wx.request({
       url: URL + '/event/referee/getAll?eventId=' + that.data.eventId,
       success(res) {
@@ -215,7 +211,6 @@ Page({
     });
   },
 
-  // 赛事管理员
   showInviteManagerModal: function () {
     this.setData({
       modalHidden_inviteManager: false
@@ -278,25 +273,6 @@ Page({
     });
   },
 
-  // 引入模态框的通用方法
-  showModal: function (title, content, confirmText, confirmColor, cancelText, confirmCallback, cancelCallback) {
-    wx.showModal({
-      title: title,
-      content: content,
-      confirmText: confirmText,
-      confirmColor: confirmColor,
-      cancelText: cancelText,
-      success(res) {
-        if (res.confirm) {
-          confirmCallback();
-        } else if (res.cancel) {
-          cancelCallback();
-        }
-      }
-    });
-  },
-
-  // 显示赛事名称输入弹窗
   showNameInput: function () {
     this.setData({
       modalHiddenEname: false
@@ -336,7 +312,6 @@ Page({
     });
   },
 
-  // 大名单截止日期选择
   onDeadlineDateChange: function (e) {
     this.setData({
       rosterDeadlineDate: e.detail.value
@@ -414,38 +389,28 @@ Page({
   },
 
   showConfirmModal() {
-    var that = this
-    wx.showModal({
+    showModal({
       title: '确认修改',
       content: '确定要进行修改吗？',
-      confirmText: '确认',
-      cancelText: '取消',
-      success(res) {
-        if (res.confirm) {
-          that.confirmEdit() // 点击确认时的回调函数
-        } else if (res.cancel) {
-          () => {} // 点击取消时的回调函数，这里不做任何操作
-        }
-      }
+      onConfirm: () => {
+        this.confirmEdit();
+      },
     })
   },
 
-  // 点击取消比赛按钮，弹出确认取消模态框
   showCancelModal() {
-    var that = this;
-    this.showModal(
-      '确认删除赛事',
-      '确定要删除这项赛事吗？',
-      '确认删除',
-      '#FF0000',
-      '我再想想',
-      function() { that.deleteEvent(); }, // 点击确认取消时的回调函数
-      function() {} // 点击我再想想时的回调函数，这里不做任何操作
-    );
+    showModal({
+      title: '确认删除赛事',
+      content: '确定要删除这项赛事吗？',
+      confirmText: '确认删除',
+      confirmColor: '#FF0000',
+      cancelText: '我再想想',
+      onConfirm: () => {
+        this.deleteEvent();
+      },
+    })
   },
 
-
-  // 处理提交信息修改
   confirmEdit() {
     const dataToUpdate = {
       eventId: this.data.eventId,
@@ -497,7 +462,6 @@ Page({
 
   deleteEvent() {
     var that = this;
-    // 模拟网络请求
     wx.request({
       url: URL + '/event/delete?eventId=' + that.data.eventId + '&userId=' + userId,
       method: 'DELETE',

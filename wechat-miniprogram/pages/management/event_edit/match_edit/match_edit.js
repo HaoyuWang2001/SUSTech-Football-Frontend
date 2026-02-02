@@ -6,6 +6,7 @@ const {
   formatTime,
   splitDateTime
 } = require("../../../../utils/timeFormatter")
+const { showModal } = require("../../../../utils/modal")
 
 Page({
 
@@ -51,7 +52,7 @@ Page({
     },
     status: '',
     strStatus: '暂无',
-    modalHidden: true, // 控制模态框显示隐藏
+    modalHidden: true,
     array: [
       ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
       ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
@@ -122,14 +123,12 @@ Page({
   },
 
   fetchData: function (id) {
-    // 显示加载提示框，提示用户正在加载
     wx.showLoading({
       title: '加载中',
-      mask: true // 创建一个蒙层，防止用户操作
+      mask: true
     });
 
     var that = this;
-    // 模拟网络请求
     wx.request({
       url: URL + '/match/get?id=' + that.data.matchId,
       success(res) {
@@ -156,7 +155,6 @@ Page({
           strDate,
           strTime
         } = splitDateTime(strTimeInfo)
-        // 基本数据
         that.setData({
           hasBegun: hasBegun,
           strTimeInfo: strTimeInfo,
@@ -184,24 +182,20 @@ Page({
       },
       fail(err) {
         console.log('请求失败', err);
-        // 可以显示失败的提示信息，或者做一些错误处理
       },
       complete() {
-        // 无论请求成功还是失败都会执行
-        wx.hideLoading(); // 关闭加载提示框
+        wx.hideLoading();
         that.load(that.data.eventId);
       }
     });
   },
 
   load: function (eventId) {
-    // 显示加载提示框，提示用户正在加载
     wx.showLoading({
       title: '加载中',
       mask: true
     });
     var that = this;
-    // 模拟网络请求
     wx.request({
       url: URL + '/event/get?id=' + eventId,
       success(res) {
@@ -217,7 +211,6 @@ Page({
         console.log(stageNameList);
         const selectedStage = res.data.stageList.find(stage => stage.stageName === that.data.stage);
         const tagNameList = selectedStage.tags.map(tag => tag.tagName);
-        // 基本数据
         that.setData({
           stageList: res.data.stageList,
           stageNameList: stageNameList,
@@ -230,41 +223,18 @@ Page({
         console.log('请求失败', err);
       },
       complete() {
-        // 无论请求成功还是失败都会执行
-        wx.hideLoading(); // 关闭加载提示框
+        wx.hideLoading();
       }
     });
   },
 
-  // 引入模态框的通用方法
-  showModal: function (title, content, confirmText, confirmColor, cancelText, confirmCallback, cancelCallback) {
-    wx.showModal({
-      title: title,
-      content: content,
-      confirmText: confirmText,
-      confirmColor: confirmColor,
-      cancelText: cancelText,
-      success(res) {
-        if (res.confirm) {
-          confirmCallback();
-        } else if (res.cancel) {
-          cancelCallback();
-        }
-      }
-    });
-  },
-
-  // 处理日期选择器选择完成事件
   bindDateChange: function (e) {
-    // 更新页面上的日期显示
     this.setData({
       strDate: e.detail.value
     });
   },
 
-  // 处理时间选择器选择完成事件
   bindTimeChange: function (e) {
-    // 更新页面上的时间显示
     this.setData({
       strTime: e.detail.value
     });
@@ -294,7 +264,6 @@ Page({
       });
   },
 
-  // 处理比分选择器选择完成事件
   bindPickerChangeScore: function (e) {
     const value = e.detail.value;
     // 更新页面上的比分显示
@@ -304,7 +273,6 @@ Page({
     });
   },
 
-  // 处理点球比分选择器选择完成事件
   bindPickerChangePenalty: function (e) {
     const value = e.detail.value;
     // 更新页面上的点球比分显示
@@ -314,51 +282,41 @@ Page({
     });
   },
 
-  // 处理比赛状态选择器选择完成事件
   bindPickerChangeStatus(e) {
     const value = e.detail.value;
+    // 更新页面上的比赛状态显示
     this.setData({
       status: this.data.statusArray[value],
       strStatus: this.data.strStatusArray[value],
     });
   },
 
-  // 点击确认修改按钮，弹出确认修改模态框
   showConfirmModal() {
-    var that = this
-    wx.showModal({
+    showModal({
       title: '确认修改',
       content: '确定要进行修改吗？',
-      confirmText: '确认',
-      cancelText: '取消',
-      success(res) {
-        if (res.confirm) {
-          that.confirmEdit() // 点击确认时的回调函数
-        } else if (res.cancel) {
-          () => {} // 点击取消时的回调函数，这里不做任何操作
-        }
+      onConfirm: () => {
+        this.confirmEdit();
       }
     })
   },
 
-  // 点击取消比赛按钮，弹出确认取消模态框
   showCancelModal() {
-    this.showModal(
-      '确认取消比赛',
-      '确定要取消这场比赛吗？',
-      '确认取消',
-      '#FF0000',
-      '我再想想',
-      this.deleteMatch, // 点击确认取消时的回调函数
-      () => {} // 点击我再想想时的回调函数，这里不做任何操作
-    );
+    showModal({
+      title: '确认取消比赛',
+      content: '确定要取消这场比赛吗？',
+      confirmText: '确认取消',
+      confirmColor: '#FF0000',
+      cancelText: '我再想想',
+      onConfirm: () => {
+        this.deleteMatch();
+      }
+    })
   },
 
-  // 处理提交信息修改
   confirmEdit() {
     let sqlTimestamp = this.data.strDate + 'T' + this.data.strTime + ":00.000+08:00";
 
-    // 构造要发送给后端的数据
     const dataToUpdate = {
       matchId: this.data.matchId,
       homeTeamId: this.data.homeTeamId,
@@ -375,12 +333,12 @@ Page({
 
     wx.showLoading({
       title: '更新中',
-      mask: true // 创建一个蒙层，防止用户操作
+      mask: true
     });
     wx.request({
       url: `${URL}/event/match/update?eventId=${this.data.eventId}`,
-      method: 'PUT', // 请求方法
-      data: dataToUpdate, // 要发送的数据
+      method: 'PUT',
+      data: dataToUpdate,
       success: res => {
         wx.hideLoading()
         console.log("event_edit match_edit page: confirmEdit ->")
@@ -401,7 +359,6 @@ Page({
       fail: err => {
         wx.hideLoading()
         console.error('赛事比赛信息修改失败', err);
-        // 显示失败信息
         wx.showToast({
           title: '修改失败，请重试',
           icon: 'error',
@@ -428,7 +385,7 @@ Page({
             title: '删除失败',
             icon: 'error',
           });
-          return
+          return;
         }
         wx.navigateBack({
           success: () => {

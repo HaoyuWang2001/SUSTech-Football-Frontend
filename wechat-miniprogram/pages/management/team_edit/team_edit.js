@@ -2,6 +2,7 @@
 const appInstance = getApp()
 const URL = appInstance.globalData.URL
 const userId = appInstance.globalData.userId
+const { showModal } = require("../../../utils/modal")
 
 Page({
 
@@ -10,7 +11,7 @@ Page({
    */
   data: {
     id: 0,
-    modalHidden_name: true, // 控制模态框显示隐藏
+    modalHidden_name: true,
     modalHidden_description: true,
     inviteManager: {
       name: '邀请管理员',
@@ -65,7 +66,6 @@ Page({
     wx.stopPullDownRefresh();
   },
 
-  // 拉取数据
   fetchData: function (id) {
     wx.showLoading({
       title: '加载中',
@@ -123,7 +123,6 @@ Page({
           console.log("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
           return
         }
-        // 基本数据
         that.setData({
           captain: res.data
         });
@@ -144,7 +143,6 @@ Page({
       return
     }
 
-    // 构造要发送给后端的数据
     const dataToUpdate = {
       teamId: this.data.teamId,
       name: this.data.name,
@@ -247,7 +245,6 @@ Page({
     })
   },
 
-  // 更改队名
   showNameModal: function () {
     this.setData({
       modalHidden_name: false
@@ -280,7 +277,6 @@ Page({
     });
   },
 
-  // 球队管理员
   showInviteManagerModal: function () {
     this.setData({
       modalHidden_inviteManager: false
@@ -344,25 +340,19 @@ Page({
   },
 
   showDeletePlayerModal(e) {
-    const that = this
     const playerId = e.currentTarget.dataset.id
-    wx.showModal({
+    showModal({
       title: '确认移除',
       content: '确定要移除该球员吗？',
-      confirmText: '确认',
       confirmColor: 'red',
-      cancelText: '取消',
-      success(res) {
-        if (res.confirm) {
-          that.deletePlayer(playerId)
-        }
-      }
+      onConfirm: () => {
+        this.deletePlayer(playerId)
+      },
     });
   },
 
   deletePlayer() {
     var that = this;
-    // 模拟网络请求
     wx.request({
       url: URL + '/team/player/delete?teamId=' + that.data.teamId + '&playerId=' + that.data.selectPlayerId,
       method: 'DELETE',
@@ -394,25 +384,18 @@ Page({
     });
   },
 
-  // 删除教练模态框
   showDeleteCoachModal(e) {
-    const that = this
     const coachId = e.currentTarget.dataset.id
-    wx.showModal({
+    showModal({
       title: '确认移除',
       content: '确定要移除该教练吗？',
-      confirmText: '确认',
       confirmColor: 'red',
-      cancelText: '取消',
-      success(res) {
-        if (res.confirm) {
-          that.deleteCoach(coachId)
-        }
-      }
+      onConfirm: () => {
+        this.deleteCoach(coachId)
+      },
     })
   },
 
-  // 显示编辑球员号码模态框
   showEditPlayerModal: function (e) {
     const id = e.currentTarget.dataset.id
     this.setData({
@@ -422,7 +405,6 @@ Page({
     });
   },
 
-  // 输入球员号码
   inputPlayerNumber: function (e) {
     const value = e.detail.value;
     this.setData({
@@ -430,10 +412,8 @@ Page({
     });
   },
 
-  // 确认修改球员号码
   confirmEditPlayerNumber: function () {
     var that = this;
-    // 模拟网络请求
     wx.request({
       url: URL + '/team/player/updateNumber?teamId=' + that.data.teamId + '&playerId=' + that.data.selectPlayerId + '&number=' + that.data.newPlayerNumber,
       method: 'POST',
@@ -448,7 +428,7 @@ Page({
           });
           return
         }
-        const successMsg = res.data ? res.data : '设置号码成功'; // 假设后端返回的成功信息在 res.data
+        const successMsg = res.data ? res.data : '设置号码成功';
         that.fetchData(that.data.id);
         wx.showToast({
           title: successMsg,
@@ -456,9 +436,7 @@ Page({
         });
       },
       fail(err) {
-        // 请求失败的处理逻辑
         console.error('设置号码失败', err);
-        // 显示失败信息
         wx.showToast({
           title: '设置失败，请重试',
           icon: "error",
@@ -472,7 +450,6 @@ Page({
     });
   },
 
-  // 取消修改球员号码
   cancelEditPlayerNumber: function () {
     this.setData({
       editPlayerModalHidden: true,

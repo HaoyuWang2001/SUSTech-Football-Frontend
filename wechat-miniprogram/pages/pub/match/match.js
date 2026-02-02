@@ -5,6 +5,7 @@ const userId = appInstance.globalData.userId
 const {
   formatTime
 } = require("../../../utils/timeFormatter")
+const { showModal } = require("../../../utils/modal")
 
 Page({
   data: {
@@ -485,39 +486,29 @@ Page({
 
   showDeleteCommentModal(e) {
     const commentId = e.currentTarget.dataset.id
-    var that = this
-    wx.showModal({
+    showModal({
       title: '确认删除评论',
       content: '确定要删除这条评论吗？',
       confirmText: '确认删除',
       confirmColor: '#FF0000',
       cancelText: '我再想想',
-      success(res) {
-        if (res.confirm) {
-          that.deleteComment(commentId);
-        } else if (res.cancel) {
-          () => {}
-        }
-      }
+      onComfirm: () => {
+        this.deleteComment(commentId);
+      },
     });
   },
 
   showDeleteReplyModal(e) {
     const replyId = e.currentTarget.dataset.id
-    var that = this
-    wx.showModal({
+    showModal({
       title: '确认删除回复',
       content: '确定要删除这条回复吗？',
       confirmText: '确认删除',
       confirmColor: '#FF0000',
       cancelText: '我再想想',
-      success(res) {
-        if (res.confirm) {
-          that.deleteReply(replyId);
-        } else if (res.cancel) {
-          () => {}
-        }
-      }
+      onComfirm: () => {
+        this.deleteReply(replyId);
+      },
     });
   },
 

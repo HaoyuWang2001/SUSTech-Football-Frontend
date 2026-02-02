@@ -1,6 +1,7 @@
 // pages/management/event_edit/event_teams/event_teams.js
 const appInstance = getApp()
 const URL = appInstance.globalData.URL
+const { showModal } = require("../../../../utils/modal")
 
 Page({
 
@@ -87,14 +88,12 @@ Page({
   },
 
   fetchData: function (id) {
-    // 显示加载提示框，提示用户正在加载
     wx.showLoading({
       title: '加载中',
-      mask: true // 创建一个蒙层，防止用户操作
+      mask: true
     });
 
     var that = this;
-    // 模拟网络请求
     wx.request({
       url: URL + '/event/get?id=' + id,
       success(res) {
@@ -104,7 +103,6 @@ Page({
           console.log("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
           return
         }
-        // 基本数据
         that.setData({
           eventId: res.data.eventId,
           teamList: res.data.teamList,
@@ -144,34 +142,26 @@ Page({
       },
       fail(err) {
         console.log('请求失败', err);
-        // 可以显示失败的提示信息，或者做一些错误处理
       },
       complete() {
-        // 无论请求成功还是失败都会执行
-        wx.hideLoading(); // 关闭加载提示框
+        wx.hideLoading();
       }
     });
   },
 
-  // 点击取消比赛按钮，弹出确认取消模态框
   showCancelModal(e) {
     this.setData({
       deleteTeamId: e.currentTarget.dataset.teamid,
       deleteGroupId: e.currentTarget.dataset.groupid
-    }) 
-    var that = this
-    wx.showModal({
+    });
+    showModal({
       title: '确认删除球队',
       content: '确定要删除这支球队吗？',
       confirmText: '确认删除',
       confirmColor: '#FF0000',
       cancelText: '我再想想',
-      success(res) {
-        if (res.confirm) {
-          that.deleteTeam() // 点击确认删除时的回调函数
-        } else if (res.cancel) {
-          () => {} // 点击我再想想时的回调函数，这里不做任何操作
-        }
+      onConfirm: () => {
+        this.deleteTeam();
       }
     });
   },
@@ -198,20 +188,16 @@ Page({
     this.showSelectConfirmModal();
   },
 
-  // 点击取消比赛按钮，弹出确认取消模态框
+  // 确认分组
   showSelectConfirmModal() {
-    var that = this
-    wx.showModal({
+    let content = '确定将球队' + this.data.currentTeamName + '分配到' + this.data.groupNameList[this.data.selectedGroupIndex] + '吗？';
+    showModal({
       title: '确认分配小组',
-      content: '确定将球队' + that.data.currentTeamName + '分配到' + that.data.groupNameList[that.data.selectedGroupIndex] + '吗？',
+      content: content,
       confirmText: '确认分配',
       cancelText: '我再想想',
-      success(res) {
-        if (res.confirm) {
-          that.confirmGroupAssignment() // 点击确认删除时的回调函数
-        } else if (res.cancel) {
-          () => {} // 点击我再想想时的回调函数，这里不做任何操作
-        }
+      onConfirm: () => {
+        this.confirmGroupAssignment();
       }
     });
   },
@@ -257,16 +243,14 @@ Page({
                 });
                 return
               }
-              const successMsg = res.data ? res.data : '分配成功'; // 假设后端返回的成功信息在 res.
+              const successMsg = res.data ? res.data : '分配成功';
               wx.showToast({
                 title: successMsg,
                 icon: 'success',
               });
             },
             fail(err) {
-              // 请求失败的处理逻辑
               console.error('赛事球队分配小组失败', err);
-              // 显示失败信息
               wx.showToast({
                 title: '分配失败，请重试',
                 icon: 'error',
@@ -278,9 +262,7 @@ Page({
           });
         },
         fail(err) {
-          // 请求失败的处理逻辑
           console.error('赛事小组球队删除失败', err);
-          // 显示失败信息
           wx.showToast({
             title: '删除失败，请重试',
             icon: 'error',
@@ -290,7 +272,6 @@ Page({
         }
       });
     } else {
-      // 模拟网络请求
       wx.request({
         url: URL + '/event/group/addTeam?groupId=' + groupId + '&teamId=' + teamId,
         method: 'POST',
@@ -305,16 +286,14 @@ Page({
             });
             return
           }
-          const successMsg = res.data ? res.data : '分配成功'; // 假设后端返回的成功信息在 res.
+          const successMsg = res.data ? res.data : '分配成功';
           wx.showToast({
             title: successMsg,
             icon: 'success',
           });
         },
         fail(err) {
-          // 请求失败的处理逻辑
           console.error('赛事球队分配小组失败', err);
-          // 显示失败信息
           wx.showToast({
             title: '分配失败，请重试',
             icon: 'error',
@@ -329,7 +308,6 @@ Page({
 
   deleteTeam() {
     var that = this;
-    // 模拟网络请求
     if(this.data.groupId === 0){
       wx.request({
         url: URL + '/event/team/delete?eventId=' + that.data.eventId + '&teamId=' + that.data.deleteTeamId,
@@ -353,9 +331,7 @@ Page({
           });
         },
         fail(err) {
-          // 请求失败的处理逻辑
           console.error('赛事球队删除失败', err);
-          // 显示失败信息
           wx.showToast({
             title: '删除失败，请重试',
             icon: 'error',
@@ -393,7 +369,7 @@ Page({
                 });
                 return
               }
-              const successMsg = res.data ? res.data : '删除成功'; // 假设后端返回的成功信息在 res.
+              const successMsg = res.data ? res.data : '删除成功';
               that.fetchData(that.data.id);
               wx.showToast({
                 title: successMsg,
@@ -401,9 +377,7 @@ Page({
               });
             },
             fail(err) {
-              // 请求失败的处理逻辑
               console.error('赛事球队删除失败', err);
-              // 显示失败信息
               wx.showToast({
                 title: '删除失败，请重试',
                 icon: 'error',
@@ -414,9 +388,7 @@ Page({
           });
         },
         fail(err) {
-          // 请求失败的处理逻辑
           console.error('赛事小组球队删除失败', err);
-          // 显示失败信息
           wx.showToast({
             title: '删除失败，请重试',
             icon: 'error',

@@ -5,6 +5,8 @@ const userId = appInstance.globalData.userId
 const {
   filter
 } = require("../../../utils/searchFilter")
+const { showModal } = require("../../../utils/modal")
+
 Page({
 
   /**
@@ -204,7 +206,6 @@ Page({
         url = URL;
     }
     if (this.data.type !== 'player') {
-      // 显示加载提示框，提示用户正在加载
       wx.showLoading({
         title: '加载中',
         mask: true
@@ -226,8 +227,7 @@ Page({
           console.log("请求失败，错误码为：" + err.statusCode + "；错误信息为：" + err.message)
         },
         complete() {
-          // 无论请求成功还是失败都会执行
-          wx.hideLoading(); // 关闭加载提示框
+          wx.hideLoading();
         }
       })
     }
@@ -242,7 +242,7 @@ Page({
       allList: [],
     })
     if (this.data.searchText === '') {
-      wx.hideLoading(); // 关闭加载提示框
+      wx.hideLoading();
       wx.showToast({
         title: '输入为空，请重试',
         icon: 'error',
@@ -274,7 +274,7 @@ Page({
           console.error('请求失败：', err.statusCode, err.errMsg);
         },
         complete() {
-          wx.hideLoading(); // 关闭加载提示框
+          wx.hideLoading();
           if (that.data.allList.length == 0) {
             wx.showToast({
               title: '未找到该球员,请重新输入',
@@ -335,7 +335,6 @@ Page({
     wx.navigateBack()
   },
 
-  // 点击确认创建按钮，弹出确认修改模态框
   showConfirmInviteModal(e) {
     var that = this
     const id = e.currentTarget.dataset.id
@@ -362,38 +361,24 @@ Page({
       default:
         ;
     }
-    wx.showModal({
+    showModal({
       title: '确认邀请',
       content: content,
-      confirmText: '确认',
-      cancelText: '取消',
-      success(res) {
-        if (res.confirm) {
-          that.invite(id) // 点击确认时的回调函数
-        } else if (res.cancel) {
-          () => {} // 点击取消时的回调函数，这里不做任何操作
-        }
-      }
+      onConfirm: () => {
+        this.invite(id);
+      },
     });
   },
 
-  // 点击确认创建按钮，弹出确认修改模态框
   showConfirmSelectModal(e) {
-    var that = this
     const id = e.currentTarget.dataset.id
-    wx.showModal({
+    showModal({
       title: '确认邀请',
       content: '确定要选择该球员做队长吗？',
-      confirmText: '确认',
-      cancelText: '取消',
-      success(res) {
-        if (res.confirm) {
-          that.selectCaptain(id) // 点击确认时的回调函数
-        } else if (res.cancel) {
-          () => {} // 点击取消时的回调函数，这里不做任何操作
-        }
-      }
-    });
+      onConfirm: () => {
+        this.selectCaptain(id);
+      },
+    })
   },
 
   invite(id) {
@@ -425,8 +410,7 @@ Page({
       method: 'POST',
       success: res => {
         console.log('已邀请 type=', this.data.type, res.data);
-        // 获取成功信息并显示在 toast 中
-        const successMsg = res.data ? res.data : '邀请成功'; // 假设后端返回的成功信息在 res.data.message 中
+        const successMsg = res.data ? res.data : '邀请成功';
         wx.showToast({
           title: successMsg,
           icon: 'success',
@@ -434,7 +418,6 @@ Page({
       },
       fail: err => {
         console.error('邀请失败', err);
-        // 显示失败信息
         wx.showToast({
           title: '请求失败，请重试',
           icon: 'error',
@@ -471,7 +454,6 @@ Page({
       },
       fail: err => {
         console.error('设置失败', err);
-        // 显示失败信息
         wx.showToast({
           title: '设置失败，请重试',
           icon: 'error',

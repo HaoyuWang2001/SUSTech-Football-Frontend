@@ -6,6 +6,7 @@ const {
   formatTime,
   splitDateTime
 } = require("../../../utils/timeFormatter")
+const { showModal } = require("../../../utils/modal")
 
 Page({
   data: {
@@ -45,7 +46,7 @@ Page({
       matchTag: "",
       eventName: ""
     },
-    modalHidden: true, // 控制模态框显示隐藏
+    modalHidden: true,
     array: [
       ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
       ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
@@ -109,7 +110,6 @@ Page({
         console.log(res.data.time)
         console.log(date)
         console.log(strTimeInfo)
-        // 基本数据
         that.setData({
           hasBegun: hasBegun,
           strTimeInfo: strTimeInfo,
@@ -136,15 +136,13 @@ Page({
       },
       fail(err) {
         console.log('请求失败', err);
-        // 显示失败信息
         wx.showToast({
           title: '请求失败，请重试',
           icon: 'error',
         });
       },
       complete() {
-        // 无论请求成功还是失败都会执行
-        wx.hideLoading(); // 关闭加载提示框
+        wx.hideLoading();
         if (that.data.tempHomeTeamId !== 0) {
           console.log('homeTeamId');
           console.log(that.data.tempHomeTeamId);
@@ -157,7 +155,6 @@ Page({
                 console.log("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
                 return
               }
-              // 基本数据
               that.setData({
                 homeTeamId: res.data.teamId,
                 homeTeamName: res.data.name,
@@ -166,11 +163,9 @@ Page({
             },
             fail(err) {
               console.log('请求失败', err);
-              // 可以显示失败的提示信息，或者做一些错误处理
             },
             complete() {
-              // 无论请求成功还是失败都会执行
-              wx.hideLoading(); // 关闭加载提示框
+              wx.hideLoading();
             }
           });
         }
@@ -187,7 +182,6 @@ Page({
                 console.log("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
                 return
               }
-              // 基本数据
               that.setData({
                 awayTeamId: res.data.teamId,
                 awayTeamName: res.data.name,
@@ -196,11 +190,9 @@ Page({
             },
             fail(err) {
               console.log('请求失败', err);
-              // 可以显示失败的提示信息，或者做一些错误处理
             },
             complete() {
-              // 无论请求成功还是失败都会执行
-              wx.hideLoading(); // 关闭加载提示框
+              wx.hideLoading();
             }
           });
         }
@@ -208,25 +200,6 @@ Page({
     });
   },
 
-  // 引入模态框的通用方法
-  showModal: function (title, content, confirmText, confirmColor, cancelText, confirmCallback, cancelCallback) {
-    wx.showModal({
-      title: title,
-      content: content,
-      confirmText: confirmText,
-      confirmColor: confirmColor,
-      cancelText: cancelText,
-      success(res) {
-        if (res.confirm) {
-          confirmCallback();
-        } else if (res.cancel) {
-          cancelCallback();
-        }
-      }
-    });
-  },
-
-  // 处理日期选择器选择完成事件
   bindDateChange: function (e) {
     // 更新页面上的日期显示
     this.setData({
@@ -234,7 +207,6 @@ Page({
     });
   },
 
-  // 处理时间选择器选择完成事件
   bindTimeChange: function (e) {
     // 更新页面上的时间显示
     this.setData({
@@ -242,7 +214,6 @@ Page({
     });
   },
 
-  // 处理比分选择器选择完成事件
   bindPickerChangeScore: function (e) {
     const value = e.detail.value;
     // 更新页面上的比分显示
@@ -252,7 +223,6 @@ Page({
     });
   },
 
-  // 处理点球比分选择器选择完成事件
   bindPickerChangePenalty: function (e) {
     const value = e.detail.value;
     // 更新页面上的点球比分显示
@@ -262,38 +232,29 @@ Page({
     });
   },
 
-  // 点击确认修改按钮，弹出确认修改模态框
   showConfirmModal() {
-    var that = this
-    wx.showModal({
+    showModal({
       title: '确认修改',
       content: '确定要进行修改吗？',
-      confirmText: '确认',
-      cancelText: '取消',
-      success(res) {
-        if (res.confirm) {
-          that.confirmEdit() // 点击确认时的回调函数
-        } else if (res.cancel) {
-          () => {} // 点击取消时的回调函数，这里不做任何操作
-        }
-      }
-    })
+      onConfirm: () => {
+        this.confirmEdit();
+      },
+    });
   },
 
-  // 点击取消比赛按钮，弹出确认取消模态框
   showCancelModal() {
-    this.showModal(
-      '确认取消比赛',
-      '确定要取消这场比赛吗？',
-      '确认取消',
-      '#FF0000',
-      '我再想想',
-      this.deleteMatch, // 点击确认取消时的回调函数
-      () => {} // 点击我再想想时的回调函数，这里不做任何操作
-    );
+    showModal({
+      title: '确认取消比赛',
+      content: '确定要取消这场比赛吗？',
+      confirmText: '确认取消',
+      confirmColor: '#FF0000',
+      cancelText: '我再想想',
+      onConfirm: () => {
+        this.deleteMatch();
+      },
+    });
   },
 
-  // 处理提交信息修改
   confirmEdit() {
     wx.showLoading({
       title: '加载中',
@@ -346,7 +307,6 @@ Page({
       fail: err => {
         wx.hideLoading()
         console.error('比赛信息修改失败', err);
-        // 显示失败信息
         wx.showToast({
           title: '修改失败，请重试',
           icon: 'error',
@@ -414,20 +374,13 @@ Page({
   },
 
   showCheckRefereeModal(e) {
-    var that = this
     const id = e.currentTarget.dataset.id
-    wx.showModal({
+    showModal({
       title: '确认查看',
       content: '确定要查看该教练吗？',
-      confirmText: '确认',
-      cancelText: '取消',
-      success(res) {
-        if (res.confirm) {
-          that.gotoRefereePage(id)
-        } else if (res.cancel) {
-          () => {}
-        }
-      }
+      onConfirm: () => {
+        this.gotoRefereePage(id);
+      },
     });
   },
 
@@ -439,20 +392,15 @@ Page({
   },
 
   showDeleteRefereeModal(e) {
-    const that = this
     const refereeId = e.currentTarget.dataset.id
-    wx.showModal({
+    showModal({
       title: '确认移除',
       content: '确定要移除该教练吗？',
-      confirmText: '确认',
-      confirmColor: 'red',
-      cancelText: '取消',
-      success(res) {
-        if (res.confirm) {
-          that.deleteReferee(refereeId)
-        }
-      }
-    })
+      confirmColor: '#FF0000',
+      onConfirm: () => {
+        this.deleteReferee(refereeId);
+      },
+    });
   },
 
   deleteReferee(refereeId) {

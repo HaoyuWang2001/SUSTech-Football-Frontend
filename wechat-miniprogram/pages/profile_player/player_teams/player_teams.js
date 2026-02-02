@@ -1,5 +1,6 @@
 const appInstance = getApp()
 const URL = appInstance.globalData.URL
+const { showModal } = require("../../../utils/modal")
 
 Page({
   data: {
@@ -58,17 +59,14 @@ Page({
   // 弹出确认退出模态框
   showExitModal(e) {
     let teamId = e.currentTarget.dataset.id
-    var that = this
-    wx.showModal({
+    showModal({
       title: '确认退出',
       content: '确定要退出这支球队吗？',
       confirmText: '退出',
       confirmColor: '#FF0000',
       cancelText: '取消',
-      success(res) {
-        if (res.confirm) {
-          that.exitTeam(teamId)
-        }
+      onComfirm: () => {
+        this.exitTeam(teamId)
       }
     });
   },

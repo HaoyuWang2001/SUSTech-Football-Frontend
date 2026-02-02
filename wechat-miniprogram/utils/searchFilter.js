@@ -1,5 +1,4 @@
 const filter = (keyword, patterns) => {
-  // keyword: search text
   keyword = keyword.trim()
   if (keyword == '') {
     return true

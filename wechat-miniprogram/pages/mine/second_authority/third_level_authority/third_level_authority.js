@@ -1,6 +1,8 @@
+// pages/mine/second_authority/third_level_authority/third_level_authority.js
 const appInstance = getApp()
 const URL = appInstance.globalData.URL
 const userId = appInstance.globalData.userId
+const { showModal } = require("../../../../utils/modal")
 
 Page({
   data: {
@@ -42,16 +44,14 @@ Page({
   showDeleteConfirmation(e) {
     const authorityId = e.currentTarget.dataset.id;
     const authority = this.data.thirdAuthorityList.find(authority => authority.authorityId == authorityId);
-    wx.showModal({
+    showModal({
       title: '删除',
       content: `删除二级权限 "${authority.user.nickName}"`,
       confirmText: '删除',
       confirmColor: '#ff4d4f',
-      success: (res) => {
-        if (res.confirm) {
-          this.deleteUser(authorityId);
-        }
-      }
+      onComfirm: () => {
+        this.deleteUser(authorityId);
+      },
     });
   },
 

@@ -3,6 +3,7 @@ const URL = app.globalData.URL
 const {
   formatTime
 } = require("../../utils/timeFormatter")
+const {showModal} = require("../../utils/modal")
 
 Page({
 
@@ -301,15 +302,13 @@ Page({
   // 加入球队
   openJoinTeamModal() {
     const that = this
-    wx.showModal({
+    showModal({
       title: '申请加入球队',
       editable: true,
       placeholderText: '请输入球队id',
-      complete: (res) => {
-        if (res.confirm) {
-          let teamId = res.content
-          that.applyToJoinTeam(teamId)
-        }
+      onComplete: (res) => {
+        let teamId = res.content
+        that.applyToJoinTeam(teamId)
       }
     })
   },

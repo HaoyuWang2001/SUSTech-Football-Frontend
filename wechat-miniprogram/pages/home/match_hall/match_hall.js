@@ -110,8 +110,6 @@ Page({
     })
   },
 
-  // 监听
-
   bindInput: function (e) {
     this.setData({
       searchText: e.detail.value,
@@ -129,8 +127,6 @@ Page({
     });
     app.addToRequestQueue(this.fetchData)
   },
-
-  // 跳转
 
   gotoMatchPage: function (e) {
     const dataset = e.currentTarget.dataset

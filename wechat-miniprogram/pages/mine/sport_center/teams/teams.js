@@ -1,5 +1,6 @@
 const appInstance = getApp()
 const URL = appInstance.globalData.URL
+const { showModal } = require("../../../../utils/modal")
 
 Page({
   data: {
@@ -62,19 +63,15 @@ Page({
       deleteTeamId: e.currentTarget.dataset.id
     })
     var that = this
-    wx.showModal({
+    showModal({
       title: '确认删除球队',
       content: '确定要删除这支球队吗？',
       confirmText: '确认删除',
       confirmColor: '#FF0000',
       cancelText: '我再想想',
-      success(res) {
-        if (res.confirm) {
-          that.deleteTeam() // 点击确认删除时的回调函数
-        } else if (res.cancel) {
-          () => {} // 点击我再想想时的回调函数，这里不做任何操作
-        }
-      }
+      onComfirm: () => {
+        that.deleteTeam()
+      },
     });
   },
 

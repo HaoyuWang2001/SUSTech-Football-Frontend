@@ -6,6 +6,7 @@ const userId = appInstance.globalData.userId
 const {
   formatTime
 } = require("../../../../utils/timeFormatter")
+const { showModal } = require("../../../../utils/modal")
 
 Page({
 
@@ -220,13 +221,11 @@ Page({
   // 更改比赛状态
   changeMatchStatus(e) {
     let status = e.currentTarget.dataset.status;
-    wx.showModal({
+    showModal({
       title: '确认更改',
       content: '您确定更改比赛状态吗？该过程不可逆！',
-      complete: (res) => {
-        if (res.confirm) {
+      onComplete: (res) => {
           this.handleMatchStatusSubmit(status)
-        }
       }
     })
   },
@@ -554,13 +553,11 @@ Page({
       time: playerAction.time
     }
 
-    wx.showModal({
+    showModal({
       title: '确认删除',
       content: '您确定删除该比赛事件吗？',
-      complete: (res) => {
-        if (res.confirm) {
-          this.deletePlayerAction(playerAction)
-        }
+      onComplete: (res) => {
+        this.deletePlayerAction(playerAction)
       }
     })
   },
@@ -719,12 +716,12 @@ Page({
     let sourceId = e.currentTarget.dataset.id
     let type = e.currentTarget.dataset.type
 
-    wx.showModal({
+    showModal({
       title: '确认删除',
       content: '您确定删除该直播或回放吗？',
       confirmText: '确认删除',
       confirmColor: '#FF0000',
-      complete: (res) => {
+      onComplete: (res) => {
         if (res.confirm) {
           console.log("match referee: showDeleteSourceDialog ->")
           console.log(`delete ${type}: ${sourceId}`);

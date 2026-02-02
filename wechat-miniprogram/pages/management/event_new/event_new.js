@@ -2,6 +2,7 @@
 const appInstance = getApp()
 const URL = appInstance.globalData.URL
 const userId = appInstance.globalData.userId
+const { showModal } = require("../../../utils/modal")
 
 Page({
 
@@ -14,7 +15,7 @@ Page({
     icon: '/assets/cup.svg',
     name: '创建新赛事名称',
     description: '编辑赛事简介',
-    modalHiddenEname: true, // 控制模态框显示隐藏
+    modalHiddenEname: true,
     modalHiddenEdes: true,
 
     teamList: [],
@@ -138,22 +139,14 @@ Page({
     });
   },
 
-  // 点击确认创建按钮，弹出确认修改模态框
   showCreateModal() {
-    var that = this
-    wx.showModal({
+    showModal({
       title: '确认创建',
       content: '确定要进行创建赛事吗？',
-      confirmText: '确认',
-      cancelText: '取消',
-      success(res) {
-        if (res.confirm) {
-          that.confirmCreate() // 点击确认时的回调函数
-        } else if (res.cancel) {
-          () => {} // 点击取消时的回调函数，这里不做任何操作
-        }
-      }
-    });
+      onConfirm: () => {
+        this.confirmCreate();
+      },
+    })
   },
 
   confirmCreate: function () {

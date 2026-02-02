@@ -99,7 +99,6 @@ Page({
     });
 
     var that = this;
-    // 模拟网络请求
     wx.request({
       url: URL + '/user/getUserManageMatch?userId=' + userId,
       success(res) {
@@ -138,16 +137,13 @@ Page({
       },
       fail(err) {
         console.log('请求失败', err);
-        // 可以显示失败的提示信息，或者做一些错误处理
       },
       complete() {
-        // 无论请求成功还是失败都会执行
-        wx.hideLoading(); // 关闭加载提示框
+        wx.hideLoading();
       }
     });
   },
 
-  // 跳转到编辑比赛页面
   gotoEditMatch: function (e) {
     const dataset = e.currentTarget.dataset
     wx.navigateTo({
@@ -155,7 +151,6 @@ Page({
     })
   },
 
-  // 跳转到创建比赛页面
   createNewMatch() {
     wx.navigateTo({
       url: '/pages/management/match_new/match_new',
@@ -184,6 +179,7 @@ Page({
       complete() {}
     });
   },
+
   formatManageMatchInvitationTeam: function (invitations) {
     const that = this
     const informs = invitations.map(invitation => {
@@ -223,6 +219,7 @@ Page({
       showManageEventInvitationTeamDot: showDot
     });
   },
+  
   toggleManageMatchInvitationTeamInform: function () {
     this.setData({
       showManageMatchInvitationTeamInform: !this.data.showManageMatchInvitationTeamInform,

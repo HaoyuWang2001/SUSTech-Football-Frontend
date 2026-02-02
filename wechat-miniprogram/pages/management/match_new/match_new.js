@@ -3,6 +3,7 @@ const appInstance = getApp()
 const URL = appInstance.globalData.URL
 const userId = appInstance.globalData.userId
 const ANONYMITY = appInstance.globalData.ANONYMITY
+const { showModal } = require("../../../utils/modal")
 
 Page({
   authorityLevel: 0,
@@ -81,24 +82,19 @@ Page({
 
   },
 
-  // 处理日期选择器选择完成事件
   bindDateChange: function (e) {
-    // 更新页面上的日期显示
     this.setData({
       date: e.detail.value
     });
   },
 
-  // 处理时间选择器选择完成事件
   bindTimeChange: function (e) {
-    // 更新页面上的时间显示
     this.setData({
       time: e.detail.value
     });
   },
 
   // 选定主队
-  // 处理邀请队伍
   inviteHomeTeam: function (e) {
     wx.navigateTo({
       url: '/pages/management/match_new/set_homeTeam/set_homeTeam',
@@ -107,17 +103,14 @@ Page({
 
   // 邀请客队
   openinviteAwayTeamModal() {
-    const that = this
-    wx.showModal({
+    showModal({
       title: '邀请客队',
       editable: true,
       placeholderText: '请输入球队id',
-      complete: (res) => {
-        if (res.confirm) {
-          let teamId = res.content
-          that.fetchAwayTeam(teamId)
-        }
-      }
+      onComplete: (res) => {
+        let teamId = res.content
+        this.fetchAwayTeam(teamId)
+      },
     })
   },
 
@@ -176,7 +169,6 @@ Page({
     })
   },
 
-  // 点击确认创建按钮，弹出确认修改模态框
   showCreateModal() {
     let date = this.data.date
     let time = this.data.time
@@ -191,23 +183,15 @@ Page({
       return
     }
 
-    var that = this
-    wx.showModal({
+    showModal({
       title: '确认创建',
       content: '确定要进行创建比赛吗？',
-      confirmText: '确认',
-      cancelText: '取消',
-      success(res) {
-        if (res.confirm) {
-          that.confirmCreate(date, time, homeTeamId, awayTeamId)
-        } else if (res.cancel) {
-          () => {}
-        }
-      }
+      onConfirm: () => {
+        this.confirmCreate(date, time, homeTeamId, awayTeamId);
+      },
     });
   },
 
-  // 处理提交信息修改
   confirmCreate(date, time, homeTeamId, awayTeamId) {
     if (homeTeamId === awayTeamId) {
       wx.showToast({

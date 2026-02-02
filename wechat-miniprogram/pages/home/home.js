@@ -101,9 +101,6 @@ Page({
 
   },
 
-  /////////////////////////////////////
-  // 网络传输
-
   fetchFavorateMatch(id) {
     let that = this
     wx.request({
@@ -239,9 +236,6 @@ Page({
   //   })
   // },
 
-  ///////////////////////////////////////////////////////////////////////////////
-  // 页面跳转
-
   gotoExample() {
     wx.navigateTo({
       url: '/pages/example/example',
@@ -357,17 +351,13 @@ Page({
     })
   },
 
-  ///////////////////////////////////////////////////////////////////////////////
-  // 监听
-
   /**
    * 监听搜索框文本
    */
   bindInput: function (e) {
     this.setData({
-      searchText: e.detail.value // 更新data中的searchText值为用户输入的内容
+      searchText: e.detail.value
     });
-    // 这里可以添加你的搜索逻辑，比如根据用户输入的内容进行实时搜索
   },
 
   /**
@@ -383,8 +373,6 @@ Page({
     app.userLogin()
   },
 
-  ///////////////////////////////////////////////////
-  //新闻
   onSwiperChange: function (e) {
     this.setData({
       currentSwiperIndex: e.detail.current,

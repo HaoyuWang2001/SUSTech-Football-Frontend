@@ -1,6 +1,7 @@
 const appInstance = getApp()
 const URL = appInstance.globalData.URL
 const userId = appInstance.globalData.userId
+const { showModal } = require("../../../utils/modal")
 
 Page({
 
@@ -192,20 +193,19 @@ Page({
   // 弹出 modal 用来同意或拒绝邀请
   showPlayerTeamInvitationModal(e) {
     let teamId = e.currentTarget.dataset.id
-    wx.showModal({
+    showModal({
       title: '球队邀请',
       content: `是否加入球队？`,
       cancelText: '拒绝',
       cancelColor: '#FF0000',
       confirmText: '接受',
       confirmColor: '#1cb72d',
-      success: (res) => {
-        if (res.confirm) {
-          this.playerReplyTeamInvitation(true, teamId);
-        } else if (res.cancel) {
-          this.playerReplyTeamInvitation(false, teamId);
-        }
-      }
+      onComfirm: () => {
+        this.playerReplyTeamInvitation(true, teamId);
+      },
+      onCancel: () => {
+        this.playerReplyTeamInvitation(false, teamId);
+      },
     });
   },
 

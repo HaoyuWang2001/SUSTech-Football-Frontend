@@ -1,6 +1,7 @@
 const appInstance = getApp()
 const URL = appInstance.globalData.URL
 const userId = appInstance.globalData.userId
+const { showModal } = require("../../../../utils/modal")
 
 Page({
   data: {
@@ -69,15 +70,13 @@ Page({
   showDeleteConfirmation(e) {
     const authorityId = e.currentTarget.dataset.id;
     const user = this.data.users.find(user => user.authorityId == authorityId);
-    wx.showModal({
+    showModal({
       title: '删除',
       content: `删除二级权限 "${user.username}"`,
       confirmText: '删除',
       confirmColor: '#ff4d4f',
-      success: (res) => {
-        if (res.confirm) {
-          this.deleteUser(authorityId);
-        }
+      onComfirm: () => {
+        this.deleteUser(authorityId);
       }
     });
   },

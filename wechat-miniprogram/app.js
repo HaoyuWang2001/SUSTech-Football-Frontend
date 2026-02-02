@@ -44,10 +44,9 @@ App({
   },
 
   fetchOpenIdAndSessionKey(code) {
-    // 显示加载提示框，提示用户正在加载
     wx.showLoading({
       title: '加载中',
-      mask: true // 创建一个蒙层，防止用户操作
+      mask: true
     });
     var that = this
     wx.request({
@@ -59,8 +58,11 @@ App({
         that.globalData.session_key = res.data.session_key
         that.fetchUserId(res.data.openid, res.data.session_key)
       },
+      fail(error) {
+        console.log('获取 openid 和 session_key 失败')
+        console.log(error)
+      },
       complete() {
-        // 关闭加载提示框
         wx.hideLoading();
       }
     })
@@ -118,9 +120,9 @@ App({
         if (uploadRes.statusCode != 200) {
           console.error("请求失败，状态码为：" + uploadRes.statusCode + "; 错误信息为：" + uploadRes.data)
           wx.showToast({
-            title: '上传头像失败，请检查网络！', // 错误信息文本
-            icon: "error", // 'none' 表示不显示图标，其他值如'success'、'loading'
-            duration: 1000 // 持续时间
+            title: '上传头像失败，请检查网络！',
+            icon: "error",
+            duration: 1000
           });
           return
         }
@@ -136,9 +138,9 @@ App({
         wx.hideLoading()
         console.log('上传失败', error);
         wx.showToast({
-          title: '上传头像失败，请检查网络！', // 错误信息文本
-          icon: "error", // 'none' 表示不显示图标，其他值如'success'、'loading'
-          duration: 1000 // 持续时间
+          title: '上传头像失败，请检查网络！',
+          icon: "error",
+          duration: 1000
         });
       }
     });

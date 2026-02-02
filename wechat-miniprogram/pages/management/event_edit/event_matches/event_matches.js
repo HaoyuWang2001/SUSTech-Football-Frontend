@@ -85,14 +85,12 @@ Page({
   },
 
   fetchData: function () {
-    // 显示加载提示框，提示用户正在加载
     wx.showLoading({
       title: '加载中',
       mask: true
     });
 
     var that = this;
-    // 模拟网络请求
     wx.request({
       url: URL + '/event/get?id=' + that.data.eventId,
       success(res) {
@@ -109,19 +107,15 @@ Page({
           match.strTime = formatTime(date)
           match.hasBegun = match.status == 'PENDING' ? false : true
         }
-        // 基本数据
         that.setData({
           matchList: res.data.matchList,
         });
-        
       },
       fail(err) {
         console.log('请求失败', err);
-        // 可以显示失败的提示信息，或者做一些错误处理
       },
       complete() {
-        // 无论请求成功还是失败都会执行
-        wx.hideLoading(); // 关闭加载提示框
+        wx.hideLoading();
       }
     });
   },

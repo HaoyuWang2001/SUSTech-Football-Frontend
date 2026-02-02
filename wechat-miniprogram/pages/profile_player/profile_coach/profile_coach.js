@@ -3,6 +3,7 @@ const URL = app.globalData.URL
 const {
   formatTime
 } = require("../../../utils/timeFormatter")
+const { showModal } = require("../../../utils/modal")
 
 Page({
 
@@ -346,20 +347,19 @@ Page({
   },
   showCoachTeamInvitationModal(e) {
     let teamId = e.currentTarget.dataset.id
-    wx.showModal({
+    showModal({
       title: '执教邀请',
       content: `是否接受球队执教邀请？`,
       cancelText: '拒绝',
       cancelColor: '#FF0000',
       confirmText: '接受',
       confirmColor: '#1cb72d',
-      success: (res) => {
-        if (res.confirm) {
-          this.coachReplyTeamInvitation(true, teamId);
-        } else if (res.cancel) {
-          this.coachReplyTeamInvitation(false, teamId);
-        }
-      }
+      onComfirm: () => {
+        this.coachReplyTeamInvitation(true, teamId);
+      },
+      onCancel: () => {
+        this.coachReplyTeamInvitation(false, teamId);
+      },
     });
   },
 

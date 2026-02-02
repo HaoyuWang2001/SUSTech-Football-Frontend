@@ -5,6 +5,7 @@ const {
   formatTime,
   splitDateTime
 } = require("../../../../utils/timeFormatter")
+const { showModal } = require("../../../../utils/modal")
 
 Page({
 
@@ -111,13 +112,11 @@ Page({
   },
 
   fetchData: function () {
-    // 显示加载提示框，提示用户正在加载
     wx.showLoading({
       title: '加载中',
-      mask: true // 创建一个蒙层，防止用户操作
+      mask: true
     });
     var that = this;
-    // 模拟网络请求
     wx.request({
       url: URL + '/event/get?id=' + that.data.eventId,
       success(res) {
@@ -131,7 +130,6 @@ Page({
         const stageNameList = res.data.stageList.map(stage => stage.stageName);
         console.log("stageNameList->");
         console.log(stageNameList);
-        // 基本数据
         that.setData({
           stageList: res.data.stageList,
           stageNameList: stageNameList
@@ -148,11 +146,9 @@ Page({
       },
       fail(err) {
         console.log('请求失败', err);
-        // 可以显示失败的提示信息，或者做一些错误处理
       },
       complete() {
-        // 无论请求成功还是失败都会执行
-        wx.hideLoading(); // 关闭加载提示框
+        wx.hideLoading();
       }
     });
 
@@ -168,7 +164,6 @@ Page({
             console.log("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
             return
           }
-          // 基本数据
           that.setData({
             homeTeamId: res.data.teamId,
             homeTeamName: res.data.name,
@@ -177,11 +172,9 @@ Page({
         },
         fail(err) {
           console.log('请求失败', err);
-          // 可以显示失败的提示信息，或者做一些错误处理
         },
         complete() {
-          // 无论请求成功还是失败都会执行
-          wx.hideLoading(); // 关闭加载提示框
+          wx.hideLoading();
         }
       });
     }
@@ -198,7 +191,6 @@ Page({
             console.log("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
             return
           }
-          // 基本数据
           that.setData({
             awayTeamId: res.data.teamId,
             awayTeamName: res.data.name,
@@ -207,17 +199,14 @@ Page({
         },
         fail(err) {
           console.log('请求失败', err);
-          // 可以显示失败的提示信息，或者做一些错误处理
         },
         complete() {
-          // 无论请求成功还是失败都会执行
-          wx.hideLoading(); // 关闭加载提示框
+          wx.hideLoading();
         }
       });
     }
   },
 
-  // 处理日期选择器选择完成事件
   bindDateChange: function (e) {
     // 更新页面上的日期显示
     this.setData({
@@ -225,7 +214,6 @@ Page({
     });
   },
 
-  // 处理时间选择器选择完成事件
   bindTimeChange: function (e) {
     // 更新页面上的时间显示
     this.setData({
@@ -251,23 +239,16 @@ Page({
     });
   },
 
-  // 点击确认修改按钮，弹出确认修改模态框
   showConfirmModal() {
-    var that = this
-    wx.showModal({
+    showModal({
       title: '确认创建',
       content: '确定要创建比赛吗？',
-      confirmText: '确认',
-      cancelText: '取消',
-      success(res) {
-        if (res.confirm) {
-          that.confirmCreate()
-        }
-      }
+      onConfirm: () => {
+        this.confirmCreate();
+      },
     })
   },
 
-  // 处理提交信息修改
   confirmCreate: function () {
     if (this.data.homeTeamId === null || this.data.homeTeamId === -1 || this.data.awayTeamId === null || this.data.awayTeamId === -1 || this.data.stage === null || this.data.stage === "" || this.data.tag === null || this.data.tag === "") {
       wx.showToast({
@@ -285,10 +266,9 @@ Page({
       title: '正在创建',
       mask: true,
     })
-    // 发送请求到后端接口
     wx.request({
       url: URL + '/event/match/add?eventId=' + that.data.eventId + "&stage=" + that.data.stage + "&tag=" + that.data.tag + "&time=" + that.data.dateTime + "&homeTeamId=" + that.data.homeTeamId + "&awayTeamId=" + that.data.awayTeamId, // 后端接口地址
-      method: 'POST', // 请求方法
+      method: 'POST',
       success: res => {
         wx.hideLoading()
         console.log("event_edit=>match_new page: confirmCreate ->")

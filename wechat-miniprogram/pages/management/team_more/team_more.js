@@ -1,6 +1,7 @@
 const appInstance = getApp()
 const URL = appInstance.globalData.URL
 const userId = appInstance.globalData.userId
+const { showModal } = require("../../../utils/modal")
 
 Page({
   data: {
@@ -81,34 +82,26 @@ Page({
       },
       fail(err) {
         console.log('请求失败', err);
-        // 可以显示失败的提示信息，或者做一些错误处理
       },
       complete() {
-        // 无论请求成功还是失败都会执行
-        wx.hideLoading(); // 关闭加载提示框
+        wx.hideLoading();
       }
     });
   },
 
-  // 点击取消比赛按钮，弹出确认取消模态框
   showCancelModal(e) {
     this.setData({
       deleteTeamId: e.currentTarget.dataset.id
     })
-    var that = this
-    wx.showModal({
+    showModal({
       title: '确认删除球队',
       content: '确定要删除这支球队吗？',
       confirmText: '确认删除',
       confirmColor: '#FF0000',
       cancelText: '我再想想',
-      success(res) {
-        if (res.confirm) {
-          that.deleteTeam() // 点击确认删除时的回调函数
-        } else if (res.cancel) {
-          () => {} // 点击我再想想时的回调函数，这里不做任何操作
-        }
-      }
+      onConfirm: () => {
+        this.deleteTeam()
+      },
     });
   },
 
@@ -382,66 +375,57 @@ Page({
   showManageTeamApplicationModal(e) {
     let playerId = e.currentTarget.dataset.playerId
     let teamId = e.currentTarget.dataset.teamId
-    console.log(playerId)
-    console.log(teamId)
-    wx.showModal({
+    showModal({
       title: '球员申请',
       content: `是否同意该球员加入球队？`,
       cancelText: '拒绝',
       cancelColor: '#FF0000',
       confirmText: '接受',
       confirmColor: '#1cb72d',
-      success: (res) => {
-        if (res.confirm) {
-          this.teamManagerReplyApplication(true, playerId, teamId);
-        } else if (res.cancel) {
-          this.teamManagerReplyApplication(false, playerId, teamId);
-        }
-      }
+      onConfirm: () => {
+        this.teamManagerReplyApplication(true, playerId, teamId);
+      },
+      onCancel: () => {
+        this.teamManagerReplyApplication(false, playerId, teamId);
+      },
     });
   },
 
   showManageTeamInvitationMatchModal(e) {
     let matchId = e.currentTarget.dataset.matchId
     let teamId = e.currentTarget.dataset.teamId
-    console.log(matchId)
-    console.log(teamId)
-    wx.showModal({
+    showModal({
       title: '比赛邀请',
       content: `是否同意参与该比赛？`,
       cancelText: '拒绝',
       cancelColor: '#FF0000',
       confirmText: '接受',
       confirmColor: '#1cb72d',
-      success: (res) => {
-        if (res.confirm) {
-          this.teamManagerReplyInvitationMatch(true, matchId, teamId);
-        } else if (res.cancel) {
-          this.teamManagerReplyInvitationMatch(false, matchId, teamId);
-        }
-      }
+      onConfirm: () => {
+        this.teamManagerReplyInvitationMatch(true, matchId, teamId);
+      },
+      onCancel: () => {
+        this.teamManagerReplyInvitationMatch(false, matchId, teamId);
+      },
     });
   },
 
   showManageTeamInvitationEventModal(e) {
     let eventId = e.currentTarget.dataset.eventId
     let teamId = e.currentTarget.dataset.teamId
-    console.log(eventId)
-    console.log(teamId)
-    wx.showModal({
+    showModal({
       title: '比赛邀请',
       content: `是否同意参与该比赛？`,
       cancelText: '拒绝',
       cancelColor: '#FF0000',
       confirmText: '接受',
       confirmColor: '#1cb72d',
-      success: (res) => {
-        if (res.confirm) {
-          this.teamManagerReplyInvitationEvent(true, eventId, teamId);
-        } else if (res.cancel) {
-          this.teamManagerReplyInvitationEvent(false, eventId, teamId);
-        }
-      }
+      onConfirm: () => {
+        this.teamManagerReplyInvitationEvent(true, eventId, teamId);
+      },
+      onCancel: () => {
+        this.teamManagerReplyInvitationEvent(false, eventId, teamId);
+      },
     });
   },
 
