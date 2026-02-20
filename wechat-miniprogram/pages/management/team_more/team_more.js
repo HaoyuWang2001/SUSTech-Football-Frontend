@@ -151,7 +151,7 @@ Page({
 
   createNewTeam() {
     wx.navigateTo({
-      url: '/pages/management/team_new/team_new',
+      url: '/pages/management/team_new/team_new?authorityLevel=3&authorityId=' + this.data.authorityId,
     })
   },
 

@@ -68,7 +68,10 @@
       </view>
     </view>
 
-    <view class="block-container">
+
+    <!-- 评论区 -->
+    <!-- 微信小程序不让个人小程序提供评论功能 -->
+    <!-- <view class="block-container">
       <view class="block-title">评论区</view>
 
       <view class="comment-container">
@@ -89,7 +92,6 @@
               <view class="like">{{likesList[commentIndex].likeNum}}</view>
             </view>
             <view class="comment">{{commentItem.content}}</view>
-            <!-- 添加展开按钮 -->
             <view class="expand-conatainer">
               <view class="expand" wx:if="{{!expandList[commentIndex].expanded}}" bindtap="expandReply" data-id="{{commentIndex}}">展开回复</view>
               <view class="expand" wx:if="{{expandList[commentIndex].expanded}}" bindtap="dropReply" data-id="{{commentIndex}}">收起回复</view>
@@ -115,7 +117,7 @@
           </view>
         </view>
       </view>
-    </view>
+    </view> -->
 
   </view>
 
