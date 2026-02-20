@@ -215,7 +215,7 @@
 .block-title {
   font-size: 36rpx;
   font-weight: 700;
-  color: #ed6c00; /* 使用橙色作为标题颜色 (原为深绿色) */
+  color: #000000; /* 标题颜色改为黑色 */
   letter-spacing: 0.5rpx;
 }
 

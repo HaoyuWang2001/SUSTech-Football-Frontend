@@ -52,7 +52,7 @@
 .name {
   display: block;
   font-size: 28rpx;
-  color: #ed6c00; /* 原为深绿色 */
+  color: #666666; /* 赛事名称颜色改为灰色 */
   text-align: center;
   font-weight: 600;
   margin-bottom: 30rpx;
@@ -97,7 +97,7 @@
   font-size: 26rpx;
   text-align: center;
   font-weight: 600;
-  color: #333;
+  color: #666666; /* 球队名称颜色改为灰色 */
   max-width: 140rpx;
   min-width: 140rpx;
   line-height: 1.3;

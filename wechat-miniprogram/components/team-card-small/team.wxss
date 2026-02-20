@@ -62,7 +62,7 @@
   padding-top: 0;
   font-size: 28rpx;
   font-weight: 600;
-  color: #ed6c00; /* 使用橙色作为球队名称颜色 (原为深绿色) */
+  color: #666666; /* 球队名称颜色改为灰色 */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

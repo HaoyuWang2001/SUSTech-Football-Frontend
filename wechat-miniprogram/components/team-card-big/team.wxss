@@ -76,7 +76,7 @@
   font-weight: 700;
   white-space: normal;
   word-wrap: break-word;
-  color: #ed6c00; /* 橙色用于球队名称 (原为深绿色) */
+  color: #666666; /* 球队名称颜色改为灰色 */
   line-height: 1.3;
   letter-spacing: 0.3rpx;
   margin-bottom: 16rpx;
