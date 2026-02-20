@@ -60,7 +60,9 @@
   - 所有新组件开发必须使用颜色设计系统
   - 组件现代化改造过程中迁移到颜色系统
   - JavaScript中使用 `import { Colors, Shadows, Gradients } from '../../utils/colors.js'`
-  - WXSS中使用 `@import '../../styles/mixins.wxss'` 导入混入类
+  - WXSS中使用 `@import '../../styles/mixins.wxss'` 导入CSS类
+    - 注意：微信小程序WXSS不支持CSS自定义属性和Sass/Less混入语法
+    - 在WXML中使用类名：`<view class="primary-color">橙色文字</view>`
   - 不再使用深绿色 (`#003f43`) 和青绿色 (`#2bb7b3`)，统一使用橙色系
 
 ## 测试

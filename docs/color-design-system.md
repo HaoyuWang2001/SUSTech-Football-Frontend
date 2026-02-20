@@ -230,14 +230,20 @@ Page({
 
 ## 常见问题
 
-### Q: 微信小程序支持 CSS 变量吗？
-A: 微信小程序的 WXSS 支持 CSS 自定义属性（CSS 变量）。我们使用双轨制：JavaScript 常量为主方案，CSS 变量为备选方案。
+### Q: 微信小程序支持 CSS 变量和混入语法吗？
+A: 微信小程序的 WXSS 不支持 CSS 自定义属性（CSS 变量）和 Sass/Less 混入语法。我们的解决方案：
+1. **JavaScript 颜色常量**：在 JS 文件中使用 `import { Colors, Shadows, Gradients } from '../../utils/colors.js'`
+2. **CSS 类定义**：在 WXSS 文件中使用 `@import '../../styles/mixins.wxss'` 导入预定义的 CSS 类
+3. **类名使用**：在 WXML 中使用类名，如 `<view class="primary-color">橙色文字</view>`
 
 ### Q: 如何添加新的颜色变体？
-A: 在 `colors.js` 文件中添加新的颜色常量，在 `mixins.wxss` 中添加对应的混入类，并更新设计系统文档。
+A: 在 `colors.js` 文件中添加新的颜色常量，在 `mixins.wxss` 中添加对应的 CSS 类定义，并更新设计系统文档。
 
 ### Q: 现有组件如何迁移到颜色系统？
-A: 在组件现代化改造过程中进行迁移：1）更新 WXML 内联样式使用颜色常量，2）更新 WXSS 使用混入类，3）测试视觉一致性。
+A: 在组件现代化改造过程中进行迁移：
+1. **更新 WXML**：内联样式使用颜色常量（如 `style="color: {{Colors.primary}}"`）
+2. **更新 WXSS**：导入 `mixins.wxss` 并使用 CSS 类名（如 `class="primary-color"`）
+3. **测试视觉一致性**：确保颜色更新后视觉效果一致
 
 ### Q: 如何确保设计稿与实现一致？
 A: 设计团队在设计稿中使用相同的颜色常量名称，开发团队在实现时引用对应的颜色常量。
