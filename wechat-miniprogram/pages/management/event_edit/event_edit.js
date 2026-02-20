@@ -18,6 +18,12 @@ Page({
     eventId: 0,
     name: '',
     description: '',
+    matchPlayerCount: 11,
+    rosterSize: 23,
+    rosterDeadline: '',
+    rosterDeadlineDate: '',
+    rosterDeadlineTime: '',
+    savedDeadline: '',
     teamList: [],
     matchList: [],
     groupList: [],
@@ -130,12 +136,29 @@ Page({
           eventId: res.data.eventId,
           name: res.data.name,
           description: res.data.description,
+          matchPlayerCount: res.data.matchPlayerCount || 11,
+          rosterSize: res.data.rosterSize || 23,
           teamList: res.data.teamList,
           matchList: res.data.matchList,
           groupList: res.data.groupList,
           managerList: res.data.managerList,
           stageList: res.data.stageList,
         });
+        // 处理大名单截止日期
+        if (res.data.rosterDeadline) {
+          var deadline = new Date(res.data.rosterDeadline);
+          var dateStr = deadline.getFullYear() + '-' + 
+                        String(deadline.getMonth() + 1).padStart(2, '0') + '-' + 
+                        String(deadline.getDate()).padStart(2, '0');
+          var timeStr = String(deadline.getHours()).padStart(2, '0') + ':' + 
+                        String(deadline.getMinutes()).padStart(2, '0');
+          that.setData({
+            rosterDeadline: res.data.rosterDeadline,
+            rosterDeadlineDate: dateStr,
+            rosterDeadlineTime: timeStr,
+            savedDeadline: dateStr + ' ' + timeStr
+          });
+        }
         if (that.data.stageList[0].stageName === '联赛') {
           const eventType = '联赛';
           const tuNumber = that.data.stageList[0].tags.length;
@@ -313,6 +336,83 @@ Page({
     });
   },
 
+  // 大名单截止日期选择
+  onDeadlineDateChange: function (e) {
+    this.setData({
+      rosterDeadlineDate: e.detail.value
+    });
+    this.updateRosterDeadline();
+  },
+
+  onDeadlineTimeChange: function (e) {
+    this.setData({
+      rosterDeadlineTime: e.detail.value
+    });
+    this.updateRosterDeadline();
+  },
+
+  updateRosterDeadline: function () {
+    var date = this.data.rosterDeadlineDate;
+    var time = this.data.rosterDeadlineTime;
+    if (date && time) {
+      this.setData({
+        rosterDeadline: date + 'T' + time + ':00'
+      });
+    }
+  },
+
+  confirmDeadline: function () {
+    var that = this;
+    var date = this.data.rosterDeadlineDate;
+    var time = this.data.rosterDeadlineTime;
+    
+    if (!date || !time) {
+      wx.showToast({
+        title: '请选择日期和时间',
+        icon: 'none'
+      });
+      return;
+    }
+
+    wx.showLoading({
+      title: '保存中',
+      mask: true
+    });
+
+    wx.request({
+      url: URL + '/event/update',
+      method: 'PUT',
+      data: {
+        eventId: that.data.eventId,
+        rosterDeadline: that.data.rosterDeadline
+      },
+      success: function(res) {
+        wx.hideLoading();
+        if (res.statusCode !== 200) {
+          wx.showToast({
+            title: '保存失败',
+            icon: 'error'
+          });
+          return;
+        }
+        that.setData({
+          savedDeadline: that.data.rosterDeadlineDate + ' ' + that.data.rosterDeadlineTime
+        });
+        wx.showToast({
+          title: '截止日期已保存',
+          icon: 'success'
+        });
+      },
+      fail: function(err) {
+        wx.hideLoading();
+        wx.showToast({
+          title: '保存失败',
+          icon: 'error'
+        });
+      }
+    });
+  },
+
   showConfirmModal() {
     var that = this
     wx.showModal({
@@ -332,14 +432,15 @@ Page({
 
   // 点击取消比赛按钮，弹出确认取消模态框
   showCancelModal() {
+    var that = this;
     this.showModal(
       '确认删除赛事',
       '确定要删除这项赛事吗？',
       '确认删除',
       '#FF0000',
       '我再想想',
-      this.deleteEvent, // 点击确认取消时的回调函数
-      () => {} // 点击我再想想时的回调函数，这里不做任何操作
+      function() { that.deleteEvent(); }, // 点击确认取消时的回调函数
+      function() {} // 点击我再想想时的回调函数，这里不做任何操作
     );
   },
 
@@ -350,6 +451,7 @@ Page({
       eventId: this.data.eventId,
       name: this.data.name,
       description: this.data.description,
+      rosterDeadline: this.data.rosterDeadline || null,
       teamList: this.data.teamList,
       matchList: this.data.matchList,
       groupList: this.data.groupList,

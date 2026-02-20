@@ -167,6 +167,13 @@ Page({
       url: '/pages/management/team_notice/team_notice',
     })
   },
+
+  gotoTeamEventsPage() {
+    wx.navigateTo({
+      url: '/pages/management/team_events/team_events',
+    })
+  },
+
   fetchManageTeamApplications: function (teamId, teamName) {
     const that = this
     wx.request({
@@ -550,10 +557,55 @@ Page({
           })
           return
         }
-        wx.showToast({
-          title: '回复成功',
-          icon: 'success',
-        })
+        
+        wx.hideLoading()
+        
+        // 如果接受邀请，跳转到大名单设置页面
+        if (accept) {
+          // 先获取赛事信息以获取rosterSize和matchPlayerCount
+          wx.request({
+            url: URL + '/event/get?id=' + eventId,
+            method: 'GET',
+            success(eventRes) {
+              if (eventRes.statusCode === 200) {
+                const eventData = eventRes.data
+                // 获取球队信息
+                wx.request({
+                  url: URL + '/team/get?id=' + teamId,
+                  method: 'GET',
+                  success(teamRes) {
+                    if (teamRes.statusCode === 200) {
+                      const teamData = teamRes.data
+                      wx.showToast({
+                        title: '接受成功，请设置大名单',
+                        icon: 'success',
+                        duration: 2000
+                      })
+                      setTimeout(() => {
+                        wx.navigateTo({
+                          url: `/pages/management/event_roster/event_roster?eventId=${eventId}&teamId=${teamId}&eventName=${eventData.name || ''}&teamName=${teamData.name || ''}&rosterSize=${eventData.rosterSize || 23}&matchPlayerCount=${eventData.matchPlayerCount || 11}`
+                        })
+                      }, 1500)
+                    }
+                  }
+                })
+              }
+            },
+            fail() {
+              wx.showToast({
+                title: '接受成功',
+                icon: 'success',
+              })
+              that.fetchData(userId)
+            }
+          })
+        } else {
+          wx.showToast({
+            title: '已拒绝邀请',
+            icon: 'success',
+          })
+          that.fetchData(userId)
+        }
         console.log("回复赛事邀请成功")
       },
       fail(err) {
@@ -562,10 +614,7 @@ Page({
           title: '回复失败',
           icon: 'error',
         })
-      },
-      complete() {
         wx.hideLoading()
-        that.fetchData(userId)
       }
     })
   },

@@ -14,7 +14,7 @@
             <team-card-big name="{{teamItem.team.name}}" img="{{teamItem.team.logoUrl}}" number="{{teamItem.team.playerCount}}">
               <view style="display: flex; flex-direction: column; align-items: flex-end; padding-right: 30rpx;">
                 <view class="delete-btn" bindtap="showCancelModal" data-teamid="{{teamItem.team.id}}" data-groupId="{{groupItem.groupId}}">删除</view>
-                <view class="check-btn" bindtap="gotoTeamPage" data-id="{{teamItem.team.id}}">查看</view>
+                <view class="check-btn" bindtap="gotoViewRoster" data-teamid="{{teamItem.team.id}}" data-teamname="{{teamItem.team.name}}" data-teamlogo="{{teamItem.team.logoUrl}}">查看名单</view>
                 <picker mode="selector" range="{{groupNameList}}" bindchange="onGroupChange" value="{{selectedGroupIndex}}">
                   <view class="edit-btn" bindtap="selectGroup" data-id="{{teamItem.team.id}}" data-name="{{teamItem.team.name}}" data-groupId="{{groupItem.groupId}}">分组</view>
                 </picker>
@@ -29,7 +29,7 @@
             <team-card-big name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerCount}}">
               <view style="display: flex; flex-direction: column; align-items: flex-end; padding-right: 30rpx;">
                 <view class="delete-btn" bindtap="showCancelModal" data-teamid="{{item.id}}" data-groupId="{{0}}">删除</view>
-                <view class="check-btn" bindtap="gotoTeamPage" data-id="{{item.id}}">查看</view>
+                <view class="check-btn" bindtap="gotoViewRoster" data-teamid="{{item.id}}" data-teamname="{{item.name}}" data-teamlogo="{{item.logoUrl}}">查看名单</view>
                 <picker mode="selector" range="{{groupNameList}}" bindchange="onGroupChange" value="{{selectedGroupIndex}}">
                   <view class="edit-btn" bindtap="selectGroup" data-id="{{item.id}}" data-name="{{item.name}}" data-groupId="{{0}}">分组</view>
                 </picker>
@@ -45,7 +45,7 @@
             <team-card-big name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerCount}}">
               <view style="display: flex; flex-direction: column; align-items: flex-end; padding-right: 30rpx;">
                 <view class="delete-btn" bindtap="showCancelModal" data-teamid="{{item.id}}" data-groupId="{{0}}">删除</view>
-                <view class="check-btn" style="margin-top: 3%;" bindtap="gotoTeamPage" data-id="{{item.id}}">查看</view>
+                <view class="check-btn" style="margin-top: 3%;" bindtap="gotoViewRoster" data-teamid="{{item.id}}" data-teamname="{{item.name}}" data-teamlogo="{{item.logoUrl}}">查看名单</view>
               </view>
             </team-card-big>
           </block>
