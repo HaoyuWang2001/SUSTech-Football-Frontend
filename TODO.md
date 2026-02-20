@@ -7,6 +7,7 @@
 ✓ team-card-small组件现代化 ([update] team-card-small组件现代化设计)
 ✓ team-card-big组件现代化 ([update] team-card-big组件现代化设计)
 ✓ event-card-big组件现代化 ([update] event-card-big组件现代化设计)
+✓ player-card-small组件现代化 ([update] player-card-small组件现代化设计)
 ✓ 创建CLAUDE.md文档 ([add] CLAUDE.md 文档)
 ✓ 创建TODO.md待办清单 ([add] TODO.md 待办清单)
 
@@ -14,7 +15,7 @@
 
 ### 高优先级 - 卡片组件现代化
 - [x] **event-card-big** (赛事大卡片) - `wechat-miniprogram/components/event-card-big/` ✓
-- [ ] **player-card-small** (球员小卡片) - `wechat-miniprogram/components/player-card-small/`
+- [x] **player-card-small** (球员小卡片) - `wechat-miniprogram/components/player-card-small/` ✓
 - [ ] **player-card-big** (球员大卡片) - `wechat-miniprogram/components/player-card-big/`
 - [ ] **user-card-small** (用户小卡片) - `wechat-miniprogram/components/user-card-small/`
 - [ ] **user-card-big** (用户大卡片) - `wechat-miniprogram/components/user-card-big/`
@@ -45,4 +46,4 @@
 4. 继续下一个高优先级项目
 
 ## 最后更新
-2026-02-20 - 已完成6个组件的现代化改造 (event-card-big已完成)
+2026-02-20 - 已完成7个组件的现代化改造 (player-card-small已完成)
