@@ -9,69 +9,9 @@
  */
 
 /* ============================================================================
- * CSS 变量定义（如果微信小程序支持）
+ * CSS 变量定义（微信小程序WXSS不支持CSS自定义属性，已移除）
+ * 使用下方的CSS类混入替代
  * ============================================================================ */
-
-:root {
-  /* 橙色系 */
-  --color-primary: #ed6c00;
-  --color-primary-light: #ff8c32;
-  --color-primary-lighter: #ffb366;
-
-  /* 透明度变体 */
-  --color-primary-alpha12: rgba(237, 108, 0, 0.12);
-  --color-primary-alpha10: rgba(237, 108, 0, 0.1);
-  --color-primary-alpha25: rgba(237, 108, 0, 0.25);
-  --color-primary-alpha8: rgba(237, 108, 0, 0.08);
-  --color-primary-alpha15: rgba(237, 108, 0, 0.15);
-  --color-primary-alpha20: rgba(237, 108, 0, 0.2);
-  --color-primary-alpha30: rgba(237, 108, 0, 0.3);
-  --color-primary-alpha50: rgba(237, 108, 0, 0.5);
-
-  /* 灰色系 */
-  --color-gray-dark: #666666;
-  --color-gray-medium: #cccccc;
-  --color-gray-light: #e0e0e0;
-  --color-gray-lighter: #f2f2f2;
-  --color-white: #ffffff;
-  --color-black: #000000;
-
-  /* 功能色 */
-  --color-success: rgba(237, 108, 0, 0.8);
-  --color-warning: rgba(255, 140, 50, 0.8);
-  --color-error: rgba(255, 100, 0, 0.8);
-  --color-info: rgba(237, 108, 0, 0.6);
-
-  /* 渐变 */
-  --gradient-primary: linear-gradient(90deg, #ed6c00 0%, #ff8c32 100%);
-  --gradient-primary-light: linear-gradient(90deg, #ff8c32 0%, #ffb366 100%);
-  --gradient-primary-fade: linear-gradient(90deg, rgba(237, 108, 0, 0.9) 0%, rgba(237, 108, 0, 0.1) 100%);
-  --gradient-background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
-
-  /* 阴影 */
-  --shadow-card: 0 4rpx 24rpx rgba(237, 108, 0, 0.1);
-  --shadow-image: 0 8rpx 32rpx rgba(237, 108, 0, 0.15);
-  --shadow-button: 0 4rpx 12rpx rgba(237, 108, 0, 0.2);
-  --shadow-deep: 0 12rpx 48rpx rgba(237, 108, 0, 0.25);
-
-  /* 边框 */
-  --border-card: 2rpx solid rgba(237, 108, 0, 0.12);
-  --border-inner: 1rpx solid rgba(237, 108, 0, 0.08);
-  --border-focus: 2rpx solid rgba(237, 108, 0, 0.3);
-  --border-active: 2rpx solid rgba(237, 108, 0, 0.5);
-
-  /* 圆角 */
-  --radius-small: 8rpx;
-  --radius-medium: 16rpx;
-  --radius-large: 24rpx;
-  --radius-xlarge: 32rpx;
-  --radius-round: 50%;
-
-  /* 过渡动画 */
-  --transition-fast: all 0.15s ease;
-  --transition-normal: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
-  --transition-slow: all 0.5s ease;
-}
 
 /* ============================================================================
  * 颜色混入类
