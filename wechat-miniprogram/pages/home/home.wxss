@@ -10,7 +10,7 @@
   margin: 30rpx 20rpx;
   border: none;
   border-radius: 60rpx;
-  .white-bg();
+  background-color: #ffffff;
   box-shadow:
     0 10rpx 30rpx rgba(237, 108, 0, 0.15),
     0 4rpx 12rpx rgba(237, 108, 0, 0.1),
