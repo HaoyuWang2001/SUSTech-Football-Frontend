@@ -1,8 +1,8 @@
 // app.js
 App({
   globalData: {
-    URL: 'http://localhost:8085',
-    SERVER: 'http://localhost:8085',
+    URL: 'https://haoyu-wang141.top:8085',
+    SERVER: 'https://haoyu-wang141.top:8085',
     LOCAL: 'http://localhost:8085',
     openid: null,
     session_key: null,
