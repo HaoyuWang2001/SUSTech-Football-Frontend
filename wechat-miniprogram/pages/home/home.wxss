@@ -66,37 +66,6 @@
   letter-spacing: 1rpx;
 }
 
-.hall-bar {
-  display: flex;
-  justify-content: space-around;
-  background-color: white;
-  padding: 10px 0;
-}
-
-.hall-button {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20rpx;
-}
-
-.hall-image {
-  width: 90rpx;
-  height: 90rpx;
-  margin-bottom: 10rpx;
-}
-
-.event-hall-image {
-  width: 87rpx;
-  height: 90rpx;
-  margin-bottom: 10rpx;
-}
-
-.hall-text {
-  font-size: small;
-  font-weight: bold;
-  color: #666;
-}
 
 /* news */
 .news-cover-container {
@@ -201,12 +170,6 @@
   /* 设置按钮的行高，使文本垂直居中 */
 }
 
-/* 未关注任何X时样式 */
-.no-favorite {
-  margin-left: 20rpx;
-  font-size: normal;
-  color: #666;
-}
 
 /* 赛事大厅按钮 */
 .hall {
@@ -216,4 +179,131 @@
   font-size: small;
   font-weight: bold;
   border-radius: 20rpx;
+}
+
+/* ========== 现代化卡片容器样式 ========== */
+.block-container {
+  margin: 40rpx 20rpx;
+  border-radius: 24rpx;
+  background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+  box-shadow:
+    0 8rpx 32rpx rgba(0, 0, 0, 0.06),
+    0 2rpx 12rpx rgba(0, 0, 0, 0.04),
+    inset 0 1rpx 0 rgba(255, 255, 255, 0.8);
+  overflow: hidden;
+  border: 1rpx solid rgba(237, 108, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.block-container:active {
+  transform: translateY(2rpx);
+  box-shadow:
+    0 4rpx 20rpx rgba(0, 0, 0, 0.05),
+    0 1rpx 8rpx rgba(0, 0, 0, 0.03);
+}
+
+.block-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx 30rpx 20rpx;
+  border-bottom: 1rpx solid rgba(237, 108, 0, 0.1);
+}
+
+.block-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #003f43; /* 使用深绿色作为标题颜色 */
+  letter-spacing: 0.5rpx;
+}
+
+.block-more {
+  font-size: 26rpx;
+  color: rgb(237, 108, 0);
+  font-weight: 500;
+  padding: 10rpx 20rpx;
+  border-radius: 20rpx;
+  background: rgba(237, 108, 0, 0.08);
+  transition: all 0.2s ease;
+}
+
+.block-more:active {
+  background: rgba(237, 108, 0, 0.15);
+  transform: scale(0.98);
+}
+
+.block-main {
+  padding: 30rpx;
+}
+
+/* ========== 现代化大厅图标样式 ========== */
+.hall-bar {
+  display: flex;
+  justify-content: space-around;
+  background: transparent;
+  padding: 20rpx 0;
+  border-radius: 20rpx;
+}
+
+.hall-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40rpx 30rpx;
+  border-radius: 24rpx;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
+  box-shadow:
+    0 6rpx 20rpx rgba(0, 0, 0, 0.05),
+    0 2rpx 8rpx rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
+  min-width: 160rpx;
+  border: 1rpx solid rgba(237, 108, 0, 0.05);
+}
+
+.hall-button:active {
+  transform: translateY(4rpx) scale(0.98);
+  box-shadow:
+    0 2rpx 12rpx rgba(0, 0, 0, 0.04),
+    0 1rpx 4rpx rgba(0, 0, 0, 0.02);
+  background: linear-gradient(135deg, #f8f8f8 0%, #f0f0f0 100%);
+  border-color: rgba(237, 108, 0, 0.15);
+}
+
+.hall-image,
+.event-hall-image {
+  width: 100rpx;
+  height: 100rpx;
+  margin-bottom: 20rpx;
+  filter: drop-shadow(0 4rpx 8rpx rgba(0, 0, 0, 0.1));
+  transition: all 0.3s ease;
+}
+
+.hall-button:active .hall-image,
+.hall-button:active .event-hall-image {
+  transform: scale(0.95);
+  filter: drop-shadow(0 2rpx 4rpx rgba(0, 0, 0, 0.08));
+}
+
+.hall-text {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #333;
+  letter-spacing: 0.5rpx;
+  transition: all 0.3s ease;
+}
+
+.hall-button:active .hall-text {
+  color: rgb(237, 108, 0);
+}
+
+/* ========== 现代化无内容提示 ========== */
+.no-favorite {
+  margin: 40rpx 20rpx;
+  font-size: 30rpx;
+  color: #999;
+  text-align: center;
+  padding: 60rpx 40rpx;
+  background: rgba(237, 108, 0, 0.03);
+  border-radius: 20rpx;
+  border: 1rpx dashed rgba(237, 108, 0, 0.2);
 }
