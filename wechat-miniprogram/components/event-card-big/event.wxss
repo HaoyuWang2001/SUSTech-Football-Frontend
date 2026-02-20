@@ -84,7 +84,7 @@
 .text {
   font-size: 32rpx;
   font-weight: 600;
-  color: #ed6c00; /* 橙色用于赛事名称 (原为深绿色) */
+  color: #666666; /* 赛事名称颜色改为深灰色 */
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
