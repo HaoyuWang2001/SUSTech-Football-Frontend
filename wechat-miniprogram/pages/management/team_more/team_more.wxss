@@ -1,10 +1,13 @@
 /* pages/management/team_more/team_more.wxss */
+/* 使用橙色系颜色设计系统 */
+@import '../../../styles/mixins.wxss';
+
 .title {
   text-align: center;
 }
 
 .check-btn {
-  background-color: #2bb7b3;
+  background-color: #ed6c00; /* 原为青绿色 */
   /* 按钮背景颜色 */
   color: white;
   /* 文字颜色 */

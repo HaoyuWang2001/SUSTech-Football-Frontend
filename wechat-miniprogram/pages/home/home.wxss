@@ -1,4 +1,6 @@
 /* pages/home/home.wxss */
+/* 使用橙色系颜色设计系统 */
+@import '../../styles/mixins.wxss';
 
 /* 搜索框容器样式 - 现代化设计 */
 .search-container {
@@ -213,7 +215,7 @@
 .block-title {
   font-size: 36rpx;
   font-weight: 700;
-  color: #003f43; /* 使用深绿色作为标题颜色 */
+  color: #ed6c00; /* 使用橙色作为标题颜色 (原为深绿色) */
   letter-spacing: 0.5rpx;
 }
 

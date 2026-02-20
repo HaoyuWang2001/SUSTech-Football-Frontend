@@ -1,4 +1,6 @@
-/* components/player-card-small/player.wxss - 现代化设计 */
+/* components/player-card-small/player.wxss - 现代化设计 (使用橙色系颜色设计系统) */
+@import '../../styles/mixins.wxss';
+
 .player-card {
   margin: 20rpx 20rpx 20rpx 0;
   background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
@@ -60,7 +62,7 @@
   margin-top: 0;
   font-size: 28rpx;
   font-weight: 600;
-  color: #003f43; /* 深绿色用于球员名称 */
+  color: #ed6c00; /* 橙色用于球员名称 (原为深绿色) */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

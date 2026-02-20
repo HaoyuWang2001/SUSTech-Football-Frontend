@@ -1,4 +1,7 @@
 /*pages/management/event_edit/event_teams/event_teams.wxss*/
+/* 使用橙色系颜色设计系统 */
+@import '../../../../styles/mixins.wxss';
+
 .delete-btn {
   background-color: red; /* 按钮背景颜色 */
   color: white; /* 文字颜色 */
@@ -20,7 +23,7 @@
 }
 
 .edit-btn {
-  background-color: #2bb7b3; /* 按钮背景颜色 */
+  background-color: #ed6c00; /* 按钮背景颜色 (原为青绿色) */
   color: white; /* 文字颜色 */
   padding: 1px 10px; /* 按钮内边距 */
   border: none; /* 去除按钮边框 */

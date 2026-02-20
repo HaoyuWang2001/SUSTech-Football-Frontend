@@ -1,4 +1,6 @@
-/* components/match-card-small/match.wxss - 现代化设计 */
+/* components/match-card-small/match.wxss - 现代化设计 (使用橙色系颜色设计系统) */
+@import '../../styles/mixins.wxss';
+
 .match-card {
   flex: 0 0 auto;
   display: inline-flex;
@@ -50,7 +52,7 @@
 .name {
   display: block;
   font-size: 28rpx;
-  color: #003f43;
+  color: #ed6c00; /* 原为深绿色 */
   text-align: center;
   font-weight: 600;
   margin-bottom: 30rpx;

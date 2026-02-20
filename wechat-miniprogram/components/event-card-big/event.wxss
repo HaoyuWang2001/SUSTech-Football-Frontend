@@ -1,4 +1,6 @@
-/* components/event-card-big/event.wxss - 现代化设计 */
+/* components/event-card-big/event.wxss - 现代化设计 (使用橙色系颜色设计系统) */
+@import '../../styles/mixins.wxss';
+
 .container {
   display: flex;
   flex-direction: row;
@@ -23,7 +25,7 @@
   left: 0;
   right: 0;
   height: 6rpx;
-  background: linear-gradient(90deg, #2bb7b3 0%, #003f43 100%); /* 青绿色到深绿色渐变 */
+  background: linear-gradient(90deg, #ed6c00 0%, #ff8c32 100%); /* 橙色渐变 (原为青绿到深绿) */
   border-radius: 24rpx 24rpx 0 0;
 }
 
@@ -82,7 +84,7 @@
 .text {
   font-size: 32rpx;
   font-weight: 600;
-  color: #003f43; /* 深绿色用于赛事名称 */
+  color: #ed6c00; /* 橙色用于赛事名称 (原为深绿色) */
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;

@@ -1,0 +1,109 @@
+<!-- components/example-color-system/example.wxml -->
+<view class="container">
+  <!-- 标题区域 -->
+  <view class="header">
+    <view class="header-decoration"></view>
+    <text class="header-title">{{title}}</text>
+    <text class="header-subtitle">颜色设计系统使用示例</text>
+  </view>
+
+  <!-- 颜色展示区域 -->
+  <view class="section">
+    <text class="section-title">颜色常量示例</text>
+    <view class="colors-grid">
+      <view
+        class="color-item"
+        wx:for="{{cards}}"
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="onCardTap"
+        style="background-color: {{item.color}};"
+      >
+        <text class="color-item-title">{{item.title}}</text>
+        <text class="color-item-value">{{item.text}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 混入类使用示例 -->
+  <view class="section">
+    <text class="section-title">WXSS混入类示例</text>
+
+    <view class="mixins-example">
+      <!-- 现代卡片设计 -->
+      <view class="example-card modern-card">
+        <view class="example-card-header"></view>
+        <text class="example-card-title">现代卡片设计</text>
+        <text class="example-card-text">使用 .modern-card 混入类，包含渐变背景、橙色边框、阴影效果和过渡动画。</text>
+      </view>
+
+      <!-- 按钮设计 -->
+      <view class="example-buttons">
+        <view class="example-button primary-button">主按钮</view>
+        <view class="example-button secondary-button">次按钮</view>
+        <view class="example-button primary-button primary-button-disabled">禁用按钮</view>
+      </view>
+
+      <!-- 文本样式 -->
+      <view class="example-texts">
+        <text class="example-text primary-color">主橙色文本 (.primary-color)</text>
+        <text class="example-text gray-dark-color">深灰色文本 (.gray-dark-color)</text>
+        <text class="example-text gray-medium-color">中灰色文本 (.gray-medium-color)</text>
+      </view>
+
+      <!-- 阴影效果 -->
+      <view class="example-shadows">
+        <view class="example-shadow shadow-card">卡片阴影 (.shadow-card)</view>
+        <view class="example-shadow shadow-button">按钮阴影 (.shadow-button)</view>
+        <view class="example-shadow shadow-image">图片阴影 (.shadow-image)</view>
+      </view>
+
+      <!-- 渐变效果 -->
+      <view class="example-gradients">
+        <view class="example-gradient gradient-primary">主橙色渐变</view>
+        <view class="example-gradient gradient-primary-light">浅橙色渐变</view>
+        <view class="example-gradient gradient-background">背景渐变</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 使用说明 -->
+  <view class="section instructions">
+    <text class="section-title">使用说明</text>
+    <view class="instruction-list">
+      <view class="instruction-item">
+        <text class="instruction-number">1</text>
+        <text class="instruction-text">
+          <text class="instruction-highlight">JavaScript中导入颜色常量：</text>
+          import {{'{'}} Colors, Shadows, Gradients {{'}'}} from '../../utils/colors.js'
+        </text>
+      </view>
+      <view class="instruction-item">
+        <text class="instruction-number">2</text>
+        <text class="instruction-text">
+          <text class="instruction-highlight">WXSS中导入混入类：</text>
+          @import '../../styles/mixins.wxss'
+        </text>
+      </view>
+      <view class="instruction-item">
+        <text class="instruction-number">3</text>
+        <text class="instruction-text">
+          <text class="instruction-highlight">统一使用橙色系：</text>
+          不再使用深绿色 (#003f43) 和青绿色 (#2bb7b3)，所有颜色元素统一使用橙色系调色板
+        </text>
+      </view>
+      <view class="instruction-item">
+        <text class="instruction-number">4</text>
+        <text class="instruction-text">
+          <text class="instruction-highlight">新组件开发必须使用颜色系统</text>
+        </text>
+      </view>
+      <view class="instruction-item">
+        <text class="instruction-number">5</text>
+        <text class="instruction-text">
+          <text class="instruction-highlight">组件现代化改造过程中迁移到颜色系统</text>
+        </text>
+      </view>
+    </view>
+  </view>
+</view>

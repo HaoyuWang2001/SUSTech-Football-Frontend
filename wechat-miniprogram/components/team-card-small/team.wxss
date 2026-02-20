@@ -1,4 +1,6 @@
-/* components/team-card-small/team.wxss - 现代化设计 */
+/* components/team-card-small/team.wxss - 现代化设计 (使用橙色系颜色设计系统) */
+@import '../../styles/mixins.wxss';
+
 .container {
   margin: 20rpx 20rpx 20rpx 0;
   background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
@@ -26,7 +28,7 @@
   left: 0;
   right: 0;
   height: 6rpx;
-  background: linear-gradient(90deg, #2bb7b3 0%, #003f43 100%); /* 使用青绿色到深绿色渐变 */
+  background: linear-gradient(90deg, #ed6c00 0%, #ff8c32 100%); /* 使用橙色渐变 (原为青绿到深绿) */
   border-radius: 24rpx 24rpx 0 0;
 }
 
@@ -60,7 +62,7 @@
   padding-top: 0;
   font-size: 28rpx;
   font-weight: 600;
-  color: #003f43; /* 使用深绿色作为球队名称颜色 */
+  color: #ed6c00; /* 使用橙色作为球队名称颜色 (原为深绿色) */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

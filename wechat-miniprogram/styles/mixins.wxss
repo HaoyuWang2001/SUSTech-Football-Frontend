@@ -1,0 +1,644 @@
+/**
+ * 颜色设计系统 - WXSS 混入类
+ *
+ * 本文件定义了微信小程序中使用的所有颜色相关的CSS混入类。
+ * 所有颜色基于橙色系调色板，不再使用深绿色 (#003f43) 和青绿色 (#2bb7b3)。
+ *
+ * 使用方法：
+ * @import '../../styles/mixins.wxss';
+ */
+
+/* ============================================================================
+ * CSS 变量定义（如果微信小程序支持）
+ * ============================================================================ */
+
+:root {
+  /* 橙色系 */
+  --color-primary: #ed6c00;
+  --color-primary-light: #ff8c32;
+  --color-primary-lighter: #ffb366;
+
+  /* 透明度变体 */
+  --color-primary-alpha12: rgba(237, 108, 0, 0.12);
+  --color-primary-alpha10: rgba(237, 108, 0, 0.1);
+  --color-primary-alpha25: rgba(237, 108, 0, 0.25);
+  --color-primary-alpha8: rgba(237, 108, 0, 0.08);
+  --color-primary-alpha15: rgba(237, 108, 0, 0.15);
+  --color-primary-alpha20: rgba(237, 108, 0, 0.2);
+  --color-primary-alpha30: rgba(237, 108, 0, 0.3);
+  --color-primary-alpha50: rgba(237, 108, 0, 0.5);
+
+  /* 灰色系 */
+  --color-gray-dark: #666666;
+  --color-gray-medium: #cccccc;
+  --color-gray-light: #e0e0e0;
+  --color-gray-lighter: #f2f2f2;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* 功能色 */
+  --color-success: rgba(237, 108, 0, 0.8);
+  --color-warning: rgba(255, 140, 50, 0.8);
+  --color-error: rgba(255, 100, 0, 0.8);
+  --color-info: rgba(237, 108, 0, 0.6);
+
+  /* 渐变 */
+  --gradient-primary: linear-gradient(90deg, #ed6c00 0%, #ff8c32 100%);
+  --gradient-primary-light: linear-gradient(90deg, #ff8c32 0%, #ffb366 100%);
+  --gradient-primary-fade: linear-gradient(90deg, rgba(237, 108, 0, 0.9) 0%, rgba(237, 108, 0, 0.1) 100%);
+  --gradient-background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+
+  /* 阴影 */
+  --shadow-card: 0 4rpx 24rpx rgba(237, 108, 0, 0.1);
+  --shadow-image: 0 8rpx 32rpx rgba(237, 108, 0, 0.15);
+  --shadow-button: 0 4rpx 12rpx rgba(237, 108, 0, 0.2);
+  --shadow-deep: 0 12rpx 48rpx rgba(237, 108, 0, 0.25);
+
+  /* 边框 */
+  --border-card: 2rpx solid rgba(237, 108, 0, 0.12);
+  --border-inner: 1rpx solid rgba(237, 108, 0, 0.08);
+  --border-focus: 2rpx solid rgba(237, 108, 0, 0.3);
+  --border-active: 2rpx solid rgba(237, 108, 0, 0.5);
+
+  /* 圆角 */
+  --radius-small: 8rpx;
+  --radius-medium: 16rpx;
+  --radius-large: 24rpx;
+  --radius-xlarge: 32rpx;
+  --radius-round: 50%;
+
+  /* 过渡动画 */
+  --transition-fast: all 0.15s ease;
+  --transition-normal: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
+  --transition-slow: all 0.5s ease;
+}
+
+/* ============================================================================
+ * 颜色混入类
+ * ============================================================================ */
+
+/* 主橙色 */
+.primary-color {
+  color: #ed6c00 !important;
+}
+
+.primary-bg {
+  background-color: #ed6c00 !important;
+}
+
+.primary-border {
+  border-color: #ed6c00 !important;
+}
+
+/* 浅橙色 */
+.primary-light-color {
+  color: #ff8c32 !important;
+}
+
+.primary-light-bg {
+  background-color: #ff8c32 !important;
+}
+
+.primary-light-border {
+  border-color: #ff8c32 !important;
+}
+
+/* 极浅橙色 */
+.primary-lighter-color {
+  color: #ffb366 !important;
+}
+
+.primary-lighter-bg {
+  background-color: #ffb366 !important;
+}
+
+.primary-lighter-border {
+  border-color: #ffb366 !important;
+}
+
+/* 透明度变体 */
+.primary-alpha12-bg {
+  background-color: rgba(237, 108, 0, 0.12) !important;
+}
+
+.primary-alpha12-border {
+  border-color: rgba(237, 108, 0, 0.12) !important;
+}
+
+.primary-alpha10-shadow {
+  box-shadow: 0 4rpx 24rpx rgba(237, 108, 0, 0.1) !important;
+}
+
+.primary-alpha25-bg {
+  background-color: rgba(237, 108, 0, 0.25) !important;
+}
+
+/* 灰色系 */
+.gray-dark-color {
+  color: #666666 !important;
+}
+
+.gray-medium-color {
+  color: #cccccc !important;
+}
+
+.gray-light-color {
+  color: #e0e0e0 !important;
+}
+
+.gray-light-border {
+  border-color: #e0e0e0 !important;
+}
+
+.gray-lighter-bg {
+  background-color: #f2f2f2 !important;
+}
+
+/* 白色和黑色 */
+.white-color {
+  color: #ffffff !important;
+}
+
+.white-bg {
+  background-color: #ffffff !important;
+}
+
+.black-color {
+  color: #000000 !important;
+}
+
+/* ============================================================================
+ * 渐变混入类
+ * ============================================================================ */
+
+.gradient-primary {
+  background: linear-gradient(90deg, #ed6c00 0%, #ff8c32 100%) !important;
+}
+
+.gradient-primary-light {
+  background: linear-gradient(90deg, #ff8c32 0%, #ffb366 100%) !important;
+}
+
+.gradient-primary-fade {
+  background: linear-gradient(90deg, rgba(237, 108, 0, 0.9) 0%, rgba(237, 108, 0, 0.1) 100%) !important;
+}
+
+.gradient-primary-vertical {
+  background: linear-gradient(180deg, #ed6c00 0%, #ff8c32 100%) !important;
+}
+
+.gradient-primary-light-vertical {
+  background: linear-gradient(180deg, #ff8c32 0%, #ffb366 100%) !important;
+}
+
+.gradient-background {
+  background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%) !important;
+}
+
+.gradient-primary-diagonal {
+  background: linear-gradient(135deg, #ed6c00 0%, #ff8c32 100%) !important;
+}
+
+.gradient-primary-light-diagonal {
+  background: linear-gradient(135deg, #ff8c32 0%, #ffb366 100%) !important;
+}
+
+.gradient-primary-radial {
+  background: radial-gradient(circle, #ed6c00 0%, #ff8c32 100%) !important;
+}
+
+/* ============================================================================
+ * 阴影混入类
+ * ============================================================================ */
+
+.shadow-card {
+  box-shadow: 0 4rpx 24rpx rgba(237, 108, 0, 0.1) !important;
+}
+
+.shadow-card-hover {
+  box-shadow: 0 8rpx 32rpx rgba(237, 108, 0, 0.15) !important;
+}
+
+.shadow-image {
+  box-shadow: 0 8rpx 32rpx rgba(237, 108, 0, 0.15) !important;
+}
+
+.shadow-button {
+  box-shadow: 0 4rpx 12rpx rgba(237, 108, 0, 0.2) !important;
+}
+
+.shadow-deep {
+  box-shadow: 0 12rpx 48rpx rgba(237, 108, 0, 0.25) !important;
+}
+
+.shadow-inset {
+  box-shadow: inset 0 2rpx 4rpx rgba(237, 108, 0, 0.1) !important;
+}
+
+.shadow-text {
+  text-shadow: 0 2rpx 4rpx rgba(237, 108, 0, 0.2) !important;
+}
+
+.shadow-small {
+  box-shadow: 0 2rpx 8rpx rgba(237, 108, 0, 0.08) !important;
+}
+
+/* ============================================================================
+ * 边框混入类
+ * ============================================================================ */
+
+.border-card {
+  border: 2rpx solid rgba(237, 108, 0, 0.12) !important;
+}
+
+.border-inner {
+  border: 1rpx solid rgba(237, 108, 0, 0.08) !important;
+}
+
+.border-focus {
+  border: 2rpx solid rgba(237, 108, 0, 0.3) !important;
+}
+
+.border-active {
+  border: 2rpx solid rgba(237, 108, 0, 0.5) !important;
+}
+
+.border-thin {
+  border: 1rpx solid rgba(237, 108, 0, 0.12) !important;
+}
+
+.border-dashed {
+  border: 2rpx dashed rgba(237, 108, 0, 0.2) !important;
+}
+
+/* 边框方向变体 */
+.border-top-card {
+  border-top: 2rpx solid rgba(237, 108, 0, 0.12) !important;
+}
+
+.border-bottom-card {
+  border-bottom: 2rpx solid rgba(237, 108, 0, 0.12) !important;
+}
+
+.border-left-card {
+  border-left: 2rpx solid rgba(237, 108, 0, 0.12) !important;
+}
+
+.border-right-card {
+  border-right: 2rpx solid rgba(237, 108, 0, 0.12) !important;
+}
+
+/* ============================================================================
+ * 圆角混入类
+ * ============================================================================ */
+
+.radius-small {
+  border-radius: 8rpx !important;
+}
+
+.radius-medium {
+  border-radius: 16rpx !important;
+}
+
+.radius-large {
+  border-radius: 24rpx !important;
+}
+
+.radius-xlarge {
+  border-radius: 32rpx !important;
+}
+
+.radius-round {
+  border-radius: 50% !important;
+}
+
+/* 圆角方向变体 */
+.radius-top-small {
+  border-top-left-radius: 8rpx !important;
+  border-top-right-radius: 8rpx !important;
+}
+
+.radius-bottom-small {
+  border-bottom-left-radius: 8rpx !important;
+  border-bottom-right-radius: 8rpx !important;
+}
+
+.radius-left-small {
+  border-top-left-radius: 8rpx !important;
+  border-bottom-left-radius: 8rpx !important;
+}
+
+.radius-right-small {
+  border-top-right-radius: 8rpx !important;
+  border-bottom-right-radius: 8rpx !important;
+}
+
+.radius-top-large {
+  border-top-left-radius: 24rpx !important;
+  border-top-right-radius: 24rpx !important;
+}
+
+.radius-bottom-large {
+  border-bottom-left-radius: 24rpx !important;
+  border-bottom-right-radius: 24rpx !important;
+}
+
+/* ============================================================================
+ * 过渡动画混入类
+ * ============================================================================ */
+
+.transition-fast {
+  transition: all 0.15s ease !important;
+}
+
+.transition-normal {
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1) !important;
+}
+
+.transition-slow {
+  transition: all 0.5s ease !important;
+}
+
+.transition-transform {
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.3, 1) !important;
+}
+
+.transition-opacity {
+  transition: opacity 0.3s ease !important;
+}
+
+.transition-background {
+  transition: background-color 0.3s ease !important;
+}
+
+/* ============================================================================
+ * 布局混入类
+ * ============================================================================ */
+
+.flex-center {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.flex-between {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+.flex-around {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-around !important;
+}
+
+.flex-start {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+}
+
+.flex-end {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+}
+
+.flex-column {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.flex-row {
+  display: flex !important;
+  flex-direction: row !important;
+}
+
+/* ============================================================================
+ * 文本混入类
+ * ============================================================================ */
+
+.text-ellipsis {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.text-ellipsis-multi {
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 2 !important;
+  overflow: hidden !important;
+}
+
+.text-bold {
+  font-weight: bold !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+/* ============================================================================
+ * 现代化卡片设计混入类
+ * ============================================================================ */
+
+.modern-card {
+  /* 基础样式 */
+  background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%) !important;
+  border: 2rpx solid rgba(237, 108, 0, 0.12) !important;
+  border-radius: 24rpx !important;
+  box-shadow: 0 4rpx 24rpx rgba(237, 108, 0, 0.1) !important;
+
+  /* 过渡动画 */
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1) !important;
+}
+
+.modern-card-hover {
+  background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%) !important;
+  box-shadow: 0 8rpx 32rpx rgba(237, 108, 0, 0.15) !important;
+  transform: translateY(-2rpx) !important;
+}
+
+.modern-card-active {
+  background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%) !important;
+  box-shadow: 0 2rpx 12rpx rgba(237, 108, 0, 0.1) !important;
+  transform: translateY(1rpx) !important;
+}
+
+.modern-card-header {
+  /* 顶部装饰条 */
+  background: linear-gradient(90deg, #ed6c00 0%, #ff8c32 100%) !important;
+  border-top-left-radius: 22rpx !important;
+  border-top-right-radius: 22rpx !important;
+  height: 8rpx !important;
+  margin-bottom: 24rpx !important;
+}
+
+/* ============================================================================
+ * 按钮设计混入类
+ * ============================================================================ */
+
+.primary-button {
+  /* 基础样式 */
+  background: linear-gradient(90deg, #ed6c00 0%, #ff8c32 100%) !important;
+  border: none !important;
+  border-radius: 24rpx !important;
+  color: #ffffff !important;
+
+  /* 阴影和过渡 */
+  box-shadow: 0 4rpx 12rpx rgba(237, 108, 0, 0.2) !important;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1) !important;
+}
+
+.primary-button-hover {
+  background: linear-gradient(90deg, #ff8c32 0%, #ed6c00 100%) !important;
+  box-shadow: 0 6rpx 16rpx rgba(237, 108, 0, 0.25) !important;
+  transform: translateY(-2rpx) !important;
+}
+
+.primary-button-active {
+  background: linear-gradient(90deg, #db6300 0%, #e86700 100%) !important;
+  box-shadow: 0 2rpx 8rpx rgba(237, 108, 0, 0.15) !important;
+  transform: translateY(1rpx) !important;
+}
+
+.primary-button-disabled {
+  background: linear-gradient(90deg, #ffb366 0%, #ffb366 100%) !important;
+  opacity: 0.5 !important;
+  box-shadow: none !important;
+}
+
+.secondary-button {
+  /* 基础样式 */
+  background: #ffffff !important;
+  border: 2rpx solid #ed6c00 !important;
+  border-radius: 24rpx !important;
+  color: #ed6c00 !important;
+
+  /* 过渡 */
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1) !important;
+}
+
+.secondary-button-hover {
+  background: rgba(237, 108, 0, 0.05) !important;
+  transform: translateY(-2rpx) !important;
+}
+
+.secondary-button-active {
+  background: rgba(237, 108, 0, 0.1) !important;
+  transform: translateY(1rpx) !important;
+}
+
+/* ============================================================================
+ * 实用工具类
+ * ============================================================================ */
+
+.hidden {
+  display: none !important;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1rpx !important;
+  height: 1rpx !important;
+  padding: 0 !important;
+  margin: -1rpx !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.full-width {
+  width: 100% !important;
+}
+
+.full-height {
+  height: 100% !important;
+}
+
+.pointer-events-none {
+  pointer-events: none !important;
+}
+
+.pointer-events-auto {
+  pointer-events: auto !important;
+}
+
+.user-select-none {
+  user-select: none !important;
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+.overflow-hidden {
+  overflow: hidden !important;
+}
+
+.overflow-auto {
+  overflow: auto !important;
+}
+
+.position-relative {
+  position: relative !important;
+}
+
+.position-absolute {
+  position: absolute !important;
+}
+
+.position-fixed {
+  position: fixed !important;
+}
+
+.z-index-1 {
+  z-index: 1 !important;
+}
+
+.z-index-10 {
+  z-index: 10 !important;
+}
+
+.z-index-100 {
+  z-index: 100 !important;
+}
+
+.z-index-1000 {
+  z-index: 1000 !important;
+}
+
+/* ============================================================================
+ * 响应式工具类（如需）
+ * ============================================================================ */
+
+@media (min-width: 768rpx) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+
+  .show-on-desktop {
+    display: block !important;
+  }
+}
+
+@media (max-width: 767rpx) {
+  .hide-on-desktop {
+    display: none !important;
+  }
+
+  .show-on-mobile {
+    display: block !important;
+  }
+}
