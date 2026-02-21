@@ -11,59 +11,72 @@
   <team-card-big name="{{name}}" img="{{logoUrl}}" number="{{playerList.length}}"></team-card-big>
 </view>
 
-<view class="tabs">
-  <view class="tab,{{activeIndex==0?'active':''}}" data-index="0" bindtap="switchTab">信息</view>
-  <view class="tab,{{activeIndex==1?'active':''}}" data-index="1" bindtap="switchTab">赛程</view>
-  <view class="tab,{{activeIndex==2?'active':''}}" data-index="2" bindtap="switchTab">球员</view>
+<view class="tabs modern-card">
+  <view class="tab {{activeIndex==0?'active':''}}" data-index="0" bindtap="switchTab">
+    <text class="tab-text">信息</text>
+    <view class="tab-indicator {{activeIndex==0?'active':''}}"></view>
+  </view>
+  <view class="tab {{activeIndex==1?'active':''}}" data-index="1" bindtap="switchTab">
+    <text class="tab-text">赛程</text>
+    <view class="tab-indicator {{activeIndex==1?'active':''}}"></view>
+  </view>
+  <view class="tab {{activeIndex==2?'active':''}}" data-index="2" bindtap="switchTab">
+    <text class="tab-text">球员</text>
+    <view class="tab-indicator {{activeIndex==2?'active':''}}"></view>
+  </view>
 </view>
 
 <view class="tab-content">
 
   <view wx:if="{{activeIndex == 0}}">
-    <view class="block-container">
-      <view class="block-top">
-        <view class="block-title">球队id：<text style="font-size: x-large; color: #ed6c00;">{{id}}</text></view>
+    <view class="block-container modern-card">
+      <view class="modern-card-header"></view>
+      <view class="block-top flex-between">
+        <text class="block-title primary-color text-bold">球队ID</text>
       </view>
       <view class="block-main">
-        球队id是唯一标识符，您可以根据球队id加入球队。
+        <text class="team-id">{{id}}</text>
+        <text class="team-id-hint gray-medium-color">球队ID是唯一标识符，您可以根据球队ID加入球队。</text>
       </view>
     </view>
 
-    <view class="block-container">
+    <view class="block-container modern-card">
+      <view class="modern-card-header"></view>
       <view class="block-top">
-        <text class="block-title">球队简介</text>
-        <text class="block-more"></text>
+        <text class="block-title primary-color text-bold">球队简介</text>
       </view>
       <view class="block-main">
-        {{description === null? '暂无简介' : description}}
+        <text class="team-description">{{description === null? '暂无简介' : description}}</text>
       </view>
     </view>
 
-    <view class="block-container">
+    <view class="block-container modern-card">
+      <view class="modern-card-header"></view>
       <view class="block-top">
-        <text class="block-title">功能</text>
+        <text class="block-title primary-color text-bold">功能</text>
       </view>
       <view class="function-container">
-        <view bindtap="gotoHonorPage" class="function-button">
+        <view bindtap="gotoHonorPage" class="function-button modern-card">
           <image src="/assets/event.png" mode="scaleToFill" class="function-image" />
-          <text class="function-text">荣誉墙</text>
+          <text class="function-text primary-color">荣誉墙</text>
         </view>
-        <view bindtap="gotoRetiredPlayersPage" class="function-button">
+        <view bindtap="gotoRetiredPlayersPage" class="function-button modern-card">
           <image src="/assets/coach.png" mode="scaleToFill" class="function-image" />
-          <text class="function-text">退役球员</text>
+          <text class="function-text primary-color">退役球员</text>
         </view>
       </view>
     </view>
   </view>
 
   <view wx:if="{{activeIndex == 1}}">
-    <view class="block-container">
-      <view class="block-top">
-        <text class="block-title">赛程</text>
-        <text class="block-more" bind:tap="gotoMatchesPage" data-list="{{matchList}}">查看更多</text>
+    <view class="block-container modern-card">
+      <view class="modern-card-header"></view>
+      <view class="block-top flex-between">
+        <text class="block-title primary-color text-bold">赛程</text>
+        <text class="block-more primary-color" bind:tap="gotoMatchesPage" data-list="{{matchList}}">查看更多</text>
       </view>
       <view class="block-main">
-        <scroll-view scroll-x enable-flex style="flex-direction: row; white-space: nowrap;">
+        <scroll-view scroll-x enable-flex class="scroll-container">
           <match-card-small wx:for="{{matchList}}" wx:key="matchId" name="" stage="" tag="" team1="{{item.homeTeam.name}}" team2="{{item.awayTeam.name}}" icon1="{{item.homeTeam.logoUrl}}" icon2="{{item.awayTeam.logoUrl}}" score1="{{item.homeTeamScore}}" score2="{{item.awayTeamScore}}" penalty1="{{item.homeTeamPenalty}}" penalty2="{{item.awayTeamPenalty}}" time="{{item.strTime}}" hasBegun="{{item.hasBegun}}" bind:tap="gotoMatchPage" data-id="{{item.matchId}}" data-event="{{name}}"> </match-card-small>
         </scroll-view>
       </view>
@@ -71,11 +84,23 @@
   </view>
 
   <view wx:if="{{activeIndex == 2}}">
-    <view class="block-container">
+    <view class="block-container modern-card">
+      <view class="modern-card-header"></view>
       <view class="block-top">
-        <text class="block-title">球员</text>
+        <text class="block-title primary-color text-bold">球员</text>
       </view>
       <view class="block-main">
+        <scroll-view scroll-x enable-flex class="scroll-container">
+          <player-card-small
+            wx:for="{{playerList}}"
+            wx:key="playerId"
+            img="{{item.photoUrl}}"
+            name="{{item.name}}"
+            bind:tap="gotoPlayerPage"
+            data-id="{{item.playerId}}">
+          </player-card-small>
+        </scroll-view>
+
         <view class="table">
           <!-- 表头 -->
           <view class="row header">

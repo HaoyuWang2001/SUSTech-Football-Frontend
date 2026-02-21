@@ -1,4 +1,5 @@
 // pages/pub/team/team.js
+import { Colors, Shadows, Gradients, Borders, Tokens } from '../../../utils/colors.js'
 const appInstance = getApp()
 const userId = appInstance.globalData.userId
 const {
@@ -20,6 +21,12 @@ Page({
     activeIndex: 0,
     favorited: Boolean,
     description: "",
+    // 颜色设计系统常量（用于内联样式）
+    Colors: Colors,
+    Shadows: Shadows,
+    Gradients: Gradients,
+    Borders: Borders,
+    Tokens: Tokens,
   },
 
   /**
