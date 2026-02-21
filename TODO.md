@@ -23,6 +23,10 @@
 - [ ] **match-card-big** (比赛大卡片) - `wechat-miniprogram/components/match-card-big/`
 
 ### 中优先级 - 页面现代化
+- [ ] **home页面搜索框移动至导航栏** - `wechat-miniprogram/pages/home/`
+  - 将搜索框从页面内容区域移动到导航栏位置
+  - 仅在home页面显示搜索框，其他页面不显示
+  - 保持现有搜索功能和现代化样式
 - [ ] **profile_player/profile_player** (球员主页) - `wechat-miniprogram/pages/profile_player/`
 - [ ] **management/management** (管理页面) - `wechat-miniprogram/pages/management/`
 - [ ] **mine/mine** (我的页面) - `wechat-miniprogram/pages/mine/`
@@ -45,4 +49,4 @@
 
 
 ## 最后更新
-2026-02-20 - 已完成7个组件的现代化改造 (player-card-small已完成)
+2026-02-21 - 添加"home页面搜索框移动至导航栏"任务，优化TODO.md结构
