@@ -7,14 +7,14 @@
 
 .match-card {
   /* 基础卡片样式 */
-  margin: 20rpx 20rpx;
+  margin: 30rpx 30rpx;
   background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
   border-radius: 24rpx;
   border: 2rpx solid rgba(237, 108, 0, 0.12);
   box-shadow:
     0 4rpx 24rpx rgba(237, 108, 0, 0.1),
     0 2rpx 12rpx rgba(237, 108, 0, 0.08);
-  padding: 0;
+  padding: 0 10rpx;
   position: relative;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
