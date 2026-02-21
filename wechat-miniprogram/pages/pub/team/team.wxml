@@ -1,6 +1,4 @@
 <view class="section-header">
-  <image src="/assets/sustech-motto.png" mode="aspectFit" style="width: 80%;height: 200rpx;" />
-
   <view class="buttons">
     <!-- <view>{{favorited}}</view> -->
     <view wx:if="{{!favorited}}">

@@ -1,5 +1,5 @@
 <view class="container">
-  <view style="width: 90%">
+  <view style="width: 100%">
     <team-card-big wx:for="{{teamList}}" wx:key="teamId" name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerList.length}}" bind:tap="gotoTeam" data-id="{{item.teamId}}"> </team-card-big>
   </view>
 </view>
