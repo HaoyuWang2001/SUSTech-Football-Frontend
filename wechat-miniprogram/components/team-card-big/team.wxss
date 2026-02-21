@@ -2,15 +2,15 @@
 @import '../../styles/mixins.wxss';
 
 .container {
-  margin: 20rpx;
+  margin: 0;
   background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
-  border-radius: 24rpx;
-  border: 1rpx solid rgba(237, 108, 0, 0.12);
-  box-shadow:
+  /* border-radius: 24rpx; */
+  /* border: 1rpx solid rgba(237, 108, 0, 0.12); */
+  /* box-shadow:
     0 8rpx 32rpx rgba(237, 108, 0, 0.1),
     0 4rpx 16rpx rgba(237, 108, 0, 0.08),
-    inset 0 1rpx 0 rgba(255, 255, 255, 0.8);
-  padding: 30rpx;
+    inset 0 1rpx 0 rgba(255, 255, 255, 0.8); */
+  padding: 40rpx 20rpx;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -19,7 +19,7 @@
   overflow: hidden;
 }
 
-.container::before {
+/* .container::before {
   content: '';
   position: absolute;
   top: 0;
@@ -28,7 +28,7 @@
   height: 6rpx;
   background: linear-gradient(90deg, rgb(237, 108, 0) 0%, rgb(255, 140, 50) 100%);
   border-radius: 24rpx 24rpx 0 0;
-}
+} */
 
 .container:active {
   transform: translateY(4rpx) scale(0.995);
@@ -43,6 +43,7 @@
   width: 120rpx;
   height: 120rpx;
   margin: 0;
+  margin-left: 20rpx;
   padding: 0;
   border-right: 1rpx solid rgba(237, 108, 0, 0.15);
   border-radius: 50%;
@@ -64,7 +65,7 @@
 
 .sub-container {
   flex: 0 0 auto;
-  margin-left: 0;
+  margin-left: 30rpx;
   display: flex;
   flex-direction: column;
   max-width: 50%;
