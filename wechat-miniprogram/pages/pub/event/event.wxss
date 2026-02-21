@@ -381,12 +381,13 @@
 .statistic-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 24rpx;
 }
 
 .statistic-card {
-  flex: 0 0 calc(50% - 12rpx);
+  width: calc(50% - 12rpx);
+  flex: 0 0 auto;
   background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
   border: 2rpx solid rgba(237, 108, 0, 0.12);
   border-radius: 20rpx;
@@ -598,7 +599,8 @@ scroll-view {
 
   /* 统计卡片响应式 */
   .statistic-card {
-    flex: 0 0 calc(50% - 8rpx);
+    width: calc(50% - 8rpx);
+    flex: 0 0 auto;
     padding: 24rpx 20rpx;
     border-radius: 16rpx;
   }
