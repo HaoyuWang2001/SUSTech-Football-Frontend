@@ -506,13 +506,16 @@
  * 滚动视图样式优化
  * ============================================================================ */
 
+/* 隐藏滚动条 - 微信小程序不支持嵌套伪元素 */
 scroll-view {
-  /* 隐藏滚动条 */
-  ::-webkit-scrollbar {
-    display: none;
-  }
-  -ms-overflow-style: none;
+  /* 隐藏滚动条样式 */
   scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* 单独定义Webkit滚动条样式 */
+::-webkit-scrollbar {
+  display: none;
 }
 
 /* 球队滚动列表容器 */
