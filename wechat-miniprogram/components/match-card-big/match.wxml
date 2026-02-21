@@ -1,22 +1,72 @@
 <!--components/match-card-big/match.wxml-->
 <view class="match-card">
-  <text class="name">{{time}} {{name}}</text>
-  <view class="info-container">
-    <view class="team">
-      <image class="team-icon" src="{{icon1}}"></image>
-      <text class="team-name">{{team1}}</text>
+  <!-- 顶部装饰条 -->
+  <view class="card-header"></view>
+
+  <!-- 卡片内容 -->
+  <view class="card-content">
+    <!-- 赛事信息头部 -->
+    <view class="match-header">
+      <view class="match-meta">
+        <text class="match-time">{{time}}</text>
+        <text class="match-divider">•</text>
+        <text class="match-name">{{name}}</text>
+      </view>
+      <view class="match-status" wx:if="{{hasBegun}}">
+        <text class="status-badge status-live">进行中</text>
+      </view>
+      <view class="match-status" wx:else>
+        <text class="status-badge status-upcoming">未开始</text>
+      </view>
     </view>
-    <view class="middle">
-      <block wx:if="{{hasBegun}}">
-        <text class="group">{{group}}</text>
-        <text class="score">{{score1}} - {{score2}}</text>
-        <text class="penalty" wx:if="{{score1 == score2  && penalty1 != 0 && penalty2 != 0}}">(点球 {{penalty1}} - {{penalty2}})</text>
-      </block>
-      <text class="not-begin" wx:else>未开始</text>
+
+    <!-- 比赛核心内容 -->
+    <view class="match-core">
+      <!-- 队伍1 -->
+      <view class="team team-left">
+        <view class="team-logo-container">
+          <image class="team-logo" src="{{icon1}}" mode="aspectFill"></image>
+          <view class="team-logo-bg"></view>
+        </view>
+        <text class="team-name">{{team1}}</text>
+      </view>
+
+      <!-- 比分区域 -->
+      <view class="score-section">
+        <view class="score-container">
+          <block wx:if="{{hasBegun}}">
+            <view class="score-display">
+              <text class="score-number">{{score1}}</text>
+              <text class="score-divider">:</text>
+              <text class="score-number">{{score2}}</text>
+            </view>
+            <text class="group-info">{{group}}</text>
+            <text class="penalty-info" wx:if="{{score1 == score2  && penalty1 != 0 && penalty2 != 0}}">
+              点球 {{penalty1}}-{{penalty2}}
+            </text>
+          </block>
+          <block wx:else>
+            <view class="upcoming-display">
+              <text class="vs-text">VS</text>
+              <text class="upcoming-text">即将开始</text>
+            </view>
+          </block>
+        </view>
+      </view>
+
+      <!-- 队伍2 -->
+      <view class="team team-right">
+        <view class="team-logo-container">
+          <image class="team-logo" src="{{icon2}}" mode="aspectFill"></image>
+          <view class="team-logo-bg"></view>
+        </view>
+        <text class="team-name">{{team2}}</text>
+      </view>
     </view>
-    <view class="team">
-      <image class="team-icon" src="{{icon2}}"></image>
-      <text class="team-name">{{team2}}</text>
+
+    <!-- 底部装饰 -->
+    <view class="match-footer">
+      <view class="match-footer-line"></view>
     </view>
   </view>
 </view>
