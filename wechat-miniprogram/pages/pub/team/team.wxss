@@ -124,24 +124,6 @@ page {
   padding: 0 8rpx;
 }
 
-/* 球队ID样式 */
-.team-id {
-  display: block;
-  font-size: 64rpx; /* Tokens.fontSizeXxlarge */
-  font-weight: 800;
-  color: #ed6c00; /* Colors.primary */
-  text-align: center;
-  margin: 20rpx 0 16rpx 0;
-  letter-spacing: 2rpx;
-}
-
-.team-id-hint {
-  display: block;
-  font-size: 24rpx; /* Tokens.fontSizeSmall */
-  color: #cccccc; /* Colors.grayMedium */
-  text-align: center;
-  line-height: 1.5;
-}
 
 /* 球队简介样式 */
 .team-description {
@@ -276,7 +258,4 @@ page {
     min-width: 180rpx;
   }
 
-  .team-id {
-    font-size: 48rpx;
-  }
 }

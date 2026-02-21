@@ -8,7 +8,7 @@
       <image class="icon" src="/assets/favorited.png" mode="scaleToFill" bind:tap="unfavorite" />
     </view>
   </view>
-  <team-card-big name="{{name}}" img="{{logoUrl}}" number="{{playerList.length}}"></team-card-big>
+  <team-card-big name="{{name}}" img="{{logoUrl}}" number="{{playerList.length}}" teamId="{{id}}"></team-card-big>
 </view>
 
 <view class="tabs modern-card">
@@ -29,16 +29,6 @@
 <view class="tab-content">
 
   <view wx:if="{{activeIndex == 0}}">
-    <view class="block-container modern-card">
-      <view class="modern-card-header"></view>
-      <view class="block-top flex-between">
-        <text class="block-title primary-color text-bold">球队ID</text>
-      </view>
-      <view class="block-main">
-        <text class="team-id">{{id}}</text>
-        <text class="team-id-hint gray-medium-color">球队ID是唯一标识符，您可以根据球队ID加入球队。</text>
-      </view>
-    </view>
 
     <view class="block-container modern-card">
       <view class="modern-card-header"></view>

@@ -20,10 +20,10 @@
         </view>
       </view>
 
-
-      <!-- 底部装饰 -->
-      <view class="team-footer">
-        <view class="team-footer-line"></view>
+    <!-- 球队ID -->
+      <view class="team-id-container" wx:if="{{teamId}}">
+        <text class="team-id-label">球队ID：</text>
+        <text class="team-id-value">{{teamId}}</text>
       </view>
     </view>
 
