@@ -3,6 +3,11 @@
   <!-- 顶部装饰条 -->
   <view class="card-header"></view>
 
+  <!-- 右上角插槽 -->
+  <view class="top-right-slot">
+    <slot name="top-right"></slot>
+  </view>
+
   <!-- 卡片内容 -->
   <view class="card-content">
     <!-- 球队Logo区域 -->

@@ -40,6 +40,27 @@
   z-index: 1;
 }
 
+/* 右上角插槽 */
+.top-right-slot {
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+/* 右上角图标样式 */
+.top-right-slot .icon {
+  width: 50rpx;
+  height: 50rpx;
+  padding: 8rpx;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.top-right-slot .icon:active {
+  transform: scale(0.95);
+}
+
 /* ============================================================================
  * 卡片内容区域
  * ============================================================================ */
@@ -300,6 +321,17 @@
     font-size: 22rpx;
     padding: 8rpx 14rpx;
     min-width: 80rpx;
+  }
+
+  .top-right-slot {
+    top: 16rpx;
+    right: 16rpx;
+  }
+
+  .top-right-slot .icon {
+    width: 44rpx;
+    height: 44rpx;
+    padding: 6rpx;
   }
 
 }
