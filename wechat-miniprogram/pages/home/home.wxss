@@ -10,20 +10,22 @@
   margin: 30rpx 20rpx;
   border: none;
   border-radius: 60rpx;
-  background-color: #ffffff;
-  box-shadow:
-    0 10rpx 30rpx rgba(237, 108, 0, 0.15),
-    0 4rpx 12rpx rgba(237, 108, 0, 0.1),
-    inset 0 1rpx 0 rgba(255, 255, 255, 0.8);
+  .white-bg();
+  .shadow-card-hover();
+  .transition-normal();
   height: 100rpx;
-  transition: all 0.3s ease;
+}
+
+/* 搜索容器聚焦状态 */
+.search-container:focus-within {
+  .border-focus();
 }
 
 .search-container .search-input {
   flex: 1;
   height: 100%;
   font-size: 32rpx;
-  color: #333;
+  .gray-dark-color();
   background: transparent;
   border: none;
   outline: none;
@@ -32,21 +34,13 @@
 }
 
 .search-container .search-input::placeholder {
-  color: #999;
+  .gray-medium-color();
   font-size: 28rpx;
   font-weight: 300;
 }
 
 .search-container .search-input:focus {
-  background: rgba(237, 108, 0, 0.03);
-}
-
-.search-container .search-button:active {
-  transform: translateY(2rpx);
-  box-shadow:
-    0 2rpx 8rpx rgba(237, 108, 0, 0.25),
-    0 1rpx 3rpx rgba(237, 108, 0, 0.2);
-  background: linear-gradient(135deg, rgb(220, 95, 0) 0%, rgb(245, 130, 40) 100%);
+  .primary-alpha12-bg();
 }
 
 .search-container .search-button {
@@ -55,19 +49,18 @@
   min-width: 100rpx;
   font-size: 28rpx;
   font-weight: 600;
-  color: white;
-  background: linear-gradient(135deg, rgb(237, 108, 0) 0%, rgb(255, 140, 50) 100%);
-  border: none;
-  border-radius: 40rpx;
+  .white-color();
+  .primary-button();
+  border-radius: 40rpx !important;
   margin-left: 20rpx;
   padding: 0 24rpx;
   line-height: 80rpx;
-  box-shadow:
-    0 4rpx 12rpx rgba(237, 108, 0, 0.3),
-    0 2rpx 4rpx rgba(237, 108, 0, 0.2);
-  transition: all 0.2s ease;
   letter-spacing: 1rpx;
   white-space: nowrap;
+}
+
+.search-container .search-button:active {
+  .primary-button-active();
 }
 
 

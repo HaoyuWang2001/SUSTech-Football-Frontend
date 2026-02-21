@@ -4,6 +4,8 @@ const URL = app.globalData.URL
 const {
   formatTime
 } = require("../../utils/timeFormatter")
+// 导入颜色设计系统
+import { Colors, Shadows, Gradients } from '../../utils/colors.js'
 
 Page({
 
@@ -12,6 +14,20 @@ Page({
    */
   data: {
     searchText: '', // 初始化搜索框内容为空
+    // 颜色设计系统常量
+    colors: {
+      primary: Colors.primary,
+      primaryLight: Colors.primaryLight,
+      primaryAlpha15: Colors.primaryAlpha15,
+    },
+    shadows: {
+      card: Shadows.card,
+      button: Shadows.button,
+    },
+    gradients: {
+      primary: Gradients.primary,
+      primaryDiagonal: Gradients.primaryDiagonal,
+    },
     newsList: [],
     matchList: [],
     userList: [],
