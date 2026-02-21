@@ -1,116 +1,280 @@
 /* components/team-card-big/team.wxss - 现代化设计 (使用橙色系颜色设计系统) */
 @import '../../styles/mixins.wxss';
 
+/* ============================================================================
+ * 卡片容器
+ * ============================================================================ */
+
 .container {
-  margin: 0;
+  /* 基础卡片样式 */
+  margin: 20rpx 20rpx;
   background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
-  /* border-radius: 24rpx; */
-  /* border: 1rpx solid rgba(237, 108, 0, 0.12); */
-  /* box-shadow:
-    0 8rpx 32rpx rgba(237, 108, 0, 0.1),
-    0 4rpx 16rpx rgba(237, 108, 0, 0.08),
-    inset 0 1rpx 0 rgba(255, 255, 255, 0.8); */
-  padding: 40rpx 20rpx;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
+  border-radius: 24rpx;
+  border: 2rpx solid rgba(237, 108, 0, 0.12);
+  box-shadow:
+    0 4rpx 24rpx rgba(237, 108, 0, 0.1),
+    0 2rpx 12rpx rgba(237, 108, 0, 0.08);
+  padding: 0;
   position: relative;
   overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
 }
-
-/* .container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 6rpx;
-  background: linear-gradient(90deg, rgb(237, 108, 0) 0%, rgb(255, 140, 50) 100%);
-  border-radius: 24rpx 24rpx 0 0;
-} */
 
 .container:active {
   transform: translateY(4rpx) scale(0.995);
   box-shadow:
-    0 4rpx 20rpx rgba(237, 108, 0, 0.08),
-    0 2rpx 10rpx rgba(237, 108, 0, 0.06);
+    0 2rpx 12rpx rgba(237, 108, 0, 0.08),
+    0 1rpx 6rpx rgba(237, 108, 0, 0.06);
   border-color: rgba(237, 108, 0, 0.25);
 }
 
-.image {
-  flex: 0 0 auto;
+/* 顶部装饰条 */
+.card-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8rpx;
+  background: linear-gradient(90deg, #ed6c00 0%, #ff8c32 100%);
+  border-radius: 24rpx 24rpx 0 0;
+  z-index: 1;
+}
+
+/* ============================================================================
+ * 卡片内容区域
+ * ============================================================================ */
+
+.card-content {
+  padding: 40rpx 32rpx 32rpx 32rpx;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  gap: 32rpx;
+}
+
+/* ============================================================================
+ * 球队Logo区域
+ * ============================================================================ */
+
+.team-logo-container {
+  position: relative;
   width: 120rpx;
   height: 120rpx;
-  margin: 0;
-  margin-left: 20rpx;
-  padding: 0;
-  border-right: 1rpx solid rgba(237, 108, 0, 0.15);
-  border-radius: 50%;
-  background: #f8f8f8;
-  border: 3rpx solid rgba(237, 108, 0, 0.1);
-  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.08);
-  padding: 10rpx;
-  margin-right: 30rpx;
-  transition: all 0.3s ease;
-  object-fit: cover;
-}
-
-.container:active .image {
-  transform: scale(0.95);
-  border-color: rgba(237, 108, 0, 0.25);
-  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.06);
-  border-right-color: rgba(237, 108, 0, 0.25);
-}
-
-.sub-container {
-  flex: 0 0 auto;
-  margin-left: 30rpx;
+  flex-shrink: 0;
   display: flex;
-  flex-direction: column;
-  max-width: 50%;
-  min-width: 200rpx;
+  align-items: center;
+  justify-content: center;
 }
 
-.name {
+.team-logo-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(237, 108, 0, 0.08);
+  border-radius: 50%;
+  border: 3rpx solid rgba(237, 108, 0, 0.15);
+  box-shadow: 0 4rpx 16rpx rgba(237, 108, 0, 0.15);
+}
+
+.team-logo {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 4rpx 8rpx rgba(0, 0, 0, 0.2));
+  transition: all 0.3s ease;
+}
+
+.container:active .team-logo {
+  transform: scale(0.95);
+  filter: drop-shadow(0 2rpx 4rpx rgba(0, 0, 0, 0.1));
+}
+
+/* ============================================================================
+ * 球队信息区域
+ * ============================================================================ */
+
+.team-info {
+  flex: 1;
+  min-width: 0;
+}
+
+/* 球队头部 */
+.team-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid rgba(237, 108, 0, 0.08);
+}
+
+.team-name {
   font-size: 36rpx;
   font-weight: 700;
-  white-space: normal;
-  word-wrap: break-word;
-  color: #666666; /* 球队名称颜色改为灰色 */
+  color: #333333;
   line-height: 1.3;
-  letter-spacing: 0.3rpx;
-  margin-bottom: 16rpx;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
   transition: all 0.3s ease;
 }
 
-.container:active .name {
-  color: rgb(237, 108, 0); /* 激活状态使用橙色 */
+.container:active .team-name {
+  color: #ed6c00;
 }
 
-.number {
-  font-size: 28rpx;
-  color: #666;
-  margin-top: 8rpx;
-  font-weight: 500;
-  padding: 8rpx 16rpx;
-  background: rgba(237, 108, 0, 0.08);
-  border-radius: 12rpx;
+.team-status {
+  margin-left: 16rpx;
+  flex-shrink: 0;
+}
+
+.status-badge {
   display: inline-block;
-  align-self: flex-start;
-  border: 1rpx solid rgba(237, 108, 0, 0.1);
+  padding: 10rpx 18rpx;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #ed6c00;
+  background-color: rgba(237, 108, 0, 0.12);
+  text-align: center;
+  min-width: 90rpx;
   transition: all 0.3s ease;
 }
 
-.container:active .number {
-  background: rgba(237, 108, 0, 0.15);
-  border-color: rgba(237, 108, 0, 0.2);
-  color: rgb(237, 108, 0);
+.container:active .status-badge {
+  background-color: rgba(237, 108, 0, 0.18);
+  color: #ed6c00;
 }
 
-.buttons {
-  flex: 1 1 auto;
+/* ============================================================================
+ * 球队统计信息
+ * ============================================================================ */
+
+.team-stats {
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 24rpx;
+  padding: 20rpx 0;
+  background-color: rgba(237, 108, 0, 0.05);
+  border-radius: 16rpx;
+  border: 1rpx solid rgba(237, 108, 0, 0.08);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  padding: 0 12rpx;
+  transition: all 0.3s ease;
+}
+
+.container:active .stat-item {
+  transform: scale(0.98);
+}
+
+.stat-icon {
+  font-size: 32rpx;
+  margin-bottom: 8rpx;
+  opacity: 0.8;
+}
+
+.stat-label {
+  font-size: 22rpx;
+  color: rgba(102, 102, 102, 0.8);
+  font-weight: 500;
+}
+
+.stat-divider {
+  width: 1rpx;
+  height: 40rpx;
+  background-color: rgba(237, 108, 0, 0.15);
+}
+
+/* ============================================================================
+ * 底部装饰
+ * ============================================================================ */
+
+.team-footer {
+  padding-top: 20rpx;
+  border-top: 1rpx solid rgba(237, 108, 0, 0.08);
+  margin-top: 24rpx;
+}
+
+.team-footer-line {
+  height: 2rpx;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(237, 108, 0, 0.2) 20%,
+    rgba(237, 108, 0, 0.2) 80%,
+    transparent 100%
+  );
+}
+
+/* ============================================================================
+ * 球队操作区域
+ * ============================================================================ */
+
+.team-actions {
+  flex-shrink: 0;
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding-left: 20rpx;
+  min-width: 80rpx;
+}
+
+/* ============================================================================
+ * 响应式调整
+ * ============================================================================ */
+
+@media (max-width: 600rpx) {
+  .container {
+    margin: 16rpx 16rpx;
+  }
+
+  .card-content {
+    padding: 30rpx 24rpx 26rpx 24rpx;
+    gap: 24rpx;
+  }
+
+  .team-logo-container {
+    width: 100rpx;
+    height: 100rpx;
+  }
+
+  .team-logo {
+    width: 68rpx;
+    height: 68rpx;
+  }
+
+  .team-name {
+    font-size: 32rpx;
+  }
+
+  .status-badge {
+    font-size: 22rpx;
+    padding: 8rpx 14rpx;
+    min-width: 80rpx;
+  }
+
+  .team-stats {
+    padding: 16rpx 0;
+  }
+
+  .stat-icon {
+    font-size: 28rpx;
+  }
+
+  .stat-label {
+    font-size: 20rpx;
+  }
 }
