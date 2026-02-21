@@ -185,7 +185,7 @@
 
 /* ========== 现代化卡片容器样式 ========== */
 .block-container {
-  margin: 40rpx 20rpx;
+  margin: 20rpx 20rpx;
   border-radius: 24rpx;
   background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
   box-shadow:
@@ -243,7 +243,7 @@
   display: flex;
   justify-content: space-around;
   background: transparent;
-  padding: 20rpx 0;
+  padding: 0;
   border-radius: 20rpx;
 }
 
