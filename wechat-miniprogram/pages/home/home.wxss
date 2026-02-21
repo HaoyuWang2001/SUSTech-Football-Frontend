@@ -10,22 +10,22 @@
   margin: 30rpx 20rpx;
   border: none;
   border-radius: 60rpx;
-  .white-bg();
-  .shadow-card-hover();
-  .transition-normal();
+  background-color: #ffffff !important;
+  box-shadow: 0 8rpx 32rpx rgba(237, 108, 0, 0.15) !important;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1) !important;
   height: 100rpx;
 }
 
 /* 搜索容器聚焦状态 */
 .search-container:focus-within {
-  .border-focus();
+  border: 2rpx solid rgba(237, 108, 0, 0.3) !important;
 }
 
 .search-container .search-input {
   flex: 1;
   height: 100%;
   font-size: 32rpx;
-  .gray-dark-color();
+  color: #666666 !important;
   background: transparent;
   border: none;
   outline: none;
@@ -34,13 +34,13 @@
 }
 
 .search-container .search-input::placeholder {
-  .gray-medium-color();
+  color: #cccccc !important;
   font-size: 28rpx;
   font-weight: 300;
 }
 
 .search-container .search-input:focus {
-  .primary-alpha12-bg();
+  background-color: rgba(237, 108, 0, 0.12) !important;
 }
 
 .search-container .search-button {
@@ -49,9 +49,12 @@
   min-width: 100rpx;
   font-size: 28rpx;
   font-weight: 600;
-  .white-color();
-  .primary-button();
+  color: #ffffff !important;
+  background: linear-gradient(90deg, #ed6c00 0%, #ff8c32 100%) !important;
+  border: none !important;
   border-radius: 40rpx !important;
+  box-shadow: 0 4rpx 12rpx rgba(237, 108, 0, 0.2) !important;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1) !important;
   margin-left: 20rpx;
   padding: 0 24rpx;
   line-height: 80rpx;
@@ -60,7 +63,9 @@
 }
 
 .search-container .search-button:active {
-  .primary-button-active();
+  background: linear-gradient(90deg, #db6300 0%, #e86700 100%) !important;
+  box-shadow: 0 2rpx 8rpx rgba(237, 108, 0, 0.15) !important;
+  transform: translateY(1rpx) !important;
 }
 
 
