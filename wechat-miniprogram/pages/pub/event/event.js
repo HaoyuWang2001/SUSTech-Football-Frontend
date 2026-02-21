@@ -5,6 +5,8 @@ const userId = appInstance.globalData.userId
 const {
   formatTime
 } = require("../../../utils/timeFormatter")
+// 导入颜色设计系统
+import { Colors, Shadows, Gradients } from '../../../utils/colors.js'
 
 Page({
 
@@ -12,6 +14,11 @@ Page({
    * 页面的初始数据
    */
   data: {
+    // 颜色设计系统常量，可在WXML中使用
+    Colors: Colors,
+    Shadows: Shadows,
+    Gradients: Gradients,
+
     id: -1,
     name: String,
     description: String,

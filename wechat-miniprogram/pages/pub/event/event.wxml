@@ -2,11 +2,11 @@
   <image src="/assets/cup.svg" mode="scaleToFill" class="cup"></image>
   <view class="title-container">
     <view class="buttons">
-      <view wx:if="{{!favorited}}">
-        <image class="statistic-icon" src="/assets/unfavorited.png" mode="scaleToFill"  bind:tap="favorite"/>
+      <view wx:if="{{!favorited}}" class="favorite-button">
+        <image class="favorite-icon" src="/assets/unfavorited.png" mode="scaleToFill"  bind:tap="favorite"/>
       </view>
-      <view wx:if="{{favorited}}">
-        <image class="statistic-icon" src="/assets/favorited.png" mode="scaleToFill"  bind:tap="unfavorite"/>
+      <view wx:if="{{favorited}}" class="favorite-button">
+        <image class="favorite-icon" src="/assets/favorited.png" mode="scaleToFill"  bind:tap="unfavorite"/>
       </view>
     </view>
     <view class="title">{{name}}</view>
@@ -22,9 +22,9 @@
 </view>
 
 <view class="tabs">
-  <view class="tab,{{activeIndex==0?'active':''}}" data-index="0" bindtap="switchTab">主页</view>
-  <view class="tab,{{activeIndex==1?'active':''}}" data-index="1" bindtap="switchTab">比赛</view>
-  <view class="tab,{{activeIndex==2?'active':''}}" data-index="2" bindtap="switchTab">积分榜</view>
+  <view class="tab {{activeIndex==0?'active':''}}" data-index="0" bindtap="switchTab">主页</view>
+  <view class="tab {{activeIndex==1?'active':''}}" data-index="1" bindtap="switchTab">比赛</view>
+  <view class="tab {{activeIndex==2?'active':''}}" data-index="2" bindtap="switchTab">积分榜</view>
 </view>
 
 <view class="tab-content">
@@ -54,7 +54,7 @@
         <text class="block-more" bind:tap="gotoTeamsPage">查看更多</text>
       </view>
       <view class="block-main">
-        <scroll-view scroll-x enable-flex style="flex-direction: row; white-space: nowrap;">
+        <scroll-view scroll-x enable-flex class="team-scroll-container" style="flex-direction: row; white-space: nowrap;">
           <team-card-small wx:for="{{teamList}}" wx:key="id" name="{{item.name}}" img="{{item.logoUrl}}" bind:tap="gotoTeamPage" data-id="{{item.id}}"></team-card-small>
         </scroll-view>
       </view>
@@ -65,7 +65,7 @@
         <!-- <text class="block-more" bind:tap="gotoMatchesPage">查看更多</text> -->
       </view>
       <view class="block-main">
-        <scroll-view scroll-x enable-flex style="flex-direction: row; white-space: nowrap;">
+        <scroll-view scroll-x enable-flex class="match-scroll-container" style="flex-direction: row; white-space: nowrap;">
           <match-card-small wx:for="{{matchList}}" wx:key="matchId" name="{{item.stage + ' ' + item.tag}}" team1="{{item.homeTeam.name}}" team2="{{item.awayTeam.name}}" icon1="{{item.homeTeam.logoUrl}}" icon2="{{item.awayTeam.logoUrl}}" score1="{{item.homeTeamScore}}" score2="{{item.awayTeamScore}}" penalty1="{{item.homeTeamPenalty}}" penalty2="{{item.awayTeamPenalty}}" time="{{item.strTime}}" hasBegun="{{item.hasBegun}}" bind:tap="gotoMatchPage" data-id="{{item.matchId}}" data-event="{{name}}"> </match-card-small>
         </scroll-view>
       </view>
