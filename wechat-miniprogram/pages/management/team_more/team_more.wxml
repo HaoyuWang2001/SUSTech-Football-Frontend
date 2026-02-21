@@ -41,7 +41,7 @@
   <!-- 球队列表 -->
   <view class="team-card-container">
     <block wx:for="{{teamList}}" wx:key="teamId">
-      <team-card-big name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerList.length}}">
+      <team-card-big name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerList.length}}" teamId="{{item.teamId}}">
         <view style="display: flex; flex-direction: column; align-items: flex-end; padding-right: 30rpx;">
           <view class="check-btn" bindtap="gotoEditTeam" data-id="{{item.teamId}}">编辑</view>
           <view class="delete-btn" bindtap="showCancelModal" data-id="{{item.teamId}}">删除</view>

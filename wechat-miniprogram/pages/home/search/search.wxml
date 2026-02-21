@@ -85,7 +85,7 @@
         <image wx:if="{{!expandTeam}}" class="expand-button" src="/assets/collapse.png" bind:tap="bindExpandTeam"></image>
       </view>
       <view wx:if="{{expandTeam}}" class="team-container">
-        <team-card-big wx:for="{{teamDisplayList}}" wx:key="teamId" name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerList.length}}" bind:tap="gotoTeam" data-id="{{item.teamId}}"> </team-card-big>
+        <team-card-big wx:for="{{teamDisplayList}}" wx:key="teamId" name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerList.length}}" teamId="{{item.teamId}}" bind:tap="gotoTeam" data-id="{{item.teamId}}"> </team-card-big>
         <view wx:if="{{teamIdx < teamList.length}}" style="display: flex; justify-content: center; align-items: center;">
           <image class="more-button" src="/assets/more.png" bind:tap="updateTeamDisplayList"></image>
         </view>

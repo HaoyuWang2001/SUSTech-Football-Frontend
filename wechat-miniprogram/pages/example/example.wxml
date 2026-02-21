@@ -38,7 +38,7 @@
       <player-card-small name="王浩羽" img="/assets/busquets.jpg"></player-card-small>
     </scroll-view>
 
-    <team-card-big name="南方科技大学男子足球队" img="/assets/barca1.png" number="25"></team-card-big>
+    <team-card-big name="南方科技大学男子足球队" img="/assets/barca1.png" number="25" teamId="12345"></team-card-big>
 
     <scroll-view scroll-x enable-flex style="flex-direction: row; white-space: nowrap;">
       <team-card-small name="南科大足球队" img="/assets/barca1.png" number="25"></team-card-small>

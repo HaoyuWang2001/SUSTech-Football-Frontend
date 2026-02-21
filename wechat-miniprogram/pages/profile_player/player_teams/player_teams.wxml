@@ -1,4 +1,4 @@
-<team-card-big wx:for="{{teamList}}" wx:key="teamId" name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerList.length}}" bind:tap="gotoTeam" data-id="{{item.teamId}}">
+<team-card-big wx:for="{{teamList}}" wx:key="teamId" name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerList.length}}" teamId="{{item.teamId}}" bind:tap="gotoTeam" data-id="{{item.teamId}}">
   <view style="display: flex; flex-direction: column; align-items: flex-end; padding-right: 30rpx;">
     <view class="delete-btn" catch:tap="showExitModal" data-id="{{item.teamId}}">退出</view>
   </view>

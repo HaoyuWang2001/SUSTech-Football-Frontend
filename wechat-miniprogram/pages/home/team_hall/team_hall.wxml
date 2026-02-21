@@ -19,6 +19,6 @@
       </view>
       <view class="text">未找到球队</view>
     </view>
-    <team-card-big wx:for="{{teamList}}" wx:key="teamId" name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerList.length}}" bind:tap="gotoTeamPage" data-id="{{item.teamId}}"> </team-card-big>
+    <team-card-big wx:for="{{teamList}}" wx:key="teamId" name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerList.length}}" teamId="{{item.teamId}}" bind:tap="gotoTeamPage" data-id="{{item.teamId}}"> </team-card-big>
   </view>
 </view>

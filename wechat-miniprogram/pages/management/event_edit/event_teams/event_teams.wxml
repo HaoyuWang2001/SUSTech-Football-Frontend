@@ -11,7 +11,7 @@
         <view wx:for="{{groupList}}" class="group-team" wx:for-item="groupItem" wx:key="index">
           <view class="group-name">{{groupItem.name}}</view>
           <block wx:for="{{groupItem.teamList}}" wx:for-item="teamItem" wx:key="index">
-            <team-card-big name="{{teamItem.team.name}}" img="{{teamItem.team.logoUrl}}" number="{{teamItem.team.playerCount}}">
+            <team-card-big name="{{teamItem.team.name}}" img="{{teamItem.team.logoUrl}}" number="{{teamItem.team.playerCount}}" teamId="{{teamItem.team.id}}">
               <view style="display: flex; flex-direction: column; align-items: flex-end; padding-right: 30rpx;">
                 <view class="delete-btn" bindtap="showCancelModal" data-teamid="{{teamItem.team.id}}" data-groupId="{{groupItem.groupId}}">删除</view>
                 <view class="check-btn" bindtap="gotoViewRoster" data-teamid="{{teamItem.team.id}}" data-teamname="{{teamItem.team.name}}" data-teamlogo="{{teamItem.team.logoUrl}}">查看名单</view>
@@ -26,7 +26,7 @@
         <view wx:if="{{noGroupTeamList.length > 0}}" class="group-team">
           <view class="group-name">{{'未分组'}}</view>
           <block wx:for="{{noGroupTeamList}}" wx:key="teamId">
-            <team-card-big name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerCount}}">
+            <team-card-big name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerCount}}" teamId="{{item.id}}">
               <view style="display: flex; flex-direction: column; align-items: flex-end; padding-right: 30rpx;">
                 <view class="delete-btn" bindtap="showCancelModal" data-teamid="{{item.id}}" data-groupId="{{0}}">删除</view>
                 <view class="check-btn" bindtap="gotoViewRoster" data-teamid="{{item.id}}" data-teamname="{{item.name}}" data-teamlogo="{{item.logoUrl}}">查看名单</view>
@@ -42,7 +42,7 @@
       <view wx:if="{{stageList.length == 1}}">
         <view wx:if="{{noGroupTeamList.length > 0}}" class="group-team">
           <block wx:for="{{noGroupTeamList}}" wx:key="teamId">
-            <team-card-big name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerCount}}">
+            <team-card-big name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerCount}}" teamId="{{item.id}}">
               <view style="display: flex; flex-direction: column; align-items: flex-end; padding-right: 30rpx;">
                 <view class="delete-btn" bindtap="showCancelModal" data-teamid="{{item.id}}" data-groupId="{{0}}">删除</view>
                 <view class="check-btn" style="margin-top: 3%;" bindtap="gotoViewRoster" data-teamid="{{item.id}}" data-teamname="{{item.name}}" data-teamlogo="{{item.logoUrl}}">查看名单</view>
