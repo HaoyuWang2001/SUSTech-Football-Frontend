@@ -78,9 +78,9 @@
     "pages/profile_player/profile_coach/coach_teams/coach_teams"
   ],
   "window": {
-    "navigationBarTextStyle": "white",
+    "navigationBarTextStyle": "black",
     "navigationBarTitleText": "SUSTech Football",
-    "navigationBarBackgroundColor": "#ed6c00",
+    "navigationBarBackgroundColor": "#ffffff",
     "enablePullDownRefresh": true,
     "homeButton": true,
     "backgroundColor": "#ed6c00",
