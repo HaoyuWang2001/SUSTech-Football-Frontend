@@ -462,42 +462,30 @@
 .buttons {
   text-align: right;
   position: absolute;
-  top: 32rpx;
+  top: 36rpx;
   right: 32rpx;
   z-index: 3;
 }
 
 .favorite-button {
-  width: 60rpx;
-  height: 60rpx;
-  border-radius: 50%;
-  background: rgba(237, 108, 0, 0.1);
-  border: 2rpx solid rgba(237, 108, 0, 0.2);
-  padding: 8rpx;
-  box-shadow: 0 4rpx 12rpx rgba(237, 108, 0, 0.15);
-  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
+  width: 40rpx;
+  height: 40rpx;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.2s ease;
 }
 
 .favorite-button:active {
-  transform: scale(0.9);
-  background: rgba(237, 108, 0, 0.2);
-  border-color: rgba(237, 108, 0, 0.3);
-  box-shadow: 0 2rpx 6rpx rgba(237, 108, 0, 0.1);
+  transform: scale(0.92);
+  opacity: 0.8;
 }
 
 .favorite-icon {
-  width: 36rpx;
-  height: 36rpx;
-  filter: drop-shadow(0 2rpx 4rpx rgba(0, 0, 0, 0.2));
-  transition: all 0.3s ease;
-}
-
-.favorite-button:active .favorite-icon {
-  transform: scale(0.95);
+  width: 40rpx;
+  height: 40rpx;
   filter: drop-shadow(0 1rpx 2rpx rgba(0, 0, 0, 0.1));
+  transition: all 0.2s ease;
 }
 
 /* .button {
@@ -642,13 +630,12 @@ scroll-view {
   }
 
   .favorite-button {
-    width: 52rpx;
-    height: 52rpx;
-    padding: 6rpx;
+    width: 36rpx;
+    height: 36rpx;
   }
 
   .favorite-icon {
-    width: 32rpx;
-    height: 32rpx;
+    width: 36rpx;
+    height: 36rpx;
   }
 }
