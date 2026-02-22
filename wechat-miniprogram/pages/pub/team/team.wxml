@@ -1,7 +1,6 @@
 <view class="section-header">
   <team-card-big name="{{name}}" img="{{logoUrl}}" number="{{playerList.length}}" teamId="{{id}}" has_favorite_button="{{true}}">
     <view slot="top-right">
-      <!-- <view>{{favorited}}</view> -->
       <view wx:if="{{!favorited}}">
         <image class="icon" src="/assets/unfavorited.png" mode="scaleToFill" catch:tap="favorite" />
       </view>

@@ -3,13 +3,8 @@
   <!-- 顶部装饰条 -->
   <view class="card-header"></view>
 
-  <!-- 右上角插槽 -->
-  <view class="top-right-slot">
-    <slot name="top-right"></slot>
-  </view>
-
   <!-- 卡片内容 -->
-  <view class="card-content {{has_favorite_button ? 'has-favorite-button' : 'no-favorite-button'}}">
+  <view class="card-content">
     <!-- 球队Logo区域 -->
     <view class="team-logo-container">
       <view class="team-logo-bg"></view>
@@ -33,7 +28,7 @@
     </view>
 
     <!-- 按钮插槽 -->
-    <view class="team-actions">
+    <view class="team-actions" wx:if="{{has_favorite_button}}">
       <slot></slot>
     </view>
   </view>

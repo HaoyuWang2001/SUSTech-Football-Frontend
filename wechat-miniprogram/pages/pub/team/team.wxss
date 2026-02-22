@@ -10,7 +10,6 @@ page {
  * 页面头部区域
  * ============================================================================ */
 .section-header {
-  text-align: center;
   background-color: #ffffff; /* Colors.white */
   padding: 20rpx 0 40rpx 0;
   border-radius: 0 0 24rpx 24rpx;
