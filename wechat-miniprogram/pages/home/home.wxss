@@ -7,17 +7,19 @@
   display: flex;
   align-items: center;
   padding: 10rpx 30rpx;
-  margin: 0;
+  margin: 0 10rpx;
   border: none;
    background-color: #ffffff !important;
   box-shadow: 0 4rpx 12rpx rgba(237, 108, 0, 0.15) !important;
   transition: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1) !important;
   height: 100rpx;
+  border: 4rpx solid rgba(237, 108, 0, 0.3) !important;
+  border-radius: 20rpx;
 }
 
 /* 搜索容器聚焦状态 */
 .search-container:focus-within {
-  border: 2rpx solid rgba(237, 108, 0, 0.3) !important;
+  border: 4rpx solid rgb(237, 108, 0)!important;
 }
 
 .search-container .search-input {
@@ -182,23 +184,16 @@
 
 /* ========== 现代化卡片容器样式 ========== */
 .block-container {
-  margin: 20rpx 20rpx;
-  border-radius: 24rpx;
+  /* margin: 20rpx 20rpx; */
+  /* border-radius: 24rpx; */
   background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
   box-shadow:
-    0 8rpx 32rpx rgba(0, 0, 0, 0.06),
-    0 2rpx 12rpx rgba(0, 0, 0, 0.04),
+    0 16rpx 32rpx rgba(0, 0, 0, 0.06),
+    0 4rpx 12rpx rgba(0, 0, 0, 0.04),
     inset 0 1rpx 0 rgba(255, 255, 255, 0.8);
   overflow: hidden;
-  border: 1rpx solid rgba(237, 108, 0, 0.08);
+  border: 4rpx solid rgba(237, 108, 0, 0.08);
   transition: all 0.3s ease;
-}
-
-.block-container:active {
-  transform: translateY(2rpx);
-  box-shadow:
-    0 4rpx 20rpx rgba(0, 0, 0, 0.05),
-    0 1rpx 8rpx rgba(0, 0, 0, 0.03);
 }
 
 .block-top {
