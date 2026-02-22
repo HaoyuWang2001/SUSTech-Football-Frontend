@@ -1,11 +1,11 @@
 <!--components/team-card-big/team.wxml-->
-<view class="container" bind:tap="onCardTap" bind:longpress="onCardLongPress">
+<view class="container" bind:tap="onCardTap">
   <!-- 顶部装饰条 -->
   <view class="card-header"></view>
 
   <!-- 卡片内容 -->
   <view class="card-content">
-    <!-- 球队Logo区域 -->
+    <!-- LOGO -->
     <view class="team-logo-container">
       <view class="team-logo-bg"></view>
       <image class="team-logo" src="{{img}}" mode="aspectFill"></image>
@@ -20,7 +20,7 @@
         </view>
       </view>
 
-    <!-- 球队ID -->
+      <!-- 球队ID -->
       <view class="team-id-container" wx:if="{{teamId}}">
         <text class="team-id-label">球队ID：</text>
         <text class="team-id-value">{{teamId}}</text>

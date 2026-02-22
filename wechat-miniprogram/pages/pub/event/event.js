@@ -407,11 +407,5 @@ Page({
         wx.hideLoading()
       }
     })
-  },
-
-  // 新增：event-card-big点击事件处理
-  onEventCardTap(e) {
-    console.log('event-card-big点击事件:', e.detail);
-    // 可以在这里处理卡片点击逻辑
-  },
+  }
 })

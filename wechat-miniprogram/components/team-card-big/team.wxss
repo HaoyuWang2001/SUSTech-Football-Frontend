@@ -6,8 +6,7 @@
  * ============================================================================ */
 
 .container {
-  /* 基础卡片样式 */
-  margin: 20rpx 20rpx;
+  margin: 20rpx;
   background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
   border-radius: 24rpx;
   border: 2rpx solid rgba(237, 108, 0, 0.12);
@@ -51,19 +50,6 @@
   display: flex;
   align-items: flex-start;
   gap: 32rpx;
-}
-
-/* 有收藏按钮时的布局调整 - 增加右侧内边距避免内容与按钮重叠，保持顶部对齐 */
-.card-content.has-favorite-button {
-  padding-right: 100rpx; /* 为右上角按钮预留足够空间 */
-  align-items: flex-start; /* 确保顶部对齐 */
-}
-
-/* 无收藏按钮时的布局调整 - 内容占满空间，使用原始内边距 */
-.card-content.no-favorite-button {
-  padding-right: 32rpx; /* 原始内边距 */
-  /* 保持原有顶部对齐，不设置 align-items 以继承父级的 flex-start */
-  /* justify-content: center; */ /* 水平居中暂不启用，保持原有布局 */
 }
 
 /* ============================================================================
@@ -248,26 +234,6 @@
 */
 
 /* ============================================================================
- * 底部装饰
- * ============================================================================ */
-
-.team-footer {
-  padding-top: 20rpx;
-  border-top: 1rpx solid rgba(237, 108, 0, 0.08);
-  margin-top: 12rpx;
-}
-
-.team-footer-line {
-  height: 2rpx;
-  background: linear-gradient(90deg,
-    transparent 0%,
-    rgba(237, 108, 0, 0.2) 20%,
-    rgba(237, 108, 0, 0.2) 80%,
-    transparent 100%
-  );
-}
-
-/* ============================================================================
  * 球队操作区域
  * ============================================================================ */
 
@@ -305,36 +271,4 @@
     padding-right: 24rpx; /* 使用原始内边距 */
     /* 保持原有顶部对齐，不设置 align-items */
   }
-
-  .team-logo-container {
-    width: 100rpx;
-    height: 100rpx;
-  }
-
-  .team-logo {
-    width: 68rpx;
-    height: 68rpx;
-  }
-
-  .team-name {
-    font-size: 32rpx;
-  }
-
-  .status-badge {
-    font-size: 22rpx;
-    padding: 8rpx 14rpx;
-    min-width: 80rpx;
-  }
-
-  .top-right-slot {
-    top: 16rpx;
-    right: 16rpx;
-  }
-
-  .top-right-slot .icon {
-    width: 44rpx;
-    height: 44rpx;
-    padding: 6rpx;
-  }
-
 }

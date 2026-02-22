@@ -66,18 +66,6 @@ Component({
     },
 
     /**
-     * 长按卡片事件
-     */
-    onCardLongPress() {
-      this.triggerEvent('cardlongpress', {
-        name: this.data.name,
-        img: this.data.img,
-        number: this.data.number,
-        teamId: this.data.teamId,
-      }, { bubbles: true });
-    },
-
-    /**
      * 格式化球员数量显示
      */
     formatPlayerCount(count) {

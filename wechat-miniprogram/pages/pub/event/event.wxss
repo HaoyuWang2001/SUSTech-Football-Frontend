@@ -1,13 +1,18 @@
 /* pages/pub/event/event.wxss */
 @import '../../../styles/mixins.wxss';
 
+/* ============================================================================
+ * 页面头部区域
+ * ============================================================================ */
+ 
 .section-header {
   background-color: #ffffff; /* Colors.white */
   padding: 20rpx 0 40rpx 0;
   box-shadow: 0 4rpx 24rpx rgba(237, 108, 0, 0.1); /* Shadows.card */
 }
 
-.favorite-button {
+ /* 收藏按钮 */
+ .favorite-button {
   width: 60rpx;
   height: 60rpx;
   transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
@@ -532,16 +537,5 @@ scroll-view {
     width: 40rpx;
     height: 40rpx;
     margin-right: 12rpx;
-  }
-
-  /* 收藏按钮响应式 */
-  .favorite-button {
-    width: 70rpx;
-    height: 70rpx;
-  }
-
-  .favorite-icon {
-    width: 35rpx;
-    height: 35rpx;
   }
 }

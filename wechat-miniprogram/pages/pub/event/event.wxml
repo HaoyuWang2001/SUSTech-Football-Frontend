@@ -3,15 +3,13 @@
     eventId="{{id}}"
     icon="/assets/cup.svg"
     name="{{name}}"
-    has_favorite_button="true"
-    bind:cardtap="onEventCardTap">
-
+    has_favorite_button="true">
     <!-- 收藏按钮作为插槽内容 -->
-    <view wx:if="{{!favorited}}" class="favorite-button">
-      <image class="favorite-icon" src="/assets/unfavorited.png" mode="scaleToFill" bind:tap="favorite"/>
+    <view wx:if="{{!favorited}}">
+      <image class="favorite-button" src="/assets/unfavorited.png" mode="scaleToFill" catch:tap="favorite"/>
     </view>
-    <view wx:if="{{favorited}}" class="favorite-button">
-      <image class="favorite-icon" src="/assets/favorited.png" mode="scaleToFill" bind:tap="unfavorite"/>
+    <view wx:if="{{favorited}}">
+      <image class="favorite-button" src="/assets/favorited.png" mode="scaleToFill" catch:tap="unfavorite"/>
     </view>
   </event-card-big>
 </view>

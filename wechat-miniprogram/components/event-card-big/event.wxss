@@ -2,22 +2,26 @@
 @import '../../styles/mixins.wxss';
 
 .container {
-  display: flex;
-  flex-direction: row;
-  margin: 20rpx 0;
+  margin: 20rpx;
   background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
   border-radius: 24rpx;
   border: 1rpx solid rgba(237, 108, 0, 0.12);
   box-shadow:
-    0 4rpx 16rpx -4rpx rgba(237, 108, 0, 0.1),
-    0 2rpx 8rpx -2rpx rgba(237, 108, 0, 0.08),
-    inset 0 1rpx 0 rgba(255, 255, 255, 0.8);
+    0 4rpx 24rpx rgba(237, 108, 0, 0.1),
+    0 2rpx 12rpx rgba(237, 108, 0, 0.08);
   padding: 0;
-  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
   position: relative;
   overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
 }
 
+.container:active {
+  transform: translateY(4rpx) scale(0.995);
+  box-shadow:
+    0 4rpx 20rpx rgba(237, 108, 0, 0.08),
+    0 2rpx 10rpx rgba(237, 108, 0, 0.06);
+  border-color: rgba(237, 108, 0, 0.25);
+}
 
 /* 顶部装饰条 - 替换原有的::before伪元素 */
 .card-header {
@@ -33,41 +37,12 @@
 
 /* 卡片内容区域 */
 .card-content {
-  padding: 30rpx;
+  padding: 40rpx 32rpx 32rpx 32rpx;
   position: relative;
   z-index: 2;
   display: flex;
-  align-items: center;
-  gap: 30rpx;
-}
-
-/* 有收藏按钮时的布局调整 - 增加右侧内边距为按钮预留空间 */
-.card-content.has-favorite-button {
-  padding-right: 100rpx; /* 为右上角按钮预留足够空间 */
-}
-
-/* 无收藏按钮时的布局调整 - 内容占满空间，使用原始内边距 */
-.card-content.no-favorite-button {
-  padding-right: 30rpx; /* 原始内边距 */
-}
-
-/* 按钮插槽区域 */
-.event-actions {
-  flex-shrink: 0;
-  margin-left: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-left: 20rpx;
-  min-width: 80rpx;
-}
-
-.container:active {
-  transform: translateY(4rpx) scale(0.995);
-  box-shadow:
-    0 4rpx 20rpx rgba(237, 108, 0, 0.08),
-    0 2rpx 10rpx rgba(237, 108, 0, 0.06);
-  border-color: rgba(237, 108, 0, 0.25);
+  align-items: flex-start;
+  gap: 32rpx;
 }
 
 .image-container {
@@ -104,40 +79,44 @@
   filter: drop-shadow(0 2rpx 4rpx rgba(0, 0, 0, 0.1));
 }
 
-.text-container {
+/* ============================================================================
+ * 赛事信息区域
+ * ============================================================================ */
+
+ .event-info {
   flex: 1;
-  display: flex;
-  align-items: center;
-  margin-left: 0;
-  margin-right: 0;
-  overflow: hidden;
-  padding: 10rpx 0;
+  min-width: 0;
 }
 
-.text-content {
-  width: 100%;
+.event-header {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid rgba(237, 108, 0, 0.08);
 }
 
-.text {
-  font-size: 32rpx;
-  font-weight: 600;
-  color: #666666; /* 赛事名称颜色改为深灰色 */
-  width: 100%;
+.event-name {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #333333;
+  line-height: 1.3;
+  flex: 1;
+  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
-  line-height: 1.4;
-  letter-spacing: 0.3rpx;
   transition: all 0.3s ease;
 }
 
-.container:active .text {
-  color: rgb(237, 108, 0); /* 激活状态使用橙色 */
+.container:active .event-name {
+  color: #ed6c00;
 }
 
-/* 赛事ID显示 */
+/* ============================================================================
+ * 赛事ID显示
+ * ============================================================================ */
+
 .event-id-container {
   display: flex;
   align-items: center;
@@ -166,6 +145,17 @@
 
 .container:active .event-id-value {
   color: #ff8c32;
+}
+
+/* 按钮插槽区域 */
+.event-actions {
+  flex-shrink: 0;
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 20rpx;
+  min-width: 80rpx;
 }
 
 /* 响应式设计 */

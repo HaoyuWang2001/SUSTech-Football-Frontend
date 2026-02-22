@@ -15,6 +15,7 @@ page {
   box-shadow: 0 4rpx 24rpx rgba(237, 108, 0, 0.1); /* Shadows.card */
 }
 
+ /* 收藏按钮 */
 .favorite-button {
   width: 60rpx;
   height: 60rpx;
