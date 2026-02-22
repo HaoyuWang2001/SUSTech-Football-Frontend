@@ -1,11 +1,18 @@
 <scroll-view class="scrollarea" scroll-y type="list">
-  <view class="container1">
-    <image src="https://www.sustech.edu.cn/uploads/images/2023/09/22155528_95528.jpg" mode="scaleToFill" style="height: 400rpx; width: 100%;" />
-    <view class="container2">
-      <view class="container3">
-        <image class="avatar" src="{{avatarUrl}}" mode="scaleToFill"></image>
+  <!-- 用户信息卡片 -->
+  <view class="user-profile-card modern-card">
+    <view class="modern-card-header"></view>
+    <view class="user-profile-content">
+      <!-- 头像区域 -->
+      <view class="user-avatar-container">
+        <image class="user-avatar" src="{{avatarUrl}}" mode="aspectFill"></image>
       </view>
-      <view class="center-bold">{{nickName}}</view>
+
+      <!-- 用户信息区域 -->
+      <view class="user-info-container">
+        <view class="user-name">{{nickName}}</view>
+        <view class="user-id">用户ID: {{userId}}</view>
+      </view>
     </view>
   </view>
 
@@ -13,7 +20,7 @@
     <view class="block-container">
       <view class="block-top">
         <view class="block-title">
-          您的用户id（userId）为：{{userId}}
+          账户管理
         </view>
         <!-- <text class="block-more">查看更多</text> -->
       </view>
