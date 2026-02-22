@@ -8,15 +8,18 @@
   </view>
 </view>
 
-<view class="container1" wx:if="{{coachId}}">
-  <image src="https://www.sustech.edu.cn/uploads/images/2022/12/29170519_51471.jpg" mode="scaleToFill" style="height: 400rpx; width: 100%;" />
-  <view class="container2">
-    <view class="container3">
-      <image class="avatar" src="{{coach.photoUrl}}" mode="scaleToFill"></image>
+<view class="user-profile-card modern-card" wx:if="{{coachId}}">
+  <view class="modern-card-header"></view>
+  <view class="user-profile-content">
+    <!-- 头像区域 -->
+    <view class="user-avatar-container">
+      <image class="user-avatar" src="{{coach.photoUrl}}" mode="aspectFill"></image>
     </view>
-    <view class="container4">
-      <text class="name">{{coach.name}}</text>
-      <text class="id">教练id：{{coachId}}</text>
+
+    <!-- 用户信息区域 -->
+    <view class="user-info-container">
+      <view class="user-name">{{coach.name}}</view>
+      <view class="user-id">教练ID: {{coachId}}</view>
     </view>
   </view>
 </view>
