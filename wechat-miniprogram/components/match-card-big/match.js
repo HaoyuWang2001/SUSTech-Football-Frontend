@@ -7,7 +7,7 @@ Component({
    */
   properties: {
     name: String,
-    stage: String,
+    status: String,
     tag: String,
     team1: String,
     team2: String,

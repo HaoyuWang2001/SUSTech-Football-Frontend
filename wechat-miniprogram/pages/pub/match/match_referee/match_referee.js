@@ -145,9 +145,9 @@ Page({
         if (match.status === "PENDING") {
           match.strStatus = "未开始"
         } else if (match.status === "ONGOING") {
-          match.strStatus = "正在进行"
+          match.strStatus = "进行中"
         } else if (match.status === "FINISHED") {
-          match.strStatus = "已结束"
+          match.strStatus = "已完赛"
         } else {
           match.strStatus = "未知状态"
         }

@@ -23,7 +23,5 @@
         <text class="event-id-value">{{eventId}}</text>
       </view>
     </view>
-
-
   </view>
 </view>

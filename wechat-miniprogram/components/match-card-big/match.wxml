@@ -13,11 +13,17 @@
         <text class="match-name">{{name}}</text>
       </view>
       <view class="match-header-right">
-        <view class="match-status" wx:if="{{hasBegun}}">
+        <view class="match-status" wx:if="{{status==='PENDING'}}">
+          <text class="status-badge status-unlive">未开始</text>
+        </view>
+        <view class="match-status" wx:elif="{{status==='ONGOING'}}">
           <text class="status-badge status-live">进行中</text>
         </view>
+        <view class="match-status" wx:elif="{{status==='FINISHED'}}">
+          <text class="status-badge status-unlive">已完赛</text>
+        </view>
         <view class="match-status" wx:else>
-          <text class="status-badge status-upcoming">未开始</text>
+          <text class="status-badge status-unlive">未知状态</text>
         </view>
         <!-- 按钮插槽区域 -->
         <view class="match-actions" wx:if="{{has_button}}">
