@@ -19,10 +19,10 @@ page {
 /* Block */
 .block-container {
   padding: 30rpx;
-  border: 1rpx solid #cccccc;
+  border: 0 solid #e0e0e0;
+  border-width: 0 0 2rpx 0;
   background-color: white;
-  border-radius: 20rpx;
-  margin-bottom: 20rpx;
+  margin-bottom: 0rpx;
 }
 
 .block-top {

@@ -2,8 +2,8 @@
 @import '../../styles/mixins.wxss';
 /* 用户信息卡片样式 */
 .user-profile-card {
-  margin: 20rpx;
-  padding: 40rpx 30rpx;
+  margin: 0rpx;
+  padding: 50rpx 40rpx;
   position: relative;
 }
 
