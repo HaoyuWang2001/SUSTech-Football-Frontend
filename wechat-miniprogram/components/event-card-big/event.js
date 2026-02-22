@@ -6,10 +6,9 @@ Component({
     eventId: Number,
     icon: String,
     name: String,
-    // 新增：是否显示收藏按钮区域
-    has_favorite_button: {
+    has_button: {
       type: Boolean,
-      value: false  // 默认不显示收藏按钮区域
+      value: false
     }
   },
   data: {

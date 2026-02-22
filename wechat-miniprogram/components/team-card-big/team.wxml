@@ -28,7 +28,7 @@
     </view>
 
     <!-- 按钮插槽 -->
-    <view class="team-actions" wx:if="{{has_favorite_button}}">
+    <view class="team-actions" wx:if="{{has_button}}">
       <slot></slot>
     </view>
   </view>

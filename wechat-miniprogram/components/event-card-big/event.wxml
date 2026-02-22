@@ -13,6 +13,10 @@
     <view class="event-info">
       <view class="event-header">
         <text class="event-name">{{name}}</text>
+        <!-- 按钮插槽区域 -->
+        <view class="event-actions" wx:if="{{has_button}}">
+          <slot></slot>
+        </view>
       </view>
       <view class="event-id-container" wx:if="{{eventId}}">
         <text class="event-id-label">赛事ID：</text>
@@ -20,9 +24,6 @@
       </view>
     </view>
 
-    <!-- 按钮插槽区域 -->
-    <view class="event-actions" wx:if="{{has_favorite_button}}">
-      <slot></slot>
-    </view>
+
   </view>
 </view>

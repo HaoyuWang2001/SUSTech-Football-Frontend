@@ -7,6 +7,6 @@
   </view>
 </view>
 
-<team-card-big wx:for="{{teamList}}" wx:key="teamId" name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerList.length}}" teamId="{{item.teamId}}" has_favorite_button="{{true}}" catch:tap="gotoTeam" data-id="{{item.teamId}}">
+<team-card-big wx:for="{{teamList}}" wx:key="teamId" name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerList.length}}" teamId="{{item.teamId}}" has_button="{{true}}" catch:tap="gotoTeam" data-id="{{item.teamId}}">
   <view class="delete-btn" catch:tap="showExitModal" data-id="{{item.teamId}}">退出</view>
 </team-card-big>

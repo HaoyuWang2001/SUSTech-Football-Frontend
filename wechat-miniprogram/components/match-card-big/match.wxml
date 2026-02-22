@@ -12,11 +12,17 @@
         <text class="match-divider">•</text>
         <text class="match-name">{{name}}</text>
       </view>
-      <view class="match-status" wx:if="{{hasBegun}}">
-        <text class="status-badge status-live">进行中</text>
-      </view>
-      <view class="match-status" wx:else>
-        <text class="status-badge status-upcoming">未开始</text>
+      <view class="match-header-right">
+        <view class="match-status" wx:if="{{hasBegun}}">
+          <text class="status-badge status-live">进行中</text>
+        </view>
+        <view class="match-status" wx:else>
+          <text class="status-badge status-upcoming">未开始</text>
+        </view>
+        <!-- 按钮插槽区域 -->
+        <view class="match-actions" wx:if="{{has_button}}">
+          <slot></slot>
+        </view>
       </view>
     </view>
 

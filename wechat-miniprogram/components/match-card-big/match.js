@@ -19,7 +19,11 @@ Component({
     penalty2: Number,
     time: String,
     hasBegun: Boolean,
-    group: String,  // 添加group属性
+    group: String,
+    has_button: {
+      type: Boolean,
+      value: false
+    }
   },
 
   /**

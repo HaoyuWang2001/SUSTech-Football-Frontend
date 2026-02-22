@@ -90,9 +90,26 @@
   flex: 1;
 }
 
+/* 右侧容器 */
+.match-header-right {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
 /* 状态徽章 */
 .match-status {
   margin-left: 16rpx;
+}
+
+/* 按钮插槽区域 */
+.match-actions {
+  flex-shrink: 0;
+  margin-left: 16rpx;
+  display: flex;
+  /* flex-direction: row; */
+  justify-content: center;
+  min-width: 80rpx;
 }
 
 .status-badge {
@@ -338,5 +355,11 @@
     font-size: 22rpx;
     padding: 8rpx 14rpx;
     min-width: 80rpx;
+  }
+
+  /* 小屏幕按钮区域调整 */
+  .match-actions {
+    min-width: 70rpx;
+    margin-left: 12rpx;
   }
 }

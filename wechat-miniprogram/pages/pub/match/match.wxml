@@ -1,14 +1,12 @@
 <view class="section-header">
-  <view class="buttons">
+  <match team1="{{homeTeam.name}}" team2="{{awayTeam.name}}" icon1="{{homeTeam.logoUrl}}" icon2="{{awayTeam.logoUrl}}" score1="{{homeTeam.score}}" score2="{{awayTeam.score}}" penalty1="{{homeTeam.penalty}}" penalty2="{{awayTeam.penalty}}" time="{{strTime}}" hasBegun="{{hasBegun}}" has_button="{{true}}">
     <view wx:if="{{!favorited}}" class="favorite-button" bind:tap="favorite">
       <image class="favorite-icon" src="/assets/unfavorited.png" mode="scaleToFill" />
     </view>
     <view wx:if="{{favorited}}" class="favorite-button" bind:tap="unfavorite">
       <image class="favorite-icon" src="/assets/favorited.png" mode="scaleToFill" />
     </view>
-  </view>
-
-  <match team1="{{homeTeam.name}}" team2="{{awayTeam.name}}" icon1="{{homeTeam.logoUrl}}" icon2="{{awayTeam.logoUrl}}" score1="{{homeTeam.score}}" score2="{{awayTeam.score}}" penalty1="{{homeTeam.penalty}}" penalty2="{{awayTeam.penalty}}" time="{{strTime}}" hasBegun="{{hasBegun}}"></match>
+  </match>
 </view>
 
 <view class="block-container" wx:if="{{isReferee}}">
