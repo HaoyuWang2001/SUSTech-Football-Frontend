@@ -16,6 +16,7 @@ Page({
     teamList: [],
     eventList: [],
     defaultValue: '暂无',
+    isLoading: true, // 新增：加载状态
   },
 
   /**
@@ -35,6 +36,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    this.setData({
+      isLoading: true // 开始加载
+    })
     app.addToRequestQueue(this.fetchPlayerId)
   },
 
@@ -56,6 +60,9 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
+    this.setData({
+      isLoading: true // 开始加载
+    })
     app.addToRequestQueue(this.fetchPlayerId)
     wx.stopPullDownRefresh()
   },
@@ -86,6 +93,10 @@ Page({
         console.log("profile player page: fetchPlayerId ->")
         if (res.statusCode == 404) {
           console.log("用户未注册")
+          that.setData({
+            isLoading: false, // 加载完成，隐藏loading
+            playerId: 0, // 明确设置为0
+          })
           wx.showToast({
             title: '请先注册为球员',
             icon: 'error',
@@ -94,13 +105,18 @@ Page({
         }
         if (res.statusCode != 200) {
           console.error("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
+          that.setData({
+            isLoading: false // 加载完成（即使失败）
+          })
           return
         }
         console.log(res.data)
         let playerId = res.data
         that.setData({
           playerId: playerId,
+          isLoading: false // 加载完成，隐藏loading
         })
+        // 后续数据获取不显示loading
         that.fetchData(playerId)
         that.fetchPlayerMatches(playerId)
         that.fetchPlayerTeams(playerId)
@@ -108,6 +124,9 @@ Page({
       },
       fail(err) {
         console.error('请求失败：', err.statusCode, err.errMsg);
+        that.setData({
+          isLoading: false // 加载完成（即使失败）
+        })
       },
     })
   },

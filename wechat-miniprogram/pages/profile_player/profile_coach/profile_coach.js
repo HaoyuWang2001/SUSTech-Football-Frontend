@@ -23,16 +23,18 @@ Page({
 
     coachInvitationInform: [],
     coachMatchInform: [],
+    isLoading: true, // 新增：加载状态
   },
 
   onLoad(options) {},
 
   onShow() {
-    app.addToRequestQueue(this.fetchCoachId)
     this.setData({
+      isLoading: true, // 开始加载
       showCoachMatchInform: false,
       showCoachInvitationInform: false,
     })
+    app.addToRequestQueue(this.fetchCoachId)
   },
 
   /**
@@ -53,6 +55,9 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
+    this.setData({
+      isLoading: true // 开始加载
+    })
     app.addToRequestQueue(this.fetchCoachId)
     wx.stopPullDownRefresh()
   },
@@ -81,15 +86,32 @@ Page({
       },
       success(res) {
         console.log("profile coach page: fetchCoachId ->")
+        if (res.statusCode == 404) {
+          console.log("用户未注册为教练")
+          that.setData({
+            isLoading: false, // 加载完成，隐藏loading
+            coachId: 0, // 明确设置为0
+          })
+          wx.showToast({
+            title: '请先注册为教练',
+            icon: 'error',
+          })
+          return
+        }
         if (res.statusCode != 200) {
           console.error("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
+          that.setData({
+            isLoading: false // 加载完成（即使失败）
+          })
           return
         }
         console.log(res.data)
         let coachId = res.data
         that.setData({
           coachId: coachId,
+          isLoading: false // 加载完成，隐藏loading
         })
+        // 后续数据获取不显示loading
         that.fetchData(coachId)
         that.fetchCoachMatches(coachId)
         that.fetchCoachTeams(coachId)
@@ -98,6 +120,9 @@ Page({
       },
       fail(err) {
         console.error('请求失败：', err.statusCode, err.errMsg);
+        that.setData({
+          isLoading: false // 加载完成（即使失败）
+        })
       },
     })
   },

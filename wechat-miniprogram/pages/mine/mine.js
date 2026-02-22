@@ -66,7 +66,8 @@ Page({
     manageTeamInvitationEventInform: [],
     manageTeamInvitationPlayerInform: [],
     manageEventInvitationTeamInform: [],
-    manageMatchInvitationTeamInform: []
+    manageMatchInvitationTeamInform: [],
+    isLoading: true, // 新增：加载状态
   },
 
   /**
@@ -86,9 +87,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    appInstance.addToRequestQueue(this.fetchData)
-    appInstance.addToRequestQueue(this.fetchUserId)
     this.setData({
+      isLoading: true, // 开始加载
       showPlayerMatchInform: false,
       showCoachMatchInform: false,
       showRefereeMatchInform: false,
@@ -97,6 +97,8 @@ Page({
       showRefereeInvitationInformForMatch: false,
       showRefereeInvitationInformForEvent: false,
     })
+    appInstance.addToRequestQueue(this.fetchData)
+    appInstance.addToRequestQueue(this.fetchUserId)
   },
 
   /**
@@ -117,6 +119,9 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
+    this.setData({
+      isLoading: true // 开始加载
+    })
     appInstance.addToRequestQueue(this.fetchData)
     appInstance.addToRequestQueue(this.fetchUserId)
     wx.stopPullDownRefresh()
@@ -148,8 +153,15 @@ Page({
 
   // 根据userId获取本页面全部数据
   fetchData: function (userId) {
-
     const that = this
+
+    // fetchData执行完成后立即隐藏loading
+    // 注意：这里使用setTimeout确保在函数执行完成后更新状态
+    setTimeout(() => {
+      that.setData({
+        isLoading: false
+      })
+    }, 0)
 
     that.fetchUserInfo(userId)
 

@@ -176,3 +176,19 @@
     width: 60rpx;
     height: 60rpx;
   }
+
+/* 加载容器 - 使用mixins中的类 */
+.loading-container {
+  height: 400rpx;
+  width: 100%;
+}
+
+.loading-icon {
+  width: 80rpx;
+  height: 80rpx;
+  margin-bottom: 20rpx;
+}
+
+.loading-text {
+  font-size: 28rpx;
+}

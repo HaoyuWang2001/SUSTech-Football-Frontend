@@ -1,11 +1,19 @@
-<view class="block-container" wx:if="{{!playerId}}" style="margin-top: 10rpx;">
-  <view class="block-top">
-    <text class="block-title">您还未注册为球员！</text>
-  </view>
-  <view class="block-main">
-    <button bind:tap="gotoRegisterPage" style="background-color: #ed6c00; color: white;">注册</button>
-  </view>
+<!-- 加载状态 -->
+<view wx:if="{{isLoading}}" class="loading-container flex-center flex-column">
+  <image src="/assets/loading.gif" class="loading-icon" />
+  <text class="loading-text gray-dark-color">加载中...</text>
 </view>
+
+<!-- 非加载状态的内容 -->
+<view wx:if="{{!isLoading}}">
+  <view class="block-container" wx:if="{{!playerId}}" style="margin-top: 10rpx;">
+    <view class="block-top">
+      <text class="block-title">您还未注册为球员！</text>
+    </view>
+    <view class="block-main">
+      <button bind:tap="gotoRegisterPage" style="background-color: #ed6c00; color: white;">注册</button>
+    </view>
+  </view>
 
 <view class="user-profile-card modern-card" wx:if="{{playerId}}">
   <view class="modern-card-header"></view>
@@ -100,4 +108,5 @@
     <view class="no-favorite" wx:if="{{eventList.length==0}}">您还参加任何赛事。</view>
     <event-card-big wx:for="{{eventList}}" wx:key="eventId" eventId="{{item.eventId}}" icon="/assets/cup.svg" name="{{item.name}}" bind:tap="gotoEventPage" data-id="{{item.eventId}}"></event-card-big>
   </view>
+</view>
 </view>

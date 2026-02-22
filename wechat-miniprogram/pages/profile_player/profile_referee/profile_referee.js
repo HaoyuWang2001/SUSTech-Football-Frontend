@@ -28,6 +28,7 @@ Page({
     refereeInvitationInformForMatch: [],
     refereeInvitationInformForEvent: [],
     refereeMatchInform: [],
+    isLoading: true, // 新增：加载状态
   },
 
   /**
@@ -48,12 +49,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    app.addToRequestQueue(this.fetchRefereeId)
     this.setData({
+      isLoading: true, // 开始加载
       showRefereeMatchInform: false,
       showRefereeInvitationInformForMatch: false,
       showRefereeInvitationInformForEvent: false,
     })
+    app.addToRequestQueue(this.fetchRefereeId)
   },
 
   /**
@@ -74,6 +76,9 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
+    this.setData({
+      isLoading: true // 开始加载
+    })
     app.addToRequestQueue(this.fetchRefereeId)
     wx.stopPullDownRefresh()
   },
@@ -102,15 +107,32 @@ Page({
       },
       success(res) {
         console.log("profile referee page: fetchRefereeId ->")
+        if (res.statusCode == 404) {
+          console.log("用户未注册为裁判")
+          that.setData({
+            isLoading: false, // 加载完成，隐藏loading
+            refereeId: 0, // 明确设置为0
+          })
+          wx.showToast({
+            title: '请先注册为裁判',
+            icon: 'error',
+          })
+          return
+        }
         if (res.statusCode != 200) {
           console.error("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
+          that.setData({
+            isLoading: false // 加载完成（即使失败）
+          })
           return
         }
         console.log(res.data)
         let refereeId = res.data
         that.setData({
-          refereeId: refereeId
+          refereeId: refereeId,
+          isLoading: false // 加载完成，隐藏loading
         })
+        // 后续数据获取不显示loading
         that.fetchData(refereeId)
         that.fetchRefereeMatches(refereeId)
         that.fetchRefereeEvents(refereeId)
@@ -119,6 +141,9 @@ Page({
       },
       fail(err) {
         console.error('请求失败：', err.statusCode, err.errMsg);
+        that.setData({
+          isLoading: false // 加载完成（即使失败）
+        })
       },
     })
   },

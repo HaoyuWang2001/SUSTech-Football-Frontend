@@ -1,6 +1,14 @@
 <scroll-view class="scrollarea" scroll-y type="list">
-  <!-- 用户信息卡片 -->
-  <view class="user-profile-card modern-card">
+  <!-- 加载状态 -->
+  <view wx:if="{{isLoading}}" class="loading-container flex-center flex-column">
+    <image src="/assets/loading.gif" class="loading-icon" />
+    <text class="loading-text gray-dark-color">加载中...</text>
+  </view>
+
+  <!-- 非加载状态的内容 -->
+  <view wx:if="{{!isLoading}}">
+    <!-- 用户信息卡片 -->
+    <view class="user-profile-card modern-card">
     <view class="modern-card-header"></view>
     <view class="user-profile-content">
       <!-- 头像区域 -->
@@ -407,5 +415,6 @@
     <view class="block-main">
       若您有遇到了任何bug或有改进意见，请加入qq群：831237517 进行反馈。
     </view>
+  </view>
   </view>
 </scroll-view>
