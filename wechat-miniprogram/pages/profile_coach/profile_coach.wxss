@@ -1,5 +1,5 @@
 /* 头部 */
-@import '../../../styles/mixins.wxss';
+@import '../../styles/mixins.wxss';
 /* 用户信息卡片样式 */
 .user-profile-card {
   margin: 0rpx;

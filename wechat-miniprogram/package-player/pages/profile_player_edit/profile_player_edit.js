@@ -4,7 +4,6 @@ const app = getApp()
 const URL = app.globalData.URL
 
 Page({
-
   /**
    * 页面的初始数据
    */

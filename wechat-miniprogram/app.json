@@ -7,13 +7,6 @@
     "pages/home/team_hall/team_hall",
     "pages/home/user_hall/user_hall",
     "pages/home/news_hall/news_hall",
-    "pages/profile_player/profile_player",
-    "pages/profile_player/profile_coach/profile_coach",
-    "pages/profile_player/profile_coach_edit/profile_coach_edit",
-    "pages/profile_player/profile_player_edit/profile_player_edit",
-    "pages/profile_player/profile_referee/profile_referee",
-    "pages/profile_player/profile_referee_edit/profile_referee_edit",
-    "pages/profile_player/profile_referee_register/profile_referee_register",
     "pages/management/management",
     "pages/management/team_edit/team_edit",
     "pages/management/team_new/team_new",
@@ -31,7 +24,8 @@
     "pages/management/event_edit/match_new/match_new",
     "pages/management/event_edit/match_edit/match_edit",
     "pages/management/invite/invite",
-    "pages/mine/mine",
+    "pages/management/match_new/set_homeTeam/set_homeTeam",
+    "pages/management/team_notice/team_notice",
     "pages/pub/match/match",
     "pages/pub/match/match_referee/match_referee",
     "pages/pub/match/match_referee_updatePlayerList/match_referee_updatePlayerList",
@@ -46,36 +40,64 @@
     "pages/pub/events/events",
     "pages/pub/teams/teams",
     "pages/pub/live/live",
+    "pages/pub/team/retired_players/retired_players",
     "pages/example/example",
     "pages/logs/logs",
-    "pages/profile_player/profile_player_register/profile_player_register",
-    "pages/profile_player/profile_coach_register/profile_coach_register",
     "pages/development/development",
-    "pages/management/match_new/set_homeTeam/set_homeTeam",
-    "pages/profile_player/player_notice/player_notice",
-    "pages/profile_player/profile_referee_notice/profile_referee_notice",
-    "pages/profile_player/profile_coach_notice/profile_coach_notice",
-    "pages/management/team_notice/team_notice",
     "pages/news/news",
-    "pages/pub/team/retired_players/retired_players",
-    "pages/mine/sport_center/sport_center",
-    "pages/mine/sport_center_login/sport_center_login",
-    "pages/mine/sport_center/second_level_authority/second_level_authority",
-    "pages/mine/sport_center/matches/matches",
-    "pages/mine/sport_center/matches/match_new/match_new",
-    "pages/mine/sport_center/events/events",
-    "pages/mine/sport_center/teams/teams",
-    "pages/mine/second_authority_login/second_authority_login",
-    "pages/mine/second_authority/second_authority",
-    "pages/mine/second_authority/matches/matches",
-    "pages/mine/second_authority/matches/match_new/match_new",
-    "pages/mine/second_authority/events/events",
-    "pages/mine/second_authority/teams/teams",
-    "pages/mine/second_authority/third_level_authority/third_level_authority",
-    "pages/mine/sport_center/matches/match_new/set_team/set_team",
-    "pages/mine/second_authority/matches/match_new/set_team/set_team",
-    "pages/profile_player/player_teams/player_teams",
-    "pages/profile_player/profile_coach/coach_teams/coach_teams"
+    "pages/mine/mine",
+    "pages/profile_coach/profile_coach",
+    "pages/profile_player/profile_player",
+    "pages/profile_referee/profile_referee"
+  ],
+  "subPackages": [
+    {
+      "root": "package-coach",
+      "pages": [
+        "pages/profile_coach/coach_teams/coach_teams",
+        "pages/profile_coach_edit/profile_coach_edit",
+        "pages/profile_coach_notice/profile_coach_notice",
+        "pages/profile_coach_register/profile_coach_register"
+      ]
+    },
+    {
+      "root": "package-mine",
+      "pages": [
+        "pages/sport_center/sport_center",
+        "pages/sport_center_login/sport_center_login",
+        "pages/sport_center/second_level_authority/second_level_authority",
+        "pages/sport_center/matches/matches",
+        "pages/sport_center/matches/match_new/match_new",
+        "pages/sport_center/events/events",
+        "pages/sport_center/teams/teams",
+        "pages/second_authority_login/second_authority_login",
+        "pages/second_authority/second_authority",
+        "pages/second_authority/matches/matches",
+        "pages/second_authority/matches/match_new/match_new",
+        "pages/second_authority/events/events",
+        "pages/second_authority/teams/teams",
+        "pages/second_authority/third_level_authority/third_level_authority",
+        "pages/sport_center/matches/match_new/set_team/set_team",
+        "pages/second_authority/matches/match_new/set_team/set_team"
+      ]
+    },
+    {
+      "root": "package-player",
+      "pages": [
+        "pages/player_notice/player_notice",
+        "pages/player_teams/player_teams",
+        "pages/profile_player_edit/profile_player_edit",
+        "pages/profile_player_register/profile_player_register"
+      ]
+    },
+    {
+      "root": "package-referee",
+      "pages": [
+        "pages/profile_referee_edit/profile_referee_edit",
+        "pages/profile_referee_notice/profile_referee_notice",
+        "pages/profile_referee_register/profile_referee_register"
+      ]
+    }
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -113,13 +135,13 @@
       },
       {
         "text": "教练",
-        "pagePath": "pages/profile_player/profile_coach/profile_coach",
+        "pagePath": "pages/profile_coach/profile_coach",
         "iconPath": "/assets/coach.png",
         "selectedIconPath": "/assets/coach_selected.png"
       },
       {
         "text": "裁判",
-        "pagePath": "pages/profile_player/profile_referee/profile_referee",
+        "pagePath": "pages/profile_referee/profile_referee",
         "iconPath": "/assets/referee_no_selected.png",
         "selectedIconPath": "/assets/referee.png"
       },

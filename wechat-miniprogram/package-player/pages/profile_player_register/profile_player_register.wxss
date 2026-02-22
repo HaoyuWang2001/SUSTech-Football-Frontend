@@ -1,5 +1,4 @@
 /* pages/profile_player/profile_player_register/profile_player_register.wxss */
-
 .upload-container, .input-container {
   margin-bottom: 20px;
   /* border-bottom: 1rpx solid #6e6e6e; */

@@ -253,7 +253,7 @@ Page({
     console.log("queryString->")
     console.log(queryString)
     wx.navigateTo({
-      url: `/pages/profile_player/profile_player_edit/profile_player_edit?${queryString}`
+      url: `/package-player/pages/profile_player_edit/profile_player_edit?${queryString}`
     })
   },
 

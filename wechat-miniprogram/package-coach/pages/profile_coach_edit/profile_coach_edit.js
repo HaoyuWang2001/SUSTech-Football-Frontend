@@ -1,5 +1,5 @@
 // pages/profile_player/profile_coach_edit/profile_coach_edit.js
-import { Colors, Shadows, Gradients } from '../../../utils/colors.js'
+import { Colors, Shadows, Gradients } from '../../../../utils/colors.js'
 const app = getApp()
 const URL = app.globalData.URL
 

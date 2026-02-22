@@ -1,11 +1,11 @@
-/* pages/profile_player/profile_referee_edit/profile_referee_edit.wxss */
+/* pages/profile_player/profile_player_edit/profile_player_edit.wxss */
 /* 导入颜色设计系统混入类 */
-@import '../../../styles/mixins.wxss';
+@import '/styles/mixins.wxss';
 
 /* 卡片容器 */
 .profile-edit-card {
   width: 90%;
-  margin: 40rpx auto;
+  margin: auto;
   padding: 40rpx 32rpx;
 }
 
@@ -18,8 +18,8 @@
 }
 
 .avatar-label {
-  font-size: 32rpx;
-  font-weight: bold;
+  font-size: 30rpx;
+  /* font-weight: bold; */
 }
 
 .avatar-button {

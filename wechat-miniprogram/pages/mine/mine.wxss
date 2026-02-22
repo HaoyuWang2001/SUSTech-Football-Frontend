@@ -1,11 +1,6 @@
   /* pages/mine/mine.wxss */
   @import '../../styles/mixins.wxss';
-
-
-
-
-
-
+  
   .function-button {
     display: flex;
     flex-direction: column;

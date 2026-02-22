@@ -3,7 +3,7 @@ const app = getApp()
 const URL = app.globalData.URL
 const {
   formatTime
-} = require("../../../utils/timeFormatter")
+} = require("../../utils/timeFormatter")
 
 Page({
 
