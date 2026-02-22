@@ -41,7 +41,6 @@
     <view class="block-container">
       <view class="block-top">
         <text class="block-title">赛事统计</text>
-        <text class="block-more"></text>
       </view>
       <view class="block-main">
         <view class="statistic-container">
@@ -100,23 +99,20 @@
           <view class="table">
             <!-- 表头 -->
             <view class="row header">
-              <view class="cell">球队</view>
-              <view class="cell">胜</view>
-              <view class="cell">平</view>
-              <view class="cell">负</view>
+              <view class="cell cell-team-column">球队</view>
+              <view class="cell">胜/平/负</view>
               <view class="cell">进/失</view>
               <view class="cell">积分</view>
             </view>
             <!-- 表内容 -->
             <view class="row" wx:for="{{item.teamList}}" wx:for-item="teamInfo" wx:key="index">
-              <view class="cell">
+              <view class="cell cell-team-column">
                 <view class="cell-team">
-                  <image class="cell-team-icon" src="{{teamInfo.team.logo}}" mode="scaleToFill" />{{teamInfo.team.name}}
+                  <image class="cell-team-icon" src="{{teamInfo.team.logoUrl}}" mode="scaleToFill" />
+                  <text class="cell-team-name">{{teamInfo.team.name}}</text>
                 </view>
               </view>
-              <view class="cell">{{teamInfo.numWins}}</view>
-              <view class="cell">{{teamInfo.numDraws}}</view>
-              <view class="cell">{{teamInfo.numLosses}}</view>
+              <view class="cell">{{teamInfo.numWins}}/{{teamInfo.numDraws}}/{{teamInfo.numLosses}}</view>
               <view class="cell">{{teamInfo.numGoalsFor}}/{{teamInfo.numGoalsAgainst}}</view>
               <view class="cell">{{teamInfo.score}}</view>
             </view>

@@ -271,6 +271,11 @@
   border-right: none;
 }
 
+.cell-team-column {
+  flex: 2;
+  max-width: 300rpx;
+}
+
 .cell-team {
   display: flex;
   align-items: center;
@@ -289,11 +294,23 @@
   box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.1);
 }
 
+.cell-team-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 1;
+}
+
 /* 响应式调整 */
 @media (max-width: 600rpx) {
   .cell {
     padding: 20rpx 8rpx;
     font-size: 24rpx;
+  }
+
+  .cell-team-column {
+    flex: 1.5;
+    max-width: 200rpx;
   }
 
   .cell-team-icon {
