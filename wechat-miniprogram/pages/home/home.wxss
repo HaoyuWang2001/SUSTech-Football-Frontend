@@ -9,9 +9,8 @@
   padding: 10rpx 30rpx;
   margin: 0;
   border: none;
-  border-radius: 20rpx;
-  background-color: #ffffff !important;
-  box-shadow: 0 8rpx 32rpx rgba(237, 108, 0, 0.15) !important;
+   background-color: #ffffff !important;
+  box-shadow: 0 4rpx 12rpx rgba(237, 108, 0, 0.15) !important;
   transition: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1) !important;
   height: 100rpx;
 }
@@ -68,13 +67,11 @@
   transform: translateY(1rpx) !important;
 }
 
-
 /* news */
 .news-cover-container {
   width: 100%;
   height: 600rpx;
 }
-
 
 .news-swiper {
   width: 100%;
@@ -235,7 +232,7 @@
 }
 
 .block-main {
-  padding: 30rpx;
+  padding: 10rpx;
 }
 
 /* ========== 现代化大厅图标样式 ========== */
