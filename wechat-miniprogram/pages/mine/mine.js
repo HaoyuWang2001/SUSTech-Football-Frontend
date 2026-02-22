@@ -1719,4 +1719,10 @@ Page({
       url: './second_authority_login/second_authority_login',
     })
   },
+
+  gotoManagementPage() {
+    wx.navigateTo({
+      url: '../management/management',
+    })
+  },
 })
