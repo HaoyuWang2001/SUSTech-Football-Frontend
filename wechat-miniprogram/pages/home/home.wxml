@@ -42,13 +42,17 @@
     </view>
   </view>
   <view class="block-top">
-    <text class="block-title">快捷功能</text>
+    <text class="block-title">导航</text>
   </view>
   <view class="block-main">
     <view class="hall-bar">
       <view bindtap="gotoProfilePlayerPage" class="hall-button">
         <image src="/assets/football_selected.png" mode="scaleToFill" class="event-hall-image" />
         <text class="hall-text">我是球员</text>
+      </view>
+      <view bindtap="gotoProfileCoachPage" class="hall-button">
+        <image src="/assets/coach_selected.png" mode="scaleToFill" class="event-hall-image" />
+        <text class="hall-text">我是教练</text>
       </view>
       <view bindtap="gotoProfileRefereePage" class="hall-button">
         <image src="/assets/referee.png" mode="scaleToFill" class="hall-image" />
