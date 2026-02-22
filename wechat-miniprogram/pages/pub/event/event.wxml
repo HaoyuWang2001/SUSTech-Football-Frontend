@@ -1,13 +1,19 @@
-<view class="event-header-container">
-  <event-card-big eventId="{{id}}" icon="/assets/cup.svg" name="{{name}}"></event-card-big>
-  <view class="buttons">
+<view class="section-header">
+  <event-card-big
+    eventId="{{id}}"
+    icon="/assets/cup.svg"
+    name="{{name}}"
+    has_favorite_button="true"
+    bind:cardtap="onEventCardTap">
+
+    <!-- 收藏按钮作为插槽内容 -->
     <view wx:if="{{!favorited}}" class="favorite-button">
       <image class="favorite-icon" src="/assets/unfavorited.png" mode="scaleToFill" bind:tap="favorite"/>
     </view>
     <view wx:if="{{favorited}}" class="favorite-button">
       <image class="favorite-icon" src="/assets/favorited.png" mode="scaleToFill" bind:tap="unfavorite"/>
     </view>
-  </view>
+  </event-card-big>
 </view>
 
 <view class="block-container">

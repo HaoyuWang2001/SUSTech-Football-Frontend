@@ -1,15 +1,29 @@
-<view class="container">
-  <view class="image-container">
-    <image src="{{icon}}" mode="scaleToFill" class="image"></image>
-  </view>
-  <view class="text-container">
-    <view class="text-content">
-      <text class="text">{{name}}</text>
-      <!-- 赛事ID显示 -->
-      <view class="event-id-container" wx:if="{{eventId}}">
-        <text class="event-id-label">赛事ID：</text>
-        <text class="event-id-value">{{eventId}}</text>
+<view class="container" bind:tap="onCardTap">
+  <!-- 顶部装饰条 -->
+  <view class="card-header"></view>
+
+  <!-- 卡片内容区域 -->
+  <view class="card-content {{has_favorite_button ? 'has-favorite-button' : 'no-favorite-button'}}">
+    <!-- 图标区域 -->
+    <view class="image-container">
+      <image src="{{icon}}" mode="scaleToFill" class="image"></image>
+    </view>
+
+    <!-- 文本信息区域 -->
+    <view class="text-container">
+      <view class="text-content">
+        <text class="text">{{name}}</text>
+        <!-- 赛事ID显示 -->
+        <view class="event-id-container" wx:if="{{eventId}}">
+          <text class="event-id-label">赛事ID：</text>
+          <text class="event-id-value">{{eventId}}</text>
+        </view>
       </view>
+    </view>
+
+    <!-- 按钮插槽区域 -->
+    <view class="event-actions" wx:if="{{has_favorite_button}}">
+      <slot></slot>
     </view>
   </view>
 </view>

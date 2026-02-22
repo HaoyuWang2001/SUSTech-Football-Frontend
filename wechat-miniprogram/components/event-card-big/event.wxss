@@ -12,21 +12,54 @@
     0 4rpx 16rpx -4rpx rgba(237, 108, 0, 0.1),
     0 2rpx 8rpx -2rpx rgba(237, 108, 0, 0.08),
     inset 0 1rpx 0 rgba(255, 255, 255, 0.8);
-  padding: 30rpx;
+  padding: 0;
   transition: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
   position: relative;
   overflow: hidden;
 }
 
-.container::before {
-  content: '';
+
+/* 顶部装饰条 - 替换原有的::before伪元素 */
+.card-header {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 6rpx;
-  background: linear-gradient(90deg, #ed6c00 0%, #ff8c32 100%); /* 橙色渐变 (原为青绿到深绿) */
+  background: linear-gradient(90deg, #ed6c00 0%, #ff8c32 100%);
   border-radius: 24rpx 24rpx 0 0;
+  z-index: 1;
+}
+
+/* 卡片内容区域 */
+.card-content {
+  padding: 30rpx;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 30rpx;
+}
+
+/* 有收藏按钮时的布局调整 - 增加右侧内边距为按钮预留空间 */
+.card-content.has-favorite-button {
+  padding-right: 100rpx; /* 为右上角按钮预留足够空间 */
+}
+
+/* 无收藏按钮时的布局调整 - 内容占满空间，使用原始内边距 */
+.card-content.no-favorite-button {
+  padding-right: 30rpx; /* 原始内边距 */
+}
+
+/* 按钮插槽区域 */
+.event-actions {
+  flex-shrink: 0;
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 20rpx;
+  min-width: 80rpx;
 }
 
 .container:active {
@@ -133,4 +166,25 @@
 
 .container:active .event-id-value {
   color: #ff8c32;
+}
+
+/* 响应式设计 */
+@media (max-width: 600rpx) {
+  .card-content {
+    gap: 24rpx;
+    padding: 24rpx;
+  }
+
+  .card-content.has-favorite-button {
+    padding-right: 80rpx; /* 在响应式下稍微减少预留空间 */
+  }
+
+  .card-content.no-favorite-button {
+    padding-right: 24rpx;
+  }
+
+  .event-actions {
+    min-width: 70rpx;
+    padding-left: 16rpx;
+  }
 }
