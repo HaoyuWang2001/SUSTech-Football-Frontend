@@ -12,6 +12,10 @@ Component({
     teamId: String, // 球队ID（可选）
     winRate: Number, // 胜率（可选）
     matchCount: Number, // 比赛场次（可选）
+    has_favorite_button: {
+      type: Boolean,
+      value: false  // 默认不显示收藏按钮，为true时预留右上角按钮空间
+    }
   },
 
   /**

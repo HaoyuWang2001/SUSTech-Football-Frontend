@@ -9,7 +9,7 @@
   </view>
 
   <!-- 卡片内容 -->
-  <view class="card-content">
+  <view class="card-content {{has_favorite_button ? 'has-favorite-button' : 'no-favorite-button'}}">
     <!-- 球队Logo区域 -->
     <view class="team-logo-container">
       <view class="team-logo-bg"></view>

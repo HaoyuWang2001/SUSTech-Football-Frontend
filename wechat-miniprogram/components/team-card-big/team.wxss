@@ -74,6 +74,19 @@
   gap: 32rpx;
 }
 
+/* 有收藏按钮时的布局调整 - 增加右侧内边距避免内容与按钮重叠，保持顶部对齐 */
+.card-content.has-favorite-button {
+  padding-right: 100rpx; /* 为右上角按钮预留足够空间 */
+  align-items: flex-start; /* 确保顶部对齐 */
+}
+
+/* 无收藏按钮时的布局调整 - 内容占满空间，使用原始内边距 */
+.card-content.no-favorite-button {
+  padding-right: 32rpx; /* 原始内边距 */
+  /* 保持原有顶部对齐，不设置 align-items 以继承父级的 flex-start */
+  /* justify-content: center; */ /* 水平居中暂不启用，保持原有布局 */
+}
+
 /* ============================================================================
  * 球队Logo区域
  * ============================================================================ */
@@ -301,6 +314,17 @@
   .card-content {
     padding: 30rpx 24rpx 26rpx 24rpx;
     gap: 24rpx;
+  }
+
+  /* 响应式下有收藏按钮时的布局调整 */
+  .card-content.has-favorite-button {
+    padding-right: 80rpx; /* 在响应式下稍微减少预留空间 */
+  }
+
+  /* 响应式下无收藏按钮时的布局调整 */
+  .card-content.no-favorite-button {
+    padding-right: 24rpx; /* 使用原始内边距 */
+    /* 保持原有顶部对齐，不设置 align-items */
   }
 
   .team-logo-container {
