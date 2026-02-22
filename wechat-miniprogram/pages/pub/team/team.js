@@ -248,26 +248,39 @@ Page({
   unfavorite() {
     const URL = getApp().globalData.URL
     let that = this
-    wx.showLoading({
-      title: '取消收藏中',
-      mask: true,
-    })
-    wx.request({
-      url: URL + '/unfavorite?type=team&userId=' + userId + '&id=' + that.data.id,
-      method: "POST",
+    wx.showModal({
+      title: '确认取消收藏',
+      content: '确定要取消收藏这个球队吗？',
+      confirmText: '确认取消',
+      confirmColor: '#ed6c00',
+      cancelText: '我再想想',
       success(res) {
-        console.log("team page: unfavorite->")
-        if (res.statusCode !== 200) {
-          console.log("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
-          return
+        if (res.confirm) {
+          wx.showLoading({
+            title: '取消收藏中',
+            mask: true,
+          })
+          wx.request({
+            url: URL + '/unfavorite?type=team&userId=' + userId + '&id=' + that.data.id,
+            method: "POST",
+            success(res) {
+              console.log("team page: unfavorite->")
+              if (res.statusCode !== 200) {
+                console.log("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
+                return
+              }
+              console.log("取消收藏成功")
+              that.setData({
+                favorited: false
+              })
+            },
+            complete() {
+              wx.hideLoading()
+            }
+          })
+        } else if (res.cancel) {
+          // 用户取消，不做任何操作
         }
-        console.log("取消收藏成功")
-        that.setData({
-          favorited: false
-        })
-      },
-      complete() {
-        wx.hideLoading()
       }
     })
   },
