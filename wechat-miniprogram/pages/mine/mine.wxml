@@ -51,7 +51,7 @@
           <text class="function-text">二级权限</text>
         </view>
         <view bindtap="gotoManagementPage" class="function-button">
-          <image src="/assets/order.png" mode="scaleToFill" class="function-image" />
+          <image src="/assets/management.png" mode="scaleToFill" class="function-image" />
           <text class="function-text">管理页面</text>
         </view>
       </view>
