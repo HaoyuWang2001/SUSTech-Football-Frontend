@@ -1,16 +1,12 @@
-<view class="title-card">
-  <image src="/assets/cup.svg" mode="scaleToFill" class="cup"></image>
-  <view class="title-container">
-    <view class="buttons">
-      <view wx:if="{{!favorited}}" class="favorite-button">
-        <image class="favorite-icon" src="/assets/unfavorited.png" mode="scaleToFill"  bind:tap="favorite"/>
-      </view>
-      <view wx:if="{{favorited}}" class="favorite-button">
-        <image class="favorite-icon" src="/assets/favorited.png" mode="scaleToFill"  bind:tap="unfavorite"/>
-      </view>
+<view class="event-header-container">
+  <event-card-big eventId="{{id}}" icon="/assets/cup.svg" name="{{name}}"></event-card-big>
+  <view class="buttons">
+    <view wx:if="{{!favorited}}" class="favorite-button">
+      <image class="favorite-icon" src="/assets/unfavorited.png" mode="scaleToFill" bind:tap="favorite"/>
     </view>
-    <view class="title">{{name}}</view>
-    <view style="color: #666;">赛事id：{{id}}</view>
+    <view wx:if="{{favorited}}" class="favorite-button">
+      <image class="favorite-icon" src="/assets/favorited.png" mode="scaleToFill" bind:tap="unfavorite"/>
+    </view>
   </view>
 </view>
 

@@ -85,6 +85,12 @@
   color: #ed6c00;
 }
 
+/* 事件头部容器 - 用于包裹 event-card-big 和收藏按钮 */
+.event-header-container {
+  position: relative;
+  margin: 0 20rpx;
+}
+
 /* ============================================================================
  * 现代化块容器
  * ============================================================================ */
@@ -468,8 +474,8 @@
 .buttons {
   text-align: right;
   position: absolute;
-  top: 36rpx;
-  right: 32rpx;
+  top: 30rpx;
+  right: 30rpx;
   z-index: 3;
 }
 
@@ -546,6 +552,10 @@ scroll-view {
     margin: 16rpx 16rpx;
     padding: 32rpx 24rpx;
     min-height: 180rpx;
+  }
+
+  .event-header-container {
+    margin: 0 16rpx;
   }
 
   .cup {
