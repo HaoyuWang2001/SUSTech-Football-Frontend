@@ -238,12 +238,6 @@ Page({
     })
   },
 
-  gotoProfileCoachPage() {
-
-    wx.navigateTo({
-      url: '/pages/profile_player/profile_coach/profile_coach',
-    })
-  },
 
   gotoProfileRefereePage() {
     wx.navigateTo({

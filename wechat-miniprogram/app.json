@@ -112,6 +112,12 @@
         "selectedIconPath": "/assets/football_selected.png"
       },
       {
+        "text": "教练",
+        "pagePath": "pages/profile_player/profile_coach/profile_coach",
+        "iconPath": "/assets/coach.png",
+        "selectedIconPath": "/assets/coach_selected.png"
+      },
+      {
         "text": "裁判",
         "pagePath": "pages/profile_player/profile_referee/profile_referee",
         "iconPath": "/assets/referee_no_selected.png",

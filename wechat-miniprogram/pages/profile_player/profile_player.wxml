@@ -29,10 +29,6 @@
     <text class="block-title">功能</text>
   </view>
   <view class="function-container">
-    <view bindtap="gotoProfileCoachPage" class="function-button">
-      <image src="/assets/coach.png" mode="scaleToFill" class="function-image" />
-      <text class="function-text">教练主页</text>
-    </view>
     <!-- <view bindtap="gotoProfileRefereePage" class="function-button">
       <image src="/assets/referee.png" mode="scaleToFill" class="function-image" />
       <text class="function-text">裁判主页</text>
