@@ -21,10 +21,19 @@
   <view class="block-main">{{description}}</view>
 </view>
 
-<view class="tabs">
-  <view class="tab {{activeIndex==0?'active':''}}" data-index="0" bindtap="switchTab">主页</view>
-  <view class="tab {{activeIndex==1?'active':''}}" data-index="1" bindtap="switchTab">比赛</view>
-  <view class="tab {{activeIndex==2?'active':''}}" data-index="2" bindtap="switchTab">积分榜</view>
+<view class="tabs modern-card">
+  <view class="tab {{activeIndex==0?'active':''}}" data-index="0" bindtap="switchTab">
+    <text class="tab-text">主页</text>
+    <view class="tab-indicator {{activeIndex==0?'active':''}}"></view>
+  </view>
+  <view class="tab {{activeIndex==1?'active':''}}" data-index="1" bindtap="switchTab">
+    <text class="tab-text">比赛</text>
+    <view class="tab-indicator {{activeIndex==1?'active':''}}"></view>
+  </view>
+  <view class="tab {{activeIndex==2?'active':''}}" data-index="2" bindtap="switchTab">
+    <text class="tab-text">积分榜</text>
+    <view class="tab-indicator {{activeIndex==2?'active':''}}"></view>
+  </view>
 </view>
 
 <view class="tab-content">

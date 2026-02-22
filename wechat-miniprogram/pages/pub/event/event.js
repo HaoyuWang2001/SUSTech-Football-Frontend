@@ -6,7 +6,7 @@ const {
   formatTime
 } = require("../../../utils/timeFormatter")
 // 导入颜色设计系统
-import { Colors, Shadows, Gradients } from '../../../utils/colors.js'
+import { Colors, Shadows, Gradients, Borders, Tokens } from '../../../utils/colors.js'
 
 Page({
 
@@ -18,6 +18,8 @@ Page({
     Colors: Colors,
     Shadows: Shadows,
     Gradients: Gradients,
+    Borders: Borders,
+    Tokens: Tokens,
 
     id: -1,
     name: String,
@@ -177,7 +179,7 @@ Page({
     this.setData({
       activeIndex: tabIndex
     })
-    this.loadTabData(tabIndex);
+    // this.loadTabData(tabIndex);
   },
 
   // 更换tab时抓取数据，本页面该方法无实际内容

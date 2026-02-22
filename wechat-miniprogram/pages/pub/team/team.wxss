@@ -49,15 +49,6 @@ page {
   transition: all 0.3s ease;
 }
 
-.tab:active {
-  background-color: rgba(237, 108, 0, 0.05); /* Colors.primaryAlpha25 变体 */
-}
-
-.tab-text {
-  font-size: 28rpx; /* Tokens.fontSizeMedium */
-  font-weight: 500;
-}
-
 .tab.active .tab-text {
   color: #ed6c00; /* Colors.primary */
   font-weight: 700;
