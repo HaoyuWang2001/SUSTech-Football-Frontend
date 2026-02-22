@@ -40,7 +40,7 @@
         <image wx:if="{{!expandEvent}}" class="expand-button" src="/assets/collapse.png" bind:tap="bindExpandEvent"></image>
       </view>
       <view wx:if="{{expandEvent}}" class="event-container">
-        <event-card-big wx:for="{{eventDisplayList}}" wx:key="eventId" eventId="{{item.id}}" icon="/assets/cup.svg" name="{{item.name}}" bind:tap="gotoEvent" data-id="{{item.eventId}}"></event-card-big>
+        <event-card-big wx:for="{{eventDisplayList}}" wx:key="eventId" eventId="{{item.eventId}}" icon="/assets/cup.svg" name="{{item.name}}" bind:tap="gotoEvent" data-id="{{item.eventId}}"></event-card-big>
         <view wx:if="{{eventIdx < eventList.length}}" style="display: flex; justify-content: center; align-items: center;">
           <image class="more-button" src="/assets/more.png" bind:tap="updateEventDisplayList"></image>
         </view>

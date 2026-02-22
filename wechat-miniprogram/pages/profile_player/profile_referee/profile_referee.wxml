@@ -7,7 +7,6 @@
   </view>
 </view>
 
-
 <view class="container1" wx:if="{{refereeId}}">
   <image src="https://www.sustech.edu.cn/uploads/images/2022/12/29170514_43928.jpg" mode="scaleToFill" style="height: 400rpx; width: 100%;" />
   <view class="container2">
@@ -64,6 +63,6 @@
   </view>
   <view class="block-main">
     <view class="no-favorite" wx:if="{{eventList.length==0}}">您未执法任何赛事。</view>
-    <event-card-big wx:for="{{eventList}}" wx:key="eventId" eventId="{{item.id}}" icon="/assets/cup.svg" name="{{item.name}}" bind:tap="gotoEventPage" data-id="{{item.eventId}}"></event-card-big>
+    <event-card-big wx:for="{{eventList}}" wx:key="eventId" eventId="{{item.eventId}}" icon="/assets/cup.svg" name="{{item.name}}" bind:tap="gotoEventPage" data-id="{{item.eventId}}"></event-card-big>
   </view>
 </view>

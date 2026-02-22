@@ -44,6 +44,6 @@
   </view>
   <view class="block-main">
     <view class="no-favorite" wx:if="{{eventList.length==0}}">该裁判未执法任何赛事。</view>
-    <event-card-big wx:for="{{eventList}}" wx:key="eventId" eventId="{{item.id}}" icon="/assets/cup.svg" name="{{item.name}}" bind:tap="gotoEventPage" data-id="{{item.eventId}}"></event-card-big>
+    <event-card-big wx:for="{{eventList}}" wx:key="eventId" eventId="{{item.eventId}}" icon="/assets/cup.svg" name="{{item.name}}" bind:tap="gotoEventPage" data-id="{{item.eventId}}"></event-card-big>
   </view>
 </view>

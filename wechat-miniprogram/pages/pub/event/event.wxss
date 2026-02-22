@@ -152,8 +152,7 @@
 }
 
 .tab-content {
-  margin-top: 0;
-  padding: 20rpx 20rpx 32rpx 20rpx;
+  padding: 20rpx 0;
 }
 
 /* 比赛tab下，“选择比赛及轮次” picker - 现代化设计 */
