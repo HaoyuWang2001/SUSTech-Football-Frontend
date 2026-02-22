@@ -1,4 +1,5 @@
 // pages/profile_player/profile_player_edit/profile_player_edit.js
+import { Colors, Shadows, Gradients } from '../../../utils/colors.js'
 const app = getApp()
 const URL = app.globalData.URL
 
@@ -27,7 +28,11 @@ Page({
     modalHiddenPosition: true,
     modalHiddenShuyuan: true,
     modalHiddenCollege: true,
-    shuYuanOptions: ['无书院/不愿透露', '致仁书院', '树仁书院', '致诚书院', '树礼书院', '树德书院', '致新书院']
+    shuYuanOptions: ['无书院/不愿透露', '致仁书院', '树仁书院', '致诚书院', '树礼书院', '树德书院', '致新书院'],
+    // 颜色设计系统常量
+    Colors: Colors,
+    Shadows: Shadows,
+    Gradients: Gradients
   },
 
   /**

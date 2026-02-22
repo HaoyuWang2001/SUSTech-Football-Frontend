@@ -2,44 +2,52 @@
 <!--<text>pages/profile_player/profile_coach_edit/profile_coach_edit.wxml</text>-->
 
 <view class="container">
-  <view style="width: 90%;">
-    <view class="section0">
-      <view>头像</view>
-      <view style="flex: 1;"></view>
-      <view class="edit">
-        <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="uploadImage">
-          <image class="avatar" src="{{photoUrl}}" mode="scaleToFill"></image>
-        </button>
+  <view class="profile-edit-card modern-card">
+    <!-- 头像区域 -->
+    <view class="avatar-section">
+      <view class="avatar-label gray-dark-color">头像</view>
+      <button class="avatar-button" open-type="chooseAvatar" bind:chooseavatar="uploadImage" hover-class="avatar-button-hover" hover-stay-time="50">
+        <image class="avatar-image" src="{{photoUrl}}" mode="scaleToFill"></image>
+      </button>
+    </view>
+
+    <!-- 表单字段 -->
+    <view class="form-section">
+      <!-- 姓名字段 -->
+      <view class="form-field" bindtap="showNameInput" hover-class="field-hover" hover-stay-time="50">
+        <view class="field-label gray-dark-color">姓名</view>
+        <view class="field-value">
+          <text class="value-text">{{name}}</text>
+          <text class="edit-indicator">></text>
+        </view>
+      </view>
+      <view class="field-divider border-inner"></view>
+
+      <!-- 个人简介字段 -->
+      <view class="form-field" bindtap="showBioInput" hover-class="field-hover" hover-stay-time="50">
+        <view class="field-label gray-dark-color">个人简介</view>
+        <view class="field-value">
+          <text class="value-text">{{bio}}</text>
+          <text class="edit-indicator"> ></text>
+        </view>
       </view>
     </view>
-    <view class="section">
-      <view>姓名</view>
-      <view style="flex: 1;"></view>
-      <view class="edit" bindtap="showNameInput">
-        <view class="name">{{name}}</view>
-        <view class="pointer">></view>
-      </view>
-    </view>
-    <modal hidden="{{modalHiddenEname}}" bindconfirm="confirmChangeName" bindcancel="cancelChangeName">
-      <view class="modal-content">
-        <text>请输入姓名：</text>
-        <input placeholder="姓名" bindinput="changename" />
-      </view>
-    </modal>
-    <view class="section">
-      <view>个人简介</view>
-      <view style="flex: 1;"></view>
-      <view class="edit" bindtap="showBioInput">
-        <view class="name">{{bio}}</view>
-        <view class="pointer">></view>
-      </view>
-    </view>
-    <modal hidden="{{modalHiddenBio}}" bindconfirm="confirmChangeBio" bindcancel="cancelChangeBio">
-      <view class="modal-content">
-        <text>请输入个人简介：</text>
-        <input placeholder="个人简介" bindinput="changebio" />
-      </view>
-    </modal>
-    <button class="button" bindtap="submit">提交</button>
+
+    <!-- 提交按钮 -->
+    <button class="submit-button primary-button" bindtap="submit" hover-class="primary-button-hover" hover-stay-time="50">提交</button>
   </view>
 </view>
+
+<!-- 模态框保持不变 -->
+<modal hidden="{{modalHiddenEname}}" bindconfirm="confirmChangeName" bindcancel="cancelChangeName">
+  <view class="modal-content">
+    <text>请输入姓名：</text>
+    <input placeholder="姓名" bindinput="changename" />
+  </view>
+</modal>
+<modal hidden="{{modalHiddenBio}}" bindconfirm="confirmChangeBio" bindcancel="cancelChangeBio">
+  <view class="modal-content">
+    <text>请输入个人简介：</text>
+    <input placeholder="个人简介" bindinput="changebio" />
+  </view>
+</modal>

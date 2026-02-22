@@ -2,124 +2,146 @@
 <!--<text>pages/profile_player/profile_player_edit/profile_player_edit.wxml</text>-->
 
 <view class="container">
-  <view style="width: 90%;">
-    <view class="section0">
-      <view>头像</view>
-      <view style="flex: 1;"></view>
-      <view class="edit">
-        <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="uploadImage">
-          <image class="avatar" src="{{photoUrl}}" mode="scaleToFill"></image>
-        </button>
+  <view class="profile-edit-card modern-card">
+    <!-- 头像区域 -->
+    <view class="avatar-section">
+      <view class="avatar-label gray-dark-color">头像</view>
+      <button class="avatar-button" open-type="chooseAvatar" bind:chooseavatar="uploadImage" hover-class="avatar-button-hover" hover-stay-time="50">
+        <image class="avatar-image" src="{{photoUrl}}" mode="scaleToFill"></image>
+      </button>
+    </view>
+
+    <!-- 表单字段 -->
+    <view class="form-section">
+      <!-- 姓名字段 -->
+      <view class="form-field" bindtap="showNameInput" hover-class="field-hover" hover-stay-time="50">
+        <view class="field-label gray-dark-color">姓名</view>
+        <view class="field-value">
+          <text class="value-text">{{name}}</text>
+          <text class="edit-indicator"> ></text>
+        </view>
+      </view>
+      <view class="field-divider border-inner"></view>
+
+      <!-- 学工号字段 -->
+      <view class="form-field" bindtap="showIdInput" hover-class="field-hover" hover-stay-time="50">
+        <view class="field-label gray-dark-color">学工号</view>
+        <view class="field-value">
+          <text class="value-text">{{identity}}</text>
+          <text class="edit-indicator"> ></text>
+        </view>
+      </view>
+      <view class="field-divider border-inner"></view>
+
+      <!-- 身高字段 -->
+      <view class="form-field" bindtap="showHeightInput" hover-class="field-hover" hover-stay-time="50">
+        <view class="field-label gray-dark-color">身高(cm)</view>
+        <view class="field-value">
+          <text class="value-text">{{height}}</text>
+          <text class="edit-indicator"> ></text>
+        </view>
+      </view>
+      <view class="field-divider border-inner"></view>
+
+      <!-- 体重字段 -->
+      <view class="form-field" bindtap="showWeightInput" hover-class="field-hover" hover-stay-time="50">
+        <view class="field-label gray-dark-color">体重(kg)</view>
+        <view class="field-value">
+          <text class="value-text">{{weight}}</text>
+          <text class="edit-indicator"> ></text>
+        </view>
+      </view>
+      <view class="field-divider border-inner"></view>
+
+      <!-- 出生日期字段 -->
+      <view class="form-field">
+        <view class="field-label gray-dark-color">出生日期</view>
+        <picker class="field-value" mode="date" bindchange="bindDateChange">
+          <text class="value-text">{{strBirthDate}}</text>
+          <text class="edit-indicator"> ></text>
+        </picker>
+      </view>
+      <view class="field-divider border-inner"></view>
+
+      <!-- 场上位置字段 -->
+      <view class="form-field" bindtap="showPositionInput" hover-class="field-hover" hover-stay-time="50">
+        <view class="field-label gray-dark-color">场上位置</view>
+        <view class="field-value">
+          <text class="value-text">{{position}}</text>
+          <text class="edit-indicator"> ></text>
+        </view>
+      </view>
+      <view class="field-divider border-inner"></view>
+
+      <!-- 书院字段 -->
+      <view class="form-field">
+        <view class="field-label gray-dark-color">书院</view>
+        <picker class="field-value" bindchange="bindShuYuanChange" range="{{shuYuanOptions}}">
+          <text class="value-text">{{shuYuan}}</text>
+          <text class="edit-indicator"> ></text>
+        </picker>
+      </view>
+      <view class="field-divider border-inner"></view>
+
+      <!-- 院系字段 -->
+      <view class="form-field" bindtap="showCollegeInput" hover-class="field-hover" hover-stay-time="50">
+        <view class="field-label gray-dark-color">院系</view>
+        <view class="field-value">
+          <text class="value-text">{{college}}</text>
+          <text class="edit-indicator"> ></text>
+        </view>
+      </view>
+      <view class="field-divider border-inner"></view>
+
+      <!-- 入学年份字段 -->
+      <view class="form-field">
+        <view class="field-label gray-dark-color">入学年份</view>
+        <picker class="field-value" mode="date" fields="year" bindchange="bindAdmissionYearChange">
+          <text class="value-text">{{admissionYear}}</text>
+          <text class="edit-indicator"> ></text>
+        </picker>
       </view>
     </view>
-    <view class="section">
-      <view class="title">姓名</view>
-      <view style="flex: 1;"></view>
-      <view class="edit" bindtap="showNameInput">
-        <view class="name">{{name}}</view>
-        <view class="pointer">></view>
-      </view>
-    </view>
-    <modal hidden="{{modalHiddenEname}}" bindconfirm="confirmChangeName" bindcancel="cancelChangeName">
-      <view class="modal-content">
-        <text>请输入姓名：</text>
-        <input placeholder="姓名" bindinput="changename" />
-      </view>
-    </modal>
-    <view class="section">
-      <view>学工号</view>
-      <view style="flex: 1;"></view>
-      <view class="edit" bindtap="showIdInput">
-        <view class="name">{{identity}}</view>
-        <view class="pointer">></view>
-      </view>
-    </view>
-    <modal hidden="{{modalHiddenId}}" bindconfirm="confirmChangeId" bindcancel="cancelChangeId">
-      <view class="modal-content">
-        <text>请输入学工号：</text>
-        <input placeholder="学工号" bindinput="changeid" />
-      </view>
-    </modal>
-    <view class="section">
-      <view>身高(cm)</view>
-      <view style="flex: 1;"></view>
-      <view class="edit" bindtap="showHeightInput">
-        <view class="name">{{height}}</view>
-        <view class="pointer">></view>
-      </view>
-    </view>
-    <modal hidden="{{modalHiddenHeight}}" bindconfirm="confirmChangeHeight" bindcancel="cancelChangeHeight">
-      <view class="modal-content">
-        <text>请输入身高：</text>
-        <input placeholder="身高" bindinput="changeheight" />
-      </view>
-    </modal>
-    <view class="section">
-      <view>体重(kg)</view>
-      <view style="flex: 1;"></view>
-      <view class="edit" bindtap="showWeightInput">
-        <view class="name">{{weight}}</view>
-        <view class="pointer">></view>
-      </view>
-    </view>
-    <modal hidden="{{modalHiddenWeight}}" bindconfirm="confirmChangeWeight" bindcancel="cancelChangeWeight">
-      <view class="modal-content">
-        <text>请输入体重：</text>
-        <input placeholder="体重" bindinput="changeweight" />
-      </view>
-    </modal>
-    <view class="section">
-      <view>出生日期</view>
-      <view style="flex: 1;"></view>
-      <picker class="edit" mode="date" bindchange="bindDateChange">
-        <text>{{strBirthDate}}</text>
-        <text class="pointer">></text>
-      </picker>
-    </view>
-    <view class="section">
-      <view>场上位置</view>
-      <view style="flex: 1;"></view>
-      <view class="edit" bindtap="showPositionInput">
-        <view class="name">{{position}}</view>
-        <view class="pointer">></view>
-      </view>
-    </view>
-    <modal hidden="{{modalHiddenPosition}}" bindconfirm="confirmChangePosition" bindcancel="cancelChangePosition">
-      <view class="modal-content">
-        <text>请输入场上位置：</text>
-        <input placeholder="场上位置" bindinput="changeposition" />
-      </view>
-    </modal>
-    <view class="section">
-      <view>书院</view>
-      <view style="flex: 1;"></view>
-      <picker class="edit" bindchange="bindShuYuanChange" range="{{shuYuanOptions}}">
-        <text class="name">{{shuYuan}}</text>
-        <text class="pointer">></text>
-      </picker>
-    </view>
-    <view class="section">
-      <view>院系</view>
-      <view style="flex: 1;"></view>
-      <view class="edit" bindtap="showCollegeInput">
-        <view class="name">{{college}}</view>
-        <view class="pointer">></view>
-      </view>
-    </view>
-    <modal hidden="{{modalHiddenCollege}}" bindconfirm="confirmChangeCollege" bindcancel="cancelChangeCollege">
-      <view class="modal-content">
-        <text>请输入院系：</text>
-        <input placeholder="院系" bindinput="changecollege" />
-      </view>
-    </modal>
-    <view class="section">
-      <view>入学年份</view>
-      <view style="flex: 1;"></view>
-      <picker class="edit" mode="date" fields="year" bindchange="bindAdmissionYearChange">
-        <text class="name">{{admissionYear}}</text>
-        <text class="pointer">></text>
-      </picker>
-    </view>
-    <button class="button" bindtap="submit">提交</button>
+
+    <!-- 提交按钮 -->
+    <button class="submit-button primary-button" bindtap="submit" hover-class="primary-button-hover" hover-stay-time="50">提交</button>
   </view>
 </view>
+
+<!-- 模态框保持不变 -->
+<modal hidden="{{modalHiddenEname}}" bindconfirm="confirmChangeName" bindcancel="cancelChangeName">
+  <view class="modal-content">
+    <text>请输入姓名：</text>
+    <input placeholder="姓名" bindinput="changename" />
+  </view>
+</modal>
+<modal hidden="{{modalHiddenId}}" bindconfirm="confirmChangeId" bindcancel="cancelChangeId">
+  <view class="modal-content">
+    <text>请输入学工号：</text>
+    <input placeholder="学工号" bindinput="changeid" />
+  </view>
+</modal>
+<modal hidden="{{modalHiddenHeight}}" bindconfirm="confirmChangeHeight" bindcancel="cancelChangeHeight">
+  <view class="modal-content">
+    <text>请输入身高：</text>
+    <input placeholder="身高" bindinput="changeheight" />
+  </view>
+</modal>
+<modal hidden="{{modalHiddenWeight}}" bindconfirm="confirmChangeWeight" bindcancel="cancelChangeWeight">
+  <view class="modal-content">
+    <text>请输入体重：</text>
+    <input placeholder="体重" bindinput="changeweight" />
+  </view>
+</modal>
+<modal hidden="{{modalHiddenPosition}}" bindconfirm="confirmChangePosition" bindcancel="cancelChangePosition">
+  <view class="modal-content">
+    <text>请输入场上位置：</text>
+    <input placeholder="场上位置" bindinput="changeposition" />
+  </view>
+</modal>
+<modal hidden="{{modalHiddenCollege}}" bindconfirm="confirmChangeCollege" bindcancel="cancelChangeCollege">
+  <view class="modal-content">
+    <text>请输入院系：</text>
+    <input placeholder="院系" bindinput="changecollege" />
+  </view>
+</modal>

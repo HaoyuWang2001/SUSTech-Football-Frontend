@@ -1,4 +1,5 @@
 // pages/profile_player/profile_coach_edit/profile_coach_edit.js
+import { Colors, Shadows, Gradients } from '../../../utils/colors.js'
 const app = getApp()
 const URL = app.globalData.URL
 
@@ -14,6 +15,10 @@ Page({
     bio: '', //简介
     modalHiddenEname: true, // 控制模态框显示隐藏
     modalHiddenBio: true,
+    // 颜色设计系统常量
+    Colors: Colors,
+    Shadows: Shadows,
+    Gradients: Gradients
   },
 
   /**
