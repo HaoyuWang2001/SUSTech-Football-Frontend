@@ -3,6 +3,13 @@
     <image src="{{icon}}" mode="scaleToFill" class="image"></image>
   </view>
   <view class="text-container">
-    <text class="text">{{name}}</text>
+    <view class="text-content">
+      <text class="text">{{name}}</text>
+      <!-- 赛事ID显示 -->
+      <view class="event-id-container" wx:if="{{eventId}}">
+        <text class="event-id-label">赛事ID：</text>
+        <text class="event-id-value">{{eventId}}</text>
+      </view>
+    </view>
   </view>
 </view>
