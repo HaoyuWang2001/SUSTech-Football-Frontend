@@ -1722,13 +1722,13 @@ Page({
 
   gotoSportCenterPage() {
     wx.navigateTo({
-      url: './sport_center_login/sport_center_login',
+      url: '/package-mine/pages/sport_center_login/sport_center_login',
     })
   },
 
   gotoSecondAuthorityPage() {
     wx.navigateTo({
-      url: './second_authority_login/second_authority_login',
+      url: '/package-mine/pages/second_authority_login/second_authority_login',
     })
   },
 

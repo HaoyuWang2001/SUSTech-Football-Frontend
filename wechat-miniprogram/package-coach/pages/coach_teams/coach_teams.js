@@ -60,9 +60,9 @@ Page({
     let teamId = e.currentTarget.dataset.id
     var that = this
     wx.showModal({
-      title: '确认退出',
-      content: '确定要退出这支球队吗？',
-      confirmText: '退出',
+      title: '确认离职',
+      content: '确定不再执教这支球队吗？',
+      confirmText: '离职',
       confirmColor: '#FF0000',
       cancelText: '取消',
       success(res) {

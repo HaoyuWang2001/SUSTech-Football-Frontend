@@ -1,10 +1,8 @@
 .delete-btn {
-  background-color: red;
+  background-color: #ed6c00;
   color: white;
-  padding: 5px 15px;
-  border: none;
+  padding: 4px 12px;
   border-radius: 5px;
-  cursor: pointer;
-  margin-right: 20rpx;
   font-size: small;
+  font-weight: 600;
 }

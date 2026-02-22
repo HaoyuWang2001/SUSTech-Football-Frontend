@@ -242,7 +242,7 @@ Page({
     console.log("queryString->")
     console.log(queryString)
     wx.navigateTo({
-      url: `/pages/profile_player/profile_referee_edit/profile_referee_edit?${queryString}`
+      url: `/package-referee/pages/profile_referee_edit/profile_referee_edit?${queryString}`
     })
   },
 
@@ -285,13 +285,13 @@ Page({
 
   gotoRegisterPage() {
     wx.navigateTo({
-      url: '/pages/profile_player/profile_referee_register/profile_referee_register',
+      url: '/package-referee/pages/profile_referee_register/profile_referee_register',
     })
   },
 
   gotoRefereeNoticePage() {
     wx.navigateTo({
-      url: '/pages/profile_player/profile_referee_notice/profile_referee_notice',
+      url: '/package-referee/pages/profile_referee_notice/profile_referee_notice',
     })
   },
 

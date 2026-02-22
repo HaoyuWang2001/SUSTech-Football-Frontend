@@ -369,13 +369,13 @@ Page({
 
   gotoProfileCoachPage() {
     wx.switchTab({
-      url: '/pages/profile_player/profile_coach/profile_coach',
+      url: '/pages/profile_coach/profile_coach',
     })
   },
 
   gotoProfileRefereePage() {
     wx.switchTab({
-      url: '/pages/profile_player/profile_referee/profile_referee',
+      url: '/pages/profile_referee/profile_referee',
     })
   },
 

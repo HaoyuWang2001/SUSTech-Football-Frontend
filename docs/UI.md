@@ -1,10 +1,10 @@
 # 现代化UI设计规范
 
-基于 `pages/pub/team` 页面的UI风格沉淀
+基于 `pages/pub/event` 和 `pages/pub/team` 页面的UI风格沉淀
 
 ## 概述
 
-本规范总结了南科大足球平台微信小程序中 `pages/pub/team` 页面的现代化UI设计风格。该页面采用了现代化的卡片设计、平滑的过渡动画、响应式布局和一致的橙色系配色方案，可作为其他页面UI设计的参考模板。
+本规范总结了南科大足球平台微信小程序中 `pages/pub/event` 和 `pages/pub/team` 页面的现代化UI设计风格。这两个页面共享相同的现代化设计模式：现代化的卡片设计、平滑的过渡动画、响应式布局和一致的橙色系配色方案，可作为其他页面UI设计的参考模板。
 
 ## 设计原则
 
@@ -111,7 +111,7 @@ background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
 
 ## 组件设计规范
 
-### 1. 现代化卡片 (team-card-big)
+### 1. 现代化卡片 (team-card-big / event-card-big)
 
 #### 结构
 ```xml
@@ -177,6 +177,33 @@ background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
 }
 ```
 
+#### event-card-big 组件补充说明
+
+`event-card-big` 组件与 `team-card-big` 共享相同的现代化设计模式，但针对赛事信息展示进行了优化：
+
+**结构特点**：
+- 左侧图标容器：圆角背景，橙色边框
+- 赛事信息区域：包含赛事名称和ID显示
+- 右侧操作插槽：可放置收藏按钮等功能
+
+**样式特性**：
+- **图标容器**：`background: rgba(237, 108, 0, 0.08)`，`border: 2rpx solid rgba(237, 108, 0, 0.15)`
+- **ID显示区域**：浅橙色背景，橙色文字强调
+- **交互反馈**：点击时图标缩放，文字颜色变化
+
+**响应式设计**：
+```css
+@media (max-width: 600rpx) {
+  .card-content {
+    gap: 24rpx;
+    padding: 24rpx;
+  }
+  .card-content.has-favorite-button {
+    padding-right: 80rpx; /* 为收藏按钮预留空间 */
+  }
+}
+```
+
 ### 2. 标签页导航 (tabs)
 
 #### 结构
@@ -239,25 +266,56 @@ background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
 
 ### 5. 表格 (table)
 
-#### 结构
-```xml
-<view class="table">
-  <view class="row header">
-    <view class="cell">表头1</view>
-    <!-- 更多表头 -->
-  </view>
-  <view class="row">
-    <view class="cell">内容1</view>
-    <!-- 更多内容 -->
-  </view>
-</view>
-```
+项目中有两种表格样式，分别用于不同场景：
 
-#### 样式特性
-- **容器**：橙色边框，圆角16rpx
-- **表头**：浅橙色背景，橙色文字，字重600
+#### 1. team页面表格（浅橙色表头）
+用于球队页面的球员信息展示。
+
+**结构**：同上
+**样式特性**：
+- **容器**：橙色边框 `rgba(237, 108, 0, 0.12)`，圆角16rpx
+- **表头**：浅橙色背景 `rgba(237, 108, 0, 0.05)`，橙色文字 `#ed6c00`，字重600
 - **行**：底部1rpx分隔线 `rgba(237, 108, 0, 0.08)`
 - **单元格**：居中文字，`24rpx`，颜色 `#666666`
+
+#### 2. event页面积分榜表格（渐变表头）
+用于赛事页面的积分榜展示，视觉效果更突出。
+
+**样式特性**：
+- **容器**：无边框，圆角16rpx，阴影 `0 2rpx 8rpx rgba(237, 108, 0, 0.08)`
+- **表头**：橙色渐变背景 `linear-gradient(90deg, #ed6c00 0%, #ff8c32 100%)`，白色文字，字重600
+- **表头单元格**：白色文字，右侧边框 `1rpx solid rgba(255, 255, 255, 0.2)`
+- **行**：底部1rpx分隔线 `rgba(237, 108, 0, 0.08)`，点击时背景色 `rgba(237, 108, 0, 0.05)`
+- **单元格**：居中文字，`26rpx`，颜色 `#666666`，右侧边框 `1rpx solid rgba(237, 108, 0, 0.08)`
+- **球队单元格**：左对齐，包含队标图标，图标有圆形边框和阴影
+
+**积分榜表格代码示例**：
+```css
+/* 表头渐变效果 */
+.row.header {
+  background: linear-gradient(90deg, #ed6c00 0%, #ff8c32 100%);
+  color: #ffffff;
+  border-bottom: none;
+  text-shadow: 0 1rpx 2rpx rgba(0, 0, 0, 0.2);
+}
+
+/* 单元格边框 */
+.cell {
+  border-right: 1rpx solid rgba(237, 108, 0, 0.08);
+}
+
+/* 球队图标样式 */
+.cell-team-icon {
+  width: 48rpx;
+  height: 48rpx;
+  margin-right: 16rpx;
+  border-radius: 50%;
+  border: 2rpx solid rgba(237, 108, 0, 0.15);
+  background-color: rgba(237, 108, 0, 0.08);
+  padding: 4rpx;
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.1);
+}
+```
 
 ### 6. 滚动容器 (scroll-container)
 
@@ -265,6 +323,81 @@ background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
 - **布局**：水平滚动，`flex-direction: row`
 - **间距**：底部内边距20rpx
 - **内容**：`white-space: nowrap` 防止换行
+
+### 7. 统计卡片 (statistic-card)
+
+`event`页面特有的2列统计卡片布局，用于展示赛事统计数据。
+
+#### 结构
+```xml
+<view class="statistic-container">
+  <view wx:for="{{statisticData}}" class="statistic-card" wx:key="index">
+    <view class="statistic-card-content">
+      <image class="statistic-icon" src="{{item.icon}}" mode="scaleToFill" />
+      <view class="statistic-count">{{item.count}}</view>
+    </view>
+    <view class="statistic-title">{{item.title}}</view>
+  </view>
+</view>
+```
+
+#### 样式特性
+- **布局**：2列网格，间隙24rpx，宽度 `calc(50% - 12rpx)`
+- **卡片样式**：白色渐变背景，橙色边框，圆角20rpx
+- **装饰条**：顶部橙色渐变装饰条，高度6rpx
+- **图标区域**：图标尺寸64rpx×64rpx，带有阴影效果
+- **数字显示**：大号橙色文字（48rpx），字重800，带有文字阴影
+- **标题**：灰色文字（26rpx），顶部1rpx分隔线
+
+#### 交互效果
+```css
+.statistic-card:active {
+  transform: translateY(4rpx) scale(0.995);
+  box-shadow: 0 2rpx 8rpx rgba(237, 108, 0, 0.08);
+  border-color: rgba(237, 108, 0, 0.25);
+}
+
+.statistic-card:active .statistic-icon {
+  transform: scale(0.95);
+  filter: drop-shadow(0 2rpx 4rpx rgba(0, 0, 0, 0.1));
+}
+```
+
+### 8. 现代化选择器 (stageAndTag)
+
+`event`页面中的比赛选择器现代化设计，用于选择比赛阶段和标签。
+
+#### 结构
+```xml
+<view class="stageAndTag">
+  {{stageAndTag}}
+  <image src="/assets/down.png" class="icon-down"></image>
+</view>
+```
+
+#### 样式特性
+- **容器样式**：白色渐变背景，橙色边框，圆角24rpx，双层阴影
+- **装饰条**：顶部橙色渐变装饰条，高度6rpx（使用::before伪元素）
+- **文字样式**：30rpx，字重600，颜色 `#666666`
+- **下拉图标**：44rpx×44rpx，带有阴影效果，透明度0.7
+
+#### 交互效果
+```css
+.stageAndTag:active {
+  background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+  border-color: rgba(237, 108, 0, 0.25);
+  transform: translateY(4rpx) scale(0.995);
+  box-shadow:
+    0 2rpx 12rpx rgba(237, 108, 0, 0.08),
+    0 1rpx 6rpx rgba(237, 108, 0, 0.06);
+}
+
+.stageAndTag:active .icon-down {
+  opacity: 0.9;
+  transform: translateY(2rpx);
+  filter: drop-shadow(0 1rpx 2rpx rgba(0, 0, 0, 0.05));
+}
+```
 
 ## 交互设计规范
 
@@ -325,6 +458,58 @@ transition: all 0.4s cubic-bezier(0.2, 0.8, 0.3, 1);
   /* 调整元素尺寸 */
   .function-button { padding: 24rpx 32rpx; min-width: 180rpx; }
   .top-right-slot .icon { width: 44rpx; height: 44rpx; }
+
+  /* event页面组件响应式调整 */
+  /* 块容器 */
+  .block-container {
+    margin: 16rpx 16rpx;
+    padding: 24rpx 20rpx;
+  }
+  .block-title { font-size: 30rpx; }
+  .block-more { font-size: 24rpx; padding: 6rpx 12rpx; }
+
+  /* 选项卡 */
+  .tabs { margin: 16rpx 16rpx 0 16rpx; }
+  .tab { padding: 20rpx 0; font-size: 26rpx; }
+  .tab-content { padding: 0 16rpx 32rpx 16rpx; }
+
+  /* 比赛选择器 */
+  .stageAndTag {
+    margin: 16rpx 16rpx 0 16rpx;
+    padding: 24rpx 28rpx;
+    font-size: 28rpx;
+    border-radius: 20rpx;
+  }
+  .icon-down {
+    height: 36rpx;
+    width: 36rpx;
+    margin-left: 12rpx;
+  }
+
+  /* 统计卡片 */
+  .statistic-card {
+    width: calc(50% - 12rpx);
+    padding: 24rpx 16rpx;
+    border-radius: 16rpx;
+  }
+  .statistic-icon {
+    width: 56rpx;
+    height: 56rpx;
+    margin-right: 16rpx;
+  }
+  .statistic-count { font-size: 40rpx; min-width: 70rpx; }
+  .statistic-title { font-size: 24rpx; }
+
+  /* 积分榜表格 */
+  .cell {
+    padding: 20rpx 8rpx;
+    font-size: 24rpx;
+  }
+  .cell-team-icon {
+    width: 40rpx;
+    height: 40rpx;
+    margin-right: 12rpx;
+  }
 }
 ```
 
@@ -362,6 +547,71 @@ transition: all 0.4s cubic-bezier(0.2, 0.8, 0.3, 1);
         <!-- 内容区域 -->
       </view>
     </view>
+  </view>
+</view>
+```
+
+### event页面组件示例
+
+以下展示 `event` 页面特有的组件实现：
+
+#### 1. 统计卡片布局
+```xml
+<view class="block-container">
+  <view class="block-top">
+    <text class="block-title">赛事统计</text>
+  </view>
+  <view class="block-main">
+    <view class="statistic-container">
+      <view class="statistic-card">
+        <view class="statistic-card-content">
+          <image class="statistic-icon" src="/assets/team-icon.png" />
+          <view class="statistic-count">16</view>
+        </view>
+        <view class="statistic-title">参赛球队</view>
+      </view>
+      <view class="statistic-card">
+        <view class="statistic-card-content">
+          <image class="statistic-icon" src="/assets/match-icon.png" />
+          <view class="statistic-count">48</view>
+        </view>
+        <view class="statistic-title">比赛场次</view>
+      </view>
+    </view>
+  </view>
+</view>
+```
+
+#### 2. 现代化选择器
+```xml
+<view class="stageAndTag">
+  小组赛 · 第1轮
+  <image src="/assets/down.png" class="icon-down"></image>
+</view>
+```
+
+#### 3. 积分榜表格
+```xml
+<view class="table">
+  <view class="row header">
+    <view class="cell">球队</view>
+    <view class="cell">胜</view>
+    <view class="cell">平</view>
+    <view class="cell">负</view>
+    <view class="cell">进/失</view>
+    <view class="cell">积分</view>
+  </view>
+  <view class="row">
+    <view class="cell">
+      <view class="cell-team">
+        <image class="cell-team-icon" src="/assets/team-logo.png" />球队A
+      </view>
+    </view>
+    <view class="cell">5</view>
+    <view class="cell">2</view>
+    <view class="cell">1</view>
+    <view class="cell">15/8</view>
+    <view class="cell">17</view>
   </view>
 </view>
 ```
@@ -415,11 +665,15 @@ transition: all 0.4s cubic-bezier(0.2, 0.8, 0.3, 1);
 
 | 版本 | 日期 | 变更描述 |
 |------|------|----------|
+| 1.1.0 | 2026-02-23 | 整合pages/pub/event页面UI样式，补充统计卡片、现代化选择器、积分榜表格等组件 |
 | 1.0.0 | 2026-02-21 | 初始版本：基于pages/pub/team页面UI风格沉淀 |
 
 ---
 
 **参考文件**：
+- `pages/pub/event/event.wxml`
+- `pages/pub/event/event.wxss`
+- `components/event-card-big/event.wxss`
 - `pages/pub/team/team.wxml`
 - `pages/pub/team/team.wxss`
 - `components/team-card-big/team.wxss`

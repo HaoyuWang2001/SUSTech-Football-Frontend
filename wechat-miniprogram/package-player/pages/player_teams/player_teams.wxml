@@ -1,5 +1,12 @@
-<team-card-big wx:for="{{teamList}}" wx:key="teamId" name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerList.length}}" teamId="{{item.teamId}}" bind:tap="gotoTeam" data-id="{{item.teamId}}">
-  <view style="display: flex; flex-direction: column; align-items: flex-end; padding-right: 30rpx;">
-    <view class="delete-btn" catch:tap="showExitModal" data-id="{{item.teamId}}">退出</view>
+<view class="block-container">
+  <view class="block-top">
+    <view class="block-title">球队</view>
   </view>
+  <view class="block-main">
+    这里是您加入的球队。
+  </view>
+</view>
+
+<team-card-big wx:for="{{teamList}}" wx:key="teamId" name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerList.length}}" teamId="{{item.teamId}}" has_favorite_button="{{true}}" catch:tap="gotoTeam" data-id="{{item.teamId}}">
+  <view class="delete-btn" catch:tap="showExitModal" data-id="{{item.teamId}}">退出</view>
 </team-card-big>

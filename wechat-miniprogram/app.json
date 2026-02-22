@@ -54,7 +54,7 @@
     {
       "root": "package-coach",
       "pages": [
-        "pages/profile_coach/coach_teams/coach_teams",
+        "pages/coach_teams/coach_teams",
         "pages/profile_coach_edit/profile_coach_edit",
         "pages/profile_coach_notice/profile_coach_notice",
         "pages/profile_coach_register/profile_coach_register"

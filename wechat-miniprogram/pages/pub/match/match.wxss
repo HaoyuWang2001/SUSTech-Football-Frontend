@@ -1,7 +1,16 @@
-/* pages/pub/match/match.wxss */
+/* pages/pub/match/match.wxss - 现代化设计 (使用橙色系颜色设计系统) */
+@import '../../../styles/mixins.wxss';
+
+/* ============================================================================
+ * 页面头部区域
+ * ============================================================================ */
 
 .section-header {
-  text-align: center;
+  background-color: #ffffff;
+  padding: 20rpx 0 40rpx 0;
+  box-shadow: 0 4rpx 24rpx rgba(237, 108, 0, 0.1);
+  position: relative;
+  margin-bottom: 20rpx;
 }
 
 .buttons {
@@ -12,63 +21,314 @@
   justify-content: flex-end;
   align-items: center;
   padding: 0 20rpx;
-  margin-bottom: -120rpx;
+  position: relative;
+  z-index: 10;
 }
 
-.icon {
+/* 收藏按钮现代化 */
+.favorite-button {
   width: 60rpx;
   height: 60rpx;
-  padding: 10rpx;
+  border-radius: 50%;
+  background-color: rgba(237, 108, 0, 0.08);
+  border: 2rpx solid rgba(237, 108, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
 }
+
+.favorite-button:active {
+  transform: scale(0.95);
+  background-color: rgba(237, 108, 0, 0.15);
+  border-color: rgba(237, 108, 0, 0.25);
+}
+
+.favorite-icon {
+  width: 40rpx;
+  height: 40rpx;
+  transition: all 0.3s ease;
+}
+
+.favorite-button:active .favorite-icon {
+  transform: scale(0.9);
+}
+
+/* ============================================================================
+ * 现代化块容器
+ * ============================================================================ */
+
+.block-container {
+  /* 基础卡片样式 */
+  margin: 24rpx 20rpx;
+  background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+  border-radius: 24rpx;
+  border: 2rpx solid rgba(237, 108, 0, 0.12);
+  box-shadow:
+    0 4rpx 24rpx rgba(237, 108, 0, 0.1),
+    0 2rpx 12rpx rgba(237, 108, 0, 0.08);
+  padding: 32rpx;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+/* 块容器顶部装饰条 */
+.block-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6rpx;
+  background: linear-gradient(90deg, #ed6c00 0%, #ff8c32 100%);
+  border-radius: 24rpx 24rpx 0 0;
+}
+
+.block-container:active {
+  transform: translateY(4rpx) scale(0.995);
+  box-shadow:
+    0 2rpx 12rpx rgba(237, 108, 0, 0.08),
+    0 1rpx 6rpx rgba(237, 108, 0, 0.06);
+  border-color: rgba(237, 108, 0, 0.25);
+}
+
+/* 块头部 */
+.block-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid rgba(237, 108, 0, 0.08);
+}
+
+.block-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #333333;
+  flex: 1;
+}
+
+.block-more {
+  font-size: 26rpx;
+  color: #ed6c00;
+  font-weight: 500;
+  padding: 8rpx 16rpx;
+  background-color: rgba(237, 108, 0, 0.08);
+  border-radius: 12rpx;
+  border: 1rpx solid rgba(237, 108, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.block-more:active {
+  background-color: rgba(237, 108, 0, 0.15);
+  border-color: rgba(237, 108, 0, 0.25);
+  transform: translateY(2rpx);
+}
+
+/* 块主要内容 */
+.block-main {
+  font-size: 28rpx;
+  color: #666666;
+  line-height: 1.5;
+}
+
+/* ============================================================================
+ * 现代化选项卡
+ * ============================================================================ */
 
 .tabs {
   display: flex;
   justify-content: space-around;
-  background-color: white;
-  padding: 10px 0;
+  background-color: #ffffff;
+  padding: 0;
+  margin: 20rpx 20rpx 0 20rpx;
+  border-radius: 24rpx;
+  border: 2rpx solid rgba(237, 108, 0, 0.12);
+  box-shadow: 0 4rpx 24rpx rgba(237, 108, 0, 0.1);
 }
 
 .tab {
   flex-grow: 1;
   text-align: center;
-  padding: 10px;
-  color: #333;
-  border-bottom: 2rpx solid rgba(0, 0, 0, 0.2);
+  padding: 28rpx 0;
+  color: #666666;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.tab-text {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.tab.active .tab-text {
+  color: #ed6c00;
+  font-weight: 700;
+}
+
+.tab-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  right: 20%;
+  height: 6rpx;
+  background: linear-gradient(90deg, #ed6c00 0%, #ff8c32 100%);
+  border-radius: 3rpx;
+  opacity: 0;
+  transform: scaleX(0.8);
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.tab.active .tab-indicator {
+  opacity: 1;
+  transform: scaleX(1);
 }
 
 .tab-content {
-  margin-top: 0;
-  padding-bottom: 10rpx;
+  padding: 20rpx 0;
 }
 
-/* 激活状态的tab样式 */
-.active {
-  color: rgb(237, 108, 0);
-  border-bottom: 2px solid rgb(237, 108, 0);
-}
+/* ============================================================================
+ * 现代化按钮样式
+ * ============================================================================ */
 
-
-/* 直播或回放按钮的样式 */
+/* 直播/回放按钮现代化 */
 .videoOrLive {
-  background-color: rgb(237, 108, 0);
-  color: white;
-  font-weight: normal;
-  font-size: medium;
-  padding: 20rpx;
+  /* 基础样式 */
+  background: linear-gradient(90deg, #ed6c00 0%, #ff8c32 100%);
+  border: none;
+  border-radius: 24rpx;
+  color: #ffffff;
+  font-size: 28rpx;
+  font-weight: 500;
+  padding: 24rpx 32rpx;
   margin-bottom: 20rpx;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4rpx 12rpx rgba(237, 108, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
+  position: relative;
+  overflow: hidden;
 }
 
+.videoOrLive::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4rpx;
+  background: linear-gradient(90deg, #ff8c32 0%, #ffb366 100%);
+  border-radius: 24rpx 24rpx 0 0;
+}
 
+.videoOrLive:active {
+  background: linear-gradient(90deg, #db6300 0%, #e86700 100%);
+  box-shadow: 0 2rpx 8rpx rgba(237, 108, 0, 0.15);
+  transform: translateY(2rpx);
+}
+
+/* 裁判页面按钮现代化 */
 .button-update {
-  padding: 10rpx 40rpx;
-  color: white;
-  background-color: #ed6c00;
-  font-weight: bold;
-  border-radius: 20rpx;
+  background: linear-gradient(90deg, #ed6c00 0%, #ff8c32 100%);
+  border: none;
+  border-radius: 24rpx;
+  color: #ffffff;
+  font-size: 26rpx;
+  font-weight: 600;
+  padding: 12rpx 24rpx;
+  box-shadow: 0 4rpx 12rpx rgba(237, 108, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
 }
 
+.button-update:active {
+  background: linear-gradient(90deg, #db6300 0%, #e86700 100%);
+  box-shadow: 0 2rpx 8rpx rgba(237, 108, 0, 0.15);
+  transform: translateY(2rpx);
+}
 
-/* 搜索框容器样式 */
+/* ============================================================================
+ * 比赛赛况表格现代化
+ * ============================================================================ */
+
+.match-action-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 8rpx rgba(237, 108, 0, 0.08);
+}
+
+.match-action-row {
+  display: flex;
+  border-bottom: 1rpx solid rgba(237, 108, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.match-action-row:active {
+  background-color: rgba(237, 108, 0, 0.05);
+}
+
+.match-action-row.header {
+  background: linear-gradient(90deg, #ed6c00 0%, #ff8c32 100%);
+  color: #ffffff;
+  font-weight: 600;
+  border-bottom: none;
+  text-shadow: 0 1rpx 2rpx rgba(0, 0, 0, 0.2);
+}
+
+.match-action-row.header .match-action-cell {
+  color: #ffffff;
+  font-weight: 600;
+  border-right: 1rpx solid rgba(255, 255, 255, 0.2);
+}
+
+.match-action-row.header .match-action-cell:last-child {
+  border-right: none;
+}
+
+.match-action-cell {
+  flex: 1;
+  padding: 24rpx 12rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #666666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1rpx solid rgba(237, 108, 0, 0.08);
+  min-height: 80rpx;
+}
+
+.match-action-cell:last-child {
+  border-right: none;
+}
+
+.match-action-cell.action {
+  color: #ed6c00;
+  font-weight: 500;
+}
+
+/* 空状态提示 */
+.empty-state {
+  text-align: center;
+  padding: 48rpx 32rpx;
+  color: #999999;
+  font-size: 28rpx;
+  background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+  border-radius: 16rpx;
+  border: 2rpx dashed rgba(237, 108, 0, 0.12);
+  margin: 20rpx;
+}
+
+/* ============================================================================
+ * 评论区域样式（已禁用）
+ * ============================================================================ */
+
 .comment-container {
   display: flex;
   margin-top: 30rpx;
@@ -78,122 +338,115 @@
   display: flex;
   align-items: center;
   padding: 10rpx 50rpx;
-  border: 4rpx solid rgb(237, 108, 0);
+  border: 2rpx solid rgba(237, 108, 0, 0.3);
   border-radius: 20rpx;
   background-color: #f9f9f9;
   height: 80rpx;
   margin-right: 5%;
+  transition: all 0.3s ease;
+}
+
+.input-container:focus-within {
+  border-color: rgba(237, 108, 0, 0.5);
+  box-shadow: 0 0 0 4rpx rgba(237, 108, 0, 0.1);
 }
 
 .input-container .input {
-  flex: 1; /* 让搜索框占据剩余空间 */
-  height: 100%; /* 让搜索框与容器高度一致 */
+  flex: 1;
+  height: 100%;
+  font-size: 28rpx;
+  color: #333333;
 }
 
 .button {
   align-self: center;
-  height: 90%; /* 让按钮与容器高度一致 */
+  height: 90%;
   max-width: 130rpx;
-  font-size: medium;
-  font-weight: normal;
+  font-size: 28rpx;
+  font-weight: 500;
   color: white;
-  background-color: rgb(237, 108, 0);
-  padding: 0 10rpx; /* 设置按钮的左右内边距 */
-  line-height: 80rpx; /* 设置按钮的行高，使文本垂直居中 */
+  background: linear-gradient(90deg, #ed6c00 0%, #ff8c32 100%);
+  border: none;
+  border-radius: 16rpx;
+  padding: 0 20rpx;
+  line-height: 80rpx;
+  box-shadow: 0 4rpx 12rpx rgba(237, 108, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
 }
 
-.reply-input-container {
-  display: flex;
-  margin-top: 3%;
-  margin-bottom: 3%;
+.button:active {
+  background: linear-gradient(90deg, #db6300 0%, #e86700 100%);
+  box-shadow: 0 2rpx 8rpx rgba(237, 108, 0, 0.15);
+  transform: translateY(2rpx);
 }
 
-.comments {
-  margin-top: 30rpx;
-}
+/* ============================================================================
+ * 响应式设计
+ * ============================================================================ */
 
-.user-comment {
-  display: flex; /* 使用 Flex 布局 */
-  flex-direction: column; /* 主轴方向为垂直方向 */
-  border-top: 1px solid rgb(202, 202, 202);
-  border-bottom: 1px solid rgb(202, 202, 202);
-}
+@media (max-width: 600rpx) {
+  /* 块容器响应式 */
+  .block-container {
+    margin: 16rpx 16rpx;
+    padding: 24rpx 20rpx;
+  }
 
-.user-container {
-  align-items: center; /* 在交叉轴上居中对齐，确保子元素在垂直方向上位于同一水平高度 */
-  margin-top: 3%;
-  margin-bottom: 3%;
-}
+  .block-title {
+    font-size: 30rpx;
+  }
 
-.avatar-name {
-  display: flex;
-  align-items: center;
-}
+  .block-more {
+    font-size: 24rpx;
+    padding: 6rpx 12rpx;
+  }
 
-.reply-container {
-  margin-top: 3%;
-  margin-bottom: 3%;
-  margin-left: 10%;
-  align-items: center; /* 在交叉轴上居中对齐，确保子元素在垂直方向上位于同一水平高度 */
-}
+  .block-main {
+    font-size: 26rpx;
+  }
 
-.img {
-  width: 80rpx;
-  height: 80rpx;
-  border-radius: 60rpx;
-}
+  /* 选项卡响应式 */
+  .tabs {
+    margin: 16rpx 16rpx 0 16rpx;
+  }
 
-.name {
-  margin-left: 30rpx;
-  font-size: small;
-}
+  .tab {
+    padding: 20rpx 0;
+  }
 
-.comment {
-  margin-top: 3px; /* 设置评论部分与头像、姓名的间距 */
-  font-size: smaller;
-}
+  .tab-text {
+    font-size: 26rpx;
+  }
 
-.reply {
-  margin-top: 3px; /* 设置回复部分与头像、姓名的间距 */
-  margin-bottom: 3%;
-  font-size: small;
-}
+  .tab-content {
+    padding: 0 16rpx 32rpx 16rpx;
+  }
 
-.expand-conatainer {
-  display: flex;
-  justify-content: space-between;
-}
+  /* 按钮响应式 */
+  .videoOrLive {
+    padding: 20rpx 24rpx;
+    font-size: 26rpx;
+  }
 
-.expand {
-  font-size: small;
-  color: rgb(126, 125, 125);
-}
+  .button-update {
+    padding: 10rpx 20rpx;
+    font-size: 24rpx;
+  }
 
-.deleteComment {
-  font-size: small;
-  color: rgb(241, 13, 13);
-}
+  /* 比赛赛况表格响应式 */
+  .match-action-cell {
+    padding: 20rpx 8rpx;
+    font-size: 24rpx;
+    min-height: 70rpx;
+  }
 
-.deleteReply {
-  margin-left: 43%;
-  font-size: small;
-  color: rgb(241, 13, 13);
-}
+  /* 收藏按钮响应式 */
+  .favorite-button {
+    width: 56rpx;
+    height: 56rpx;
+  }
 
-.like {
-  font-size: small;
-}
-
-.like-img {
-  margin-left: 50%;
-  width: 60rpx;
-  height: 60rpx;
-  border-radius: 60rpx;
-}
-
-.liked-img {
-  margin-left: 50%;
-  width: 60rpx;
-  height: 60rpx;
-  border-radius: 60rpx;
+  .favorite-icon {
+    width: 36rpx;
+    height: 36rpx;
+  }
 }

@@ -243,7 +243,7 @@ Page({
       console.log("queryString->")
       console.log(queryString)
       wx.navigateTo({
-        url: `/pages/profile_player/profile_coach_edit/profile_coach_edit?${queryString}`
+        url: `/package-coach/pages/profile_coach_edit/profile_coach_edit?${queryString}`
       })
     },
 
@@ -264,7 +264,7 @@ Page({
 
   gotoTeamsPage(e) {
     wx.navigateTo({
-      url: `coach_teams/coach_teams?coachId=${this.data.coachId}`,
+      url: `/package-coach/pages/coach_teams/coach_teams?coachId=${this.data.coachId}`,
     })
   },
 
@@ -284,13 +284,13 @@ Page({
 
   gotoRegisterPage() {
     wx.navigateTo({
-      url: '../profile_coach_register/profile_coach_register',
+      url: '/package-coach/pages/profile_coach_register/profile_coach_register',
     })
   },
 
   gotoCoachNoticePage() {
     wx.navigateTo({
-      url: '/pages/profile_player/profile_coach_notice/profile_coach_notice',
+      url: '/package-coach/pages/profile_coach_notice/profile_coach_notice',
     })
   },
 

@@ -1,10 +1,10 @@
 <view class="section-header">
   <view class="buttons">
-    <view wx:if="{{!favorited}}">
-      <image class="icon" src="/assets/unfavorited.png" mode="scaleToFill" bind:tap="favorite" />
+    <view wx:if="{{!favorited}}" class="favorite-button" bind:tap="favorite">
+      <image class="favorite-icon" src="/assets/unfavorited.png" mode="scaleToFill" />
     </view>
-    <view wx:if="{{favorited}}">
-      <image class="icon" src="/assets/favorited.png" mode="scaleToFill" bind:tap="unfavorite" />
+    <view wx:if="{{favorited}}" class="favorite-button" bind:tap="unfavorite">
+      <image class="favorite-icon" src="/assets/favorited.png" mode="scaleToFill" />
     </view>
   </view>
 
@@ -14,7 +14,7 @@
 <view class="block-container" wx:if="{{isReferee}}">
   <view class="block-top">
     <text class="block-title">更新比赛信息</text>
-    <text class="block-more button-update" bind:tap="gotoMatchRefereePage">裁判页面</text>
+    <text class="button-update" bind:tap="gotoMatchRefereePage">裁判页面</text>
   </view>
   <view class="block-main">
     <text>您的身份为本场比赛的管理员或裁判，可通过“裁判页面”按钮，进入裁判页面，对比赛信息进行更改。</text>
@@ -22,9 +22,18 @@
 </view>
 
 <view class="tabs">
-  <view class="tab,{{activeIndex==0?'active':''}}" data-index="0" bindtap="switchTab">基本信息</view>
-  <view class="tab,{{activeIndex==1?'active':''}}" data-index="1" bindtap="switchTab">直播/回放</view>
-  <view class="tab,{{activeIndex==2?'active':''}}" data-index="2" bindtap="switchTab">比赛赛况</view>
+  <view class="tab {{activeIndex==0?'active':''}}" data-index="0" bindtap="switchTab">
+    <text class="tab-text">基本信息</text>
+    <view class="tab-indicator {{activeIndex==0?'active':''}}"></view>
+  </view>
+  <view class="tab {{activeIndex==1?'active':''}}" data-index="1" bindtap="switchTab">
+    <text class="tab-text">直播/回放</text>
+    <view class="tab-indicator {{activeIndex==1?'active':''}}"></view>
+  </view>
+  <view class="tab {{activeIndex==2?'active':''}}" data-index="2" bindtap="switchTab">
+    <text class="tab-text">比赛赛况</text>
+    <view class="tab-indicator {{activeIndex==2?'active':''}}"></view>
+  </view>
 </view>
 
 <view class="tab-content">
@@ -143,15 +152,22 @@
   <view wx:if="{{activeIndex == 2}}">
     <view class="block-container">
       <view class="block-main">
-        <view wx:if="{{matchPlayerActionList.length == 0}}" style="margin: 0 20rpx;">
+        <view wx:if="{{matchPlayerActionList.length == 0}}" class="empty-state">
           <text>暂无进球、助攻或红黄牌信息</text>
         </view>
-        <view wx:for="{{matchPlayerActionList}}" wx:key="index">
-          <view>时间：{{item.time}}min: </view>
-          <view>球队：{{item.teamId == homeTeam.teamId ? homeTeam.name : awayTeam.name}}</view>
-          <view>球员：{{item.player.number}}号 {{item.player.name}}</view>
-          <view>{{item.action}}</view>
-          <view>----------</view>
+        <view wx:else class="match-action-table">
+          <view class="match-action-row header">
+            <view class="match-action-cell">时间</view>
+            <view class="match-action-cell">球队</view>
+            <view class="match-action-cell">球员</view>
+            <view class="match-action-cell">动作</view>
+          </view>
+          <view wx:for="{{matchPlayerActionList}}" wx:key="index" class="match-action-row">
+            <view class="match-action-cell">{{item.time}}min</view>
+            <view class="match-action-cell">{{item.teamId == homeTeam.teamId ? homeTeam.name : awayTeam.name}}</view>
+            <view class="match-action-cell">{{item.player.number}}号 {{item.player.name}}</view>
+            <view class="match-action-cell action">{{item.action}}</view>
+          </view>
         </view>
       </view>
     </view>

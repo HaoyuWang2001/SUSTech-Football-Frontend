@@ -5,9 +5,13 @@ const userId = appInstance.globalData.userId
 const {
   formatTime
 } = require("../../../utils/timeFormatter")
+import { Colors, Shadows, Gradients } from '../../../utils/colors.js'
 
 Page({
   data: {
+    colors: Colors,
+    shadows: Shadows,
+    gradients: Gradients,
     activeIndex: 0,
     id: 0,
 

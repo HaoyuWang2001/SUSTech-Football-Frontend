@@ -257,16 +257,9 @@ Page({
     })
   },
 
-
-  gotoProfileRefereePage() {
-    wx.navigateTo({
-      url: '/pages/profile_player/profile_referee/profile_referee',
-    })
-  },
-
   gotoPlayerNoticePage() {
     wx.navigateTo({
-      url: '/pages/profile_player/player_notice/player_notice',
+      url: '/package-player/pages/player_notice/player_notice',
     })
   },
 
@@ -285,9 +278,9 @@ Page({
     })
   },
 
-  gotoPlayerTeamsPage(e) {
+  gotoPlayerTeamsPage: function (e) {
     wx.navigateTo({
-      url: `player_teams/player_teams?playerId=${this.data.playerId}`,
+      url: `/package-player/pages/player_teams/player_teams?playerId=${this.data.playerId}`,
     })
   },
 
@@ -305,9 +298,9 @@ Page({
     })
   },
 
-  gotoRegisterPage() {
+  gotoRegisterPage: function () {
     wx.navigateTo({
-      url: './profile_player_register/profile_player_register',
+      url: '/package-player/pages/profile_player_register/profile_player_register',
     })
   },
 
