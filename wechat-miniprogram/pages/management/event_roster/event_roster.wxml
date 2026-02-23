@@ -41,7 +41,7 @@
   </view>
 
   <!-- 操作栏 -->
-  <view class="action-bar" wx:if="{{!isExpired && allPlayers.length > 0}}">
+  <view class="action-bar" wx:if="{{!isExpired && allPlayers}}">
     <view class="action-left">
       <text class="player-count">共 {{allPlayers.length}} 名球员</text>
     </view>

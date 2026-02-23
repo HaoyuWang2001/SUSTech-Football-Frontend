@@ -553,7 +553,8 @@ Page({
     })
   },
 
-  gotoCoachPage: function (id) {
+  gotoCoachPage: function (e) {
+    const id = e.currentTarget.dataset.id
     wx.navigateTo({
       url: '/pages/pub/user/coach/coach?id=' + id,
     })

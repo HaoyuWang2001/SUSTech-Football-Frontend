@@ -6,6 +6,7 @@
     <view class="block-main">
       <view>您可以在本页面：</view>
       <view>- 查看球队相关的通知</view>
+      <view>- 查看参与的赛事并设置大名单</view>
       <view>- 创建新球队</view>
       <view>- 编辑或删除您的球队</view>
     </view>
@@ -41,8 +42,8 @@
   <!-- 球队列表 -->
   <view class="team-card-container">
     <block wx:for="{{teamList}}" wx:key="teamId">
-      <team-card-big name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerList.length}}" teamId="{{item.teamId}}">
-        <view style="display: flex; flex-direction: column; align-items: flex-end; padding-right: 30rpx;">
+      <team-card-big name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerList.length}}" teamId="{{item.teamId}}" has_button="{{true}}">
+        <view>
           <view class="check-btn" bindtap="gotoEditTeam" data-id="{{item.teamId}}">编辑</view>
           <view class="delete-btn" bindtap="showCancelModal" data-id="{{item.teamId}}">删除</view>
         </view>

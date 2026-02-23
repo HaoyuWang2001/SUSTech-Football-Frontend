@@ -7,38 +7,45 @@
 }
 
 .check-btn {
-  background-color: #ed6c00; /* 原为青绿色 */
-  /* 按钮背景颜色 */
+  /* 橙色安全按钮 - 编辑操作 */
+  background: linear-gradient(135deg, #ed6c00 0%, #ff8c32 100%);
   color: white;
-  /* 文字颜色 */
-  padding: 5px 10px;
-  /* 按钮内边距 */
+  padding: 8rpx 24rpx;
   border: none;
-  /* 去除按钮边框 */
-  border-radius: 5px;
-  /* 按钮圆角 */
+  border-radius: 12rpx;
   cursor: pointer;
-  /* 鼠标样式 */
   margin-bottom: 20rpx;
-  margin-right: 20rpx;
-  font-size: small;
+  font-size: 28rpx;
+  box-shadow: 0 4rpx 12rpx rgba(237, 108, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
+  text-align: center;
+}
+
+.check-btn:active {
+  background: linear-gradient(135deg, #cc5c00 0%, #e67a29 100%);
+  box-shadow: 0 2rpx 6rpx rgba(237, 108, 0, 0.3);
+  transform: translateY(2rpx);
 }
 
 .delete-btn {
-  background-color: red;
-  /* 按钮背景颜色 */
+  /* 红色危险按钮 - 删除操作 */
+  background: linear-gradient(135deg, #ff4444 10%, #ff8c32 100%);
   color: white;
-  /* 文字颜色 */
-  padding: 5px 10px;
-  /* 按钮内边距 */
+  padding: 8rpx 24rpx;
   border: none;
-  /* 去除按钮边框 */
-  border-radius: 5px;
-  /* 按钮圆角 */
+  border-radius: 12rpx;
   cursor: pointer;
-  /* 鼠标样式 */
-  margin-right: 20rpx;
-  font-size: small;
+  font-size: 28rpx;
+  font-weight: 500;
+  box-shadow: 0 4rpx 12rpx rgba(255, 68, 68, 0.2);
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
+  text-align: center;
+}
+
+.delete-btn:active {
+  background: linear-gradient(135deg, #e03c3c 0%, #e67a29 100%);
+  box-shadow: 0 2rpx 6rpx rgba(255, 68, 68, 0.3);
+  transform: translateY(2rpx);
 }
 
 .notification-container {

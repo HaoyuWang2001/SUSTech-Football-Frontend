@@ -16,7 +16,8 @@
     "ignoreUploadUnusedFiles": true,
     "ignoreDevUnusedFiles": false,
     "minifyWXSS": true,
-    "minifyWXML": true
+    "minifyWXML": true,
+    "condition": false
   },
   "condition": {},
   "editorSetting": {

@@ -8,7 +8,6 @@
   cursor: pointer;
   margin-bottom: 20rpx;
   font-size: 28rpx;
-  font-weight: ;
   box-shadow: 0 4rpx 12rpx rgba(237, 108, 0, 0.2);
   transition: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
   text-align: center;
@@ -22,7 +21,7 @@
 
 .delete-btn {
   /* 红色危险按钮 - 删除操作 */
-  background: linear-gradient(135deg, #ff4444 0%, #ff8c32 100%);
+  background: linear-gradient(135deg, #ff4444 10%, #ff8c32 100%);
   color: white;
   padding: 8rpx 24rpx;
   border: none;

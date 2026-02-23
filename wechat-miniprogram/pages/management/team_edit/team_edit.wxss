@@ -1,13 +1,4 @@
 /* pages/management/team_edit/team_edit.wxss */
-/* .block-container {
-  padding: 5rpx;
-  border: 1rpx solid #cccccc;
-  background-color: white;
-  border-radius: 20rpx;
-  margin-bottom: 20rpx;
-  width: 95%;
-} */
-
 .block-space {
   border-top: 1px solid rgb(202, 202, 202);
   margin-top: 20rpx;
@@ -21,7 +12,7 @@
 .info-container {
   display: flex; /* 使用 Flexbox 布局 */
   justify-content: space-around; /* 水平对齐，元素间距会自动填充 */
-  margin: 10rpx;
+  align-items: center;
   padding: 20rpx;
   width: 90%;
 }
@@ -87,27 +78,22 @@
   margin-bottom: 3%;
 }
 
-.title {
-  margin-left: 3%;
-  margin-top: 3%;
-  margin-bottom: 3%;
-}
-
 .image {
   margin-left: auto;
   width: 120rpx;
   height: 120rpx;
+  border-radius: 50%;
 }
 
 .confirm-btn{
-  border: none; /* 去除按钮边框 */
-  border-radius: 20px; /* 圆角 */
-  cursor: pointer; /* 鼠标样式 */
-  transition: background-color 0.3s ease; /* 背景色过渡效果 */
-  background-color: #eb6c00; /* 确认修改按钮背景色 */
-  color: white; /* 文字颜色 */
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  background-color: #eb6c00;
+  color: white; 
   font-size: medium;
-  max-width: 50%;
+  max-width: 40%;
+  margin: 20rpx 0 60rpx 0;
 }
 
 .icon {
@@ -160,7 +146,6 @@
   height: 50rpx;
   border-radius: 20rpx;
 }
-
 
 modal {
   position: fixed;
