@@ -5,12 +5,11 @@
     <view class="name-container">
       <text class="name">{{name}}</text>
     </view>
-    <view>
+    <view class="role-container">
       <image wx:if="{{isPlayer || isReferee || isCoach}}" class="icon" src="/assets/verified.png"></image>
       <text wx:if="{{isPlayer}}" class="role">{{"球员"}}</text>
       <text wx:if="{{isReferee}}" class="role">{{"裁判"}}</text>
       <text wx:if="{{isCoach}}" class="role">{{"教练"}}</text>
-      <text class="role">{{""}}</text>
     </view>
   </view>
 </view>

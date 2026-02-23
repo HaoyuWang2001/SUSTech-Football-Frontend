@@ -1,53 +1,116 @@
-/* components/palyer-card-big/player.wxss */
+/* components/user-card-big/user.wxss - 现代化设计 (使用橙色系颜色设计系统) */
 
 .container {
   margin: 8rpx;
-  background-color: #fff;
-  border-radius: 10rpx;
-  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.4);
-  padding: 15rpx 0rpx 15rpx 8rpx;
+  background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%); /* Gradients.background */
+  border-radius: 16rpx; /* Tokens.borderRadiusMedium */
+  border: 2rpx solid rgba(237, 108, 0, 0.12); /* Borders.card */
+  box-shadow: 0 4rpx 24rpx rgba(237, 108, 0, 0.1); /* Shadows.card */
+  padding: 20rpx 16rpx;
   display: flex;
   flex-direction: row;
   align-items: center;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6rpx;
+  background: linear-gradient(90deg, #ed6c00 0%, #ff8c32 100%); /* Gradients.primary */
+  border-radius: 16rpx 16rpx 0 0;
+}
+
+.container:active {
+  transform: translateY(2rpx);
+  box-shadow: 0 2rpx 16rpx rgba(237, 108, 0, 0.08); /* Shadows.small */
+  border-color: rgba(237, 108, 0, 0.25); /* Colors.primaryAlpha25 */
 }
 
 .image {
   flex: 0 0 auto;
   width: 100rpx;
   height: 100rpx;
-  margin: 16rpx;
-  border-radius: 100rpx;
+  margin: 8rpx 16rpx 8rpx 8rpx;
+  border-radius: 50%; /* Tokens.borderRadiusRound */
+  background: #f8f8f8;
+  border: 3rpx solid rgba(237, 108, 0, 0.1); /* Colors.primaryAlpha12 */
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  object-fit: cover;
+}
+
+.container:active .image {
+  transform: scale(0.95);
+  border-color: rgba(237, 108, 0, 0.25); /* Colors.primaryAlpha25 */
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.06);
 }
 
 .sub-container {
-  flex: 0 0 auto;
+  flex: 1;
   margin-left: 16rpx;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  min-height: 100rpx;
 }
 
 .name-container {
-  width: 300rpx;
+  width: 280rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  margin-bottom: 8rpx;
 }
 
 .name {
-  font-size: medium;
-  font-weight: bold;
+  font-size: 32rpx; /* Tokens.fontSizeLarge */
+  font-weight: 600;
+  color: #ed6c00; /* Colors.primary */
+  line-height: 1.3;
+  letter-spacing: 0.3rpx;
+  transition: all 0.3s ease;
+}
+
+.container:active .name {
+  color: #ff8c32; /* Colors.primaryLight */
 }
 
 .icon {
-  width: 40rpx;
-  height: 40rpx;
+  width: 36rpx;
+  height: 36rpx;
   vertical-align: middle;
-  padding: 0 24rpx 0 0;
+  margin-right: 12rpx;
+  filter: drop-shadow(0 2rpx 4rpx rgba(237, 108, 0, 0.3));
 }
 
 .role {
-  font-size: small;
-  color: #666;
-  padding: 0 30rpx 0 0;
+  font-size: 26rpx; /* Tokens.fontSizeSmall */
+  color: #666666; /* Colors.grayDark */
+  font-weight: 500;
+  letter-spacing: 0.2rpx;
+  display: inline-block;
+  padding: 4rpx 12rpx;
+  background-color: rgba(237, 108, 0, 0.08); /* Colors.primaryAlpha12 变体 */
+  border-radius: 8rpx; /* Tokens.borderRadiusSmall */
+  margin-right: 8rpx;
+}
+
+.container:active .role {
+  background-color: rgba(237, 108, 0, 0.15); /* Colors.primaryAlpha25 变体 */
+  color: #ed6c00; /* Colors.primary */
+}
+
+/* 优化角色容器布局 */
+.role-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8rpx;
 }
 
