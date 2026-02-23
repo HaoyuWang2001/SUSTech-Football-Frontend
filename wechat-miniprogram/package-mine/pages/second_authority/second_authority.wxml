@@ -34,7 +34,7 @@
   </view>
   <view class="function-container">
     <view bindtap="gotoThirdLevelAuthorityPage" class="function-button">
-      <image src="/assets/coach.png" mode="scaleToFill" class="function-image" />
+      <image src="/assets/coach_selected.png" mode="scaleToFill" class="function-image" />
       <text class="function-text">三级权限</text>
     </view>
     <view bindtap="showChangePasswordModal" class="function-button">

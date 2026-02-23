@@ -44,7 +44,6 @@ Page({
       return;
     }
 
-    // 假设有一个登录 API
     wx.request({
       url: `${URL}/authority/check/first`,
       method: 'POST',
@@ -54,12 +53,9 @@ Page({
       },
       success: (res) => {
         if (res.statusCode == 200 && res.data == true) {
-          wx.navigateBack({
-            complete: () => {
-              wx.navigateTo({
-                url: '/pages/mine/sport_center/sport_center?username=' + username,
-              });
-            }
+          console.log("登录成功")
+          wx.redirectTo({
+            url: `/package-mine/pages/sport_center/sport_center?username=${username}`,
           });
         } else {
           wx.showToast({

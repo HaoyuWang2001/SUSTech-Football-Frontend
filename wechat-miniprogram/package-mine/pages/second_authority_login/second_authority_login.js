@@ -57,12 +57,9 @@ Page({
       },
       success: (res) => {
         if (res.statusCode == 200 && res.data != -1) {
-          wx.navigateBack({
-            complete: () => {
-              wx.navigateTo({
-                url: `/pages/mine/second_authority/second_authority?authorityId=${res.data}&username=${username}`,
-              });
-            }
+          console.log("登录成功")
+          wx.redirectTo({
+            url: `/package-mine/pages/second_authority/second_authority?authorityId=${res.data}&username=${username}`,
           });
         } else {
           wx.showToast({

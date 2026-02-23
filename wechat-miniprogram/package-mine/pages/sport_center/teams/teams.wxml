@@ -24,9 +24,7 @@
   </view>
 </view>
 
-  <team-card-big wx:for="{{teamList}}" wx:key="teamId" name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerList.length}}" teamId="{{item.teamId}}">
-    <view style="display: flex; flex-direction: column; align-items: flex-end; padding-right: 30rpx;">
-      <view class="check-btn" bindtap="gotoEditTeam" data-id="{{item.teamId}}">编辑</view>
-      <view class="delete-btn" bindtap="showCancelModal" data-id="{{item.teamId}}">删除</view>
-    </view>
+  <team-card-big wx:for="{{teamList}}" wx:key="teamId" name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerList.length}}" teamId="{{item.teamId}}" has_button="{{true}}">
+    <view class="check-btn" bindtap="gotoEditTeam" data-id="{{item.teamId}}">编辑</view>
+    <view class="delete-btn" bindtap="showCancelModal" data-id="{{item.teamId}}">删除</view>
   </team-card-big>

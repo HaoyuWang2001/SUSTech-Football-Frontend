@@ -197,7 +197,7 @@ Page({
         console.log("mine page: postUserInfo->")
         console.log(res.data)
         if (res.statusCode !== 200) {
-          console.log("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
+          console.error("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
           return
         }
         that.setData({
@@ -206,7 +206,7 @@ Page({
         })
       },
       fail(err) {
-        console.log('请求失败', err);
+        console.error('请求失败', err);
       },
       complete() {}
     });
@@ -246,7 +246,7 @@ Page({
         console.log("mine page: userInfo->")
         console.log(res.data)
         if (res.statusCode !== 200) {
-          console.log("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
+          console.error("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
           return
         }
         that.setData({
@@ -255,7 +255,7 @@ Page({
         })
       },
       fail(err) {
-        console.log('请求失败', err);
+        console.error('请求失败', err);
       },
       complete() {}
     });
@@ -272,7 +272,7 @@ Page({
         console.log("mine page: playerId->")
         console.log(res.data)
         if (res.statusCode !== 200) {
-          console.log("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
+          console.error("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
           return
         }
         let playerId = res.data;
@@ -291,7 +291,7 @@ Page({
         that.fetchPlayerTeamApplications(playerId)
       },
       fail(err) {
-        console.log('请求失败', err);
+        console.error('请求失败', err);
       },
       complete() {}
     });
@@ -308,13 +308,13 @@ Page({
         console.log("mine page: fetch Player Matches->")
         console.log(res.data)
         if (res.statusCode !== 200) {
-          console.log("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
+          console.error("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
           return
         }
         that.formatPlayerMatches(res.data);
       },
       fail(err) {
-        console.log('请求失败', err);
+        console.error('请求失败', err);
       },
       complete() {}
     });
@@ -331,13 +331,13 @@ Page({
         console.log("mine page: fetch Player Team Invitations->")
         console.log(res.data)
         if (res.statusCode !== 200) {
-          console.log("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
+          console.error("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
           return
         }
         that.formatPlayerInvitations(res.data)
       },
       fail(err) {
-        console.log('请求失败', err);
+        console.error('请求失败', err);
       },
       complete() {}
     });
@@ -354,13 +354,13 @@ Page({
         console.log("mine page: fetch Player Team Applications->")
         console.log(res.data)
         if (res.statusCode !== 200) {
-          console.log("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
+          console.error("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
           return
         }
         that.formatApplications(res.data)
       },
       fail(err) {
-        console.log('请求失败', err);
+        console.error('请求失败', err);
       },
       complete() {}
     });
@@ -380,7 +380,7 @@ Page({
         console.log("mine page: CoachId->")
         console.log(res.data)
         if (res.statusCode !== 200) {
-          console.log("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
+          console.error("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
           return
         }
         let coachId = res.data;
@@ -393,7 +393,7 @@ Page({
         that.fetchCoachTeamInvitations(coachId)
       },
       fail(err) {
-        console.log('请求失败', err);
+        console.error('请求失败', err);
       },
       complete() {}
     });
@@ -410,13 +410,13 @@ Page({
         console.log("mine page: fetch Coach Matches->")
         console.log(res.data)
         if (res.statusCode !== 200) {
-          console.log("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
+          console.error("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
           return
         }
         that.formatCoachMatches(res.data);
       },
       fail(err) {
-        console.log('请求失败', err);
+        console.error('请求失败', err);
       },
       complete() {}
     });
@@ -433,13 +433,13 @@ Page({
         console.log("mine page: fetch Coach Invitations->")
         console.log(res.data)
         if (res.statusCode !== 200) {
-          console.log("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
+          console.error("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
           return
         }
         that.formatCoachInvitations(res.data);
       },
       fail(err) {
-        console.log('请求失败', err);
+        console.error('请求失败', err);
       },
       complete() {}
     });
@@ -459,7 +459,7 @@ Page({
         console.log("mine page: RefereeId->")
         console.log(res.data)
         if (res.statusCode !== 200) {
-          console.log("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
+          console.error("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
           return
         }
         let refereeId = res.data
@@ -474,7 +474,7 @@ Page({
 
       },
       fail(err) {
-        console.log('请求失败', err);
+        console.error('请求失败', err);
       },
       complete() {}
     });
@@ -491,13 +491,13 @@ Page({
         console.log("mine page: fetch Referee Match->")
         console.log(res.data)
         if (res.statusCode !== 200) {
-          console.log("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
+          console.error("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
           return
         }
         that.formatRefereeMatches(res.data);
       },
       fail(err) {
-        console.log('请求失败', err);
+        console.error('请求失败', err);
       },
       complete() {}
     });
@@ -520,7 +520,7 @@ Page({
         that.formatRefereeInvitationsForMatch(res.data);
       },
       fail(err) {
-        console.log('请求失败', err);
+        console.error('请求失败', err);
       },
       complete() {}
     });
@@ -537,13 +537,13 @@ Page({
         console.log("mine page: fetch Referee Invitations For Event->")
         console.log(res.data)
         if (res.statusCode !== 200) {
-          console.log("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
+          console.error("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
           return
         }
         that.formatRefereeInvitationsForEvent(res.data);
       },
       fail(err) {
-        console.log('请求失败', err);
+        console.error('请求失败', err);
       },
       complete() {}
     });
@@ -561,9 +561,9 @@ Page({
       },
       success(res) {
         console.log("mine page: manageTeam->")
-        console.log(res.data)
+        console.debug(res.data)
         if (res.statusCode !== 200) {
-          console.log("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
+          console.error("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
           return
         }
         let manageTeamIdList = res.data;
@@ -579,8 +579,6 @@ Page({
         })
         for (let index = 0; index < manageTeamNumber; index++) {
           const team = manageTeamIdList[index];
-          console.log("team->")
-          console.log(team.teamId)
           that.fetchManageTeamApplications(team.teamId, team.name);
           that.fetchManageTeamInvitationMatch(team.teamId, team.name);
           that.fetchManageTeamInvitationEvent(team.teamId, team.name);
@@ -588,7 +586,7 @@ Page({
         }
       },
       fail(err) {
-        console.log('请求失败', err);
+        console.error('请求失败', err);
       },
       complete() {}
     });
@@ -605,13 +603,13 @@ Page({
         console.log("mine page: fetch team application->")
         console.log(res.data)
         if (res.statusCode !== 200) {
-          console.log("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
+          console.error("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
           return
         }
         that.formatManageTeamApplication(res.data, teamName);
       },
       fail(err) {
-        console.log('请求失败', err);
+        console.error('请求失败', err);
       },
       complete() {}
     });
@@ -628,13 +626,13 @@ Page({
         console.log("mine page: fetch team invitations by match->")
         console.log(res.data)
         if (res.statusCode !== 200) {
-          console.log("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
+          console.error("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
           return
         }
         that.formatManageTeamInvitationMatch(res.data, teamName);
       },
       fail(err) {
-        console.log('请求失败', err);
+        console.error('请求失败', err);
       },
       complete() {}
     });
@@ -651,13 +649,13 @@ Page({
         console.log("mine page: fetch team invitations by event->")
         console.log(res.data)
         if (res.statusCode !== 200) {
-          console.log("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
+          console.error("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
           return
         }
         that.formatManageTeamInvitationEvent(res.data, teamName);
       },
       fail(err) {
-        console.log('请求失败', err);
+        console.error('请求失败', err);
       },
       complete() {}
     });
@@ -674,13 +672,13 @@ Page({
         console.log("mine page: fetch team invitations to player->")
         console.log(res.data)
         if (res.statusCode !== 200) {
-          console.log("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
+          console.error("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
           return
         }
         that.formatManageTeamInvitationPlayer(res.data, teamName);
       },
       fail(err) {
-        console.log('请求失败', err);
+        console.error('请求失败', err);
       },
       complete() {}
     });
@@ -697,7 +695,7 @@ Page({
         console.log("mine page: manageMatch->")
         console.log(res.data)
         if (res.statusCode !== 200) {
-          console.log("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
+          console.error("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
           return
         }
         let manageMatchIdList = res.data;
@@ -716,7 +714,7 @@ Page({
         }
       },
       fail(err) {
-        console.log('请求失败', err);
+        console.error('请求失败', err);
       },
       complete() {}
     });
@@ -733,13 +731,13 @@ Page({
         console.log("mine page: fetch match invitations to team->")
         console.log(res.data)
         if (res.statusCode !== 200) {
-          console.log("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
+          console.error("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
           return
         }
         that.formatManageMatchInvitationTeam(res.data);
       },
       fail(err) {
-        console.log('请求失败', err);
+        console.error('请求失败', err);
       },
       complete() {}
     });
@@ -756,7 +754,7 @@ Page({
         console.log("mine page: manageEvent->")
         console.log(res.data)
         if (res.statusCode !== 200) {
-          console.log("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
+          console.error("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
           return
         }
         let manageEventIdList = res.data;
@@ -775,7 +773,7 @@ Page({
         }
       },
       fail(err) {
-        console.log('请求失败', err);
+        console.error('请求失败', err);
       },
       complete() {}
     });
@@ -792,13 +790,13 @@ Page({
         console.log("mine page: fetch event invitations to team->")
         console.log(res.data)
         if (res.statusCode !== 200) {
-          console.log("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
+          console.error("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
           return
         }
         that.formatManageEventInvitationTeam(res.data);
       },
       fail(err) {
-        console.log('请求失败', err);
+        console.error('请求失败', err);
       },
       complete() {}
     });
