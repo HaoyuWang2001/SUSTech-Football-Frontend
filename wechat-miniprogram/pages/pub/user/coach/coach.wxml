@@ -1,14 +1,11 @@
-<view class="container1" wx:if="{{coachId}}">
-  <image src="https://www.sustech.edu.cn/uploads/images/2022/12/29170519_51471.jpg" mode="scaleToFill" style="height: 400rpx; width: 100%;" />
-  <view class="container2">
-    <view class="container3">
-      <image class="avatar" src="{{coach.photoUrl ? coach.photoUrl : '/assets/newplayer.png'}}" mode="scaleToFill"></image>
-    </view>
-    <view class="container4">
-      <text class="name">{{coach.name ? coach.name : '--'}}</text>
-      <text class="id">教练id：{{coachId}}</text>
-    </view>
-  </view>
+<view wx:if="{{coachId}}">
+  <user-card-big
+    name="{{coach.name || '--'}}"
+    img="{{coach.photoUrl || '/assets/newplayer.png'}}"
+    isCoach="true"
+    userId="{{coachId}}"
+    idLabel="教练ID："
+  />
 </view>
 
 <view class="block-container" wx:if="{{coachId}}">
@@ -38,7 +35,7 @@
 </view>
 
 <!-- 执教球队赛程 -->
-<view class="block-container">
+<view class="block-container modern-card">
   <view class="block-top">
     <text class="block-title">执教球队赛程</text>
     <text class="block-more" bind:tap="gotoMatchesPage" data-list="{{matchList}}" wx:if="{{matchList.length!=0}}">查看更多</text>
@@ -52,7 +49,7 @@
 </view>
 
 <!-- 执教球队相关赛事 -->
-<view class="block-container">
+<view class="block-container modern-card">
   <view class="block-top">
     <text class="block-title">执教球队相关赛事</text>
   </view>

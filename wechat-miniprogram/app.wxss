@@ -15,47 +15,53 @@ page {
   background-color: #F2F2F2;
 }
 
-/* -------------------- */
-/* Block */
+/* ========== 现代化卡片容器样式 ========== */
 .block-container {
-  padding: 30rpx;
-  border: 0 solid #e0e0e0;
-  border-width: 0 0 2rpx 0;
-  background-color: white;
-  margin-bottom: 0rpx;
+  /* margin: 20rpx 20rpx; */
+  /* border-radius: 24rpx; */
+  padding: 30rpx 30rpx 0 30rpx;
+  background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+  box-shadow:
+    0 16rpx 32rpx rgba(0, 0, 0, 0.06),
+    0 4rpx 12rpx rgba(0, 0, 0, 0.04),
+    inset 0 1rpx 0 rgba(255, 255, 255, 0.8);
+  overflow: hidden;
+  border: 4rpx solid rgba(237, 108, 0, 0.08);
+  transition: all 0.3s ease;
 }
 
 .block-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  padding: 30rpx 30rpx 20rpx;
+  border-bottom: 1rpx solid rgba(237, 108, 0, 0.2);
 }
 
 .block-title {
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 36rpx;
+  font-weight: 700;
   color: #000000;
-  display: flex;
-  flex-direction: row;
-  justify-items: flex-start;
-  align-items: center;
+  letter-spacing: 0.5rpx;
 }
 
 .block-more {
-  padding: 10rpx 0;
-  font-size: 14px;
-  color: #666;
-  display: flex;
-  flex-direction: row;
-  justify-items: flex-start;
-  align-items: center;
+  font-size: 26rpx;
+  color: rgb(237, 108, 0);
+  font-weight: 500;
+  padding: 10rpx 20rpx;
+  border-radius: 20rpx;
+  background: rgba(237, 108, 0, 0.08);
+  transition: all 0.2s ease;
+}
+
+.block-more:active {
+  background: rgba(237, 108, 0, 0.15);
+  transform: scale(0.98);
 }
 
 .block-main {
-  font-size: 14px;
-  color: #666;
-  padding: 5px 0;
+  padding: 40rpx 10rpx 40rpx 10rpx;
 }
 
 /* ---------------------- */

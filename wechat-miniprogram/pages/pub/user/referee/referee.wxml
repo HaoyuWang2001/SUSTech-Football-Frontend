@@ -1,17 +1,14 @@
-<view class="container1" wx:if="{{refereeId}}">
-  <image src="https://www.sustech.edu.cn/uploads/images/2022/12/29170514_43928.jpg" mode="scaleToFill" style="height: 400rpx; width: 100%;" />
-  <view class="container2">
-    <view class="container3">
-      <image class="avatar" src="{{referee.photoUrl ? referee.photoUrl : '/assets/newplayer.png'}}" mode="scaleToFill"></image>
-    </view>
-    <view class="container4">
-      <text class="name">{{referee.name ? referee.name : '--'}}</text>
-      <text class="id">裁判id：{{refereeId}}</text>
-    </view>
-  </view>
+<view wx:if="{{refereeId}}">
+  <user-card-big
+    name="{{referee.name || '--'}}"
+    img="{{referee.photoUrl || '/assets/newplayer.png'}}"
+    isReferee="true"
+    userId="{{refereeId}}"
+    idLabel="裁判ID："
+  />
 </view>
 
-<view class="block-container" wx:if="{{refereeId}}">
+<view class="block-container modern-card" wx:if="{{refereeId}}">
   <view class="block-top">
     <text class="block-title">裁判信息</text>
     <!-- <text class="block-more" bind:tap="edit_information">编辑</text> -->
@@ -24,7 +21,7 @@
 </view>
 
 <!-- 执法球队赛程 -->
-<view class="block-container">
+<view class="block-container modern-card">
   <view class="block-top">
     <text class="block-title">执法赛程</text>
     <text class="block-more" bind:tap="gotoMatchesPage" data-list="{{matchList}}" wx:if="{{matchList.length!=0}}">查看更多</text>
@@ -38,7 +35,7 @@
 </view>
 
 <!-- 执教球队相关赛事 -->
-<view class="block-container">
+<view class="block-container modern-card">
   <view class="block-top">
     <text class="block-title">执法赛事</text>
   </view>

@@ -164,7 +164,8 @@
     "user-card-big": "/components/user-card-big/user",
     "user-card-small": "/components/user-card-small/user",
     "team-card-big": "/components/team-card-big/team",
-    "team-card-small": "/components/team-card-small/team"
+    "team-card-small": "/components/team-card-small/team",
+    "user-profile-header": "/components/user-profile-header/user-profile-header"
   },
   "useExtendedLib": {
     "weui": true

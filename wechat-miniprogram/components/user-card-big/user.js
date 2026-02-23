@@ -5,7 +5,12 @@ Component({
     img: String,
     isPlayer: Boolean,
     isReferee: Boolean,
-    isCoach: Boolean
+    isCoach: Boolean,
+    userId: String,
+    idLabel: {
+      type: String,
+      value: 'ID：'
+    }
   },
 
   data: {

@@ -1,0 +1,28 @@
+<view class="user-profile-header {{headerClass}}">
+  <!-- 横幅图片区域 -->
+  <view class="banner-container">
+    <image
+      src="{{bannerImage}}"
+      mode="aspectFill"
+      class="banner-image"
+    />
+    <!-- 渐变遮罩层 -->
+    <view class="banner-overlay gradient-primary-fade"></view>
+  </view>
+
+  <!-- 头像和信息区域 -->
+  <view class="header-content white-bg">
+    <view class="avatar-container {{avatarContainerClass}} shadow-image radius-round overflow-hidden">
+      <image
+        src="{{avatarUrl ? avatarUrl : '/assets/newplayer.png'}}"
+        mode="scaleToFill"
+        class="avatar full-width full-height"
+      />
+    </view>
+
+    <view class="info-container">
+      <text class="name {{nameClass}} primary-color text-bold text-ellipsis">{{name ? name : '--'}}</text>
+      <text wx:if="{{showId}}" class="id {{idClass}} gray-dark-color">{{idLabel}}{{userId}}</text>
+    </view>
+  </view>
+</view>

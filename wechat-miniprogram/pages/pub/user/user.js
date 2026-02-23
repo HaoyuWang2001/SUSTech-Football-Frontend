@@ -1,5 +1,7 @@
 const app = getApp()
 const URL = app.globalData.URL
+// 导入颜色设计系统
+import { Colors, Shadows, Gradients, Borders, Tokens } from '../../../utils/colors.js'
 // const {
 //   formatTime
 // } = require("../../../utils/timeFormatter")

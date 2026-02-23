@@ -11,5 +11,9 @@
       <text wx:if="{{isReferee}}" class="role">{{"裁判"}}</text>
       <text wx:if="{{isCoach}}" class="role">{{"教练"}}</text>
     </view>
+    <view class="id-container" wx:if="{{userId}}">
+      <text class="id-label">{{idLabel}}</text>
+      <text class="id-value">{{userId}}</text>
+    </view>
   </view>
 </view>

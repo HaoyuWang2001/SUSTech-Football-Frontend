@@ -1,37 +1,14 @@
-<view class="container1" wx:if="{{playerId}}">
-  <image src="https://www.sustech.edu.cn/uploads/images/2023/09/22155528_95528.jpg" mode="scaleToFill" style="height: 400rpx; width: 100%;" />
-  <view class="container2">
-    <view class="container3">
-      <image class="avatar" src="{{player.photoUrl ? player.photoUrl : '/assets/newplayer.png'}}" mode="scaleToFill"></image>
-    </view>
-    <view class="container4">
-      <text class="name">{{player.name ? player.name : '--'}}</text>
-      <text class="id">球员id：{{playerId}}</text>
-    </view>
-  </view>
+<view wx:if="{{playerId}}">
+  <user-card-big
+    name="{{player.name || '--'}}"
+    img="{{player.photoUrl || '/assets/newplayer.png'}}"
+    isPlayer="true"
+    userId="{{playerId}}"
+    idLabel="球员ID："
+  />
 </view>
 
-<!-- <view class="block-container">
-  <view class="block-top">
-    <text class="block-title">功能</text>
-  </view>
-  <view class="function-container">
-    <view bindtap="gotoProfileCoachPage" class="function-button">
-      <image src="/assets/coach.png" mode="scaleToFill" class="function-image" />
-      <text class="function-text">教练主页</text>
-    </view>
-    <view bindtap="gotoProfileRefereePage" class="function-button">
-      <image src="/assets/referee.png" mode="scaleToFill" class="function-image" />
-      <text class="function-text">裁判主页</text>
-    </view>
-    <view bindtap="openJoinTeamModal" class="function-button" wx:if="{{playerId}}">
-      <image src="/assets/statistic-team.png" mode="scaleToFill" class="function-image" />
-      <text class="function-text">加入球队</text>
-    </view>
-  </view>
-</view> -->
-
-<view class="block-container" wx:if="{{playerId}}">
+<view class="block-container modern-card" wx:if="{{playerId}}">
   <view class="block-top">
     <text class="block-title">球员信息</text>
     <!-- <text class="block-more" bind:tap="edit_information">编辑</text> -->
@@ -51,7 +28,7 @@
 </view>
 
 <!-- 我的球队 -->
-<view class="block-container">
+<view class="block-container modern-card">
   <view class="block-top">
     <text class="block-title">球队</text>
     <text class="block-more" bind:tap="gotoTeamsPage" data-list="{{teamList}}" wx:if="{{teamList.length!=0}}">查看更多</text>
@@ -65,7 +42,7 @@
 </view>
 
 <!-- 我的赛程 -->
-<view class="block-container">
+<view class="block-container modern-card">
   <view class="block-top">
     <text class="block-title">赛程</text>
     <text class="block-more" bind:tap="gotoMatchesPage" data-list="{{matchList}}" wx:if="{{matchList.length!=0}}">查看更多</text>
@@ -79,7 +56,7 @@
 </view>
 
 <!-- 我的赛事 -->
-<view class="block-container">
+<view class="block-container modern-card">
   <view class="block-top">
     <text class="block-title">赛事</text>
   </view>

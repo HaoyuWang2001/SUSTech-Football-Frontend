@@ -1,0 +1,89 @@
+/* 用户页面公共样式 */
+/* 导入颜色设计系统混入类 */
+@import '../../../styles/mixins.wxss';
+
+/* ============================================================================
+ * 功能按钮区域
+ * ============================================================================ */
+
+/* .function-container {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: flex-start !important;
+  padding: 20rpx 0 !important;
+} */
+
+/* .function-button {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  padding: 32rpx 24rpx !important;
+  margin: 12rpx !important;
+  min-width: 140rpx !important;
+  border-radius: 20rpx !important;
+  background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%) !important;
+  border: 2rpx solid rgba(237, 108, 0, 0.12) !important;
+  box-shadow: 0 4rpx 16rpx rgba(237, 108, 0, 0.08) !important;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1) !important;
+} */
+/* 
+.function-button:active {
+  transform: translateY(2rpx) !important;
+  box-shadow: 0 2rpx 8rpx rgba(237, 108, 0, 0.12) !important;
+  border-color: rgba(237, 108, 0, 0.25) !important;
+}
+
+.function-image {
+  width: 80rpx !important;
+  height: 80rpx !important;
+  margin-bottom: 16rpx !important;
+  filter: drop-shadow(0 2rpx 4rpx rgba(237, 108, 0, 0.2));
+}
+
+.function-text {
+  font-size: 26rpx !important;
+  color: #ed6c00 !important;
+  font-weight: 500 !important;
+} */
+
+/* ============================================================================
+ * 信息区域
+ * ============================================================================ */
+
+.info-section {
+  width: 100% !important;
+  padding: 24rpx !important;
+}
+
+.info-section text {
+  display: block !important;
+  margin-bottom: 16rpx !important;
+  font-size: 28rpx !important;
+  color: #333333 !important;
+  line-height: 1.5 !important;
+}
+
+.no-favorite {
+  text-align: center !important;
+  color: #cccccc !important;
+  font-size: 28rpx !important;
+  padding: 48rpx 24rpx !important;
+}
+
+/* ============================================================================
+ * 响应式调整
+ * ============================================================================ */
+
+@media (max-width: 768rpx) {
+  .block-container {
+    margin: 24rpx 16rpx;
+  }
+
+  .block-top {
+    padding: 20rpx 24rpx;
+  }
+
+  .block-main {
+    padding: 24rpx;
+  }
+}

@@ -1,18 +1,16 @@
-<view class="container1">
-  <image src="https://www.sustech.edu.cn/uploads/images/2024/04/12141752_38075.jpg" mode="aspectFill" style="height: 400rpx; width: 100%;" />
-  <!-- <image src="https://www.sustech.edu.cn/uploads/images/2024/04/12141743_12804.jpg" mode="aspectFill" style="height: 400rpx; width: 100%;" /> -->
-  <view class="container2">
-    <view class="container3">
-      <image class="avatar" src="{{user.avatarUrl ? user.avatarUrl : '/assets/newplayer.png'}}" mode="scaleToFill"></image>
-    </view>
-    <view class="container4">
-      <text class="name">{{user.nickName ? user.nickName : '--'}}</text>
-      <text class="id">用户id：{{user.userId}}</text>
-    </view>
-  </view>
+<view wx:if="{{user}}">
+  <user-card-big
+    name="{{user.nickName || '--'}}"
+    img="{{user.avatarUrl || '/assets/newplayer.png'}}"
+    isPlayer="{{user.playerRole}}"
+    isCoach="{{user.coachRole}}"
+    isReferee="{{user.refereeRole}}"
+    userId="{{user.userId}}"
+    idLabel="用户ID："
+  />
 </view>
 
-<view class="block-container">
+<view class="block-container modern-card">
   <view class="block-top">
     <text class="block-title">身份</text>
   </view>

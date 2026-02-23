@@ -1,0 +1,103 @@
+/* 导入颜色设计系统混入类 */
+@import '../../styles/mixins.wxss';
+
+.user-profile-header {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* 横幅区域 */
+.banner-container {
+  position: relative;
+  height: 400rpx;
+  width: 100%;
+  overflow: hidden;
+}
+
+.banner-image {
+  width: 100%;
+  height: 100%;
+}
+
+.banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+}
+
+/* 头部内容区域 */
+.header-content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+  position: relative;
+  padding-bottom: 50rpx;
+}
+
+/* 头像容器 */
+.avatar-container-normal {
+  width: 200rpx;
+  height: 200rpx;
+  margin-top: -100rpx;
+  margin-left: 50rpx;
+  background-color: #ffffff;
+}
+
+.avatar-container-large {
+  width: 240rpx;
+  height: 240rpx;
+  margin-top: -120rpx;
+  margin-left: 50rpx;
+  background-color: #ffffff;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+}
+
+/* 信息容器 */
+.info-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 50rpx;
+  padding-top: 20rpx;
+  flex: 1;
+  min-width: 0; /* 允许文本溢出处理 */
+}
+
+/* 名称样式 */
+.name-normal {
+  font-size: x-large;
+  font-weight: bold;
+  max-width: 300rpx;
+}
+
+.name-large {
+  font-size: xx-large;
+  font-weight: bold;
+  max-width: 400rpx;
+}
+
+/* ID样式 */
+.id-normal {
+  font-size: normal;
+  margin-top: 8rpx;
+}
+
+.id-large {
+  font-size: large;
+  margin-top: 12rpx;
+}
+
+/* 文本溢出处理 */
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
