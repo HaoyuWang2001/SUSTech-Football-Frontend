@@ -82,3 +82,21 @@
   margin-top: 20rpx;
   width: 100%;
 }
+
+/* 号码样式 */
+.number-container {
+  position: absolute;
+  top: 10rpx;
+  left: 10rpx;
+  background-color: rgba(237, 108, 0, 0.9);
+  color: white;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24rpx;
+  font-weight: bold;
+  z-index: 2;
+}

@@ -1,5 +1,9 @@
 <view class="player-card">
   <image src="{{img}}" mode="scaleToFill" class="img"/>
+  <!-- 号码显示区域：number存在且不为0时显示 -->
+  <view class="number-container" wx:if="{{number !== undefined && number !== null && number !== 0}}">
+    <text class="number">{{number}}</text>
+  </view>
   <text class="name">{{name}}</text>
 
   <view class="buttons">

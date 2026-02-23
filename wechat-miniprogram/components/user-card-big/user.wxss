@@ -1,11 +1,11 @@
 /* components/palyer-card-big/player.wxss */
 
 .container {
-  margin: 10rpx;
+  margin: 8rpx;
   background-color: #fff;
   border-radius: 10rpx;
   box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.4);
-  padding: 20rpx 0rpx 20rpx 10rpx;
+  padding: 15rpx 0rpx 15rpx 8rpx;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -13,21 +13,21 @@
 
 .image {
   flex: 0 0 auto;
-  width: 120rpx;
-  height: 120rpx;
-  margin: 20rpx;
+  width: 100rpx;
+  height: 100rpx;
+  margin: 16rpx;
   border-radius: 100rpx;
 }
 
 .sub-container {
   flex: 0 0 auto;
-  margin-left: 20rpx;
+  margin-left: 16rpx;
   display: flex;
   flex-direction: column;
 }
 
 .name-container {
-  width: 400rpx;
+  width: 300rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

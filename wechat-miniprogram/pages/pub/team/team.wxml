@@ -61,6 +61,40 @@
         </view>
       </view>
     </view>
+
+    <!-- 球队统计信息 -->
+    <view class="block-container modern-card">
+      <view class="modern-card-header"></view>
+      <view class="block-top">
+        <text class="block-title primary-color text-bold">球队统计</text>
+      </view>
+      <view class="stats-grid">
+        <view class="stat-item">
+          <text class="stat-value">{{teamStats ? teamStats.eventCount : 0}}</text>
+          <text class="stat-label">赛事</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-value">{{teamStats ? teamStats.matchCount : 0}}</text>
+          <text class="stat-label">比赛</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-value">{{teamStats ? teamStats.totalGoalsScored : 0}}</text>
+          <text class="stat-label">总进球</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-value">{{teamStats ? teamStats.totalGoalsConceded : 0}}</text>
+          <text class="stat-label">总失球</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-value">{{teamStats ? teamStats.totalYellowCards : 0}}</text>
+          <text class="stat-label">黄牌</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-value">{{teamStats ? teamStats.totalRedCards : 0}}</text>
+          <text class="stat-label">红牌</text>
+        </view>
+      </view>
+    </view>
   </view>
 
   <view wx:if="{{activeIndex == 1}}">
@@ -79,6 +113,28 @@
   </view>
 
   <view wx:if="{{activeIndex == 2}}">
+    <!-- 教练团队卡片 -->
+    <view class="block-container modern-card" wx:if="{{coachList}}">
+      <view class="modern-card-header"></view>
+      <view class="block-top">
+        <text class="block-title primary-color text-bold">教练团队</text>
+      </view>
+      <view class="block-main">
+        <view class="coach-list">
+          <user-card-big
+            wx:for="{{coachList}}"
+            wx:key="coachId"
+            img="{{item.photoUrl}}"
+            name="{{item.name}}"
+            isCoach="true"
+            bind:tap="gotoCoachPage"
+            data-id="{{item.coachId}}">
+          </user-card-big>
+        </view>
+      </view>
+    </view>
+
+    <!-- 球员卡片 -->
     <view class="block-container modern-card">
       <view class="modern-card-header"></view>
       <view class="block-top">
@@ -91,31 +147,17 @@
             wx:key="playerId"
             img="{{item.photoUrl}}"
             name="{{item.name}}"
+            number="{{item.number}}"
             bind:tap="gotoPlayerPage"
             data-id="{{item.playerId}}">
           </player-card-small>
         </scroll-view>
 
-        <view class="table">
-          <!-- 表头 -->
-          <view class="row header">
-            <view class="cell"></view>
-            <view class="cell">球员</view>
-            <view class="cell">出场</view>
-            <view class="cell">进/助</view>
-            <view class="cell">黄/红</view>
-          </view>
-
-          <!-- 球员信息 -->
-          <view class="row" wx:for="{{playerList}}" wx:key="unique">
-            <view class="cell">{{item.number}}</view>
-            <view class="cell table" style="max-width: 250rpx;" bind:tap="gotoPlayerPage" data-id="{{item.playerId}}">
-              <image src="{{item.photoUrl}}" class="player-avatar cell"></image>
-              <text class="cell player-name">{{item.name}}</text>
-            </view>
-            <view class="cell">{{item.appearances}}</view>
-            <view class="cell">{{item.goals}}/{{item.assists}}</view>
-            <view class="cell">{{item.yellowCards}}/{{item.redCards}}</view>
+        <!-- 查看统计数据按钮 -->
+        <view class="stats-button-container">
+          <view class="stats-button modern-card" bind:tap="gotoPlayerStatsPage">
+            <text class="stats-button-text primary-color">查看详细统计数据</text>
+            <text class="stats-button-icon">→</text>
           </view>
         </view>
       </view>

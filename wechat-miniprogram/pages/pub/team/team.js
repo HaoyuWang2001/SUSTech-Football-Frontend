@@ -17,10 +17,12 @@ Page({
     captainId: String,
     coachList: Array,
     playerIdList: Array,
+    eventList: Array,
     matchList: Array,
     activeIndex: 0,
     favorited: Boolean,
     description: "",
+    teamStats: null,
     // 颜色设计系统常量（用于内联样式）
     Colors: Colors,
     Shadows: Shadows,
@@ -110,6 +112,7 @@ Page({
       success(res) {
         console.log("/team/get?id=" + id + " ->")
         console.log(res.data)
+        let eventList = res.data.eventList ?? []
         let matchList = res.data.matchList ?? []
         for (let match of matchList) {
           let date = new Date(match.time)
@@ -122,9 +125,11 @@ Page({
           captainId: res.data.captainId,
           coachList: res.data.coachList,
           playerList: res.data.playerList,
+          eventList: eventList,
           matchList: matchList,
           description: res.data.description
         })
+        that.calculateTeamStats()
       },
       fail(err) {
         console.log("请求失败：", err)
@@ -283,6 +288,66 @@ Page({
         }
       }
     })
+  },
+
+  // 跳转到教练页面
+  gotoCoachPage: function (e) {
+    const id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/pub/user/coach/coach?id=' + id
+    })
+  },
+
+  // 跳转到球员统计数据页面
+  gotoPlayerStatsPage() {
+    const playerList = this.data.playerList;
+    const teamName = this.data.name;
+    wx.navigateTo({
+      url: `/pages/pub/team/player_stats/player_stats?playerList=${JSON.stringify(playerList)}&teamName=${encodeURIComponent(teamName)}`,
+    });
+  },
+
+  // 计算球队统计信息
+  calculateTeamStats() {
+    const { playerList, matchList, eventList } = this.data;
+
+    // 球员统计数据汇总
+    const playerStats = {
+      totalGoals: playerList.reduce((sum, player) => sum + (player.goals || 0), 0),
+      totalAssists: playerList.reduce((sum, player) => sum + (player.assists || 0), 0),
+      totalYellowCards: playerList.reduce((sum, player) => sum + (player.yellowCards || 0), 0),
+      totalRedCards: playerList.reduce((sum, player) => sum + (player.redCards || 0), 0),
+    };
+
+    // 比赛统计数据（需要区分主客场计算得失球）
+    let totalGoalsScored = 0;
+    let totalGoalsConceded = 0;
+
+    // 假设当前球队ID是this.data.id
+    const teamId = this.data.id;
+
+    matchList.forEach(match => {
+      if (match.homeTeam && match.homeTeam.teamId === teamId) {
+        totalGoalsScored += match.homeTeamScore || 0;
+        totalGoalsConceded += match.awayTeamScore || 0;
+      } else if (match.awayTeam && match.awayTeam.teamId === teamId) {
+        totalGoalsScored += match.awayTeamScore || 0;
+        totalGoalsConceded += match.homeTeamScore || 0;
+      }
+    });
+
+    this.setData({
+      teamStats: {
+        eventCount: eventList.length,
+        matchCount: matchList.length,
+        totalGoals: playerStats.totalGoals,
+        totalGoalsScored: totalGoalsScored,
+        totalGoalsConceded: totalGoalsConceded,
+        totalAssists: playerStats.totalAssists,
+        totalYellowCards: playerStats.totalYellowCards,
+        totalRedCards: playerStats.totalRedCards,
+      }
+    });
   },
 
 })
