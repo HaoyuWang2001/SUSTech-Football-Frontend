@@ -26,12 +26,6 @@ Component({
         name: this.data.name,
         icon: this.data.icon
       }, { bubbles: true });
-      // 同时触发 tap 事件，保持向后兼容性
-      this.triggerEvent('tap', {
-        eventId: this.data.eventId,
-        name: this.data.name,
-        icon: this.data.icon
-      }, { bubbles: true });
     }
   },
 

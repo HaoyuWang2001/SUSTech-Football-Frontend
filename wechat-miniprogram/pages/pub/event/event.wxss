@@ -332,7 +332,7 @@
 }
 
 .statistic-card {
-  width: calc(50% - 12rpx);
+  width: calc(50% - 12.5rpx);
   flex: 0 0 auto;
   box-sizing: border-box;
   background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);

@@ -1,10 +1,11 @@
 // pages/pub/team/team.js
-import { Colors, Shadows, Gradients, Borders, Tokens } from '../../../utils/colors.js'
 const appInstance = getApp()
-const userId = appInstance.globalData.userId
+let URL = null
+let userId = null
 const {
   formatTime
 } = require("../../../utils/timeFormatter")
+import { Colors, Shadows, Gradients, Borders, Tokens } from '../../../utils/colors.js'
 
 Page({
   /**
@@ -38,6 +39,8 @@ Page({
     this.setData({
       id: options.id,
     })
+    URL = appInstance.globalData.URL
+    userId = appInstance.globalData.userId
   },
 
   /**
@@ -97,8 +100,6 @@ Page({
 
   // 获取基本数据
   fetchData: function (id) {
-    const URL = getApp().globalData.URL
-    console.log("URL:", URL, "id:", id)
     // 显示加载提示框，提示用户正在加载
     wx.showLoading({
       title: '加载中',

@@ -1,11 +1,10 @@
 // pages/pub/event/event.js
 const appInstance = getApp()
-const URL = appInstance.globalData.URL
-const userId = appInstance.globalData.userId
+let URL = null
+let userId = null
 const {
   formatTime
 } = require("../../../utils/timeFormatter")
-// 导入颜色设计系统
 import { Colors, Shadows, Gradients, Borders, Tokens } from '../../../utils/colors.js'
 
 Page({
@@ -69,8 +68,61 @@ Page({
     this.setData({
       id: options.id
     })
-    this.fetchData(options.id)
-    this.isFavorite(userId, options.id)
+    URL = appInstance.globalData.URL
+    userId = appInstance.globalData.userId
+  },
+
+  
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow() {
+    this.fetchData(this.data.id)
+    this.isFavorite(userId, this.data.id)
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload() {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh() {
+    this.fetchData(this.data.id);
+    this.isFavorite(userId, this.data.id)
+    wx.stopPullDownRefresh()
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom() {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage() {
+
   },
 
   // 网络请求，本页面一次性获取全部数据
@@ -197,56 +249,6 @@ Page({
         // 加载积分榜数据
         break;
     }
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-    this.fetchData(this.data.id)
-    wx.stopPullDownRefresh()
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
   },
 
   // 页面跳转方法

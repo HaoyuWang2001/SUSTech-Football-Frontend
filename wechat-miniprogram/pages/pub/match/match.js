@@ -1,7 +1,7 @@
 // pages/pub/match/match.js
 const appInstance = getApp()
-const URL = appInstance.globalData.URL
-const userId = appInstance.globalData.userId
+let URL = null
+let userId = null
 const {
   formatTime
 } = require("../../../utils/timeFormatter")
@@ -61,7 +61,6 @@ Page({
     replyText: '', // 用于存储输入框中的回复内容
     expandList: [],
     likesList: [],
-    userId: 0
   },
 
   /**
@@ -70,8 +69,9 @@ Page({
   onLoad(options) {
     this.setData({
       id: options.id,
-      userId: userId
     })
+    URL = appInstance.globalData.URL
+    userId = appInstance.globalData.userId
   },
 
   /**

@@ -1,5 +1,5 @@
 <view class="section-header">
-  <match team1="{{homeTeam.name}}" team2="{{awayTeam.name}}" icon1="{{homeTeam.logoUrl}}" icon2="{{awayTeam.logoUrl}}" score1="{{homeTeam.score}}" score2="{{awayTeam.score}}" penalty1="{{homeTeam.penalty}}" penalty2="{{awayTeam.penalty}}" time="{{strTime}}" hasBegun="{{hasBegun}}" has_button="{{true}}">
+  <match status="{{status}}" team1="{{homeTeam.name}}" team2="{{awayTeam.name}}" icon1="{{homeTeam.logoUrl}}" icon2="{{awayTeam.logoUrl}}" score1="{{homeTeam.score}}" score2="{{awayTeam.score}}" penalty1="{{homeTeam.penalty}}" penalty2="{{awayTeam.penalty}}" time="{{strTime}}" hasBegun="{{hasBegun}}" has_button="{{true}}">
     <view wx:if="{{!favorited}}" class="favorite-button" bind:tap="favorite">
       <image class="favorite-icon" src="/assets/unfavorited.png" mode="scaleToFill" />
     </view>

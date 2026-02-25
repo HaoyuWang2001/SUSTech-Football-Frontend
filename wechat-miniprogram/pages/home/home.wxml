@@ -68,7 +68,7 @@
     <text class="block-title">推荐赛事</text>
   </view>
   <view class="block-main">
-    <event-card-big eventId="1" icon="/assets/cup.svg" name="2024年南科大“书院杯”足球赛" bind:tap="gotoEventPage" data-id="1"></event-card-big>
+    <!-- <event-card-big eventId="1" icon="/assets/cup.svg" name="2024年南科大“书院杯”足球赛" bind:tap="gotoEventPage" data-id="1"></event-card-big> -->
   </view>
 </view>
 
