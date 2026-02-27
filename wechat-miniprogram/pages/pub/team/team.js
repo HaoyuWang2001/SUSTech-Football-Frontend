@@ -167,7 +167,7 @@ Page({
     let matchList = e.currentTarget.dataset.list ?? []
     let matchIdList = matchList.map(match => match.matchId)
     wx.navigateTo({
-      url: '/pages/pub/matches/matches?idList=' + matchIdList,
+      url: '/pages/pub/matches/matches?idList=' + encodeURIComponent(JSON.stringify(matchIdList)),
     })
   },
 
@@ -304,7 +304,7 @@ Page({
     const playerList = this.data.playerList;
     const teamName = this.data.name;
     wx.navigateTo({
-      url: `/pages/pub/team/player_stats/player_stats?playerList=${JSON.stringify(playerList)}&teamName=${encodeURIComponent(teamName)}`,
+      url: `/pages/pub/team/player_stats/player_stats?playerList=${encodeURIComponent(JSON.stringify(playerList))}&teamName=${encodeURIComponent(teamName)}`,
     });
   },
 

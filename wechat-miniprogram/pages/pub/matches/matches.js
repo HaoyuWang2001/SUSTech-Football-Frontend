@@ -17,7 +17,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    let matchIdList = Array(options.idList) ?? []
+    let matchIdList = [];
+
+    try {
+      const idListStr = decodeURIComponent(options.idList || '[]');
+      matchIdList = JSON.parse(idListStr);
+
+      // 验证是数组
+      if (!Array.isArray(matchIdList)) {
+        console.error('matchIdList is not an array:', matchIdList);
+        matchIdList = [];
+      }
+    } catch (error) {
+      console.error('Failed to parse matchIdList:', error);
+      matchIdList = [];
+    }
+
     this.setData({
       matchIdList: matchIdList,
     })
