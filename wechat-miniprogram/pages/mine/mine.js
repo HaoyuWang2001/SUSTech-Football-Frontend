@@ -191,7 +191,7 @@ Page({
     console.log('avatarUrl')
     console.log(avatarUrl)
     wx.request({
-      url: URL + '/user/update?userId=' + userId + '&avatarUrl=' + avatarUrl + '&nickName=' + nickName,
+      url: URL + '/user/update?userId=' + encodeURIComponent(userId) + '&avatarUrl=' + encodeURIComponent(avatarUrl) + '&nickName=' + encodeURIComponent(nickName),
       method: 'POST',
       success(res) {
         console.log("mine page: postUserInfo->")

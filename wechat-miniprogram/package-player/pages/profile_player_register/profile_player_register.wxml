@@ -2,13 +2,13 @@
 <view class="container">
   <view style="width: 95%;">
 
-    <view class="block-container" style="border: solid darkred 5rpx;">
+    <view class="block-container" style="border: solid #ed6c00 5rpx;">
       <view class="block-top">
         <view class="block-title">
-          <text style="color: darkred; font-size: large;">注意：</text>
+          <text style="color: #ed6c00; font-size: large;">注意：</text>
         </view>
       </view>
-      <view class="block-main" style="color: darkred; font-size: normal; font-weight: bold;">
+      <view class="block-main" style="color: #ed6c00; font-size: normal; font-weight: bold;">
         以下信息用于您的信息展示页面。注册意味着您同意展示您的头像、姓名以及其他个人信息。
       </view>
     </view>
@@ -16,7 +16,7 @@
     <view class="block-container">
       <view class="block-top">
         <view class="block-title">
-          <text style="color: red;">* </text>
+          <text style="color: #ed6c00;">* </text>
           <text>头像</text>
         </view>
         <view class="block-more">
@@ -29,14 +29,14 @@
 
     <view class="block-container">
       <view class="block-top input-container">
-        <view class="block-title"><text style="color: red;">* </text>姓名：</view>
+        <view class="block-title"><text style="color: #ed6c00;">* </text>姓名：</view>
         <view class="block-more">
           <input type="text" placeholder="请输入名字" bindinput="inputName" />
         </view>
       </view>
 
       <view class="block-top input-container">
-        <view class="block-title"><text style="color: red;">* </text>学工号：</view>
+        <view class="block-title"><text style="color: #ed6c00;">* </text>学工号：</view>
         <view class="block-more">
           <input type="number" placeholder="请输入学工号" bindinput="inputIdentity" />
         </view>
@@ -57,7 +57,7 @@
       </view>
 
       <view class="block-top input-container">
-        <view class="block-title"><text style="color: red;">* </text>出生日期：</view>
+        <view class="block-title"><text style="color: #ed6c00;">* </text>出生日期：</view>
         <view class="block-more">
           <picker class="picker-continer" mode="date" bindchange="bindDateChange">
             <view>{{birthDate}}</view>
@@ -89,7 +89,7 @@
       </view>
 
       <view class="block-top input-container">
-        <view class="block-title"><text style="color: red;">* </text>入学年份：</view>
+        <view class="block-title"><text style="color: #ed6c00;">* </text>入学年份：</view>
         <view class="block-more">
           <picker class="picker-continer" mode="date" fields="year" bindchange="bindAdmissionYearChange">
             <text>{{admissionYear}}</text>

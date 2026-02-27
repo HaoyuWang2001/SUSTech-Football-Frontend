@@ -393,7 +393,7 @@ Page({
       title: '确认取消收藏',
       content: '确定要取消收藏这个赛事吗？',
       confirmText: '确认取消',
-      confirmColor: '#ed6c00',
+      confirmColor: Colors.primary,
       cancelText: '我再想想',
       success(res) {
         if (res.confirm) {

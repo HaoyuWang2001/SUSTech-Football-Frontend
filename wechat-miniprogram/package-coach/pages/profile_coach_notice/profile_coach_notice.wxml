@@ -21,7 +21,7 @@
   </view>
   <view class="block-main">
     <view>点击邀请可选择接受或拒绝</view>
-    <scroll-view scroll-y="true" style="height: {{showCoachInvitationInform ? '200px' : '0'}};" class="notification-box">
+    <scroll-view scroll-y="true" style="height: {{showCoachInvitationInform ? '200rpx' : '0'}};" class="notification-box">
       <view class="invitation-item" wx:if="{{coachInvitationInform.length==0}}">
         <text class="invitation-text">您还没有收到任何球队发出的邀请。</text>
       </view>
@@ -45,7 +45,7 @@
   </view>
   <view class="block-main">
     <view>您两周内的比赛</view>
-    <scroll-view scroll-y="true" style="height: {{showCoachMatchInform ? '200px' : '0'}};" class="notification-box">
+    <scroll-view scroll-y="true" style="height: {{showCoachMatchInform ? '200rpx' : '0'}};" class="notification-box">
       <view class="invitation-item" wx:if="{{coachMatchInform.length==0}}">
         <text class="invitation-text">您近两星期内没有比赛</text>
       </view>

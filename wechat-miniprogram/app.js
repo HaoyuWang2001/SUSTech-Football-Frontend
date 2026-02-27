@@ -3,7 +3,7 @@ App({
   globalData: {
     URL: 'https://haoyu-wang141.top:8085',
     SERVER: 'https://haoyu-wang141.top:8085',
-    LOCAL: 'http://localhost:8085',
+    LOCAL: 'https://localhost:8085',
     openid: null,
     session_key: null,
     userId: null,
@@ -51,13 +51,28 @@ App({
     });
     var that = this
     wx.request({
-      url: that.globalData.SERVER + '/user/wxLogin?code=' + code,
+      url: that.globalData.URL + '/user/wxLogin?code=' + encodeURIComponent(code),
       method: "POST",
       success(res) {
         console.log(res.data)
         that.globalData.openid = res.data.openid
         that.globalData.session_key = res.data.session_key
-        that.fetchUserId(res.data.openid, res.data.session_key)
+        that.globalData.userId = res.data.userId
+        that.globalData.nickName = res.data.nickName
+
+        // 处理需要使用userId的请求队列
+        that.processRequestQueue()
+
+        // 不进行明文传输session id
+        // that.fetchUserId(res.data.openid, res.data.session_key)
+      },
+      fail(err) {
+        console.error('wxLogin request failed:', err)
+        wx.showToast({
+          title: '网络请求失败，请检查网络连接',
+          icon: 'none',
+          duration: 2000
+        })
       },
       complete() {
         // 关闭加载提示框
@@ -70,12 +85,11 @@ App({
     var that = this
     // 通过openid和session_key获取userId
     wx.request({
-      url: that.globalData.URL + '/user/login?openid=' + openid + '&session_key=' + session_key,
+      url: that.globalData.URL + '/user/login?openid=' + encodeURIComponent(openid) + '&session_key=' + encodeURIComponent(session_key),
       method: "POST",
       success(res) {
         console.log(res.data)
         that.globalData.userId = res.data.userId
-        // that.globalData.userId = 2
         that.globalData.nickName = res.data.nickName
 
         that.processRequestQueue()

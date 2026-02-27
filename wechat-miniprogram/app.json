@@ -114,7 +114,7 @@
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents",
   "networkTimeout": {
-    "request": 3000
+    "request": 10000
   },
   "tabBar": {
     "color": "#000000",

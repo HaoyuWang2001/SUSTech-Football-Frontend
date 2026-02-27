@@ -70,10 +70,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    app.addToRequestQueue(this.fetchFavorateMatch)
-    app.addToRequestQueue(this.fetchFavorateUser)
-    app.addToRequestQueue(this.fetchFavorateTeam)
-    app.addToRequestQueue(this.fetchFavorateEvent)
+    app.addToRequestQueue(this.fetchFavoriteMatch)
+    app.addToRequestQueue(this.fetchFavoriteUser)
+    app.addToRequestQueue(this.fetchFavoriteTeam)
+    app.addToRequestQueue(this.fetchFavoriteEvent)
     // app.addToRequestQueue(this.fetchNews)
   },
 
@@ -95,10 +95,10 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-    app.addToRequestQueue(this.fetchFavorateMatch)
-    app.addToRequestQueue(this.fetchFavorateUser)
-    app.addToRequestQueue(this.fetchFavorateTeam)
-    app.addToRequestQueue(this.fetchFavorateEvent)
+    app.addToRequestQueue(this.fetchFavoriteMatch)
+    app.addToRequestQueue(this.fetchFavoriteUser)
+    app.addToRequestQueue(this.fetchFavoriteTeam)
+    app.addToRequestQueue(this.fetchFavoriteEvent)
     // app.addToRequestQueue(this.fetchNews)
     wx.stopPullDownRefresh()
   },
@@ -120,7 +120,7 @@ Page({
   /////////////////////////////////////
   // 网络传输
 
-  fetchFavorateMatch(id) {
+  fetchFavoriteMatch(id) {
     let that = this
     wx.request({
       url: URL + '/getFavorite',
@@ -151,7 +151,7 @@ Page({
     })
   },
 
-  fetchFavorateUser(id) {
+  fetchFavoriteUser(id) {
     let that = this
     wx.request({
       url: URL + '/getFavorite',
@@ -181,7 +181,7 @@ Page({
     })
   },
 
-  fetchFavorateTeam(id) {
+  fetchFavoriteTeam(id) {
     let that = this
     wx.request({
       url: URL + '/getFavorite',
@@ -207,7 +207,7 @@ Page({
     })
   },
 
-  fetchFavorateEvent(id) {
+  fetchFavoriteEvent(id) {
     let that = this
     wx.request({
       url: URL + '/getFavorite',

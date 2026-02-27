@@ -21,7 +21,7 @@
 
 .delete-btn {
   /* 红色危险按钮 - 删除操作 */
-  background: linear-gradient(135deg, #ff4444 10%, #ff8c32 100%);
+  background: linear-gradient(135deg, #ff6400 10%, #ff8c32 100%);
   color: white;
   padding: 8rpx 24rpx;
   border: none;
@@ -29,14 +29,14 @@
   cursor: pointer;
   font-size: 28rpx;
   font-weight: 500;
-  box-shadow: 0 4rpx 12rpx rgba(255, 68, 68, 0.2);
+  box-shadow: 0 4rpx 12rpx rgba(255, 100, 0, 0.2);
   transition: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
   text-align: center;
 }
 
 .delete-btn:active {
-  background: linear-gradient(135deg, #e03c3c 0%, #e67a29 100%);
-  box-shadow: 0 2rpx 6rpx rgba(255, 68, 68, 0.3);
+  background: linear-gradient(135deg, #cc5c00 0%, #e67a29 100%);
+  box-shadow: 0 2rpx 6rpx rgba(255, 100, 0, 0.3);
   transform: translateY(2rpx);
 }
 
