@@ -75,7 +75,7 @@ page {
 }
 
 /* ---------------------- */
-/* table */
+/* 传统表格样式已迁移到现代化flex布局系统
 .table {
   display: table;
   width: 100%;
@@ -97,6 +97,7 @@ page {
   white-space: nowrap;
   vertical-align: middle; /* 垂直居中 */
 }
+*/
 
 /* avatar */
 .avatar-wrapper {

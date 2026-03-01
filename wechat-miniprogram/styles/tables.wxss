@@ -1,0 +1,247 @@
+/**
+ * 现代化表格样式系统
+ *
+ * 本文件定义了微信小程序中使用的所有现代化表格样式。
+ * 基于现代化积分榜表格设计，使用Flexbox布局，集成项目颜色设计系统。
+ *
+ * 使用方法：
+ * @import '../../styles/tables.wxss';
+ *
+ * 类名体系：
+ * - 基础类: .table, .row, .cell, .header
+ * - 列宽类: .cell-team-column, .cell-number-column, .cell-player-column, .cell-stats-column
+ * - 内容容器: .cell-team, .cell-team-icon, .cell-team-name, .player-info, .player-avatar, .player-name
+ */
+
+/* ============================================================================
+ * 基础表格样式
+ * ============================================================================ */
+
+/* 表格容器 */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 8rpx rgba(237, 108, 0, 0.08);
+}
+
+/* 表格行 */
+.row {
+  display: flex;
+  border-bottom: 1rpx solid rgba(237, 108, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.row:active {
+  background-color: rgba(237, 108, 0, 0.05);
+}
+
+/* 表头行 */
+.row.header {
+  background: linear-gradient(90deg, #ed6c00 0%, #ff8c32 100%);
+  color: #ffffff;
+  font-weight: 600;
+  border-bottom: none;
+  text-shadow: 0 1rpx 2rpx rgba(0, 0, 0, 0.2);
+}
+
+.row.header .cell {
+  color: #ffffff;
+  font-weight: 600;
+  border-right: 1rpx solid rgba(255, 255, 255, 0.2);
+}
+
+.row.header .cell:last-child {
+  border-right: none;
+}
+
+/* 基础单元格 */
+.cell {
+  flex: 1;
+  padding: 24rpx 12rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #666666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1rpx solid rgba(237, 108, 0, 0.08);
+  min-height: 80rpx;
+}
+
+.cell:last-child {
+  border-right: none;
+}
+
+/* ============================================================================
+ * 特殊列宽样式
+ * ============================================================================ */
+
+/* 球队列 - 较宽（用于积分榜） */
+.cell-team-column {
+  flex: 2;
+  max-width: 300rpx;
+}
+
+/* 号码列 - 较窄（用于球员统计） */
+.cell-number-column {
+  flex: 0.5;
+  max-width: 100rpx;
+  min-width: 60rpx;
+}
+
+/* 球员列 - 较宽（用于球员统计） */
+.cell-player-column {
+  flex: 2 1 80rpx;
+  max-width: 280rpx;
+  min-width: 60rpx;
+  justify-content: flex-start; /* 球员列左对齐 */
+  padding-left: 16rpx;
+  text-align: left;
+}
+
+/* 统计列 - 默认宽度（用于大名单） */
+.cell-stats-column {
+  flex: 1;
+}
+
+/* ============================================================================
+ * 内容容器样式
+ * ============================================================================ */
+
+/* 球队信息容器（积分榜） */
+.cell-team {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.cell-team-icon {
+  width: 48rpx;
+  height: 48rpx;
+  margin-right: 16rpx;
+  border-radius: 50%;
+  border: 2rpx solid rgba(237, 108, 0, 0.15);
+  background-color: rgba(237, 108, 0, 0.08);
+  padding: 4rpx;
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.1);
+}
+
+.cell-team-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 1;
+}
+
+/* 球员信息容器（球员统计） */
+.player-info {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  width: 100%;
+}
+
+.player-avatar {
+  width: 50rpx;
+  min-width: 50rpx;
+  max-width: 50rpx;
+  height: 50rpx;
+  border-radius: 20rpx;
+}
+
+.player-name {
+  /* 球员名字最大宽度，防止挤压其他列 */
+  max-width: 180rpx;
+  min-width: 0; /* 添加min-width: 0允许收缩 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 1; /* 允许收缩 */
+}
+
+/* ============================================================================
+ * 表格特殊样式
+ * ============================================================================ */
+
+/* 移除最后一行边框 */
+.row:last-child {
+  border-bottom: none;
+}
+
+/* 表头球员列对齐（球员统计表格专用） */
+.row.header .cell-player-column {
+  justify-content: flex-start; /* 表头球员列也左对齐 */
+  text-align: left;
+}
+
+/* ============================================================================
+ * 响应式设计 - 移动端适配
+ * ============================================================================ */
+
+@media (max-width: 600rpx) {
+  /* 基础单元格响应式 */
+  .cell {
+    padding: 20rpx 8rpx;
+    font-size: 24rpx;
+  }
+
+  /* 球队列响应式 */
+  .cell-team-column {
+    flex: 1.5;
+    max-width: 200rpx;
+  }
+
+  .cell-team-icon {
+    width: 40rpx;
+    height: 40rpx;
+    margin-right: 12rpx;
+  }
+
+  /* 号码列响应式 */
+  .cell-number-column {
+    flex: 0.5 0 60rpx;
+    max-width: 60rpx;
+    min-width: 50rpx;
+  }
+
+  /* 球员列响应式 */
+  .cell-player-column {
+    flex: 1.8 1 180rpx;
+    max-width: 220rpx;
+    min-width: 180rpx;
+    padding-left: 12rpx;
+  }
+
+  /* 球员信息响应式 */
+  .player-avatar {
+    width: 36rpx;
+    height: 36rpx;
+  }
+
+  .player-name {
+    max-width: 140rpx;
+    font-size: 22rpx;
+  }
+
+  /* 超小屏幕适配 */
+  @media (max-width: 400rpx) {
+    .cell {
+      padding: 12rpx 4rpx;
+      font-size: 22rpx;
+    }
+
+    .cell-player-column {
+      flex: 1.5 1 150rpx;
+      max-width: 180rpx;
+      min-width: 150rpx;
+    }
+
+    .player-name {
+      max-width: 120rpx;
+      font-size: 20rpx;
+    }
+  }
+}

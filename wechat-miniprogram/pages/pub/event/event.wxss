@@ -1,5 +1,6 @@
 /* pages/pub/event/event.wxss */
 @import '../../../styles/mixins.wxss';
+@import '../../../styles/tables.wxss';
 
 /* ============================================================================
  * 页面头部区域
@@ -214,111 +215,6 @@
   filter: drop-shadow(0 1rpx 2rpx rgba(0, 0, 0, 0.05));
 }
 
-/* ============================================================================
- * 现代化积分榜表格
- * ============================================================================ */
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  border-radius: 16rpx;
-  overflow: hidden;
-  box-shadow: 0 2rpx 8rpx rgba(237, 108, 0, 0.08);
-}
-
-.row {
-  display: flex;
-  border-bottom: 1rpx solid rgba(237, 108, 0, 0.08);
-  transition: all 0.3s ease;
-}
-
-.row:active {
-  background-color: rgba(237, 108, 0, 0.05);
-}
-
-.row.header {
-  background: linear-gradient(90deg, #ed6c00 0%, #ff8c32 100%);
-  color: #ffffff;
-  font-weight: 600;
-  border-bottom: none;
-  text-shadow: 0 1rpx 2rpx rgba(0, 0, 0, 0.2);
-}
-
-.row.header .cell {
-  color: #ffffff;
-  font-weight: 600;
-  border-right: 1rpx solid rgba(255, 255, 255, 0.2);
-}
-
-.row.header .cell:last-child {
-  border-right: none;
-}
-
-.cell {
-  flex: 1;
-  padding: 24rpx 12rpx;
-  text-align: center;
-  font-size: 26rpx;
-  color: #666666;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-right: 1rpx solid rgba(237, 108, 0, 0.08);
-  min-height: 80rpx;
-}
-
-.cell:last-child {
-  border-right: none;
-}
-
-.cell-team-column {
-  flex: 2;
-  max-width: 300rpx;
-}
-
-.cell-team {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-}
-
-.cell-team-icon {
-  width: 48rpx;
-  height: 48rpx;
-  margin-right: 16rpx;
-  border-radius: 50%;
-  border: 2rpx solid rgba(237, 108, 0, 0.15);
-  background-color: rgba(237, 108, 0, 0.08);
-  padding: 4rpx;
-  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.1);
-}
-
-.cell-team-name {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  flex-shrink: 1;
-}
-
-/* 响应式调整 */
-@media (max-width: 600rpx) {
-  .cell {
-    padding: 20rpx 8rpx;
-    font-size: 24rpx;
-  }
-
-  .cell-team-column {
-    flex: 1.5;
-    max-width: 200rpx;
-  }
-
-  .cell-team-icon {
-    width: 40rpx;
-    height: 40rpx;
-    margin-right: 12rpx;
-  }
-}
 
 /* ============================================================================
  * 现代化统计卡片

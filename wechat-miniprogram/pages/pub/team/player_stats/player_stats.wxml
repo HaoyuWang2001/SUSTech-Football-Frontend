@@ -1,32 +1,32 @@
 <!-- pages/pub/team/player_stats/player_stats.wxml -->
 <view class="container">
   <view class="table-container modern-card">
-    <view class="player-stats-table">
+    <view class="table">
       <!-- 表头 -->
-      <view class="player-stats-row player-stats-header">
-        <view class="player-stats-cell cell-number-column">号码</view>
-        <view class="player-stats-cell cell-player-column">球员</view>
-        <view class="player-stats-cell">出场</view>
-        <view class="player-stats-cell">进球</view>
-        <view class="player-stats-cell">助攻</view>
-        <view class="player-stats-cell">黄牌</view>
-        <view class="player-stats-cell">红牌</view>
+      <view class="row header">
+        <view class="cell cell-number-column">号码</view>
+        <view class="cell cell-player-column">球员</view>
+        <view class="cell">出场</view>
+        <view class="cell">进球</view>
+        <view class="cell">助攻</view>
+        <view class="cell">黄牌</view>
+        <view class="cell">红牌</view>
       </view>
 
       <!-- 球员信息 -->
-      <view class="player-stats-row" wx:for="{{playerList}}" wx:key="playerId">
-        <view class="player-stats-cell cell-number-column">{{item.number || ''}}</view>
-        <view class="player-stats-cell cell-player-column">
+      <view class="row" wx:for="{{playerList}}" wx:key="playerId">
+        <view class="cell cell-number-column">{{item.number || ''}}</view>
+        <view class="cell cell-player-column">
           <view class="player-info">
             <image src="{{item.photoUrl}}" class="player-avatar"></image>
             <text class="player-name">{{item.name}}</text>
           </view>
         </view>
-        <view class="player-stats-cell">{{item.appearances || 0}}</view>
-        <view class="player-stats-cell">{{item.goals || 0}}</view>
-        <view class="player-stats-cell">{{item.assists || 0}}</view>
-        <view class="player-stats-cell">{{item.yellowCards || 0}}</view>
-        <view class="player-stats-cell">{{item.redCards || 0}}</view>
+        <view class="cell">{{item.appearances || 0}}</view>
+        <view class="cell">{{item.goals || 0}}</view>
+        <view class="cell">{{item.assists || 0}}</view>
+        <view class="cell">{{item.yellowCards || 0}}</view>
+        <view class="cell">{{item.redCards || 0}}</view>
       </view>
     </view>
   </view>

@@ -1,5 +1,6 @@
 /* pages/pub/team/player_stats/player_stats.wxss */
 @import '../../../../styles/mixins.wxss';
+@import '../../../../styles/tables.wxss';
 
 /* 基础容器 - 减少padding以增加表格宽度 */
 .container {
@@ -9,106 +10,11 @@
 }
 
 .table-container {
-  /* 减少padding，让表格更接近页面边缘 */
+  width: 95%;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* 表格容器 */
-.player-stats-table {
-  width: 100%;
-  border-collapse: collapse;
-  border-radius: 16rpx;
-  overflow: hidden;
-  box-shadow: 0 2rpx 8rpx rgba(237, 108, 0, 0.08);
-}
-
-/* 表格行 - 使用flex布局避免冲突 */
-.player-stats-row {
-  display: flex;
-  border-bottom: 1rpx solid rgba(237, 108, 0, 0.08);
-}
-
-/* 表头行 */
-.player-stats-header {
-  background: linear-gradient(90deg, #ed6c00 0%, #ff8c32 100%);
-  color: #ffffff;
-  font-weight: 600;
-  border-bottom: none;
-}
-
-/* 基础单元格 */
-.player-stats-cell {
-  flex: 1;
-  padding: 20rpx 8rpx;
-  text-align: center;
-  font-size: 26rpx;
-  color: #666666;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 80rpx;
-}
-
-/* 号码列 - 较小宽度 */
-.cell-number-column {
-  flex: 0.5;
-  max-width: 80rpx;
-  min-width: 60rpx;
-}
-
-/* 球员列 - 特殊宽度和对齐 */
-.cell-player-column {
-  flex: 2 1 200rpx; /* 从 flex: 2 改为 flex: 2 1 200rpx */
-  max-width: 280rpx; /* 从300rpx改为280rpx */
-  min-width: 200rpx; /* 添加最小宽度 */
-  justify-content: flex-start; /* 球员列左对齐 */
-  padding-left: 16rpx;
-  text-align: left;
-}
-
-/* 表头球员列对齐 */
-.player-stats-header .cell-player-column {
-  justify-content: flex-start; /* 表头球员列也左对齐 */
-  text-align: left;
-}
-
-/* 球员信息容器 */
-.player-info {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 16rpx;
-  width: 100%;
-}
-
-.player-avatar {
-  width: 50rpx;
-  min-width: 50rpx;
-  max-width: 50rpx;
-  height: 50rpx;
-  border-radius: 20rpx;
-}
-
-.player-name {
-  /* 球员名字最大宽度，防止挤压其他列 */
-  max-width: 180rpx; /* 从200rpx改为180rpx */
-  min-width: 0; /* 添加min-width: 0允许收缩 */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  flex-shrink: 1; /* 允许收缩 */
-}
-
-/* 移除最后一行边框 */
-.player-stats-row:last-child {
-  border-bottom: none;
-}
-
-/* 颜色覆盖 - 确保表头颜色正确 */
-.player-stats-header .player-stats-cell {
-  color: #ffffff !important;
-}
 
 /* 响应式设计 - 移动端适配 */
 @media (max-width: 600rpx) {
@@ -116,50 +22,4 @@
     padding: 12rpx; /* 添加容器padding调整 */
   }
 
-  .player-stats-cell {
-    padding: 16rpx 6rpx; /* 从4rpx改为6rpx */
-    font-size: 24rpx;
-  }
-
-  .cell-player-column {
-    flex: 1.8 1 180rpx; /* 从flex: 1.5改为flex: 1.8 1 180rpx */
-    max-width: 220rpx; /* 从200rpx改为220rpx */
-    min-width: 180rpx; /* 添加最小宽度 */
-    padding-left: 12rpx;
-  }
-
-  .cell-number-column {
-    flex: 0.5 0 60rpx; /* 从flex: 0.4改为flex: 0.5 0 60rpx */
-    max-width: 60rpx;
-    min-width: 50rpx;
-  }
-
-  .player-avatar {
-    width: 36rpx; /* 从40rpx改为36rpx */
-    height: 36rpx;
-  }
-
-  .player-name {
-    max-width: 140rpx; /* 从150rpx改为140rpx */
-    font-size: 22rpx; /* 添加字体大小调整 */
-  }
-
-  /* 添加超小屏幕适配 */
-  @media (max-width: 400rpx) {
-    .player-stats-cell {
-      padding: 12rpx 4rpx;
-      font-size: 22rpx;
-    }
-
-    .cell-player-column {
-      flex: 1.5 1 150rpx;
-      max-width: 180rpx;
-      min-width: 150rpx;
-    }
-
-    .player-name {
-      max-width: 120rpx;
-      font-size: 20rpx;
-    }
-  }
 }
