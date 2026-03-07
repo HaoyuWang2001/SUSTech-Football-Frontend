@@ -302,8 +302,15 @@ Page({
   gotoPlayerStatsPage() {
     const playerList = this.data.playerList;
     const teamName = this.data.name;
+  
     wx.navigateTo({
-      url: `/pages/pub/team/player_stats/player_stats?playerList=${JSON.stringify(playerList)}&teamName=${encodeURIComponent(teamName)}`,
+      url: `/pages/pub/team/player_stats/player_stats`,
+      success: (res) => {
+        res.eventChannel.emit('acceptData', {
+          playerList,
+          teamName
+        });
+      }
     });
   },
 

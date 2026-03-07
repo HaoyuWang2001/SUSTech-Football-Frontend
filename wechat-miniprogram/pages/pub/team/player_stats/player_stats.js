@@ -7,12 +7,14 @@ Page({
     teamName: ""
   },
 
-  onLoad(options) {
-    const playerList = JSON.parse(options.playerList || '[]');
-    const teamName = options.teamName || '';
-    this.setData({
-      playerList,
-      teamName
+  onLoad() {
+    const eventChannel = this.getOpenerEventChannel();
+  
+    eventChannel.on('acceptData', (data) => {
+      this.setData({
+        playerList: data.playerList,
+        teamName: data.teamName
+      });
     });
   },
 
