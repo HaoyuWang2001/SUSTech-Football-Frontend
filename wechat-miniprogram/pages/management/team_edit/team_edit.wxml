@@ -7,7 +7,7 @@
     </view>
   </view>
   <view class="block-main">
-    <text>球队id是您球队的标识符，它是唯一的。球员可以通过搜索球队id加入您的球队。</text>
+    <text class="hint-text">球队id是您球队的标识符，它是唯一的。球员可以通过搜索球队id加入您的球队。</text>
   </view>
 </view>
 
@@ -61,7 +61,7 @@
       <player-card-small wx:for="{{managerList}}" wx:key="index" name="{{item.nickName === null? '未命名' : item.nickName}}" img="{{item.avatarUrl}}" bind:tap="gotoUserPage" data-id="{{item.userId}}">
       </player-card-small>
     </scroll-view>
-    <view wx:else>暂无球队管理员</view>
+    <view wx:else class="hint-text">暂无球队管理员</view>
   </view>
 </view>
 
@@ -82,7 +82,7 @@
         </view>
       </player-card-small>
     </scroll-view>
-    <view wx:else>暂无球队教练</view>
+    <view wx:else class="hint-text">暂无球队教练</view>
   </view>
 </view>
 
@@ -96,13 +96,13 @@
   </view>
   <view class="block-main">
     <player-card-small wx:if="{{captainId !== 0}}" name="{{captain.name}}" img="{{captain.photoUrl}}" bind:tap="gotoPlayerPage" data-id="{{captain.playerId}}"></player-card-small>
-    <view wx:else>暂未选择球队队长</view>
+    <view wx:else class="hint-text">暂未选择球队队长</view>
   </view>
 </view>
 
 <!-- 现役球员 -->
 <view class="block-container">
-  <view class="block-top" style="margin-top: 20rpx; margin-left: 25rpx;">
+  <view class="block-top">
     <view class="block-title">现役队员</view>
     <view class="block-more">
       <text class="button-custom" style="margin-right: 20rpx" bind:tap="gotoInvitePlayer" data-id="{{teamId}}">邀请球员</text>

@@ -124,7 +124,26 @@ Page({
       matchList: [],
       userList: [],
       teamList: [],
+
+      newsIdx: 0,
+      eventIdx: 0,
+      matchIdx: 0,
+      userIdx: 0,
+      teamIdx: 0,
+
+      newsBound: 3,
+      eventBound: 3,
+      matchBound: 3,
+      userBound: 3,
+      teamBound: 3,
+
+      newsDisplayList: [],
+      eventDisplayList: [],
+      matchDisplayList: [],
+      userDisplayList: [],
+      teamDisplayList: [],
     })
+    
     if (this.data.type == '全部') {
       app.addToRequestQueue(this.fetchEvent)
       app.addToRequestQueue(this.fetchMatch)

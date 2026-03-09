@@ -4,11 +4,11 @@
       <view class="block-title">球队管理</view>
     </view>
     <view class="block-main">
-      <view>您可以在本页面：</view>
-      <view>- 查看球队相关的通知</view>
-      <view>- 查看参与的赛事并设置大名单</view>
-      <view>- 创建新球队</view>
-      <view>- 编辑或删除您的球队</view>
+      <view class="hint-text">您可以在本页面：</view>
+      <view class="hint-text">- 查看球队相关的通知</view>
+      <view class="hint-text">- 查看参与的赛事并设置大名单</view>
+      <view class="hint-text">- 创建新球队</view>
+      <view class="hint-text">- 编辑或删除您的球队</view>
     </view>
   </view>
 </view>

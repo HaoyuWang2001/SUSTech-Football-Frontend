@@ -66,8 +66,16 @@
   font-size: small;
 }
 
+.no-favorite {
+  width: 100%;
+  margin-left: 20rpx;
+  margin-bottom: 10rpx;
+  font-size: small;
+}
+
 .function-container {
   display: flex;
+  gap: 15rpx;
 }
 
 .function-button {

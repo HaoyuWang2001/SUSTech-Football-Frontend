@@ -113,3 +113,9 @@
   font-size: small;
   color: #666;
 }
+
+.hint-text {
+  margin-left: 20rpx;
+  margin-bottom: 10rpx;
+  font-size: small;
+}

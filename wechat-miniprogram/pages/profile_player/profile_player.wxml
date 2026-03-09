@@ -15,98 +15,99 @@
     </view>
   </view>
 
-<view class="user-profile-card modern-card" wx:if="{{playerId}}">
-  <view class="modern-card-header"></view>
-  <view class="user-profile-content">
-    <!-- 头像区域 -->
-    <view class="user-avatar-container">
-      <image class="user-avatar" src="{{player.photoUrl}}" mode="aspectFill"></image>
-    </view>
+  <view class="user-profile-card modern-card" wx:if="{{playerId}}">
+    <view class="modern-card-header"></view>
+    <view class="user-profile-content">
+      <!-- 头像区域 -->
+      <view class="user-avatar-container">
+        <image class="user-avatar" src="{{player.photoUrl}}" mode="aspectFill"></image>
+      </view>
 
-    <!-- 用户信息区域 -->
-    <view class="user-info-container">
-      <view class="user-name">{{player.name}}</view>
-      <view class="user-id">球员ID: {{playerId}}</view>
-    </view>
-  </view>
-</view>
-
-<!-- 功能 -->
-<view class="block-container">
-  <view class="block-top">
-    <text class="block-title">功能</text>
-  </view>
-  <view class="function-container">
-    <!-- <view bindtap="gotoProfileRefereePage" class="function-button">
-      <image src="/assets/referee.png" mode="scaleToFill" class="function-image" />
-      <text class="function-text">裁判主页</text>
-    </view> -->
-    <view bindtap="openJoinTeamModal" class="function-button" wx:if="{{playerId}}">
-      <image src="/assets/statistic-team.png" mode="scaleToFill" class="function-image" />
-      <text class="function-text">加入球队</text>
-    </view>
-    <view bindtap="gotoPlayerNoticePage" class="function-button" wx:if="{{playerId}}">
-      <image src="/assets/notice.png" mode="scaleToFill" class="function-image" />
-      <text class="function-text">球员通知</text>
+      <!-- 用户信息区域 -->
+      <view class="user-info-container">
+        <view class="user-name">{{player.name}}</view>
+        <view class="user-id">球员ID: {{playerId}}</view>
+      </view>
     </view>
   </view>
-</view>
 
-<view class="block-container" wx:if="{{playerId}}">
-  <view class="block-top">
-    <text class="block-title">球员信息</text>
-    <text class="block-more" bind:tap="edit_information">编辑</text>
-  </view>
-  <view class="block-main">
-    <view class="info-section">
-      <text>学工号：{{player.identity || defaultValue}}</text>
-      <text>出生日期：{{player.strBirthDate}}</text>
-      <text>身高 (cm)：{{player.height || defaultValue}}</text>
-      <text>体重 (kg)：{{player.weight || defaultValue}}</text>
-      <text>场上位置：{{player.position || defaultValue}}</text>
-      <text>书院：{{player.shuYuan || defaultValue}}</text>
-      <text>院系：{{player.college || defaultValue}}</text>
-      <text>入学年份：{{player.admissionYear || defaultValue}}</text>
+  <!-- 功能 -->
+  <view class="block-container">
+    <view class="block-top">
+      <text class="block-title">功能</text>
+    </view>
+    <view class="function-container">
+      <!-- <view bindtap="gotoProfileRefereePage" class="function-button">
+        <image src="/assets/referee.png" mode="scaleToFill" class="function-image" />
+        <text class="function-text">裁判主页</text>
+      </view> -->
+      <view bindtap="openJoinTeamModal" class="function-button" wx:if="{{playerId}}">
+        <image src="/assets/statistic-team.png" mode="scaleToFill" class="function-image" />
+        <text class="function-text">加入球队</text>
+      </view>
+      <view bindtap="gotoPlayerNoticePage" class="function-button" wx:if="{{playerId}}">
+        <image src="/assets/notice.png" mode="scaleToFill" class="function-image" />
+        <text class="function-text">球员通知</text>
+      </view>
     </view>
   </view>
-</view>
 
-<!-- 我的球队 -->
-<view class="block-container">
-  <view class="block-top">
-    <text class="block-title">我的球队</text>
-    <text class="block-more" bind:tap="gotoPlayerTeamsPage" data-list="{{teamList}}" wx:if="{{teamList.length!=0}}">查看更多</text>
+  <view class="block-container" wx:if="{{playerId}}">
+    <view class="block-top">
+      <text class="block-title">球员信息</text>
+      <text class="block-more" bind:tap="edit_information">编辑</text>
+    </view>
+    <view class="block-main">
+      <view class="info-section">
+        <text>学工号：{{player.identity || defaultValue}}</text>
+        <text>出生日期：{{player.strBirthDate}}</text>
+        <text>身高 (cm)：{{player.height || defaultValue}}</text>
+        <text>体重 (kg)：{{player.weight || defaultValue}}</text>
+        <text>场上位置：{{player.position || defaultValue}}</text>
+        <text>书院：{{player.shuYuan || defaultValue}}</text>
+        <text>院系：{{player.college || defaultValue}}</text>
+        <text>入学年份：{{player.admissionYear || defaultValue}}</text>
+      </view>
+    </view>
   </view>
-  <view class="block-main">
-    <view class="no-favorite" wx:if="{{teamList.length==0}}">您还未加入任何球队。</view>
-    <scroll-view scroll-x enable-flex style="flex-direction: row; white-space: nowrap;">
-      <team-card-small wx:for="{{teamList}}" wx:key="teamId" name="{{item.name}}" img="{{item.logoUrl}}" bind:tap="gotoTeamPage" data-id="{{item.teamId}}"></team-card-small>
-    </scroll-view>
-  </view>
-</view>
 
-<!-- 我的赛程 -->
-<view class="block-container">
-  <view class="block-top">
-    <text class="block-title">我的赛程</text>
-    <text class="block-more" bind:tap="gotoMatchesPage" data-list="{{matchList}}" wx:if="{{matchList.length!=0}}">查看更多</text>
+  <!-- 我的球队 -->
+  <view class="block-container">
+    <view class="block-top">
+      <text class="block-title">我的球队</text>
+      <text class="block-more" bind:tap="gotoPlayerTeamsPage" data-list="{{teamList}}" wx:if="{{teamList.length!=0}}">查看更多</text>
+    </view>
+    <view class="block-main">
+      <view class="no-favorite" wx:if="{{teamList.length==0}}">您还未加入任何球队。</view>
+      <scroll-view scroll-x enable-flex style="flex-direction: row; white-space: nowrap;">
+        <team-card-small wx:for="{{teamList}}" wx:key="teamId" name="{{item.name}}" img="{{item.logoUrl}}" bind:tap="gotoTeamPage" data-id="{{item.teamId}}"></team-card-small>
+      </scroll-view>
+    </view>
   </view>
-  <view class="block-main">
-    <view class="no-favorite" wx:if="{{matchList.length==0}}">您目前没有比赛。</view>
-    <scroll-view scroll-x enable-flex style="flex-direction: row; white-space: nowrap;">
-      <match-card-small wx:for="{{matchList}}" wx:key="matchId" name="" stage="" tag="" team1="{{item.homeTeam.name}}" team2="{{item.awayTeam.name}}" icon1="{{item.homeTeam.logoUrl}}" icon2="{{item.awayTeam.logoUrl}}" score1="{{item.homeTeamScore}}" score2="{{item.awayTeamScore}}" penalty1="{{item.homeTeamPenalty}}" penalty2="{{item.awayTeamPenalty}}" time="{{item.strTime}}" hasBegun="{{item.hasBegun}}" bind:tap="gotoMatchPage" data-id="{{item.matchId}}" data-event="{{name}}"> </match-card-small>
-    </scroll-view>
-  </view>
-</view>
 
-<!-- 我的赛事 -->
-<view class="block-container">
-  <view class="block-top">
-    <text class="block-title">我的赛事</text>
+  <!-- 我的赛程 -->
+  <view class="block-container">
+    <view class="block-top">
+      <text class="block-title">我的赛程</text>
+      <text class="block-more" bind:tap="gotoMatchesPage" data-list="{{matchList}}" wx:if="{{matchList.length!=0}}">查看更多</text>
+    </view>
+    <view class="block-main">
+      <view class="no-favorite" wx:if="{{matchList.length==0}}">您目前没有比赛。</view>
+      <scroll-view scroll-x enable-flex style="flex-direction: row; white-space: nowrap;">
+        <match-card-small wx:for="{{matchList}}" wx:key="matchId" name="" stage="" tag="" team1="{{item.homeTeam.name}}" team2="{{item.awayTeam.name}}" icon1="{{item.homeTeam.logoUrl}}" icon2="{{item.awayTeam.logoUrl}}" score1="{{item.homeTeamScore}}" score2="{{item.awayTeamScore}}" penalty1="{{item.homeTeamPenalty}}" penalty2="{{item.awayTeamPenalty}}" time="{{item.strTime}}" hasBegun="{{item.hasBegun}}" bind:tap="gotoMatchPage" data-id="{{item.matchId}}" data-event="{{name}}"> </match-card-small>
+      </scroll-view>
+    </view>
   </view>
-  <view class="block-main">
-    <view class="no-favorite" wx:if="{{eventList.length==0}}">您还参加任何赛事。</view>
-    <event-card-big wx:for="{{eventList}}" wx:key="eventId" eventId="{{item.eventId}}" icon="/assets/cup.svg" name="{{item.name}}" bind:tap="gotoEventPage" data-id="{{item.eventId}}"></event-card-big>
+
+  <!-- 我的赛事 -->
+  <view class="block-container">
+    <view class="block-top">
+      <text class="block-title">我的赛事</text>
+    </view>
+    <view class="block-main">
+      <view class="no-favorite" wx:if="{{eventList.length==0}}">您还参加任何赛事。</view>
+      <event-card-big wx:for="{{eventList}}" wx:key="eventId" eventId="{{item.eventId}}" icon="/assets/cup.svg" name="{{item.name}}" bind:tap="gotoEventPage" data-id="{{item.eventId}}"></event-card-big>
+    </view>
   </view>
-</view>
+  
 </view>

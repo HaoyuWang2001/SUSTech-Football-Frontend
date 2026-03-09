@@ -5,5 +5,44 @@
 
 /* 头部 - 已迁移到 user-profile-header 组件 */
 /* 保留的功能按钮和信息区域样式 */
+/* 功能按钮容器 */
+.function-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; /* 均匀分布 */
+  align-items: center;
+}
+
+/* 单个按钮 */
+.function-button {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24rpx 10rpx;
+  border-radius: 16rpx;
+  transition: all 0.2s ease;
+}
+
+/* 点击效果 */
+.function-button:active {
+  background-color: #f5f5f5;
+  transform: scale(0.95);
+}
+
+/* 图标 */
+.function-image {
+  width: 64rpx;
+  height: 64rpx;
+  margin-bottom: 12rpx;
+}
+
+/* 文字 */
+.function-text {
+  font-size: 26rpx;
+  color: #444;
+  text-align: center;
+}
 
 

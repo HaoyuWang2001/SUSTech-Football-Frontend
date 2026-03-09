@@ -20,7 +20,7 @@
       <text class="function-text">球员主页</text>
     </view>
     <view wx:if="{{user.coachRole}}" bindtap="gotoCoachPage" class="function-button">
-      <image src="/assets/coach.png" mode="scaleToFill" class="function-image" />
+      <image src="/assets/coach_selected.png" mode="scaleToFill" class="function-image" />
       <text class="function-text">教练主页</text>
     </view>
     <view wx:if="{{user.refereeRole}}" bindtap="gotoRefereePage" class="function-button">

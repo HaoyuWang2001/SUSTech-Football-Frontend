@@ -67,6 +67,13 @@
   font-size: small;
 }
 
+.no-favorite {
+  width: 100%;
+  margin-left: 20rpx;
+  margin-bottom: 10rpx;
+  font-size: small;
+}
+
 .container-mine {
   padding: 0 20rpx;
 }
@@ -162,6 +169,7 @@
 
 .function-container {
   display: flex;
+  gap: 15rpx;
 }
 
 /* 加载容器 - 使用mixins中的类 */
