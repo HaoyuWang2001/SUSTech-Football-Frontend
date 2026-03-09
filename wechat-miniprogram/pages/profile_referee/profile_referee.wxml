@@ -15,66 +15,69 @@
     </view>
   </view>
 
-<view class="user-profile-card modern-card" wx:if="{{refereeId}}">
-  <view class="modern-card-header"></view>
-  <view class="user-profile-content">
-    <!-- 头像区域 -->
-    <view class="user-avatar-container">
-      <image class="user-avatar" src="{{referee.photoUrl}}" mode="aspectFill"></image>
-    </view>
+  <view class="user-profile-card modern-card" wx:if="{{refereeId}}">
+    <view class="modern-card-header"></view>
+    <view class="user-profile-content">
+      <!-- 头像区域 -->
+      <view class="user-avatar-container">
+        <image class="user-avatar" src="{{referee.photoUrl}}" mode="aspectFill"></image>
+      </view>
 
-    <!-- 用户信息区域 -->
-    <view class="user-info-container">
-      <view class="user-name">{{referee.name}}</view>
-      <view class="user-id">裁判ID: {{refereeId}}</view>
+      <!-- 用户信息区域 -->
+      <view class="user-info-container">
+        <view class="user-name">{{referee.name}}</view>
+        <view class="user-id">裁判ID: {{refereeId}}</view>
+      </view>
     </view>
   </view>
-</view>
-<view class="block-container">
-  <view class="block-top">
-    <text class="block-title">功能</text>
-  </view>
-  <view class="function-container">
-    <view bindtap="gotoRefereeNoticePage" class="function-button" wx:if="{{refereeId}}">
-      <image src="/assets/notice.png" mode="scaleToFill" class="function-image" />
-      <text class="function-text">裁判通知</text>
-    </view>
-  </view>
-</view>
-<view class="block-container" wx:if="{{refereeId}}">
-  <view class="block-top">
-    <text class="block-title">裁判信息</text>
-    <text class="block-more" bind:tap="edit_information">编辑</text>
-  </view>
-  <view class="block-main">
-    <view class="info-section">
-      <text>裁判简介：{{referee.bio}}</text>
-    </view>
-  </view>
-</view>
 
-<!-- 执法球队赛程 -->
-<view class="block-container">
-  <view class="block-top">
-    <text class="block-title">执法赛程</text>
-    <text class="block-more" bind:tap="gotoMatchesPage" data-list="{{matchList}}" wx:if="{{matchList.length!=0}}">查看更多</text>
+  <view class="block-container">
+    <view class="block-top">
+      <text class="block-title">功能</text>
+    </view>
+    <view class="function-container">
+      <view bindtap="gotoRefereeNoticePage" class="function-button" wx:if="{{refereeId}}">
+        <image src="/assets/notice.png" mode="scaleToFill" class="function-image" />
+        <text class="function-text">裁判通知</text>
+      </view>
+    </view>
   </view>
-  <view class="block-main">
-    <view class="no-favorite" wx:if="{{matchList.length==0}}">您目前没有执法的比赛。</view>
-    <scroll-view scroll-x enable-flex style="flex-direction: row; white-space: nowrap;">
-      <match-card-small wx:for="{{matchList}}" wx:key="matchId" name="" stage="{{item.event.stage}}" tag="" team1="{{item.homeTeam.name}}" team2="{{item.awayTeam.name}}" icon1="{{item.homeTeam.logoUrl}}" icon2="{{item.awayTeam.logoUrl}}" score1="{{item.homeTeam.score}}" score2="{{item.awayTeam.score}}" penalty1="{{item.homeTeam.penalty}}" penalty2="{{item.awayTeam.penalty}}" time="{{item.strTime}}" hasBegun="{{item.hasBegun}}" bind:tap="gotoMatchPage" data-id="{{item.matchId}}" data-event="{{name}}"> </match-card-small>
-    </scroll-view>
-  </view>
-</view>
 
-<!-- 执教球队相关赛事 -->
-<view class="block-container">
-  <view class="block-top">
-    <text class="block-title">执法赛事</text>
+  <view class="block-container" wx:if="{{refereeId}}">
+    <view class="block-top">
+      <text class="block-title">裁判信息</text>
+      <text class="block-more" bind:tap="edit_information">编辑</text>
+    </view>
+    <view class="block-main">
+      <view class="info-section">
+        <text>裁判简介：{{referee.bio}}</text>
+      </view>
+    </view>
   </view>
-  <view class="block-main">
-    <view class="no-favorite" wx:if="{{eventList.length==0}}">您未执法任何赛事。</view>
-    <event-card-big wx:for="{{eventList}}" wx:key="eventId" eventId="{{item.eventId}}" icon="/assets/cup.svg" name="{{item.name}}" bind:tap="gotoEventPage" data-id="{{item.eventId}}"></event-card-big>
+
+  <!-- 执法球队赛程 -->
+  <view class="block-container">
+    <view class="block-top">
+      <text class="block-title">执法赛程</text>
+      <text class="block-more" bind:tap="gotoMatchesPage" data-list="{{matchList}}" wx:if="{{matchList.length!=0}}">查看更多</text>
+    </view>
+    <view class="block-main">
+      <view class="no-favorite" wx:if="{{matchList.length==0}}">您目前没有执法的比赛。</view>
+      <scroll-view scroll-x enable-flex style="flex-direction: row; white-space: nowrap;">
+        <match-card-small wx:for="{{matchList}}" wx:key="matchId" name="" stage="{{item.event.stage}}" tag="" team1="{{item.homeTeam.name}}" team2="{{item.awayTeam.name}}" icon1="{{item.homeTeam.logoUrl}}" icon2="{{item.awayTeam.logoUrl}}" score1="{{item.homeTeam.score}}" score2="{{item.awayTeam.score}}" penalty1="{{item.homeTeam.penalty}}" penalty2="{{item.awayTeam.penalty}}" time="{{item.strTime}}" hasBegun="{{item.hasBegun}}" bind:tap="gotoMatchPage" data-id="{{item.matchId}}" data-event="{{name}}"> </match-card-small>
+      </scroll-view>
+    </view>
   </view>
-</view>
+
+  <!-- 执教球队相关赛事 -->
+  <view class="block-container">
+    <view class="block-top">
+      <text class="block-title">执法赛事</text>
+    </view>
+    <view class="block-main">
+      <view class="no-favorite" wx:if="{{eventList.length==0}}">您未执法任何赛事。</view>
+      <event-card-big wx:for="{{eventList}}" wx:key="eventId" eventId="{{item.eventId}}" icon="/assets/cup.svg" name="{{item.name}}" bind:tap="gotoEventPage" data-id="{{item.eventId}}"></event-card-big>
+    </view>
+  </view>
+  
 </view>

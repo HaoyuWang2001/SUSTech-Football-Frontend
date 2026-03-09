@@ -186,6 +186,7 @@
 .hall-bar {
   display: flex;
   justify-content: space-around;
+  gap: 15rpx;
   background: transparent;
   padding: 0;
   border-radius: 20rpx;

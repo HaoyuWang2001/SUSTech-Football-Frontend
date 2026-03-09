@@ -1,5 +1,12 @@
   /* pages/mine/mine.wxss */
   @import '../../styles/mixins.wxss';
+
+  .info-section {
+    width: 100%;
+    margin-left: 20rpx;
+    margin-bottom: 40rpx;
+    font-size: small;
+  }
   
   .function-button {
     display: flex;
@@ -23,6 +30,7 @@
 
   .function-container {
     display: flex;
+    gap: 15rpx;
   }
 
   .function-image {
@@ -50,14 +58,14 @@
     color: rgb(237, 108, 0);
   }
 
-  .container-mine {
+  /* .container-mine {
     padding: 0 20rpx;
     margin-top: 0;
-  }
+  } */
 
   /* 用户信息卡片样式 */
   .user-profile-card {
-    margin: 20rpx;
+    /* margin: 20rpx; */
     padding: 40rpx 30rpx;
     position: relative;
   }
@@ -115,7 +123,7 @@
     padding: 12rpx 40rpx;
     color: white;
     background: linear-gradient(90deg, #ed6c00 0%, #ff8c32 100%);
-    font-weight: bold;
+    font-weight: bolder;
     border-radius: 24rpx;
     border: none;
     box-shadow: 0 4rpx 12rpx rgba(237, 108, 0, 0.2);
@@ -145,7 +153,7 @@
 
   .notification-box {
     background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
-    border: 1rpx solid rgba(237, 108, 0, 0.08);
+    border: 5rpx solid rgba(237, 108, 0, 0.08);
     border-radius: 0 0 24rpx 24rpx;
     overflow: hidden;
     transition: height 0.3s ease-in-out;
@@ -170,20 +178,46 @@
   .icon {
     width: 60rpx;
     height: 60rpx;
+    transition: transform 0.3s ease;
   }
 
-/* 加载容器 - 使用mixins中的类 */
-.loading-container {
-  height: 400rpx;
-  width: 100%;
-}
+  .icon-rotated {
+    width: 60rpx;
+    height: 60rpx;
+    transform: rotate(180deg);
+  }
 
-.loading-icon {
-  width: 80rpx;
-  height: 80rpx;
-  margin-bottom: 20rpx;
-}
+  /* 加载容器 - 使用mixins中的类 */
+  .loading-container {
+    height: 400rpx;
+    width: 100%;
+  }
 
-.loading-text {
-  font-size: 28rpx;
-}
+  .loading-icon {
+    width: 80rpx;
+    height: 80rpx;
+    margin-bottom: 20rpx;
+  }
+
+  .loading-text {
+    font-size: 28rpx;
+  }
+
+  .id-block {
+    padding: 40rpx 10rpx 40rpx 10rpx;
+    display: flex;
+    gap: 30rpx;
+    margin-left: 20rpx;
+  }
+
+  .hint-text {
+    margin-left: 20rpx;
+    margin-bottom: 30rpx;
+    font-size: small;
+  }
+
+  .feedback-section {
+    width: 100%;
+    margin: 30rpx;
+    font-size: small;
+  }

@@ -70,23 +70,43 @@
 }
 
 .notification-box {
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+  border: 5rpx solid rgba(237, 108, 0, 0.08);
+  border-radius: 0 0 24rpx 24rpx;
   overflow: hidden;
   transition: height 0.3s ease-in-out;
 }
 
 .invitation-item {
-  padding: 10px;
-  border-bottom: 1px solid #eee;
+  padding: 30rpx;
+  border-bottom: 1rpx solid rgba(237, 108, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.invitation-item:active {
+  background: rgba(237, 108, 0, 0.03);
 }
 
 .invitation-text {
-  font-size: 16px;
-  color: #333;
+ font-size: 28rpx;
+ color: #333;
+ line-height: 1.4;
 }
 
 .icon {
   width: 60rpx;
   height: 60rpx;
+  transition: transform 0.3s ease;
 }
+
+.icon-rotated {
+   width: 60rpx;
+   height: 60rpx;
+   transform: rotate(180deg);
+ }
+
+.hint-text {
+   margin-left: 20rpx;
+   margin-bottom: 10rpx;
+   font-size: small;
+ }

@@ -152,7 +152,9 @@
     </view>
 
     <!-- 删除按钮 -->
-    <button class="delete-btn" bindtap="showCancelModal">删除赛事</button>
+    <view class="block-container">
+      <button class="delete-btn" bindtap="showCancelModal">删除赛事</button>
+    </view>
   </view>
 </view>
 

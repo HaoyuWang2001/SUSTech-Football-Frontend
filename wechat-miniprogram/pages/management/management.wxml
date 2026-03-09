@@ -5,10 +5,10 @@
         <view class="block-title">管理：三级权限</view>
       </view>
       <view class="block-main">
-        <view style="margin-top: 20rpx;">- 本页面包含您管理的球队、比赛和赛事。</view>
-        <view style="margin-top: 20rpx;">- 您可以在本页面中创建球队和比赛，并管理这些实体。</view>
-        <view style="margin-top: 20rpx;">- 您没有权限创建赛事。</view>
-        <view style="margin-top: 20rpx;">- 其他人创建的球队、比赛和赛事的管理员也可能将您设为这些实体的管理员，您可以在此页面中看到它们。</view>
+        <view class="hint-text">- 本页面包含您管理的球队、比赛和赛事。</view>
+        <view class="hint-text">- 您可以在本页面中创建球队和比赛，并管理这些实体。</view>
+        <view class="hint-text">- 您没有权限创建赛事。</view>
+        <view class="hint-text">- 其他人创建的球队、比赛和赛事的管理员也可能将您设为这些实体的管理员，您可以在此页面中看到它们。</view>
       </view>
     </view>
   </block>
@@ -19,9 +19,9 @@
         <view class="block-more button-custom" bind:tap="applyThirdAuthority">申请</view>
       </view>
       <view class="block-main">
-        <view style="margin-top: 20rpx;">- 目前您仅能查看其他人创建并将您设置为管理员的球队、比赛和赛事。</view>
-        <view style="margin-top: 20rpx;">- 您不能新建球队和赛事，但可以创建管理球队的友谊赛。</view>
-        <view style="margin-top: 20rpx;">- 若您需要创建球队、比赛或赛事，请点击申请按钮，向您的书院、院系或其他组织的“二级权限”管理员联络并进行申请。</view>
+        <view class="hint-text">- 目前您仅能查看其他人创建并将您设置为管理员的球队、比赛和赛事。</view>
+        <view class="hint-text">- 您不能新建球队和赛事，但可以创建管理球队的友谊赛。</view>
+        <view class="hint-text">- 若您需要创建球队、比赛或赛事，请点击申请按钮，向您的书院、院系或其他组织的“二级权限”管理员联络并进行申请。</view>
       </view>
     </view>
   </block>
@@ -33,7 +33,7 @@
       <view class="block-more button-custom" bindtap="gotoTeams" wx:if="{{hasThirdAuthority||teams.length>0}}">球队管理 ></view>
     </view>
     <view class="block-main">
-      <view wx:if="{{teams.length==0}}">您还没有管理的球队</view>
+      <view class="no-managed" wx:if="{{teams.length==0}}">您还没有管理的球队</view>
       <scroll-view scroll-x enable-flex style="flex-direction: row; white-space: nowrap;">
         <team-card-small wx:for="{{teams}}" wx:key="index" name="{{item.name}}" img="{{item.logoUrl}}" number="" bindtap="gotoTeamPage" data-id="{{item.teamId}}"></team-card-small>
       </scroll-view>
@@ -47,7 +47,7 @@
       <view class="block-more button-custom" bindtap="gotoMatches" wx:if="{{hasThirdAuthority||matches.length>0}}">比赛管理 ></view>
     </view>
     <view class="block-main">
-      <view wx:if="{{matches.length==0}}">您还没有管理的友谊赛</view>
+      <view class="no-managed" wx:if="{{matches.length==0}}">您还没有管理的友谊赛</view>
       <scroll-view scroll-x enable-flex style="flex-direction: row; white-space: nowrap;">
         <match-card-small wx:for="{{matches}}" wx:key="index" name="友谊赛" team1="{{item.homeTeam.name}}" team2="{{item.awayTeam.name}}" icon1="{{item.homeTeam.logoUrl}}" icon2="{{item.awayTeam.logoUrl}}" score1="{{item.homeTeamScore}}" score2="{{item.awayTeamScore}}" time="{{item.strTime}}" hasBegun="{{item.hasBegun}}" bindtap="gotoMatchPage" data-id="{{item.matchId}}"></match-card-small>
       </scroll-view>
@@ -67,20 +67,23 @@
           <view class="red-dot" wx:if="{{showManageEventInvitationTeamDot}}"></view>
         </view>
         <view class="block-more">
-          <image class="icon" src="/assets/down333.png" mode="" />
+          <image src="/assets/down333.png" mode="" 
+          class="{{showManageEventInvitationTeamInform ? 'icon-rotated' : 'icon'}}"/>
         </view>
       </view>
       <view class="block-main">
-        <view wx:if="{{manageEventInvitationTeamInform == 0}}">未对球队发起过任何邀请</view>
-        <view wx:else>展开查看详情</view>
-        <scroll-view scroll-y="true" style="height: {{showManageEventInvitationTeamInform ? '200px' : '0'}};" class="notification-box">
-          <view class="invitation-item" wx:for="{{manageEventInvitationTeamInform}}" wx:key="index">
-            <text class="invitation-text">{{item}}</text>
+        <scroll-view scroll-y="true" style="height: {{showManageEventInvitationTeamInform ? '200px' : '0'}}; visibility: {{showManageEventInvitationTeamInform ? 'visible' : 'hidden'}};" class="notification-box">
+          <view class="invitation-item" wx:if="{{manageEventInvitationTeamInform.length == 0}}">
+            <text class="invitation-text">未对球队发起过任何邀请</text>
+          </view>
+          <view class="invitation-item" wx:for="{{showManageEventInvitationTeamInform}}" wx:key="index" data-id="{{item.id}}">
+            <text class="invitation-text">{{item.content}}</text>
           </view>
         </scroll-view>
       </view>
     </view>
     <view class="block-main">
+      <view class="no-managed" wx:if="{{events.length==0}}">您还没有管理的赛事</view>
       <event-card-big wx:for="{{events}}" wx:key="index" eventId="{{item.eventId}}" icon="/assets/cup.svg" name="{{item.name}}" bindtap="gotoEditEvent" data-id="{{item.eventId}}"></event-card-big>
     </view>
   </view>

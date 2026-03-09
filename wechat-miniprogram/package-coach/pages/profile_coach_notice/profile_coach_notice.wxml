@@ -6,7 +6,7 @@
     </view>
   </view>
   <view class="block-main">
-    <view>与您执教的球队及其比赛相关的通知将在这里展示。</view>
+    <view class="hint-text">与您执教的球队及其比赛相关的通知将在这里展示。</view>
   </view>
 </view>
 <view class="block-container" wx:if="{{isCoach}}">
@@ -16,12 +16,12 @@
       <view class="red-dot" wx:if="{{showCoachInvitationDot}}"></view>
     </view>
     <view class="block-more">
-      <image class="icon" src="/assets/down333.png" mode="" />
+      <image class="icon" src="/assets/down333.png" mode="" class="{{showCoachInvitationInform ? 'icon-rotated' : 'icon'}}"/>
     </view>
   </view>
   <view class="block-main">
-    <view>点击邀请可选择接受或拒绝</view>
-    <scroll-view scroll-y="true" style="height: {{showCoachInvitationInform ? '200px' : '0'}};" class="notification-box">
+    <view class="hint-text">点击邀请可选择接受或拒绝</view>
+    <scroll-view scroll-y="true" style="height: {{showCoachInvitationInform ? '200px' : '0'}}; visibility: {{showCoachInvitationInform ? 'visible' : 'hidden'}};" class="notification-box">
       <view class="invitation-item" wx:if="{{coachInvitationInform.length==0}}">
         <text class="invitation-text">您还没有收到任何球队发出的邀请。</text>
       </view>
@@ -40,12 +40,12 @@
       <view class="red-dot" wx:if="{{showCoachMatchDot}}"></view>
     </view>
     <view class="block-more">
-      <image class="icon" src="/assets/down333.png" mode="" />
+      <image src="/assets/down333.png" mode="" class="{{showCoachMatchInform ? 'icon-rotated' : 'icon'}}"/>
     </view>
   </view>
   <view class="block-main">
-    <view>您两周内的比赛</view>
-    <scroll-view scroll-y="true" style="height: {{showCoachMatchInform ? '200px' : '0'}};" class="notification-box">
+    <view class="hint-text">您两周内的比赛</view>
+    <scroll-view scroll-y="true" style="height: {{showCoachMatchInform ? '200px' : '0'}}; visibility: {{showCoachMatchInform ? 'visible' : 'hidden'}};" class="notification-box">
       <view class="invitation-item" wx:if="{{coachMatchInform.length==0}}">
         <text class="invitation-text">您近两星期内没有比赛</text>
       </view>

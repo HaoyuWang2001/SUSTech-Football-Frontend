@@ -6,7 +6,7 @@
     </view>
   </view>
   <view class="block-main">
-    <view>与您所管理的球队及其比赛和赛事相关的通知将在这里展示。</view>
+    <view class="hint-text">与您所管理的球队及其比赛和赛事相关的通知将在这里展示。</view>
   </view>
 </view>
 
@@ -17,12 +17,12 @@
       <view class="red-dot" wx:if="{{manageTeamApplicationsInform.length > 0}}"></view>
     </view>
     <view class="block-more">
-      <image class="icon" src="/assets/down333.png" mode="" />
+      <image src="/assets/down333.png" mode="" class="{{showManageTeamApplicationInform ? 'icon-rotated' : 'icon'}}"/>
     </view>
   </view>
   <view class="block-main">
-    <view>点击审核可选择接受或拒绝</view>
-    <scroll-view scroll-y="true" style="height: {{showManageTeamApplicationInform ? '200px' : '0'}};" class="notification-box">
+    <view class="hint-text">点击审核可选择接受或拒绝</view>
+    <scroll-view scroll-y="true" style="height: {{showManageTeamApplicationInform ? '200px' : '0'}}; visibility: {{showManageTeamApplicationInform ? 'visible' : 'hidden'}};" class="notification-box">
       <view class="invitation-item" wx:for="{{manageTeamApplicationsInform}}" wx:key="index" bind:tap="showManageTeamApplicationModal" data-team-id="{{item.teamId}}" data-player-id="{{item.playerId}}">
         <text class="invitation-text">{{item.content}}</text>
       </view>
@@ -37,12 +37,12 @@
       <view class="red-dot" wx:if="{{manageTeamInvitationMatchInform.length > 0}}"></view>
     </view>
     <view class="block-more">
-      <image class="icon" src="/assets/down333.png" mode="" />
+      <image src="/assets/down333.png" mode="" class="{{showManageTeamInvitationMatchInform ? 'icon-rotated' : 'icon'}}"/>
     </view>
   </view>
   <view class="block-main">
-    <view>点击审核可选择接受或拒绝</view>
-    <scroll-view scroll-y="true" style="height: {{showManageTeamInvitationMatchInform ? '200px' : '0'}};" class="notification-box">
+    <view class="hint-text">点击审核可选择接受或拒绝</view>
+    <scroll-view scroll-y="true" style="height: {{showManageTeamInvitationMatchInform ? '200px' : '0'}}; visibility: {{showManageTeamInvitationMatchInform ? 'visible' : 'hidden'}};" class="notification-box">
       <view class="invitation-item" wx:for="{{manageTeamInvitationMatchInform}}" wx:key="index" bind:tap="showManageTeamInvitationMatchModal" data-match-id="{{item.matchId}}" data-team-id="{{item.teamId}}">
         <text class="invitation-text">{{item.content}}</text>
       </view>
@@ -57,12 +57,12 @@
       <view class="red-dot" wx:if="{{manageTeamInvitationEventInform.length>0}}"></view>
     </view>
     <view class="block-more">
-      <image class="icon" src="/assets/down333.png" mode="" />
+      <image src="/assets/down333.png" mode="" class="{{showManageTeamInvitationEventInform ? 'icon-rotated' : 'icon'}}"/>
     </view>
   </view>
   <view class="block-main">
-    <view>点击审核可选择接受或拒绝</view>
-    <scroll-view scroll-y="true" style="height: {{showManageTeamInvitationEventInform ? '200px' : '0'}};" class="notification-box">
+    <view class="hint-text">点击审核可选择接受或拒绝</view>
+    <scroll-view scroll-y="true" style="height: {{showManageTeamInvitationEventInform ? '200px' : '0'}}; visibility: {{showManageTeamInvitationEventInform ? 'visible' : 'hidden'}};" class="notification-box">
       <view class="invitation-item" wx:for="{{manageTeamInvitationEventInform}}" wx:key="index" bind:tap="showManageTeamInvitationEventModal" data-event-id="{{item.eventId}}" data-team-id="{{item.teamId}}">
         <text class="invitation-text">{{item.content}}</text>
       </view>
@@ -77,12 +77,11 @@
       <view class="red-dot" wx:if="{{showManageTeamInvitationPlayerDot}}"></view>
     </view>
     <view class="block-more">
-      <image class="icon" src="/assets/down333.png" mode="" />
+      <image src="/assets/down333.png" mode="" class="{{showManageTeamInvitationPlayerInform ? 'icon-rotated' : 'icon'}}"/>
     </view>
   </view>
   <view class="block-main">
-    <view>未对球员发起过任何邀请</view>
-    <scroll-view scroll-y="true" style="height: {{showManageTeamInvitationPlayerInform ? '200px' : '0'}};" class="notification-box">
+    <scroll-view scroll-y="true" style="height: {{showManageTeamInvitationPlayerInform ? '200px' : '0'}}; visibility: {{showManageTeamInvitationPlayerInform ? 'visible' : 'hidden'}};" class="notification-box">
       <view class="invitation-item" wx:for="{{manageTeamInvitationPlayerInform}}" wx:key="index">
         <text class="invitation-text">{{item}}</text>
       </view>

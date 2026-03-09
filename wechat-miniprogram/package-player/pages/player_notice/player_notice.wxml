@@ -6,7 +6,7 @@
     </view>
   </view>
   <view class="block-main">
-    <view>与您参与的比赛以及球队的相关的通知将在这里展示。</view>
+    <view class="hint-text">与您参与的比赛以及球队的相关的通知将在这里展示。</view>
   </view>
 </view>
 
@@ -19,12 +19,12 @@
         <view class="red-dot" wx:if="{{showPlayerInvitationDot}}"></view>
       </view>
       <view class="block-more">
-        <image class="icon" src="/assets/down333.png" mode="" />
+        <image src="/assets/down333.png" mode="" class="{{showPlayerInvitationInform ? 'icon-rotated' : 'icon'}}"/>
       </view>
     </view>
     <view class="block-main">
-      <view>点击邀请可选择接受或拒绝</view>
-      <scroll-view scroll-y="true" style="height: {{showPlayerInvitationInform ? '200px' : '0'}};" class="notification-box">
+      <view class="hint-text">点击邀请可选择接受或拒绝</view>
+      <scroll-view scroll-y="true" style="height: {{showPlayerInvitationInform ? '200px' : '0'}}; visibility: {{showPlayerInvitationInform ? 'visible' : 'hidden'}};" class="notification-box">
         <view class="invitation-item" wx:if="{{playerInvitationInform.length==0}}">
           <text class="invitation-text">您还没有收到任何球队发出的邀请，可以尝试申请加入球队</text>
         </view>
@@ -43,12 +43,12 @@
         <view class="red-dot" wx:if="{{showPlayerApplicationDot}}"></view>
       </view>
       <view class="block-more">
-        <image class="icon" style="margin-left: 20rpx;" src="/assets/down333.png" mode="" />
+        <image src="/assets/down333.png" mode="" class="{{showPlayerApplicationInform ? 'icon-rotated' : 'icon'}}"/>
       </view>
     </view>
     <view class="block-main">
-      <view>球队管理员回复后，您将在此看到通知</view>
-      <scroll-view scroll-y="true" style="height: {{showPlayerApplicationInform ? '200px' : '0'}};" class="notification-box">
+      <view class="hint-text">球队管理员回复后，您将在此看到通知</view>
+      <scroll-view scroll-y="true" style="height: {{showPlayerApplicationInform ? '200px' : '0'}}; visibility: {{showPlayerApplicationInform ? 'visible' : 'hidden'}};" class="notification-box">
         <view class="invitation-item" wx:for="{{playerApplicationInform}}" wx:key="index">
           <view class="red-dot" style="display: inline-block; margin-right: 20rpx;" wx:if="{{!item.hasRead}}"></view>
           <text class="invitation-text">{{item.content}}</text>
