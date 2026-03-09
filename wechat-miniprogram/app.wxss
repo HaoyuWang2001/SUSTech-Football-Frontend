@@ -95,7 +95,7 @@ page {
   padding: 8px;
   text-align: center;
   white-space: nowrap;
-  vertical-align: middle; /* 垂直居中 */
+  vertical-align: middle;
 }
 */
 
