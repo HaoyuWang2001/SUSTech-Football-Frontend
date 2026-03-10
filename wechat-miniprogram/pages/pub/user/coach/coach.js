@@ -225,7 +225,7 @@ Page({
     let matchList = e.currentTarget.dataset.list ?? []
     let matchIdList = matchList.map(match => match.matchId)
     wx.navigateTo({
-      url: '/pages/pub/matches/matches?idList=' + matchIdList,
+      url: '/pages/pub/matches/matches?idList=' + encodeURIComponent(JSON.stringify(matchIdList)),
     })
   },
 

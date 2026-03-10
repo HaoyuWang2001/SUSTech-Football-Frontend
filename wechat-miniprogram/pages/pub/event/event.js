@@ -282,9 +282,9 @@ Page({
       return item.matchId
     })
     console.log("event page: gotoMatchesPage() ->")
-    console.log("matchIdList: " + matchIdList)
+    console.log("matchIdList: ", matchIdList)
     wx.navigateTo({
-      url: '../matches/matches?idList=' + matchIdList,
+      url: '../matches/matches?idList=' + encodeURIComponent(JSON.stringify(matchIdList)),
     })
   },
 
