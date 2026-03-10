@@ -1,52 +1,251 @@
-# UI现代化改造待办清单
+# TODO 清单
 
-## 已完成
-✓ 主页搜索框现代化 ([update] 主页搜索框现代化设计)
-✓ 主页大厅区域现代化 ([update] 主页大厅区域现代化设计)
-✓ match-card-small组件现代化 ([update] 比赛卡片组件现代化设计)
-✓ team-card-small组件现代化 ([update] team-card-small组件现代化设计)
-✓ team-card-big组件现代化 ([update] team-card-big组件现代化设计)
-✓ event-card-big组件现代化 ([update] event-card-big组件现代化设计)
-✓ player-card-small组件现代化 ([update] player-card-small组件现代化设计)
-✓ 创建CLAUDE.md文档 ([add] CLAUDE.md 文档)
-✓ 创建TODO.md待办清单 ([add] TODO.md 待办清单)
+**生成日期**: 2026-03-10
+**最后更新**: 2026-03-10
+**生成工具**: Claude Code
 
-## 待办事项 (按优先级排序)
+## 优先级说明
+- 🔴 **高优先级**: 功能缺陷或重要问题，需要尽快修复
+- 🟡 **中优先级**: 用户体验或设计一致性改进
+- 🟢 **低优先级**: 代码质量、文档等优化
 
-### 高优先级 - 卡片组件现代化
-- [x] **event-card-big** (赛事大卡片) - `wechat-miniprogram/components/event-card-big/` ✓
-- [x] **player-card-small** (球员小卡片) - `wechat-miniprogram/components/player-card-small/` ✓
-- [ ] **player-card-big** (球员大卡片) - `wechat-miniprogram/components/player-card-big/`
-- [ ] **user-card-small** (用户小卡片) - `wechat-miniprogram/components/user-card-small/`
-- [ ] **user-card-big** (用户大卡片) - `wechat-miniprogram/components/user-card-big/`
-- [ ] **news-card** (新闻卡片) - `wechat-miniprogram/components/news-card/`
-- [ ] **match-card-big** (比赛大卡片) - `wechat-miniprogram/components/match-card-big/`
+---
 
-### 中优先级 - 页面现代化
-- [ ] **home页面搜索框移动至导航栏** - `wechat-miniprogram/pages/home/`
-  - 将搜索框从页面内容区域移动到导航栏位置
-  - 仅在home页面显示搜索框，其他页面不显示
-  - 保持现有搜索功能和现代化样式
-- [ ] **profile_player/profile_player** (球员主页) - `wechat-miniprogram/pages/profile_player/`
-- [ ] **management/management** (管理页面) - `wechat-miniprogram/pages/management/`
-- [ ] **mine/mine** (我的页面) - `wechat-miniprogram/pages/mine/`
+## 待办事项
 
-### 低优先级 - 全局优化
-- [ ] **pub目录页面** - `wechat-miniprogram/pages/pub/` 下的页面
-- [ ] **微交互和动画细节** - 添加更多的交互反馈和过渡动画
-- [ ] **响应式设计优化** - 确保在不同设备上的良好显示
+### 2. 检查 `match-card-big` 点球（penalty）UI 设置是否合理
+**优先级**: 🟡 中
+**状态**: ✅ 已完成
+**发现日期**: 2026-03-10
+**完成日期**: 2026-03-10
+**相关文件**:
+- `wechat-miniprogram/components/match-card-big/match.wxss`
+- `wechat-miniprogram/components/match-card-big/match.wxml`
 
-## 设计原则
-1. **功能不变**: 只优化视觉表现
-2. **现代化设计语言**: 使用渐变、阴影、圆角、过渡动画
-3. **一致性**: 所有组件和页面保持设计语言一致性
+**问题描述**:
+点球信息显示样式 `penalty-info` 当前使用 `font-size: 20rpx`，相对于其他文本尺寸较小：
+- `group-info`: 22rpx
+- `match-time`: 24rpx
+- `match-name`: 26rpx
+- `score-number`: 56rpx
 
-## 工作流程
-1. 每次完成一个组件或页面的现代化改造后，立即提交git commit
-2. 提交信息格式: `[update] 组件/页面名称 现代化设计`
-3. 更新此TODO.md文件，标记已完成的项目
-4. 继续下一个高优先级项目
+**影响**:
+- 点球信息可读性可能较差，特别是在移动设备上
+- 与整体设计系统的字体层次不一致
 
+**建议修复**:
+- 考虑将 `penalty-info` 的字体大小增加到 `22rpx` 或 `24rpx`
+- 确保点球信息在视觉上与 `group-info` 等辅助信息保持一致的层级关系
+- 可对比测试不同尺寸的可读性
 
-## 最后更新
-2026-02-21 - 添加"home页面搜索框移动至导航栏"任务，优化TODO.md结构
+---
+
+### 3. 检查 `pages/pub/match` 页面比赛赛况中的表格是否已使用统一表格设计
+**优先级**: 🟡 中
+**状态**: ✅ 已完成
+**发现日期**: 2026-03-10
+**完成日期**: 2026-03-10
+**相关文件**:
+- `wechat-miniprogram/pages/pub/match/match.wxml`
+- `wechat-miniprogram/pages/pub/match/match.wxss`
+- `wechat-miniprogram/styles/tables.wxss`
+
+**问题描述**:
+项目已建立统一的表格样式系统（`styles/tables.wxss`），包含 `.table`、`.row`、`.cell`、`.header` 等类名。但 `pub/match` 页面的比赛赛况表格使用自定义类名：
+- `match-action-table`（替代 `.table`）
+- `match-action-row`（替代 `.row`）
+- `match-action-cell`（替代 `.cell`）
+- 未导入 `tables.wxss` 样式文件
+
+**影响**:
+- 表格样式与统一设计系统不一致，维护成本增加
+- 样式重复定义，可能产生不一致的视觉表现
+- 未来表格样式更新需要多处修改
+
+**建议修复**:
+- 评估是否将比赛赛况表格迁移到统一表格系统
+- 如果保留自定义样式，确保与 `tables.wxss` 的设计规范保持一致
+- 考虑在 `match.wxss` 中导入 `tables.wxss` 并重用基础样式
+
+---
+
+### 4. 颜色设计系统使用不规范问题
+**优先级**: 🟡 中
+**状态**: ✅ 已完成
+**发现日期**: 2026-03-10
+**完成日期**: 2026-03-10
+**相关文件**:
+- `wechat-miniprogram/pages/home/home.wxss`（第13、16、22、34、44、54行）
+- `wechat-miniprogram/pages/mine/mine.wxss`（第125行）
+- `wechat-miniprogram/pages/management/event_new/event_new.wxss`（第80、95行）
+- 共38个文件发现硬编码颜色值
+
+**问题描述**:
+项目已建立颜色设计系统（`styles/mixins.wxss` 和 `utils/colors.js`），但多处代码仍直接使用硬编码颜色值：
+1. **WXSS文件中硬编码颜色**：直接使用 `#ed6c00`、`rgba(237, 108, 0, 0.15)` 等
+2. **部分文件未导入mixins.wxss**：未使用设计系统提供的CSS类
+3. **部分JS文件未导入colors.js**：直接在JS中使用硬编码颜色值
+
+**影响**:
+- 违反项目颜色设计规范
+- 颜色一致性难以维护
+- 主题切换或颜色调整需要修改大量文件
+
+**建议修复**:
+1. 所有WXSS文件应导入 `mixins.wxss` 并使用CSS类（如 `.primary-color`、`.primary-bg`）
+2. 所有JS文件应导入 `colors.js` 并使用颜色常量（如 `Colors.primary`、`Shadows.card`）
+3. 逐步替换所有硬编码颜色值为设计系统变量
+4. 建立颜色使用审查机制
+
+---
+
+### 5. 敏感信息暴露安全问题
+**优先级**: 🔴 高
+**状态**: ✅ 已完成
+**发现日期**: 2026-03-10
+**完成日期**: 2026-03-10
+**相关文件**:
+- `wechat-miniprogram/wx_AppSecret`（包含小程序密钥）
+- `wechat-miniprogram/app.js`（第88行，`session_key` 通过URL参数传输）
+
+**问题描述**:
+1. **AppSecret文件提交到版本控制**：`wx_AppSecret` 文件包含小程序密钥，不应提交到git仓库
+2. **敏感参数传输不安全**：`session_key` 通过URL参数传输，存在泄露风险
+3. **缺少输入验证和编码**：用户输入数据未充分验证，URL参数未编码
+
+**影响**:
+- 小程序密钥泄露可能导致账户安全风险
+- `session_key` 泄露可能导致用户身份被盗用
+- 未验证的用户输入可能导致安全漏洞
+
+**建议修复**:
+1. 立即从版本控制中移除 `wx_AppSecret` 文件，使用环境变量或安全配置
+2. 改进 `session_key` 传输方式，避免通过URL参数传输
+3. 对所有用户输入进行验证和清理
+4. 对URL参数使用 `encodeURIComponent` 编码
+5. 建立安全编码规范和审查流程
+
+---
+
+### 6. 代码规范和质量问题
+**优先级**: 🟢 低
+**状态**: ✅ 已完成
+**发现日期**: 2026-03-10
+**完成日期**: 2026-03-10
+**相关文件**:
+- 整个项目代码库
+
+**问题描述**:
+1. **大量console语句**：共发现1101处 `console.log()` 和 348处 `console.error()` 调用
+2. **文件过长**：多个JS文件超过1500行（如 `mine.js` 1737行）
+3. **不一致的代码风格**：缩进、命名风格不一致
+4. **缺少错误处理**：部分API调用缺少完整的错误处理
+5. **硬编码字符串和数字**：多处使用未解释的魔法数字和字符串
+6. **缺少注释和文档**：复杂逻辑缺少必要注释
+
+**影响**:
+- 生产环境性能影响（console语句）
+- 代码可维护性差（长文件、不一致风格）
+- 调试困难（缺少错误处理）
+- 代码理解成本高（缺少注释）
+
+**建议修复**:
+1. 移除或条件化生产环境的console语句
+2. 拆分超长文件（>500行建议拆分）
+3. 统一代码风格规范（缩进、命名）
+4. 完善错误处理机制
+5. 提取魔法数字为常量
+6. 为复杂逻辑添加注释
+7. 考虑引入代码格式化工具（如Prettier）
+
+---
+
+### 7. 可重构和优化代码点
+**优先级**: 🟡 中
+**状态**: ✅ 已完成
+**发现日期**: 2026-03-10
+**完成日期**: 2026-03-10
+**相关文件**:
+- `wechat-miniprogram/pages/mine/mine.js`（1737行）
+- `wechat-miniprogram/package-coach/pages/profile_coach_notice/profile_coach_notice.js`（1706行）
+- `wechat-miniprogram/pages/management/team_notice/team_notice.js`（1704行）
+
+**问题描述**:
+1. **重复的逻辑代码**：多个页面有相似的 `fetchData`、错误处理、API调用模式
+2. **过于复杂的函数**：条件分支过多、嵌套过深、高圈复杂度
+3. **重复的数据处理模式**：时间格式化、数据转换等函数可提取
+4. **页面生命周期模式重复**：相似的 `onLoad`、`onShow`、`onHide` 处理
+5. **性能优化点**：可能存在的重复数据请求、内存使用优化
+
+**影响**:
+- 代码重复导致维护困难
+- 复杂函数难以测试和理解
+- 性能可能受影响
+- 新功能开发效率低
+
+**建议修复**:
+1. **提取公共工具函数**：
+   - 数据格式化函数（时间、数字等）
+   - API调用包装函数
+   - 错误处理统一函数
+2. **重构复杂页面**：
+   - 拆分超长文件为多个模块
+   - 提取业务逻辑为独立服务
+   - 组件化复杂UI逻辑
+3. **优化性能**：
+   - 减少不必要的重复计算
+   - 优化内存使用
+   - 清理未使用的事件监听器和定时器
+4. **建立公共模式**：
+   - 页面生命周期基类
+   - 数据获取和更新模式
+   - 状态管理统一方案
+
+---
+
+### 8. 复杂数据结构传递问题
+**优先级**: 🟢 低
+**状态**: ✅ 已完成
+**发现日期**: 2026-03-10
+**完成日期**: 2026-03-10
+**相关文件**:
+- 页面间跳转相关代码（`wx.navigateTo`、`wx.redirectTo` 等）
+
+**问题描述**:
+页面间传递复杂数据结构时，未使用 `JSON.stringify` 和 `JSON.parse` 包装：
+1. **直接传递对象**：可能传递复杂对象而未序列化
+2. **参数限制**：微信小程序URL参数有长度限制，复杂数据可能被截断
+3. **数据类型丢失**：直接传递可能导致数据类型信息丢失
+
+**影响**:
+- 复杂对象传递可能失败或数据丢失
+- 数据类型可能不正确解析
+- 超出URL长度限制导致错误
+
+**建议修复**:
+1. **建立数据传递规范**：
+   - 复杂对象必须使用 `JSON.stringify()` 序列化
+   - 接收方使用 `JSON.parse()` 解析
+   - 简单参数可直接传递
+2. **考虑替代方案**：
+   - 使用全局数据存储（`getApp().globalData`）
+   - 使用本地存储（`wx.setStorageSync`）
+   - 使用事件总线传递数据
+3. **添加验证**：
+   - 验证传递数据的类型和结构
+   - 添加错误处理（解析失败、数据缺失等）
+
+---
+
+## 已完成事项
+*暂无已完成事项*
+
+---
+
+## 备注
+- 以上问题基于对项目代码的静态分析，实际修复前建议进行可视化验证
+- 涉及样式修改时，建议在微信开发者工具中预览效果
+- 统一表格系统 (`styles/tables.wxss`) 已提供现代化设计，支持响应式布局和项目颜色设计系统
+- 安全问题（特别是 `wx_AppSecret`）需要立即处理
+- 建议按照优先级逐步解决这些问题，高优先级问题应优先处理
+- 对于大规模重构，建议分阶段进行，确保每个阶段的稳定性
