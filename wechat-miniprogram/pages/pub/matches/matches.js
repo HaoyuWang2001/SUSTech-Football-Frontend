@@ -92,6 +92,14 @@ Page({
   // HTTP 请求
 
   fetchData: function (matchIdList) {
+    // 如果matchIdList为空，直接设置空列表
+    if (!matchIdList || matchIdList.length === 0) {
+      this.setData({
+        matchList: []
+      })
+      return
+    }
+
     wx.showLoading({
       title: '加载中',
       mask: true
