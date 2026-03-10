@@ -36,18 +36,10 @@
 - **请求队列**：当 `userId` 尚未获取时，用 `addToRequestQueue()` 包装API调用（见 `app.js`）。
 - **认证**：通过 `wx.login()` 进行微信登录；后端用 code 交换 `openid` 和 `session_key`。
 - **组件注册**：所有可复用组件都在 `app.json` 的 `"usingComponents"` 中注册。
-- **颜色方案**（基于颜色设计系统）：
-  - **橙色系**（统一使用，不再使用深绿色和青绿色）：
-    - 主橙色：`#ed6c00`（主导航、主要按钮、强调色、标题）
-    - 浅橙色：`#ff8c32`（渐变过渡、辅助元素、次要按钮）
-    - 极浅橙色：`#ffb366`（背景高光、渐变终点）
-    - 透明度变体：`rgba(237, 108, 0, 0.xx)`（边框、阴影、半透明效果）
-  - **灰色系**：
-    - `#666666`、`#cccccc`、`#e0e0e0`、`#f2f2f2`（背景、边框、次要文本）
-  - **设计系统文件**：
-    - `docs/color-design-system.md` - 完整颜色规范
-    - `wechat-miniprogram/utils/colors.js` - JavaScript颜色常量
-    - `wechat-miniprogram/styles/mixins.wxss` - WXSS混入类
+- **颜色方案**：
+  - `docs/color-design-system.md` - 完整颜色规范
+  - `wechat-miniprogram/utils/colors.js` - JavaScript颜色常量
+  - `wechat-miniprogram/styles/mixins.wxss` - WXSS混入类
 
 ## 编码规范
 
@@ -64,12 +56,6 @@
   - WXSS中使用 `@import '../../styles/mixins.wxss'` 导入CSS类
     - 注意：微信小程序WXSS不支持CSS自定义属性和Sass/Less混入语法
     - 在WXML中使用类名：`<view class="primary-color">橙色文字</view>`
-  - 不再使用深绿色 (`#003f43`) 和青绿色 (`#2bb7b3`)，统一使用橙色系
-
-## 测试
-
-- **没有自动化测试套件**。在微信开发者工具中手动验证更改。
-- **UI验证**：至少在一种小设备和一种大设备配置上测试。
 
 ## 常见任务
 
@@ -84,7 +70,7 @@
   ```javascript
   // 在JS文件中导入颜色常量
   import { Colors, Shadows, Gradients } from '../../utils/colors.js';
-
+  
   Page({
     data: {
       primaryColor: Colors.primary,
@@ -96,12 +82,12 @@
   ```css
   /* 在WXSS文件中导入混入类 */
   @import '../../styles/mixins.wxss';
-
+  
   .card-title {
     .primary-color();
     font-weight: bold;
   }
-
+  
   .card-container {
     .modern-card();
     .gradient-primary();
@@ -116,51 +102,3 @@
   });
   ```
   如果调用依赖 `userId`，用 `app.addToRequestQueue((userId) => { ... })` 包装。
-
-## 给未来 Claude 实例的注意事项
-
-- 这是一个 **微信小程序**，不是标准的Web应用。文件扩展名为 `.wxml`、`.wxss`、`.js`。
-- **没有 package.json 或 npm 脚本**——开发完全依赖微信开发者工具。
-- **组件系统** 使用微信的 `Component()` API，不是 React/Vue 组件。
-- **状态管理** 通过 `getApp().globalData` 和本地存储（`wx.getStorageSync()`）。
-- **测试** 是手动的；没有单元测试或集成测试框架。
-
-更多仓库指南请参阅 `AGENTS.md`。
-
-## 常见错误和注意事项
-
-### WXSS 混入类语法错误
-**错误示例**：
-```css
-/* 错误：微信小程序WXSS不支持Sass/Less混入语法 */
-.search-container {
-  .white-bg();
-  .shadow-card-hover();
-  .transition-normal();
-}
-```
-
-**正确做法**：
-```css
-/* 正确：使用原生CSS属性 */
-.search-container {
-  background-color: #ffffff !important;
-  box-shadow: 0 8rpx 32rpx rgba(237, 108, 0, 0.15) !important;
-  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1) !important;
-}
-```
-
-**原因**：微信小程序WXSS不支持CSS自定义属性和Sass/Less混入语法。虽然项目提供了 `mixins.wxss` 文件，但其中定义的是CSS类（如 `.white-bg`），而不是可调用的混入函数。在WXSS中只能使用原生CSS属性。
-
-**参考**：颜色设计系统中的混入类定义在 `wechat-miniprogram/styles/mixins.wxss` 中，只能通过 `@import` 导入后在WXML中使用类名（如 `<view class="white-bg">`），不能在WXSS中使用函数调用语法。
-
-### 颜色设计系统使用指南
-1. **JavaScript中**：导入 `colors.js` 中的颜色常量
-2. **WXSS中**：直接使用颜色值，或通过 `@import '../../styles/mixins.wxss'` 后在WXML中使用类名
-3. **WXML中**：使用 `class="primary-color white-bg"` 等类名应用样式
-
-### 开发检查清单
-- [ ] WXSS中不使用任何 `function()` 或 `mixin()` 语法
-- [ ] 所有颜色值使用设计系统常量或硬编码值
-- [ ] 在微信开发者工具中验证样式渲染
-- [ ] 提交前检查语法错误
