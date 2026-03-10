@@ -1,5 +1,6 @@
 /* pages/pub/match/match.wxss - 现代化设计 (使用橙色系颜色设计系统) */
 @import '../../../styles/mixins.wxss';
+@import '../../../styles/tables.wxss';
 
 /* ============================================================================
  * 页面头部区域
@@ -251,64 +252,9 @@
   transform: translateY(2rpx);
 }
 
-/* ============================================================================
- * 比赛赛况表格现代化
- * ============================================================================ */
 
-.match-action-table {
-  width: 100%;
-  border-collapse: collapse;
-  border-radius: 16rpx;
-  overflow: hidden;
-  box-shadow: 0 2rpx 8rpx rgba(237, 108, 0, 0.08);
-}
-
-.match-action-row {
-  display: flex;
-  border-bottom: 1rpx solid rgba(237, 108, 0, 0.08);
-  transition: all 0.3s ease;
-}
-
-.match-action-row:active {
-  background-color: rgba(237, 108, 0, 0.05);
-}
-
-.match-action-row.header {
-  background: linear-gradient(90deg, #ed6c00 0%, #ff8c32 100%);
-  color: #ffffff;
-  font-weight: 600;
-  border-bottom: none;
-  text-shadow: 0 1rpx 2rpx rgba(0, 0, 0, 0.2);
-}
-
-.match-action-row.header .match-action-cell {
-  color: #ffffff;
-  font-weight: 600;
-  border-right: 1rpx solid rgba(255, 255, 255, 0.2);
-}
-
-.match-action-row.header .match-action-cell:last-child {
-  border-right: none;
-}
-
-.match-action-cell {
-  flex: 1;
-  padding: 24rpx 12rpx;
-  text-align: center;
-  font-size: 26rpx;
-  color: #666666;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-right: 1rpx solid rgba(237, 108, 0, 0.08);
-  min-height: 80rpx;
-}
-
-.match-action-cell:last-child {
-  border-right: none;
-}
-
-.match-action-cell.action {
+/* 动作列特殊样式 */
+.cell.action {
   color: #ed6c00;
   font-weight: 500;
 }
@@ -433,7 +379,7 @@
   }
 
   /* 比赛赛况表格响应式 */
-  .match-action-cell {
+  .cell {
     padding: 20rpx 8rpx;
     font-size: 24rpx;
     min-height: 70rpx;

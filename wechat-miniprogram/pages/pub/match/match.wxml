@@ -153,18 +153,18 @@
         <view wx:if="{{matchPlayerActionList.length == 0}}" class="empty-state">
           <text>暂无进球、助攻或红黄牌信息</text>
         </view>
-        <view wx:else class="match-action-table">
-          <view class="match-action-row header">
-            <view class="match-action-cell">时间</view>
-            <view class="match-action-cell">球队</view>
-            <view class="match-action-cell">球员</view>
-            <view class="match-action-cell">动作</view>
+        <view wx:else class="table">
+          <view class="row header">
+            <view class="cell">时间</view>
+            <view class="cell">球队</view>
+            <view class="cell">球员</view>
+            <view class="cell">动作</view>
           </view>
-          <view wx:for="{{matchPlayerActionList}}" wx:key="index" class="match-action-row">
-            <view class="match-action-cell">{{item.time}}min</view>
-            <view class="match-action-cell">{{item.teamId == homeTeam.teamId ? homeTeam.name : awayTeam.name}}</view>
-            <view class="match-action-cell">{{item.player.number}}号 {{item.player.name}}</view>
-            <view class="match-action-cell action">{{item.action}}</view>
+          <view wx:for="{{matchPlayerActionList}}" wx:key="index" class="row">
+            <view class="cell">{{item.time}}min</view>
+            <view class="cell">{{item.teamId == homeTeam.teamId ? homeTeam.name : awayTeam.name}}</view>
+            <view class="cell">{{item.player.number}}号 {{item.player.name}}</view>
+            <view class="cell action">{{item.action}}</view>
           </view>
         </view>
       </view>
