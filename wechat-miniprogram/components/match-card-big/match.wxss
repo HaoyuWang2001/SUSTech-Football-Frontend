@@ -263,7 +263,7 @@
 }
 
 .penalty-info {
-  font-size: 20rpx;
+  font-size: 22rpx;
   color: rgba(237, 108, 0, 0.8);
   background-color: rgba(237, 108, 0, 0.08);
   padding: 4rpx 12rpx;
