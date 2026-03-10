@@ -32,7 +32,7 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        console.log(res)
+        // console.log(res) // 调试用，生产环境可注释
         if (res.code) {
           // 通过code获取openid和session_key
           that.fetchOpenIdAndSessionKey(res.code)
@@ -54,7 +54,7 @@ App({
       url: that.globalData.URL + '/user/wxLogin?code=' + encodeURIComponent(code),
       method: "POST",
       success(res) {
-        console.log(res.data)
+        // console.log(res.data) // 调试用，生产环境可注释
         that.globalData.openid = res.data.openid
         that.globalData.session_key = res.data.session_key
         that.globalData.userId = res.data.userId
@@ -84,11 +84,16 @@ App({
   fetchUserId(openid, session_key) {
     var that = this
     // 通过openid和session_key获取userId
+    // 使用POST请求体传输敏感数据，避免URL参数泄露
     wx.request({
-      url: that.globalData.URL + '/user/login?openid=' + encodeURIComponent(openid) + '&session_key=' + encodeURIComponent(session_key),
+      url: that.globalData.URL + '/user/login',
       method: "POST",
+      data: {
+        openid: openid,
+        session_key: session_key
+      },
       success(res) {
-        console.log(res.data)
+        // console.log(res.data) // 调试用，生产环境可注释
         that.globalData.userId = res.data.userId
         that.globalData.nickName = res.data.nickName
 
