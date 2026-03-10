@@ -16,8 +16,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    let playerIdList = [];
+
+    try {
+      const idListStr = decodeURIComponent(options.playerIdList || '[]');
+      playerIdList = JSON.parse(idListStr);
+
+      // 验证是数组
+      if (!Array.isArray(playerIdList)) {
+        console.error('playerIdList is not an array:', playerIdList);
+        playerIdList = [];
+      }
+    } catch (error) {
+      console.error('Failed to parse playerIdList:', error);
+      playerIdList = [];
+    }
+
     this.setData({
-      playerIdList: options.playerIdList || [],
+      playerIdList: playerIdList,
     })
     this.fetchData(options.id);
   },

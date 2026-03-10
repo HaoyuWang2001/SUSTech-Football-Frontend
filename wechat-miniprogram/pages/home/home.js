@@ -306,7 +306,7 @@ Page({
     let teamList = e.currentTarget.dataset.list ?? []
     let teamIdList = teamList.map(team => team.teamId)
     wx.navigateTo({
-      url: '/pages/pub/teams/teams?idList=' + teamIdList,
+      url: '/pages/pub/teams/teams?idList=' + encodeURIComponent(JSON.stringify(teamIdList)),
     })
   },
 

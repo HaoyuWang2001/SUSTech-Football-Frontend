@@ -273,7 +273,7 @@ Page({
       return item.id
     });
     wx.navigateTo({
-      url: '../teams/teams?idList=' + teamIdList,
+      url: '../teams/teams?idList=' + encodeURIComponent(JSON.stringify(teamIdList)),
     })
   },
 

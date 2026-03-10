@@ -16,7 +16,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    let teamIdList = Array(options.idList) ?? []
+    let teamIdList = [];
+
+    try {
+      const idListStr = decodeURIComponent(options.idList || '[]');
+      teamIdList = JSON.parse(idListStr);
+
+      // 验证是数组
+      if (!Array.isArray(teamIdList)) {
+        console.error('teamIdList is not an array:', teamIdList);
+        teamIdList = [];
+      }
+    } catch (error) {
+      console.error('Failed to parse teamIdList:', error);
+      teamIdList = [];
+    }
+
     this.setData({
       teamIdList: teamIdList,
     })
@@ -76,9 +91,17 @@ Page({
   // HTTP 请求
 
   fetchData: function (teamIdList) {
+    // 如果teamIdList为空，直接设置空列表
+    if (!teamIdList || teamIdList.length === 0) {
+      this.setData({
+        teamList: []
+      })
+      return
+    }
+
     wx.showLoading({
       title: '加载中',
-      mask: true 
+      mask: true
     });
     let queryParams = ""
     for (let id of teamIdList) {
