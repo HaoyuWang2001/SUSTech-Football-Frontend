@@ -1,0 +1,44 @@
+<!--components/notification-block.wxml-->
+<view class="block-container" wx:if="{{visible}}">
+  <view class="block-top" bindtap="toggle">
+    <view class="block-title">
+      <view class="red-dot" wx:if="{{list.length > 0}}"></view>
+      <view class="title-text">{{title}}</view>
+    </view>
+
+    <view class="block-more">
+      <image 
+        src="/assets/down333.png"
+        class="{{open ? 'icon-rotated' : 'icon'}}"
+      />
+    </view>
+  </view>
+
+  <view class="block-main">
+    <view class="hint-text">{{hint}}</view>
+
+    <scroll-view
+      scroll-y="true"
+      class="notification-box"
+      style="height: {{open ? height : '0'}}; visibility: {{open ? 'visible' : 'hidden'}};"
+    >
+
+      <!-- 空数据 -->
+      <view class="invitation-item" wx:if="{{list.length == 0}}">
+        <text class="invitation-text">{{emptyText}}</text>
+      </view>
+
+      <!-- 数据列表 -->
+      <view
+        class="invitation-item"
+        wx:for="{{list}}"
+        wx:key="index"
+        bindtap="itemClick"
+        data-item="{{item}}"
+      >
+        <text class="invitation-text">{{item.content}}</text>
+      </view>
+
+    </scroll-view>
+  </view>
+</view>
