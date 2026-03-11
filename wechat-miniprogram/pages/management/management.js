@@ -44,6 +44,41 @@ Page({
     wx.stopPullDownRefresh()
   },
 
+  initNotifications(){
+    this.setData({
+      notifications:[
+        {
+          key:"managerEventInvitationTeam",
+          title:"邀请球队参加赛事 - 回复",
+          visible:this.data.isEventManager,
+          open:false,
+          list:this.data.manageEventInvitationTeamInform,
+          hint:"",
+          emptyText:"您还没有收到任何球队的回复，可以尝试邀请球队参加赛事",
+          event:"managerEventInvitationTeam"
+        },
+      ]
+    })
+  },
+
+  handleNotificationClick(e){
+    const item = e.detail.item
+    const type = e.currentTarget.dataset.event
+    switch(type){
+      case "managerEventInvitationTeam":
+        break
+    }
+  },
+
+  toggleNotification(e){
+    const index = e.currentTarget.dataset.index
+    const list = this.data.notifications
+    list[index].open = !list[index].open
+    this.setData({
+      notifications:list
+    })
+  },
+
   fetchUserId(userId) {
     const that = this
     that.setData({
@@ -162,6 +197,8 @@ Page({
           const event = manageEventIdList[index];
           that.fetchManageEventInvitationTeam(event.eventId);
         }
+
+        that.initNotifications()
       },
       fail(err) {
         console.log('请求失败', err);
@@ -199,11 +236,17 @@ Page({
     const informs = invitations.map(invitation => {
       const formattedDate = (invitation.lastUpdated != null) ? new Date(invitation.lastUpdated).toLocaleString() : '未知';
       if (invitation.status == "PENDING") {
-        return `${invitation.eventId}(eventId) 所邀请 ${invitation.team.name}(teamId = ${invitation.teamId}) 还未被处理您发出的邀请，邀请发起时间：${formattedDate}`
+        return {
+          content: `${invitation.eventId}(eventId) 所邀请 ${invitation.team.name}(teamId = ${invitation.teamId}) 还未被处理您发出的邀请，邀请发起时间：${formattedDate}`
+        }
       } else if (invitation.status == "ACCEPTED") {
-        return `${invitation.eventId}(eventId) 所邀请 ${invitation.team.name}(teamId = ${invitation.teamId}) 已经同意参与您所创建的赛事，处理时间时间：${formattedDate}`
+        return {
+          content: `${invitation.eventId}(eventId) 所邀请 ${invitation.team.name}(teamId = ${invitation.teamId}) 已经同意参与您所创建的赛事，处理时间时间：${formattedDate}`
+        }
       } else if (invitation.status == "REJECTED") {
-        return `${invitation.eventId}(eventId) 所邀请 ${invitation.team.name}(teamId = ${invitation.teamId}) 已经拒绝参与您所创建的赛事，处理时间时间：${formattedDate}`
+        return {
+          content: `${invitation.eventId}(eventId) 所邀请 ${invitation.team.name}(teamId = ${invitation.teamId}) 已经拒绝参与您所创建的赛事，处理时间时间：${formattedDate}`
+        }
       }
       return null;
     }).filter(inform => inform !== null);
@@ -212,13 +255,14 @@ Page({
       manageEventInvitationTeamInform: this.data.manageEventInvitationTeamInform.concat(informs),
       showManageEventInvitationTeamDot: showDot
     });
+    that.initNotifications()
   },
-  toggleManageEventInvitationTeamInform: function () {
-    this.setData({
-      showManageEventInvitationTeamInform: !this.data.showManageEventInvitationTeamInform,
-      showManageEventInvitationTeamDot: false
-    });
-  },
+  // toggleManageEventInvitationTeamInform: function () {
+  //   this.setData({
+  //     showManageEventInvitationTeamInform: !this.data.showManageEventInvitationTeamInform,
+  //     showManageEventInvitationTeamDot: false
+  //   });
+  // },
 
   gotoMatches: function (e) {
     wx.navigateTo({

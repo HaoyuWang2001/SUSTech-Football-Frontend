@@ -143,6 +143,54 @@ Page({
 
   },
 
+  initNotifications(){
+    this.setData({
+      notifications:[
+        {
+          key:"coachInvitation",
+          title:"球队邀请通知",
+          visible:true,
+          open:false,
+          list:this.data.coachInvitationInform,
+          hint:"点击邀请可选择接受或拒绝",
+          emptyText:"您还没有收到任何球队发出的邀请，可以尝试申请加入球队",
+          event:"coachInvitation"
+        },
+        {
+          key:"coachMatch",
+          title:"比赛通知",
+          visible:true,
+          open:false,
+          list:this.data.coachMatchInform,
+          hint:"您两周内的比赛",
+          emptyText:"您近两星期内没有比赛",
+          event:"coachMatch"
+        },
+      ]
+    })
+  },
+
+  handleNotificationClick(e){
+    const item = e.detail.item
+    const type = e.currentTarget.dataset.event
+    switch(type){
+      case "coachInvitation":
+        this.showCoachTeamInvitationModal(item)
+        break
+      case "coachMatch":
+        break
+    }
+  },
+
+  toggleNotification(e){
+    const index = e.currentTarget.dataset.index
+    const list = this.data.notifications
+    list[index].open = !list[index].open
+    this.setData({
+      notifications:list
+    })
+  },
+
   // ------------------
   // fetch data
 
@@ -862,6 +910,7 @@ Page({
       coachInvitationInform: informs,
       showCoachInvitationDot: showDot
     });
+    this.initNotifications()
   },
 
   formatPlayerInvitations: function (invitations) {
@@ -1025,7 +1074,9 @@ Page({
       else {
         let differenceInDays = (matchDay - nowDay) / (1000 * 60 * 60 * 24);
         if (differenceInDays <= 14)
-          return `你在${matchDay.toLocaleString()}有一场比赛`;
+          return {
+            content: `你在${matchDay.toLocaleString()}有一场比赛`,
+          }
       }
       return null;
     }).filter(inform => inform !== null);
@@ -1034,6 +1085,7 @@ Page({
       coachMatchInform: informs,
       showCoachMatchDot: showDot,
     });
+    this.initNotifications()
   },
 
   formatRefereeMatches: function (matches) {

@@ -9,7 +9,23 @@
     <view class="hint-text">与您执法的球队及其比赛相关的通知将在这里展示。</view>
   </view>
 </view>
-<view class="block-container" wx:if="{{isReferee}}">
+
+<view wx:for="{{notifications}}" wx:key="key">
+  <notification-block
+    visible="{{item.visible}}"
+    title="{{item.title}}"
+    list="{{item.list}}"
+    open="{{item.open}}"
+    hint="{{item.hint}}"
+    emptyText="{{item.emptyText}}"
+    data-index="{{index}}"
+    data-event="{{item.event}}"
+    bind:toggle="toggleNotification"
+    bind:itemclick="handleNotificationClick"
+  />
+</view>
+
+<!-- <view class="block-container" wx:if="{{isReferee}}">
   <view class="block-top" bindtap="toggleRefereeMatchInform">
     <view class="block-title">
       <text>比赛通知</text>
@@ -31,7 +47,7 @@
     </scroll-view>
   </view>
 </view>
-<!-- 裁判身份：比赛邀请通知 -->
+
 <view class="block-container" wx:if="{{isReferee}}">
   <view class="block-top" bindtap="toggleRefereeInvitationInformForMatch">
     <view class="block-title">
@@ -55,7 +71,6 @@
   </view>
 </view>
 
-<!-- 裁判身份：赛事邀请通知 -->
 <view class="block-container" wx:if="{{isReferee}}">
   <view class="block-top" bindtap="toggleRefereeInvitationInformForEvent">
     <view class="block-title">
@@ -78,4 +93,4 @@
       </view>
     </scroll-view>
   </view>
-</view>
+</view> -->

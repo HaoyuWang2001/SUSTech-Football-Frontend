@@ -43,6 +43,54 @@ Page({
     wx.stopPullDownRefresh()
   },
 
+  initNotifications(){
+    this.setData({
+      notifications:[
+        {
+          key:"playerInvitation",
+          title:"球队邀请通知",
+          visible:true,
+          open:false,
+          list:this.data.playerInvitationInform,
+          hint:"点击邀请可选择接受或拒绝",
+          emptyText:"您还没有收到任何球队发出的邀请，可以尝试申请加入球队",
+          event:"playerTeamInvitation"
+        },
+        {
+          key:"playerApplication",
+          title:"球队申请回复",
+          visible:true,
+          open:false,
+          list:this.data.playerApplicationInform,
+          hint:"球队管理员回复后，您将在此看到通知",
+          emptyText:"暂无回复",
+          event:"playerTeamApplication"
+        },
+      ]
+    })
+  },
+
+  handleNotificationClick(e){
+    const item = e.detail.item
+    const type = e.currentTarget.dataset.event
+    switch(type){
+      case "playerTeamInvitation":
+        this.showPlayerTeamInvitationModal(item)
+        break
+      case "playerTeamApplication":
+        break
+    }
+  },
+
+  toggleNotification(e){
+    const index = e.currentTarget.dataset.index
+    const list = this.data.notifications
+    list[index].open = !list[index].open
+    this.setData({
+      notifications:list
+    })
+  },
+
   // fetch data
   fetchData: function () {
     this.fetchPlayerId(userId)
@@ -137,6 +185,7 @@ Page({
       playerInvitationInform: informs,
       showPlayerInvitationDot: showDot
     });
+    that.initNotifications()
   },
 
   formatApplications: function (applications) {
@@ -163,11 +212,11 @@ Page({
         break
       }
     }
-
     this.setData({
       playerApplicationInform: informs,
       showPlayerApplicationDot: showDot,
     });
+    this.initNotifications()
   },
 
   // 切换球队邀请通知的显示状态

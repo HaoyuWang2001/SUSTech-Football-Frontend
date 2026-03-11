@@ -10,8 +10,22 @@
   </view>
 </view>
 
-<scroll-view class="scrollarea" scroll-y type="list">
-  <!-- 球员身份：球队邀请通知 -->
+<view wx:for="{{notifications}}" wx:key="key">
+  <notification-block
+    visible="{{item.visible}}"
+    title="{{item.title}}"
+    list="{{item.list}}"
+    open="{{item.open}}"
+    hint="{{item.hint}}"
+    emptyText="{{item.emptyText}}"
+    data-index="{{index}}"
+    data-event="{{item.event}}"
+    bind:toggle="toggleNotification"
+    bind:itemclick="handleNotificationClick"
+  />
+</view>
+
+<!-- <scroll-view class="scrollarea" scroll-y type="list">
   <view class="block-container">
     <view class="block-top" bindtap="togglePlayerInvitationInform">
       <view class="block-title">
@@ -35,7 +49,7 @@
     </view>
   </view>
 
-  <!-- 球员身份：球队申请回复 -->
+
   <view class="block-container">
     <view class="block-top" bindtap="toggleApplicationInform">
       <view class="block-title">
@@ -56,4 +70,4 @@
       </scroll-view>
     </view>
   </view>
-</scroll-view>
+</scroll-view> -->

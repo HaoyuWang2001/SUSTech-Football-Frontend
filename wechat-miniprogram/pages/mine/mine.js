@@ -68,6 +68,8 @@ Page({
     manageEventInvitationTeamInform: [],
     manageMatchInvitationTeamInform: [],
     isLoading: true, // 新增：加载状态
+
+    notifications: [],
   },
 
   /**
@@ -139,6 +141,120 @@ Page({
    */
   onShareAppMessage() {
 
+  },
+
+  initNotifications(){
+    this.setData({
+      notifications:[
+        {
+          key:"playerInvitation",
+          title:"球员身份：球队邀请通知",
+          visible:this.data.isPlayer,
+          open:false,
+          list:this.data.playerInvitationInform,
+          hint:"点击邀请可选择接受或拒绝",
+          emptyText:"您还没有收到任何球队发出的邀请，可以尝试申请加入球队",
+          event:"playerTeamInvitation"
+        },
+        {
+          key:"coachInvitation",
+          title:"教练身份：球队邀请通知",
+          visible:this.data.isCoach,
+          open:false,
+          list:this.data.coachInvitationInform,
+          hint:"点击邀请可选择接受或拒绝",
+          emptyText:"您还没有收到任何球队发出的邀请，但是您无法主动申请加入球队，您可以通过与球队管理员私聊，来让对方邀请您执教其球队",
+          event:"coachTeamInvitation"
+        },
+        {
+          key:"refereeEventInvitation",
+          title:"裁判身份：赛事邀请通知",
+          visible:this.data.isReferee,
+          open:false,
+          list:this.data.refereeInvitationInformForEvent,
+          hint:"点击邀请可选择接受或拒绝",
+          emptyText:"您还没有收到任何赛事发出的邀请",
+          event:"refereeEventInvitation"
+        },
+        {
+          key:"refereeMatchInvitation",
+          title:"裁判身份：比赛邀请通知",
+          visible:this.data.isReferee,
+          open:false,
+          list:this.data.refereeInvitationInformForMatch,
+          hint:"点击邀请可选择接受或拒绝",
+          emptyText:"您还没有收到任何比赛发出的邀请",
+          event:"refereeMatchInvitation"
+        },
+        {
+          key:"managerTeamApplicationPlayer",
+          title:"球队管理员身份：球员申请入队",
+          visible:this.data.isTeamManager,
+          open:false,
+          list:this.data.manageTeamApplicationsInform,
+          hint:"点击审核可选择接受或拒绝",
+          emptyText:"您的球队还没有收到任何球员发出的申请",
+          event:"managerTeamApplicationPlayer"
+        },
+        {
+          key:"managerTeamInvitationMatch",
+          title:"球队管理员身份：比赛邀请通知",
+          visible:this.data.isTeamManager,
+          open:false,
+          list:this.data.manageTeamInvitationMatchInform,
+          hint:"点击审核可选择接受或拒绝",
+          emptyText:"您的球队还没有收到任何比赛发出的邀请",
+          event:"managerTeamInvitationMatch"
+        },
+        {
+          key:"managerTeamInvitationEvent",
+          title:"球队管理员身份：赛事邀请通知",
+          visible:this.data.isTeamManager,
+          open:false,
+          list:this.data.manageTeamInvitationEventInform,
+          hint:"点击审核可选择接受或拒绝",
+          emptyText:"您的球队还没有收到任何赛事发出的邀请",
+          event:"managerTeamInvitationEvent"
+        },
+      ]
+    })
+  },
+
+  handleNotificationClick(e){
+    const item = e.detail.item
+    const type = e.currentTarget.dataset.event
+    switch(type){
+      case "playerTeamInvitation":
+        this.showPlayerTeamInvitationModal(item)
+        break
+      case "coachTeamInvitation":
+        this.showCoachTeamInvitationModal(item)
+        break
+      case "refereeEventInvitation":
+        this.showRefereeEventInvitationModal(item)
+        break
+      case "refereeMatchInvitation":
+        this.showRefereeMatchInvitationModal(item)
+        break
+      case "managerTeamApplicationPlayer":
+        this.showManageTeamApplicationModal(item)
+        break
+      case "managerTeamInvitationMatch":
+        this.showManageTeamInvitationMatchModal(item)
+        break
+      case "managerTeamInvitationEvent":
+        this.showManageTeamInvitationEventModal(item)
+        break
+    }
+  },
+
+  toggleNotification(e){
+    const index = e.currentTarget.dataset.index
+    const list = this.data.notifications
+    list[index].open = !list[index].open
+    this.setData({
+      notifications:list
+    })
   },
 
   // ------------------
@@ -289,6 +405,8 @@ Page({
 
         //球员身份：球队申请
         that.fetchPlayerTeamApplications(playerId)
+
+        that.initNotifications()
       },
       fail(err) {
         console.error('请求失败', err);
@@ -391,6 +509,8 @@ Page({
 
         that.fetchCoachMatches(coachId)
         that.fetchCoachTeamInvitations(coachId)
+
+        that.initNotifications()
       },
       fail(err) {
         console.error('请求失败', err);
@@ -472,6 +592,7 @@ Page({
         that.fetchRefereeInvitationsForMatch(refereeId)
         that.fetchRefereeInvitationsForEvent(refereeId)
 
+        that.initNotifications()
       },
       fail(err) {
         console.error('请求失败', err);
@@ -584,6 +705,8 @@ Page({
           that.fetchManageTeamInvitationEvent(team.teamId, team.name);
           that.fetchManageTeamInvitationPlayer(team.teamId, team.name);
         }
+
+        that.initNotifications()
       },
       fail(err) {
         console.error('请求失败', err);
@@ -821,6 +944,7 @@ Page({
     this.setData({
       applicationInform: informs,
     });
+    this.initNotifications()
   },
 
   formatManageTeamApplication: function (applications, teamName) {
@@ -838,6 +962,7 @@ Page({
     this.setData({
       manageTeamApplicationsInform: this.data.manageTeamApplicationsInform.concat(informs),
     });
+    this.initNotifications()
   },
 
   // ------------------
@@ -862,6 +987,7 @@ Page({
     this.setData({
       refereeInvitationInformForMatch: informs,
     });
+    this.initNotifications()
   },
 
   formatRefereeInvitationsForEvent: function (invitations) {
@@ -882,6 +1008,7 @@ Page({
     this.setData({
       refereeInvitationInformForEvent: informs,
     });
+    this.initNotifications()
   },
 
   formatCoachInvitations: function (invitations) {
@@ -903,6 +1030,7 @@ Page({
     this.setData({
       coachInvitationInform: informs,
     });
+    this.initNotifications()
   },
 
   formatPlayerInvitations: function (invitations) {
@@ -924,6 +1052,7 @@ Page({
     that.setData({
       playerInvitationInform: informs,
     });
+    that.initNotifications()
   },
 
   formatManageTeamInvitationMatch: function (invitations, teamName) {
@@ -946,6 +1075,7 @@ Page({
     that.setData({
       manageTeamInvitationMatchInform: this.data.manageTeamInvitationMatchInform.concat(informs),
     });
+    that.initNotifications()
   },
 
   formatManageTeamInvitationEvent: function (invitations, teamName) {
@@ -968,6 +1098,7 @@ Page({
     that.setData({
       manageTeamInvitationEventInform: this.data.manageTeamInvitationEventInform.concat(informs),
     });
+    that.initNotifications()
   },
 
   formatManageTeamInvitationPlayer: function (invitations, teamName) {
@@ -988,6 +1119,7 @@ Page({
       manageTeamInvitationPlayerInform: this.data.manageTeamInvitationPlayerInform.concat(informs),
       showManageTeamInvitationPlayerDot: showDot
     });
+    that.initNotifications()
   },
 
   formatManageMatchInvitationTeam: function (invitations) {
@@ -1008,6 +1140,7 @@ Page({
       manageMatchInvitationTeamInform: this.data.manageMatchInvitationTeamInform.concat(informs),
       showManageMatchInvitationTeamDot: showDot
     });
+    that.initNotifications()
   },
 
   formatManageEventInvitationTeam: function (invitations) {
@@ -1028,6 +1161,7 @@ Page({
       manageEventInvitationTeamInform: this.data.manageEventInvitationTeamInform.concat(informs),
       showManageEventInvitationTeamDot: showDot
     });
+    that.initNotifications()
   },
 
   // ------------------
@@ -1050,6 +1184,7 @@ Page({
       playerMatchInform: informs,
       showPlayerMatchDot: showDot,
     });
+    this.initNotifications()
   },
 
   formatCoachMatches: function (matches) {
@@ -1069,6 +1204,7 @@ Page({
       coachMatchInform: informs,
       showCoachMatchDot: showDot,
     });
+    this.initNotifications()
   },
 
   formatRefereeMatches: function (matches) {
@@ -1088,6 +1224,7 @@ Page({
       refereeMatchInform: informs,
       showRefereeMatchDot: showDot,
     });
+    this.initNotifications()
   },
 
   // ------------------
@@ -1156,106 +1293,103 @@ Page({
     });
   },
 
-  // ------------------
-  // 切换比赛通知的显示状态
+  // togglePlayerMatchInform: function () {
+  //   this.setData({
+  //     showPlayerMatchInform: !this.data.showPlayerMatchInform,
+  //     showPlayerMatchDot: false
+  //   });
+  // },
 
-  togglePlayerMatchInform: function () {
-    this.setData({
-      showPlayerMatchInform: !this.data.showPlayerMatchInform,
-      showPlayerMatchDot: false
-    });
-  },
+  // toggleCoachMatchInform: function () {
+  //   this.setData({
+  //     showCoachMatchInform: !this.data.showCoachMatchInform,
+  //     showCoachMatchDot: false
+  //   });
+  // },
 
-  toggleCoachMatchInform: function () {
-    this.setData({
-      showCoachMatchInform: !this.data.showCoachMatchInform,
-      showCoachMatchDot: false
-    });
-  },
-
-  toggleRefereeMatchInform: function () {
-    this.setData({
-      showRefereeMatchInform: !this.data.showRefereeMatchInform,
-      showRefereeMatchDot: false
-    });
-  },
+  // toggleRefereeMatchInform: function () {
+  //   this.setData({
+  //     showRefereeMatchInform: !this.data.showRefereeMatchInform,
+  //     showRefereeMatchDot: false
+  //   });
+  // },
 
   // ------------------
   // 切换球队邀请通知的显示状态
 
-  togglePlayerInvitationInform: function () {
-    this.setData({
-      showPlayerInvitationInform: !this.data.showPlayerInvitationInform,
-    });
-  },
+  // togglePlayerInvitationInform: function () {
+  //   this.setData({
+  //     showPlayerInvitationInform: !this.data.showPlayerInvitationInform,
+  //   });
+  // },
 
-  toggleCoachInvitationInform: function () {
-    this.setData({
-      showCoachInvitationInform: !this.data.showCoachInvitationInform,
-    });
-  },
+  // toggleCoachInvitationInform: function () {
+  //   this.setData({
+  //     showCoachInvitationInform: !this.data.showCoachInvitationInform,
+  //   });
+  // },
 
-  toggleRefereeInvitationInformForMatch: function () {
-    this.setData({
-      showRefereeInvitationInformForMatch: !this.data.showRefereeInvitationInformForMatch,
-    });
-  },
+  // toggleRefereeInvitationInformForMatch: function () {
+  //   this.setData({
+  //     showRefereeInvitationInformForMatch: !this.data.showRefereeInvitationInformForMatch,
+  //   });
+  // },
 
-  toggleRefereeInvitationInformForEvent: function () {
-    this.setData({
-      showRefereeInvitationInformForEvent: !this.data.showRefereeInvitationInformForEvent,
-    });
-  },
+  // toggleRefereeInvitationInformForEvent: function () {
+  //   this.setData({
+  //     showRefereeInvitationInformForEvent: !this.data.showRefereeInvitationInformForEvent,
+  //   });
+  // },
 
-  toggleManageTeamInvitationMatchInform: function () {
-    this.setData({
-      showManageTeamInvitationMatchInform: !this.data.showManageTeamInvitationMatchInform,
-    });
-  },
+  // toggleManageTeamInvitationMatchInform: function () {
+  //   this.setData({
+  //     showManageTeamInvitationMatchInform: !this.data.showManageTeamInvitationMatchInform,
+  //   });
+  // },
 
-  toggleManageTeamInvitationEventInform: function () {
-    this.setData({
-      showManageTeamInvitationEventInform: !this.data.showManageTeamInvitationEventInform,
-    });
-  },
+  // toggleManageTeamInvitationEventInform: function () {
+  //   this.setData({
+  //     showManageTeamInvitationEventInform: !this.data.showManageTeamInvitationEventInform,
+  //   });
+  // },
 
-  toggleManageTeamInvitationPlayerInform: function () {
-    this.setData({
-      showManageTeamInvitationPlayerInform: !this.data.showManageTeamInvitationPlayerInform,
-      showManageTeamInvitationPlayerDot: false
-    });
-  },
+  // toggleManageTeamInvitationPlayerInform: function () {
+  //   this.setData({
+  //     showManageTeamInvitationPlayerInform: !this.data.showManageTeamInvitationPlayerInform,
+  //     showManageTeamInvitationPlayerDot: false
+  //   });
+  // },
 
-  toggleManageMatchInvitationTeamInform: function () {
-    this.setData({
-      showManageMatchInvitationTeamInform: !this.data.showManageMatchInvitationTeamInform,
-      showManageMatchInvitationTeamDot: false
-    });
-  },
+  // toggleManageMatchInvitationTeamInform: function () {
+  //   this.setData({
+  //     showManageMatchInvitationTeamInform: !this.data.showManageMatchInvitationTeamInform,
+  //     showManageMatchInvitationTeamDot: false
+  //   });
+  // },
 
-  toggleManageEventInvitationTeamInform: function () {
-    this.setData({
-      showManageEventInvitationTeamInform: !this.data.showManageEventInvitationTeamInform,
-      showManageEventInvitationTeamDot: false
-    });
-  },
+  // toggleManageEventInvitationTeamInform: function () {
+  //   this.setData({
+  //     showManageEventInvitationTeamInform: !this.data.showManageEventInvitationTeamInform,
+  //     showManageEventInvitationTeamDot: false
+  //   });
+  // },
   // ------------------
   // 切换申请加入球队通知的显示状态
 
-  toggleApplicationInform: function () {
-    this.setData({
-      showApplicationInform: !this.data.showApplicationInform,
-    });
-  },
+  // toggleApplicationInform: function () {
+  //   this.setData({
+  //     showApplicationInform: !this.data.showApplicationInform,
+  //   });
+  // },
 
   // ------------------
   // 切换球队管理员处理申请通知的显示状态
 
-  toggleManageTeamApplicationInform: function () {
-    this.setData({
-      showManageTeamApplicationInform: !this.data.showManageTeamApplicationInform,
-    });
-  },
+  // toggleManageTeamApplicationInform: function () {
+  //   this.setData({
+  //     showManageTeamApplicationInform: !this.data.showManageTeamApplicationInform,
+  //   });
+  // },
   // ------------------
   // 弹出 modal 用来同意或拒绝邀请
 

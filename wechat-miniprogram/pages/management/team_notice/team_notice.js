@@ -143,6 +143,80 @@ Page({
 
   },
 
+  initNotifications(){
+    this.setData({
+      notifications:[
+        {
+          key:"managerTeamApplication",
+          title:"球员申请入队通知",
+          visible:this.data.isTeamManager,
+          open:false,
+          list:this.data.manageTeamApplicationsInform,
+          hint:"点击审核可选择接受或拒绝",
+          emptyText:"您还没有收到任何球员发出的申请",
+          event:"managerTeamApplication"
+        },
+        {
+          key:"managerTeamInvitationMatch",
+          title:"友谊赛邀请通知",
+          visible:this.data.isTeamManager,
+          open:false,
+          list:this.data.manageTeamInvitationMatchInform,
+          hint:"点击审核可选择接受或拒绝",
+          emptyText:"您还没有收到任何球队发出的友谊赛邀请",
+          event:"managerTeamInvitationMatch"
+        },
+        {
+          key:"managerTeamInvitationEvent",
+          title:"赛事邀请通知",
+          visible:this.data.isTeamManager,
+          open:false,
+          list:this.data.manageTeamInvitationEventInform,
+          hint:"点击审核可选择接受或拒绝",
+          emptyText:"您还没有收到任何赛事发出的邀请",
+          event:"managerTeamInvitationEvent"
+        },
+        {
+          key:"managerTeamInvitationPlayer",
+          title:"邀请球员入队 - 回复",
+          visible:this.data.isTeamManager,
+          open:false,
+          list:this.data.manageTeamInvitationPlayerInform,
+          hint:"",
+          emptyText:"您还没有收到任何球员的回复",
+          event:"managerTeamInvitationPlayer"
+        },
+      ]
+    })
+  },
+
+  handleNotificationClick(e){
+    const item = e.detail.item
+    const type = e.currentTarget.dataset.event
+    switch(type){
+      case "managerTeamApplication":
+        this.showManageTeamApplicationModal(item)
+        break
+      case "managerTeamInvitationMatch":
+        this.showManageTeamInvitationMatchModal(item)
+        break
+      case "managerTeamInvitationEvent":
+        this.showManageTeamInvitationEventModal(item)
+        break
+      case "managerTeamInvitationPlayer":
+        break
+    }
+  },
+
+  toggleNotification(e){
+    const index = e.currentTarget.dataset.index
+    const list = this.data.notifications
+    list[index].open = !list[index].open
+    this.setData({
+      notifications:list
+    })
+  },
+
   // ------------------
   // fetch data
 
@@ -535,6 +609,7 @@ Page({
           that.fetchManageTeamInvitationEvent(team.teamId, team.name);
           that.fetchManageTeamInvitationPlayer(team.teamId, team.name);
         }
+        that.initNotifications()
       },
       fail(err) {
         console.log('请求失败', err);
@@ -793,6 +868,7 @@ Page({
       manageTeamApplicationsInform: this.data.manageTeamApplicationsInform.concat(informs),
       showManageTeamApplicationDot: showDot
     });
+    this.initNotifications()
   },
 
   // ------------------
@@ -910,6 +986,7 @@ Page({
       manageTeamInvitationMatchInform: this.data.manageTeamInvitationMatchInform.concat(informs),
       showManageTeamInvitationMatchDot: showDot
     });
+    that.initNotifications()
   },
 
   formatManageTeamInvitationEvent: function (invitations, teamName) {
@@ -934,6 +1011,7 @@ Page({
       manageTeamInvitationEventInform: this.data.manageTeamInvitationEventInform.concat(informs),
       showManageTeamInvitationEventDot: showDot
     });
+    that.initNotifications()
   },
 
   formatManageTeamInvitationPlayer: function (invitations, teamName) {
@@ -941,11 +1019,17 @@ Page({
     const informs = invitations.map(invitation => {
       const formattedDate = (invitation.lastUpdated != null) ? new Date(invitation.lastUpdated).toLocaleString() : '未知';
       if (invitation.status == "PENDING") {
-        return `${teamName} （teamId = ${invitation.teamId}）所邀请 ${invitation.player.name}(球员) 还未被处理您发出的邀请，邀请发起时间：${formattedDate}`
+        return {
+          content: `${teamName} （teamId = ${invitation.teamId}）所邀请 ${invitation.player.name}(球员) 还未被处理您发出的邀请，邀请发起时间：${formattedDate}`,
+        }
       } else if (invitation.status == "ACCEPTED") {
-        return `${teamName} （teamId = ${invitation.teamId}）所邀请 ${invitation.player.name}(球员) 已经同意加入您的球队，处理时间时间：${formattedDate}`
+        return {
+          content: `${teamName} （teamId = ${invitation.teamId}）所邀请 ${invitation.player.name}(球员) 已经同意加入您的球队，处理时间时间：${formattedDate}`,
+        }
       } else if (invitation.status == "REJECTED") {
-        return `${teamName} （teamId = ${invitation.teamId}）所邀请 ${invitation.player.name}(球员) 拒绝加入您的球队，处理时间时间：${formattedDate}`
+        return {
+          content: `${teamName} （teamId = ${invitation.teamId}）所邀请 ${invitation.player.name}(球员) 拒绝加入您的球队，处理时间时间：${formattedDate}`,
+        }
       }
       return null;
     }).filter(inform => inform !== null);
@@ -954,6 +1038,7 @@ Page({
       manageTeamInvitationPlayerInform: this.data.manageTeamInvitationPlayerInform.concat(informs),
       showManageTeamInvitationPlayerDot: showDot
     });
+    that.initNotifications()
   },
 
   formatManageMatchInvitationTeam: function (invitations) {

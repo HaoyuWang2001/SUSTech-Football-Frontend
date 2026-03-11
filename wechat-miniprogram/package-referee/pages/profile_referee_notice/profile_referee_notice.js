@@ -143,6 +143,67 @@ Page({
 
   },
 
+  initNotifications(){
+    this.setData({
+      notifications:[
+        {
+          key:"refereeMatch",
+          title:"比赛通知",
+          visible:true,
+          open:false,
+          list:this.data.refereeMatchInform,
+          hint:"您两周内的比赛",
+          emptyText:"您近两星期内没有比赛",
+          event:"refereeMatch"
+        },
+        {
+          key:"refereeInvitationForMatch",
+          title:"比赛邀请通知",
+          visible:true,
+          open:false,
+          list:this.data.refereeInvitationInformForMatch,
+          hint:"点击邀请可选择接受或拒绝",
+          emptyText:"您还没有收到任何比赛发出的邀请",
+          event:"refereeInvitationForMatch"
+        },
+        {
+          key:"refereeInvitationForEvent",
+          title:"赛事邀请通知",
+          visible:true,
+          open:false,
+          list:this.data.refereeInvitationInformForEvent,
+          hint:"点击邀请可选择接受或拒绝",
+          emptyText:"您还没有收到任何赛事发出的邀请",
+          event:"refereeInvitationForEvent"
+        },
+      ]
+    })
+  },
+
+  handleNotificationClick(e){
+    const item = e.detail.item
+    const type = e.currentTarget.dataset.event
+    switch(type){
+      case "refereeMatch":
+        break
+      case "refereeInvitationForMatch":
+        this.showRefereeMatchInvitationModal(item)
+        break
+      case "refereeInvitationForEvent":
+        this.showRefereeEventInvitationModal(item)
+        break
+    }
+  },
+
+  toggleNotification(e){
+    const index = e.currentTarget.dataset.index
+    const list = this.data.notifications
+    list[index].open = !list[index].open
+    this.setData({
+      notifications:list
+    })
+  },
+
   // ------------------
   // fetch data
 
@@ -771,6 +832,7 @@ Page({
       refereeInvitationInformForMatch: informs,
       showRefereeInvitationDotForMatch: showDot,
     });
+    this.initNotifications()
   },
 
   formatRefereeInvitationsForEvent: function (invitations) {
@@ -793,6 +855,7 @@ Page({
       refereeInvitationInformForEvent: informs,
       showRefereeInvitationDotForEvent: showDot
     });
+    this.initNotifications()
   },
 
   formatCoachInvitations: function (invitations) {
@@ -997,7 +1060,9 @@ Page({
       else {
         let differenceInDays = (matchDay - nowDay) / (1000 * 60 * 60 * 24);
         if (differenceInDays <= 14)
-          return `你在${matchDay.toLocaleString()}有一场比赛`;
+          return {
+            content: `你在${matchDay.toLocaleString()}有一场比赛`,
+          }
       }
       return null;
     }).filter(inform => inform !== null);
@@ -1006,6 +1071,7 @@ Page({
       refereeMatchInform: informs,
       showRefereeMatchDot: showDot,
     });
+    this.initNotifications()
   },
 
   // ------------------

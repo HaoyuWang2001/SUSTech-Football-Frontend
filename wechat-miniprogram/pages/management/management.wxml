@@ -60,7 +60,7 @@
       <view class="block-title">管理的赛事</view>
       <!-- <view class="block-more button-custom" bindtap="gotoNewEvent">新建赛事</view> -->
     </view>
-    <view class="block-container" wx:if="{{isEventManager}}">
+    <!-- <view class="block-container" wx:if="{{isEventManager}}">
       <view class="block-top" bindtap="toggleManageEventInvitationTeamInform">
         <view class="block-title">
           <text>邀请球队参加赛事 - 回复</text>
@@ -81,7 +81,22 @@
           </view>
         </scroll-view>
       </view>
+    </view> -->
+    <view wx:for="{{notifications}}" wx:key="key">
+      <notification-block
+        visible="{{item.visible}}"
+        title="{{item.title}}"
+        list="{{item.list}}"
+        open="{{item.open}}"
+        hint="{{item.hint}}"
+        emptyText="{{item.emptyText}}"
+        data-index="{{index}}"
+        data-event="{{item.event}}"
+        bind:toggle="toggleNotification"
+        bind:itemclick="handleNotificationClick"
+      />
     </view>
+    
     <view class="block-main">
       <view class="no-managed" wx:if="{{events.length==0}}">您还没有管理的赛事</view>
       <event-card-big wx:for="{{events}}" wx:key="index" eventId="{{item.eventId}}" icon="/assets/cup.svg" name="{{item.name}}" bindtap="gotoEditEvent" data-id="{{item.eventId}}"></event-card-big>
