@@ -1,6 +1,7 @@
 // pages/management/management.js
 const appInstance = getApp()
 const URL = appInstance.globalData.URL
+const userId = appInstance.globalData.userId
 const ANONYMITY = appInstance.globalData.ANONYMITY
 const {
   formatTime
@@ -10,7 +11,6 @@ Page({
   data: {
     hasThirdAuthority: false,
     authorityId: 0,
-    userId: Number,
     id: 0,
     teams: [],
     matches: [],
@@ -22,7 +22,6 @@ Page({
     },
     manageEventIdList: [],
     manageEventNumber: 0,
-    showManageEventInvitationTeamInform: false,
     showManageEventInvitationTeamDot: false,
     manageEventInvitationTeamInform: [],
   },
@@ -34,13 +33,11 @@ Page({
   onShow() {
     appInstance.addToRequestQueue(this.fetchThirdAuthority)
     appInstance.addToRequestQueue(this.fetchData)
-    appInstance.addToRequestQueue(this.fetchUserId)
   },
 
   onPullDownRefresh() {
     appInstance.addToRequestQueue(this.fetchThirdAuthority)
     appInstance.addToRequestQueue(this.fetchData)
-    appInstance.addToRequestQueue(this.fetchUserId)
     wx.stopPullDownRefresh()
   },
 
@@ -52,6 +49,7 @@ Page({
           title:"邀请球队参加赛事 - 回复",
           visible:this.data.isEventManager,
           open:false,
+          showRedDot:this.data.showManageEventInvitationTeamDot,
           list:this.data.manageEventInvitationTeamInform,
           hint:"",
           emptyText:"您还没有收到任何球队的回复，可以尝试邀请球队参加赛事",
@@ -72,21 +70,20 @@ Page({
 
   toggleNotification(e){
     const index = e.currentTarget.dataset.index
+    const type = e.currentTarget.dataset.event
     const list = this.data.notifications
     list[index].open = !list[index].open
+    switch(type){
+      case "managerEventInvitationTeam":
+        break
+    }
+    list[index].showRedDot = false
     this.setData({
       notifications:list
     })
   },
 
-  fetchUserId(userId) {
-    const that = this
-    that.setData({
-      userId: userId
-    })
-  },
-
-  fetchThirdAuthority(userId) {
+  fetchThirdAuthority() {
     const that = this
     wx.request({
       url: `${URL}/authority/check/third?userId=${userId}`,
@@ -114,7 +111,7 @@ Page({
     })
   },
 
-  fetchData(userId) {
+  fetchData() {
     wx.showLoading({
       title: '加载中',
       mask: true
@@ -228,9 +225,9 @@ Page({
       fail(err) {
         console.log('请求失败', err);
       },
-      complete() {}
     });
   },
+
   formatManageEventInvitationTeam: function (invitations) {
     const that = this
     const informs = invitations.map(invitation => {
@@ -257,12 +254,6 @@ Page({
     });
     that.initNotifications()
   },
-  // toggleManageEventInvitationTeamInform: function () {
-  //   this.setData({
-  //     showManageEventInvitationTeamInform: !this.data.showManageEventInvitationTeamInform,
-  //     showManageEventInvitationTeamDot: false
-  //   });
-  // },
 
   gotoMatches: function (e) {
     wx.navigateTo({

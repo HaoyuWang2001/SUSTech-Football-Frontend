@@ -8,39 +8,69 @@ Page({
    * 页面的初始数据
    */
   data: {
-    avatarUrl: '',
-    nickName: '',
-
     playerId: -1,
 
-    // 展开框框
-    showPlayerInvitationInform: false,
-    showPlayerApplicationInform: false,
-
-    // 控制红点的显示
     showPlayerInvitationDot: false,
     showPlayerApplicationDot: false,
 
-    // 消息列表
     playerInvitationInform: [],
     playerApplicationInform: [],
   },
 
-  onShow() {
-    this.fetchData()
-    this.setData({
-      showPlayerInvitationInform: false,
-      showPlayerApplicationInform: false,
-    })
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad(options) {
   },
 
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow() {
+    appInstance.addToRequestQueue(this.fetchData)
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload() {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
   onPullDownRefresh() {
-    this.fetchData()
-    this.setData({
-      showPlayerInvitationInform: false,
-      showPlayerApplicationInform: false,
-    })
+    appInstance.addToRequestQueue(this.fetchData)
     wx.stopPullDownRefresh()
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom() {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage() {
+
   },
 
   initNotifications(){
@@ -51,6 +81,7 @@ Page({
           title:"球队邀请通知",
           visible:true,
           open:false,
+          showRedDot:this.data.showPlayerInvitationDot,
           list:this.data.playerInvitationInform,
           hint:"点击邀请可选择接受或拒绝",
           emptyText:"您还没有收到任何球队发出的邀请，可以尝试申请加入球队",
@@ -61,6 +92,7 @@ Page({
           title:"球队申请回复",
           visible:true,
           open:false,
+          showRedDot:this.data.showPlayerApplicationDot,
           list:this.data.playerApplicationInform,
           hint:"球队管理员回复后，您将在此看到通知",
           emptyText:"暂无回复",
@@ -84,8 +116,19 @@ Page({
 
   toggleNotification(e){
     const index = e.currentTarget.dataset.index
+    const type = e.currentTarget.dataset.event
     const list = this.data.notifications
     list[index].open = !list[index].open
+    switch(type){
+      case "playerTeamInvitation":
+        break
+      case "playerTeamApplication":
+        if (this.data.showPlayerApplicationDot === true) {
+          this.confirmApplicationHasRead()
+        }
+        break
+    }
+    list[index].showRedDot = false
     this.setData({
       notifications:list
     })
@@ -114,11 +157,7 @@ Page({
         that.setData({
           playerId: playerId
         })
-
-        //球员身份：球队邀请
         that.fetchPlayerTeamInvitations(playerId)
-
-        //球员身份：球队申请
         that.fetchPlayerTeamApplications(playerId)
       },
       fail(err) {
@@ -220,23 +259,23 @@ Page({
   },
 
   // 切换球队邀请通知的显示状态
-  togglePlayerInvitationInform: function () {
-    this.setData({
-      showPlayerInvitationInform: !this.data.showPlayerInvitationInform,
-      showPlayerInvitationDot: false
-    });
-  },
+  // togglePlayerInvitationInform: function () {
+  //   this.setData({
+  //     showPlayerInvitationInform: !this.data.showPlayerInvitationInform,
+  //     showPlayerInvitationDot: false
+  //   });
+  // },
 
   // 切换申请加入球队通知的显示状态
-  toggleApplicationInform: function () {
-    if (this.data.showPlayerApplicationDot === true) {
-      this.confirmApplicationHasRead()
-    }
-    this.setData({
-      showPlayerApplicationInform: !this.data.showPlayerApplicationInform,
-      showPlayerApplicationDot: false
-    });
-  },
+  // toggleApplicationInform: function () {
+  //   if (this.data.showPlayerApplicationDot === true) {
+  //     this.confirmApplicationHasRead()
+  //   }
+  //   this.setData({
+  //     showPlayerApplicationInform: !this.data.showPlayerApplicationInform,
+  //     showPlayerApplicationDot: false
+  //   });
+  // },
 
   // 弹出 modal 用来同意或拒绝邀请
   showPlayerTeamInvitationModal(e) {
@@ -316,5 +355,4 @@ Page({
       }
     })
   },
-
 })

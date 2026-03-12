@@ -22,6 +22,11 @@ Component({
       value: false
     },
 
+    showRedDot: {
+      type: Boolean,
+      value: false
+    },
+
     list: {
       type: Array,
       value: []

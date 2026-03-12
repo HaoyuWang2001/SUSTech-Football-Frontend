@@ -1,5 +1,4 @@
-<!-- 球队管理员身份：球员申请通知 -->
-<view class="block-container" wx:if="{{isTeamManager}}">
+<view class="block-container">
   <view class="block-top" bindtap="toggleCoachInvitationInform">
     <view class="block-title">
       <text>球队管理通知中心</text>
@@ -16,6 +15,7 @@
     title="{{item.title}}"
     list="{{item.list}}"
     open="{{item.open}}"
+    showRedDot="{{item.showRedDot}}"
     hint="{{item.hint}}"
     emptyText="{{item.emptyText}}"
     data-index="{{index}}"

@@ -88,6 +88,7 @@
         title="{{item.title}}"
         list="{{item.list}}"
         open="{{item.open}}"
+        showRedDot="{{item.showRedDot}}"
         hint="{{item.hint}}"
         emptyText="{{item.emptyText}}"
         data-index="{{index}}"

@@ -1,4 +1,3 @@
-
 <!-- 加载状态 -->
 <view wx:if="{{isLoading}}" class="loading-container flex-center flex-column">
   <image src="/assets/loading.gif" class="loading-icon" />
@@ -100,6 +99,7 @@
         title="{{item.title}}"
         list="{{item.list}}"
         open="{{item.open}}"
+        showRedDot="{{item.showRedDot}}"
         hint="{{item.hint}}"
         emptyText="{{item.emptyText}}"
         data-index="{{index}}"
@@ -108,30 +108,6 @@
         bind:itemclick="handleNotificationClick"
       />
     </view>
-
-    <!-- 球员身份：比赛通知 -->
-    <!-- <view class="block-container" wx:if="{{isPlayer}}">
-      <view class="block-top" bindtap="togglePlayerMatchInform">
-        <view class="block-title">
-          <text>球员身份：比赛通知</text>
-          <view class="red-dot" wx:if="{{showPlayerMatchDot}}"></view>
-        </view>
-        <view class="block-more">
-          <image class="icon" src="/assets/down333.png" mode="" />
-        </view>
-      </view>
-      <view class="block-main">
-        <view>您两周内的比赛</view>
-        <scroll-view scroll-y="true" style="height: {{showPlayerMatchInform ? '200px' : '0'}};" class="notification-box">
-          <view class="invitation-item" wx:if="{{playerMatchInform.length==0}}">
-            <text class="invitation-text">您近两星期内没有比赛</text>
-          </view>
-          <view class="invitation-item" wx:for="{{playerMatchInform}}" wx:key="index">
-            <text class="invitation-text">{{item}}</text>
-          </view>
-        </scroll-view>
-      </view>
-    </view> -->
 
     <!-- 球员身份：球队邀请通知 -->
     <!-- <view class="block-container" wx:if="{{isPlayer}}">
@@ -157,27 +133,6 @@
       </view>
     </view> -->
 
-    <!-- 球员身份：球队申请通知 -->
-    <!-- <view class="block-container" wx:if="{{isPlayer}}">
-      <view class="block-top" bindtap="toggleApplicationInform">
-        <view class="block-title">
-          <text> 球员身份：球队申请通知</text>
-          <view class="red-dot" wx:if="{{showApplicationDot}}"></view>
-        </view>
-        <view class="block-more">
-          <image class="icon" src="/assets/down333.png" mode="" />
-        </view>
-      </view>
-      <view class="block-main">
-        <view>球队管理员回复后，您将在此看到通知</view>
-        <scroll-view scroll-y="true" style="height: {{showApplicationInform ? '200px' : '0'}};" class="notification-box">
-          <view class="invitation-item" wx:for="{{applicationInform}}" wx:key="index">
-            <text class="invitation-text">{{item}}</text>
-          </view>
-        </scroll-view>
-      </view>
-    </view> -->
-
     <!-- 教练身份：球队邀请通知 -->
     <!-- <view class="block-container" wx:if="{{isCoach}}">
       <view class="block-top" bindtap="toggleCoachInvitationInform">
@@ -197,30 +152,6 @@
           </view>
           <view class="invitation-item" wx:for="{{coachInvitationInform}}" wx:key="index" bind:tap="showCoachTeamInvitationModal" data-id="{{item.id}}">
             <text class="invitation-text">{{item.content}}</text>
-          </view>
-        </scroll-view>
-      </view>
-    </view> -->
-
-    <!-- 教练身份：比赛通知 -->
-    <!-- <view class="block-container" wx:if="{{isCoach}}">
-      <view class="block-top" bindtap="toggleCoachMatchInform">
-        <view class="block-title">
-          <text>教练身份：比赛通知</text>
-          <view class="red-dot" wx:if="{{showCoachMatchDot}}"></view>
-        </view>
-        <view class="block-more">
-          <image class="icon" src="/assets/down333.png" mode="" />
-        </view>
-      </view>
-      <view class="block-main">
-        <view>您两周内的比赛</view>
-        <scroll-view scroll-y="true" style="height: {{showCoachMatchInform ? '200px' : '0'}};" class="notification-box">
-          <view class="invitation-item" wx:if="{{coachMatchInform.length==0}}">
-            <text class="invitation-text">您近两星期内没有比赛</text>
-          </view>
-          <view class="invitation-item" wx:for="{{coachMatchInform}}" wx:key="index">
-            <text class="invitation-text">{{item}}</text>
           </view>
         </scroll-view>
       </view>
@@ -270,30 +201,6 @@
           </view>
           <view class="invitation-item" wx:for="{{refereeInvitationInformForMatch}}" wx:key="index" bind:tap="showRefereeMatchInvitationModal" data-id="{{item.id}}">
             <text class="invitation-text">{{item.content}}</text>
-          </view>
-        </scroll-view>
-      </view>
-    </view> -->
-
-    <!-- 裁判身份：比赛通知 -->
-    <!-- <view class="block-container" wx:if="{{isReferee}}">
-      <view class="block-top" bindtap="toggleRefereeMatchInform">
-        <view class="block-title">
-          <text>裁判身份：比赛通知</text>
-          <view class="red-dot" wx:if="{{showRefereeMatchDot}}"></view>
-        </view>
-        <view class="block-more">
-          <image class="icon" src="/assets/down333.png" mode="" />
-        </view>
-      </view>
-      <view class="block-main">
-        <view>您两周内的比赛</view>
-        <scroll-view scroll-y="true" style="height: {{showRefereeMatchInform ? '200px' : '0'}};" class="notification-box">
-          <view class="invitation-item" wx:if="{{refereeMatchInform.length==0}}">
-            <text class="invitation-text">您近两星期内没有比赛</text>
-          </view>
-          <view class="invitation-item" wx:for="{{refereeMatchInform}}" wx:key="index">
-            <text class="invitation-text">{{item}}</text>
           </view>
         </scroll-view>
       </view>
@@ -357,69 +264,6 @@
         <scroll-view scroll-y="true" style="height: {{showManageTeamInvitationEventInform ? '200px' : '0'}}; visibility: {{showManageTeamInvitationEventInform ? 'visible' : 'hidden'}};" class="notification-box">
           <view class="invitation-item" wx:for="{{manageTeamInvitationEventInform}}" wx:key="index" bind:tap="showManageTeamInvitationEventModal" data-event-id="{{item.eventId}}" data-team-id="{{item.teamId}}">
             <text class="invitation-text">{{item.content}}</text>
-          </view>
-        </scroll-view>
-      </view>
-    </view> -->
-
-    <!-- 球队管理员身份：邀请球员反馈 -->
-    <!-- <view class="block-container" wx:if="{{isTeamManager}}">
-      <view class="block-top" bindtap="toggleManageTeamInvitationPlayerInform">
-        <view class="block-title">
-          <text> 球队管理员身份：邀请球员反馈</text>
-          <view class="red-dot" wx:if="{{showManageTeamInvitationPlayerDot}}"></view>
-        </view>
-        <view class="block-more">
-          <image class="icon" src="/assets/down333.png" mode="" />
-        </view>
-      </view>
-      <view class="block-main">
-        <view>未对球员发起过任何邀请</view>
-        <scroll-view scroll-y="true" style="height: {{showManageTeamInvitationPlayerInform ? '200px' : '0'}};" class="notification-box">
-          <view class="invitation-item" wx:for="{{manageTeamInvitationPlayerInform}}" wx:key="index">
-            <text class="invitation-text">{{item}}</text>
-          </view>
-        </scroll-view>
-      </view>
-    </view> -->
-
-    <!-- 比赛管理者身份：邀请球队反馈 -->
-    <!-- <view class="block-container" wx:if="{{isMatchManager}}">
-      <view class="block-top" bindtap="toggleManageMatchInvitationTeamInform">
-        <view class="block-title">
-          <text>比赛管理者身份：邀请球队反馈</text>
-          <view class="red-dot" wx:if="{{showManageMatchInvitationTeamDot}}"></view>
-        </view>
-        <view class="block-more">
-          <image class="icon" src="/assets/down333.png" mode="" />
-        </view>
-      </view>
-      <view class="block-main">
-        <view>未对球队发起过任何邀请</view>
-        <scroll-view scroll-y="true" style="height: {{showManageMatchInvitationTeamInform ? '200px' : '0'}};" class="notification-box">
-          <view class="invitation-item" wx:for="{{manageMatchInvitationTeamInform}}" wx:key="index">
-            <text class="invitation-text">{{item}}</text>
-          </view>
-        </scroll-view>
-      </view>
-    </view> -->
-
-    <!-- 赛事管理者身份：邀请球队反馈 -->
-    <!-- <view class="block-container" wx:if="{{isEventManager}}">
-      <view class="block-top" bindtap="toggleManageEventInvitationTeamInform">
-        <view class="block-title">
-          <text>赛事管理者身份：邀请球队反馈</text>
-          <view class="red-dot" wx:if="{{showManageEventInvitationTeamDot}}"></view>
-        </view>
-        <view class="block-more">
-          <image class="icon" src="/assets/down333.png" mode="" />
-        </view>
-      </view>
-      <view class="block-main">
-        <view>未对球队发起过任何邀请</view>
-        <scroll-view scroll-y="true" style="height: {{showManageEventInvitationTeamInform ? '200px' : '0'}};" class="notification-box">
-          <view class="invitation-item" wx:for="{{manageEventInvitationTeamInform}}" wx:key="index">
-            <text class="invitation-text">{{item}}</text>
           </view>
         </scroll-view>
       </view>

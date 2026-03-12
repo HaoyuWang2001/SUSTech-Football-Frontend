@@ -2,7 +2,7 @@
 <view class="block-container" wx:if="{{visible}}">
   <view class="block-top" bindtap="toggle">
     <view class="block-title">
-      <view class="red-dot" wx:if="{{list.length > 0}}"></view>
+      <view class="red-dot" wx:if="{{showRedDot}}"></view>
       <view class="title-text">{{title}}</view>
     </view>
 
