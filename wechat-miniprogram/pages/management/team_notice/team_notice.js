@@ -158,6 +158,9 @@ Page({
       case "managerTeamInvitationEvent":
         break
       case "managerTeamInvitationPlayer":
+        if(this.data.showManageTeamInvitationPlayerDot == true) {
+          this.confirmReplyHasRead()
+        }
         break
     }
     list[index].showRedDot = false
@@ -389,12 +392,32 @@ Page({
       }
       return null;
     }).filter(inform => inform !== null);
-    let showDot = informs.length > 0 ? true : false;
+    let showDot = false
+    for (let invitation of invitations) {
+      if (invitation.hasRead === false) {
+        showDot = true
+        break
+      }
+    }
     that.setData({
       manageTeamInvitationPlayerInform: this.data.manageTeamInvitationPlayerInform.concat(informs),
       showManageTeamInvitationPlayerDot: showDot
     });
     that.initNotifications()
+  },
+
+  confirmReplyHasRead() {
+    wx.request({
+      url: `${URL}/user/team/player/readReplies?userId=${userId}`,
+      method: "POST",
+      success(res) {
+        if (res.statusCode !== 200) {
+          return
+        }
+        console.log("confirmManageTeamInvitationPlayer ->")
+        console.log("success")
+      }
+    })
   },
 
   showManageTeamApplicationModal(e) {

@@ -75,6 +75,9 @@ Page({
     list[index].open = !list[index].open
     switch(type){
       case "managerEventInvitationTeam":
+        if (this.data.showManageEventInvitationTeamDot === true) {
+          this.confirmReplyHasRead()
+        }
         break
     }
     list[index].showRedDot = false
@@ -247,12 +250,32 @@ Page({
       }
       return null;
     }).filter(inform => inform !== null);
-    let showDot = informs.length > 0 ? true : false;
+    let showDot = false
+    for (let invitation of invitations) {
+      if (invitation.hasRead === false) {
+        showDot = true
+        break
+      }
+    }
     that.setData({
       manageEventInvitationTeamInform: this.data.manageEventInvitationTeamInform.concat(informs),
       showManageEventInvitationTeamDot: showDot
     });
     that.initNotifications()
+  },
+
+  confirmReplyHasRead() {
+    wx.request({
+      url: `${URL}/user/event/team/readReplies?userId=${userId}`,
+      method: "POST",
+      success(res) {
+        if (res.statusCode !== 200) {
+          return
+        }
+        console.log("confirmEventInviteTeamReplyHasRead ->")
+        console.log("success")
+      }
+    })
   },
 
   gotoMatches: function (e) {
