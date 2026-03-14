@@ -13,11 +13,11 @@
           <block wx:for="{{groupItem.teamList}}" wx:for-item="teamItem" wx:key="index">
             <team-card-big name="{{teamItem.team.name}}" img="{{teamItem.team.logoUrl}}" number="{{teamItem.team.playerCount}}" teamId="{{teamItem.team.id}}" has_button="{{true}}">
               <view class="team-op-panel">
-                <view class="team-op-btn danger" bindtap="showCancelModal" data-teamid="{{teamItem.team.id}}" data-groupId="{{groupItem.groupId}}">删除</view>
-                <view class="team-op-btn primary" bindtap="gotoViewRoster" data-teamid="{{teamItem.team.id}}" data-teamname="{{teamItem.team.name}}" data-teamlogo="{{teamItem.team.logoUrl}}">名单</view>
                 <picker mode="selector" range="{{groupNameList}}" bindchange="onGroupChange" value="{{selectedGroupIndex}}">
                   <view class="team-op-btn success" bindtap="selectGroup" data-id="{{teamItem.team.id}}" data-name="{{teamItem.team.name}}" data-groupId="{{groupItem.groupId}}">分组</view>
                 </picker>
+                <view class="team-op-btn primary" bindtap="gotoViewRoster" data-teamid="{{teamItem.team.id}}" data-teamname="{{teamItem.team.name}}" data-teamlogo="{{teamItem.team.logoUrl}}">名单</view>
+                <view class="team-op-btn danger" bindtap="showCancelModal" data-teamid="{{teamItem.team.id}}" data-groupId="{{groupItem.groupId}}">删除</view>
               </view>
             </team-card-big>
           </block>
@@ -28,11 +28,11 @@
           <block wx:for="{{noGroupTeamList}}" wx:key="teamId">
             <team-card-big name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerCount}}" teamId="{{item.id}}" has_button="{{true}}">
               <view class="team-op-panel">
-                <view class="team-op-btn danger" bindtap="showCancelModal" data-teamid="{{item.id}}" data-groupId="{{0}}">删除</view>
-                <view class="team-op-btn primary" bindtap="gotoViewRoster" data-teamid="{{item.id}}" data-teamname="{{item.name}}" data-teamlogo="{{item.logoUrl}}">名单</view>
                 <picker mode="selector" range="{{groupNameList}}" bindchange="onGroupChange" value="{{selectedGroupIndex}}">
                   <view class="team-op-btn success" bindtap="selectGroup" data-id="{{item.id}}" data-name="{{item.name}}" data-groupId="{{0}}">分组</view>
                 </picker>
+                <view class="team-op-btn primary" bindtap="gotoViewRoster" data-teamid="{{item.id}}" data-teamname="{{item.name}}" data-teamlogo="{{item.logoUrl}}">名单</view>
+                <view class="team-op-btn danger" bindtap="showCancelModal" data-teamid="{{item.id}}" data-groupId="{{0}}">删除</view>
               </view>
             </team-card-big>
           </block>
@@ -44,8 +44,8 @@
           <block wx:for="{{noGroupTeamList}}" wx:key="teamId">
             <team-card-big name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerCount}}" teamId="{{item.id}}" has_button="{{true}}">
               <view class="team-op-panel">
-                <view class="team-op-btn danger" bindtap="showCancelModal" data-teamid="{{item.id}}" data-groupId="{{0}}">删除</view>
                 <view class="team-op-btn primary" bindtap="gotoViewRoster" data-teamid="{{item.id}}" data-teamname="{{item.name}}" data-teamlogo="{{item.logoUrl}}">名单</view>
+                <view class="team-op-btn danger" bindtap="showCancelModal" data-teamid="{{item.id}}" data-groupId="{{0}}">删除</view>
               </view>
             </team-card-big>
           </block>
