@@ -19,6 +19,7 @@
   </view>
   <view class="function-container">
     <view bindtap="gotoTeamManagerNoticePage" class="function-button">
+      <view class="red-dot" wx:if="{{showRedDot}}"></view>
       <image src="/assets/notice.png" mode="scaleToFill" class="function-image" />
       <text class="function-text">球队通知</text>
     </view>

@@ -80,6 +80,7 @@
 
 .function-button {
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
   padding: 40rpx 30rpx;
@@ -137,4 +138,13 @@
 
 .loading-text {
   font-size: 28rpx;
+}
+
+.red-dot {
+  position: absolute;
+  left: 160rpx;
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  background-color: #ff4d4f;
 }

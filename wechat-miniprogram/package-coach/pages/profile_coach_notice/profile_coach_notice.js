@@ -174,7 +174,7 @@ Page({
         coachId: coachId,
       },
       success(res) {
-        console.log("package-coach/pages/profile_coach_notice/profile_coach_notice: fetchCoachMatches->")
+        console.log("package-coach/pages/profile_coach_notice: fetchCoachMatches->")
         if (res.statusCode !== 200) {
           console.log("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
           return
@@ -196,7 +196,7 @@ Page({
         coachId: coachId,
       },
       success(res) {
-        console.log("console.log(res.data): fetchCoachInvitations->")
+        console.log("package-coach/pages/profile_coach_notice: fetchCoachInvitations->")
         if (res.statusCode !== 200) {
           console.log("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
           return

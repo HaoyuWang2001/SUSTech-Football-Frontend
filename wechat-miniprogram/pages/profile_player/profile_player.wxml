@@ -46,6 +46,7 @@
         <text class="function-text">加入球队</text>
       </view>
       <view bindtap="gotoPlayerNoticePage" class="function-button" wx:if="{{playerId}}">
+        <view class="red-dot" wx:if="{{showRedDot}}"></view>
         <image src="/assets/notice.png" mode="scaleToFill" class="function-image" />
         <text class="function-text">球员通知</text>
       </view>

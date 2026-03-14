@@ -37,6 +37,7 @@
     </view>
     <view class="function-container">
       <view bindtap="gotoRefereeNoticePage" class="function-button" wx:if="{{refereeId}}">
+        <view class="red-dot" wx:if="{{showRedDot}}"></view>
         <image src="/assets/notice.png" mode="scaleToFill" class="function-image" />
         <text class="function-text">裁判通知</text>
       </view>

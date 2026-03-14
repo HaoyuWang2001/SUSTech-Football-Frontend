@@ -10,13 +10,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    playerId: 0,
+    playerId: -1,
     player: null,
     matchList: [],
     teamList: [],
     eventList: [],
     defaultValue: '暂无',
     isLoading: true, // 新增：加载状态
+    showRedDot: false,
   },
 
   /**
@@ -121,6 +122,7 @@ Page({
         that.fetchPlayerMatches(playerId)
         that.fetchPlayerTeams(playerId)
         that.fetchPlayerEvents(playerId)
+        that.isExistNewNotifications(playerId)
       },
       fail(err) {
         console.error('请求失败：', err.statusCode, err.errMsg);
@@ -240,6 +242,62 @@ Page({
         console.error('请求失败：', err.statusCode, err.errMsg);
       },
     })
+  },
+
+  isExistNewNotifications(playerId) {
+    const that = this
+    wx.request({
+      url: `${URL}/player/team/getInvitations?playerId=${playerId}&status=PENDING`,
+      success(res) {
+        console.log("/pages/profile_player/player_notice: fetchPlayerTeamInvitations->")
+        if (res.statusCode !== 200) {
+          console.log("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
+          return
+        }
+        console.log(res.data)
+        let informs = res.data
+        let showDot = informs.length > 0 ? true : false;
+        if (showDot == true) {
+          that.setData({
+            showRedDot: showDot
+          })
+        }
+      },
+      fail(err) {
+        console.log('请求失败', err);
+      },
+    });
+
+    wx.request({
+      url: URL + '/player/team/getApplications',
+      data: {
+        playerId: playerId,
+      },
+      success(res) {
+        console.log("/pages/profile_player/player_notice: fetchPlayerTeamApplications->")
+        if (res.statusCode !== 200) {
+          console.log("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
+          return
+        }
+        console.log(res.data)
+        let applications = res.data
+        let showDot = false
+        for (let application of applications) {
+          if (application.hasRead === false) {
+            showDot = true
+            break
+          }
+        }
+        if (showDot == true) {
+          that.setData({
+            showRedDot: showDot
+          })
+        }
+      },
+      fail(err) {
+        console.log('请求失败', err);
+      },
+    });
   },
 
   // 页面跳转
