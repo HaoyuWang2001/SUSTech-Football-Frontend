@@ -42,6 +42,7 @@
     "pages/pub/teams/teams",
     "pages/pub/live/live",
     "pages/pub/team/retired_players/retired_players",
+    "pages/pub/event_team/event_team",
     "pages/example/example",
     "pages/logs/logs",
     "pages/development/development",

@@ -1,0 +1,104 @@
+<!-- pages/pub/event_team/event_team.wxml -->
+<view class="section-header">
+  <team-card-big
+    name="{{teamName}}"
+    img="{{logoUrl}}"
+    number="{{playerList.length}}"
+    teamId="{{teamId}}"
+    has_button="{{true}}">
+    <view class="primary-button" catch:tap="gotoTeamPage">
+      <text class="primary-button-text">球队主页</text>
+    </view>
+  </team-card-big>
+</view>
+
+<view class="tabs modern-card">
+  <view class="tab {{activeTab==0?'active':''}}" data-index="0" bindtap="switchTab">
+    <text class="tab-text">参赛球员</text>
+    <view class="tab-indicator {{activeTab==0?'active':''}}"></view>
+  </view>
+  <view class="tab {{activeTab==1?'active':''}}" data-index="1" bindtap="switchTab">
+    <text class="tab-text">赛程</text>
+    <view class="tab-indicator {{activeTab==1?'active':''}}"></view>
+  </view>
+</view>
+
+<view class="tab-content">
+  <view wx:if="{{activeTab == 0}}">
+    <view class="block-container modern-card">
+      <view class="block-top flex-between">
+        <text class="block-title primary-color text-bold">参赛球员</text>
+        <text class="block-subtitle">按号码排序</text>
+      </view>
+
+      <view class="block-main" wx:if="{{playerList.length}}">
+        <view class="table fancy-table">
+          <view class="row header">
+            <view class="cell cell-number-column">号码</view>
+            <view class="cell cell-player-column">球员</view>
+            <view class="cell">进球</view>
+            <view class="cell">助攻</view>
+            <view class="cell">黄牌</view>
+            <view class="cell">红牌</view>
+          </view>
+
+          <view class="row" wx:for="{{playerList}}" wx:key="playerId">
+            <view class="cell cell-number-column">{{item.number || '—'}}</view>
+            <view class="cell cell-player-column">
+              <view class="player-info">
+                <image src="{{item.photoUrl}}" class="player-avatar" mode="aspectFill"></image>
+                <text class="player-name">{{item.name}}</text>
+              </view>
+            </view>
+            <view class="cell stat-cell">{{item.goals || 0}}</view>
+            <view class="cell stat-cell">{{item.assists || 0}}</view>
+            <view class="cell stat-cell warning">{{item.yellowCards || 0}}</view>
+            <view class="cell stat-cell danger">{{item.redCards || 0}}</view>
+          </view>
+        </view>
+      </view>
+
+      <view class="empty-state" wx:else>
+        <text class="empty-text">暂无球员数据</text>
+      </view>
+    </view>
+  </view>
+
+  <view wx:elif="{{activeTab == 1}}">
+    <view class="block-container modern-card">
+      <view class="modern-card-header"></view>
+      <view class="block-top flex-between">
+        <text class="block-title primary-color text-bold">赛事赛程</text>
+        <text class="block-more primary-color" bind:tap="gotoMatchesPage" data-list="{{matchList}}">查看更多</text>
+      </view>
+
+      <view class="block-main" wx:if="{{matchList.length}}">
+        <scroll-view scroll-x enable-flex class="scroll-container">
+          <match-card-small
+            wx:for="{{matchList}}"
+            wx:key="matchId"
+            name=""
+            stage="{{item.stage || ''}}"
+            tag="{{item.tag || ''}}"
+            team1="{{item.homeTeam.name}}"
+            team2="{{item.awayTeam.name}}"
+            icon1="{{item.homeTeam.logoUrl}}"
+            icon2="{{item.awayTeam.logoUrl}}"
+            score1="{{item.homeTeamScore}}"
+            score2="{{item.awayTeamScore}}"
+            penalty1="{{item.homeTeamPenalty}}"
+            penalty2="{{item.awayTeamPenalty}}"
+            time="{{item.strTime}}"
+            hasBegun="{{item.hasBegun}}"
+            bind:tap="gotoMatchPage"
+            data-id="{{item.matchId}}">
+          </match-card-small>
+        </scroll-view>
+      </view>
+
+      <view class="empty-state" wx:else>
+        <text class="empty-text">暂无赛程</text>
+      </view>
+    </view>
+  </view>
+</view>

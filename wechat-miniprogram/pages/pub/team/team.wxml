@@ -106,7 +106,25 @@
       </view>
       <view class="block-main">
         <scroll-view scroll-x enable-flex class="scroll-container">
-          <match-card-small wx:for="{{matchList}}" wx:key="matchId" name="" stage="" tag="" team1="{{item.homeTeam.name}}" team2="{{item.awayTeam.name}}" icon1="{{item.homeTeam.logoUrl}}" icon2="{{item.awayTeam.logoUrl}}" score1="{{item.homeTeamScore}}" score2="{{item.awayTeamScore}}" penalty1="{{item.homeTeamPenalty}}" penalty2="{{item.awayTeamPenalty}}" time="{{item.strTime}}" hasBegun="{{item.hasBegun}}" bind:tap="gotoMatchPage" data-id="{{item.matchId}}" data-event="{{name}}"> </match-card-small>
+          <match-card-small 
+          wx:for="{{matchList}}" 
+          wx:key="matchId" 
+          name="" 
+          stage="" 
+          tag="" 
+          team1="{{item.homeTeam.name}}" 
+          team2="{{item.awayTeam.name}}" 
+          icon1="{{item.homeTeam.logoUrl}}" 
+          icon2="{{item.awayTeam.logoUrl}}" 
+          score1="{{item.homeTeamScore}}" 
+          score2="{{item.awayTeamScore}}" 
+          penalty1="{{item.homeTeamPenalty}}" 
+          penalty2="{{item.awayTeamPenalty}}" 
+          time="{{item.strTime}}" 
+          hasBegun="{{item.hasBegun}}" bind:tap="gotoMatchPage" 
+          data-id="{{item.matchId}}" 
+          data-event="{{name}}"> 
+          </match-card-small>
         </scroll-view>
       </view>
     </view>

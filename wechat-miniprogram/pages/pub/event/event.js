@@ -254,9 +254,10 @@ Page({
   // 页面跳转方法
 
   gotoTeamPage: function (e) {
-    const id = e.currentTarget.dataset.id
+    const eventId = this.data.id
+    const teamId = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: '/pages/pub/team/team?id=' + id,
+      url: '/pages/pub/event_team/event_team?eventId=' + eventId + '&teamId=' + teamId,
     })
   },
 
