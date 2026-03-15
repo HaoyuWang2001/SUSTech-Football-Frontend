@@ -252,6 +252,30 @@
   transform: translateY(2rpx);
 }
 
+.row {
+  display: flex;
+}
+
+.cell {
+  padding: 20rpx 10rpx;
+}
+
+.time {
+  flex: 1.5;
+}
+
+.team {
+  flex: 2;
+}
+
+.player {
+  flex: 2.5;
+}
+
+.action {
+  flex: 1.5;
+}
+
 
 /* 动作列特殊样式 */
 .cell.action {

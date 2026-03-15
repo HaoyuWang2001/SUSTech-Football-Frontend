@@ -150,8 +150,23 @@ Page({
         let date = new Date(res.data.time)
         let strTime = formatTime(date)
         let hasBegun = res.data.status != "PENDING"
+
+        const actionMap = {
+          GOAL: "进球",
+          ASSIST: "助攻",
+          YELLOW_CARD: "黄牌",
+          RED_CARD: "红牌",
+          ON: "上场",
+          OFF: "下场"
+        }
+      
+        const actionList = res.data.matchPlayerActionList.map(item => ({
+          ...item,
+          action: actionMap[item.action] || item.action
+        }))
+
         that.setData({
-          matchPlayerActionList: res.data.matchPlayerActionList,
+          matchPlayerActionList: actionList,
           awayTeam: res.data.awayTeam,
           matchEvent: res.data.matchEvent,
           homeTeam: res.data.homeTeam,

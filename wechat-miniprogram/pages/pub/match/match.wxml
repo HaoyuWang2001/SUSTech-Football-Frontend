@@ -155,15 +155,18 @@
         </view>
         <view wx:else class="table">
           <view class="row header">
-            <view class="cell">时间</view>
-            <view class="cell">球队</view>
-            <view class="cell">球员</view>
-            <view class="cell">动作</view>
+            <view class="cell time">时间</view>
+            <view class="cell team">球队</view>
+            <view class="cell player">球员</view>
+            <view class="cell action">动作</view>
           </view>
+
           <view wx:for="{{matchPlayerActionList}}" wx:key="index" class="row">
-            <view class="cell">{{item.time}}min</view>
-            <view class="cell">{{item.teamId == homeTeam.teamId ? homeTeam.name : awayTeam.name}}</view>
-            <view class="cell">{{item.player.number}}号 {{item.player.name}}</view>
+            <view class="cell time">{{item.time}}min</view>
+            <view class="cell team">
+              {{item.teamId == homeTeam.teamId ? homeTeam.name : awayTeam.name}}
+            </view>
+            <view class="cell player">{{item.player.number}}号 {{item.player.name}}</view>
             <view class="cell action">{{item.action}}</view>
           </view>
         </view>
