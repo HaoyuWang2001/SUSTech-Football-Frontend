@@ -340,7 +340,7 @@ Page({
   // },
 
   showRefereeEventInvitationModal(e) {
-    let eventId = e.currentTarget.dataset.id
+    let eventId = e.id
     wx.showModal({
       title: '赛事执法',
       content: `是否接受赛事执法邀请？`,
@@ -359,7 +359,7 @@ Page({
   },
 
   showRefereeMatchInvitationModal(e) {
-    let matchId = e.currentTarget.dataset.id
+    let matchId = e.id
     wx.showModal({
       title: '比赛执法',
       content: `是否接受比赛执法邀请？`,

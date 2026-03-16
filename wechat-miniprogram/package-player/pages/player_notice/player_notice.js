@@ -279,7 +279,7 @@ Page({
 
   // 弹出 modal 用来同意或拒绝邀请
   showPlayerTeamInvitationModal(e) {
-    let teamId = e.currentTarget.dataset.id
+    let teamId = e.id
     wx.showModal({
       title: '球队邀请',
       content: `是否加入球队？`,

@@ -272,24 +272,6 @@ Page({
           return
         }
         console.log(res.data)
-        let invitations = res.data.map(invitation => {
-          if (invitation.status == "PENDING") {
-            return invitation
-          }
-          return null;
-        }).filter(invitation => invitation !== null);
-        let showDot = false
-        for (let invitation of invitations) {
-          if (invitation.hasRead === false) {
-            showDot = true
-            break
-          }
-        }
-        if (showDot == true) {
-          that.setData({
-            showRedDot: showDot
-          })
-        }
       },
       fail(err) {
         console.log('请求失败', err);

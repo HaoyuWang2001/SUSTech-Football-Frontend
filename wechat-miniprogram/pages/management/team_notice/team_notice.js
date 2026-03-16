@@ -421,8 +421,8 @@ Page({
   },
 
   showManageTeamApplicationModal(e) {
-    let playerId = e.currentTarget.dataset.playerId
-    let teamId = e.currentTarget.dataset.teamId
+    let playerId = e.playerId
+    let teamId = e.teamId
     console.log(playerId)
     console.log(teamId)
     wx.showModal({
@@ -443,8 +443,8 @@ Page({
   },
 
   showManageTeamInvitationMatchModal(e) {
-    let matchId = e.currentTarget.dataset.matchId
-    let teamId = e.currentTarget.dataset.teamId
+    let matchId = e.matchId
+    let teamId = e.teamId
     console.log(matchId)
     console.log(teamId)
     wx.showModal({
@@ -465,10 +465,8 @@ Page({
   },
 
   showManageTeamInvitationEventModal(e) {
-    let eventId = e.currentTarget.dataset.eventId
-    let teamId = e.currentTarget.dataset.teamId
-    console.log(eventId)
-    console.log(teamId)
+    let eventId = e.eventId
+    let teamId = e.teamId
     wx.showModal({
       title: '比赛邀请',
       content: `是否同意参与该比赛？`,

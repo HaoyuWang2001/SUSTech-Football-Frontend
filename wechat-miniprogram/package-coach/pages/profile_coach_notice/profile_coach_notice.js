@@ -270,7 +270,7 @@ Page({
   // },
 
   showCoachTeamInvitationModal(e) {
-    let teamId = e.currentTarget.dataset.id
+    let teamId = e.id
     wx.showModal({
       title: '执教邀请',
       content: `是否接受球队执教邀请？`,
