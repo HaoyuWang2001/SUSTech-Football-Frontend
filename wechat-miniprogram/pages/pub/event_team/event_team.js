@@ -22,10 +22,6 @@ Page({
     const teamName = options.teamName ? decodeURIComponent(options.teamName) : ''
 
     this.setData({ eventId, teamId, teamName })
-    if (teamName) {
-      wx.setNavigationBarTitle({ title: `${teamName} - 赛事球队` })
-    }
-
     this.fetchEventTeamData(eventId, teamId)
   },
 

@@ -86,11 +86,13 @@ Page({
     });
 
     const that = this
+    let isEventMatch = true
     wx.request({
       url: URL + "/match/team/get",
       data: {
         matchId,
         isHomeTeam,
+        isEventMatch
       },
       success: function (res) {
         console.log("match referee updatePlayerList page: fetchData->")

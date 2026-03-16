@@ -125,6 +125,27 @@ page {
 	background-color: #fff8f1;
 }
 
+.row {
+  display: flex;
+  align-items: center;      /* 垂直居中 */
+  max-height: 80rpx;        /* 控制行高 */
+  border-bottom: 1rpx solid #eee;
+}
+
+.header .cell-player-column {
+  justify-content: center;
+}
+
+.cell {
+  flex: 1;
+  display: flex;
+  justify-content: center;  /* 水平居中 */
+  align-items: center;      /* 垂直居中 */
+  text-align: center;
+  padding: 10rpx 0;
+  font-size: 26rpx;
+}
+
 .stat-cell {
 	font-weight: 700;
 	color: #333333;
@@ -136,6 +157,30 @@ page {
 
 .stat-cell.danger {
 	color: #d84a4a;
+}
+
+/* 球员列 */
+.cell-player-column-header {
+  flex: 2.5;
+  justify-content: center;
+}
+
+.cell-player-column {
+  flex: 2.5;
+  justify-content: center;
+}
+
+.player-info {
+  margin-left: 16rpx;
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.player-avatar {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
 }
 
 .scroll-container {
