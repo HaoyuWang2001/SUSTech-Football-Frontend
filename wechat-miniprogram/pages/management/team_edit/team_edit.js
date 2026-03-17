@@ -384,11 +384,11 @@ Page({
     });
   },
 
-  deletePlayer() {
+  deletePlayer(playerId) {
     var that = this;
     // 模拟网络请求
     wx.request({
-      url: URL + '/team/player/delete?teamId=' + that.data.teamId + '&playerId=' + that.data.selectPlayerId,
+      url: URL + '/team/player/delete?teamId=' + that.data.teamId + '&playerId=' + playerId,
       method: 'DELETE',
       success(res) {
         console.log("delete team player->")
