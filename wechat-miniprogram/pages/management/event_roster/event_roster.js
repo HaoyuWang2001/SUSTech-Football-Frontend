@@ -19,13 +19,14 @@ Page({
   },
 
   onLoad: function(options) {
+    console.log(options)
     this.setData({
       eventId: parseInt(options.eventId),
       teamId: parseInt(options.teamId),
       eventName: decodeURIComponent(options.eventName || ''),
       teamName: decodeURIComponent(options.teamName || ''),
-      rosterSize: parseInt(options.rosterSize) || 23,
-      matchPlayerCount: parseInt(options.matchPlayerCount) || 11,
+      rosterSize: parseInt(options.rosterSize),
+      matchPlayerCount: parseInt(options.matchPlayerCount),
       isExpired: options.isExpired === '1',
     });
 
@@ -237,13 +238,13 @@ Page({
     
     var selectedCount = that.data.selectedPlayers.length;
 
-    if (selectedCount === 0) {
-      wx.showToast({
-        title: '请至少选择一名球员',
-        icon: 'none'
-      });
-      return;
-    }
+    // if (selectedCount === 0) {
+    //   wx.showToast({
+    //     title: '请至少选择一名球员',
+    //     icon: 'none'
+    //   });
+    //   return;
+    // }
 
     if (selectedCount < that.data.matchPlayerCount) {
       wx.showToast({

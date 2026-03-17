@@ -96,6 +96,8 @@
 .function-container {
   display: flex;
   gap: 15rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
 }
 
 .function-button {
@@ -138,4 +140,15 @@
   overflow: hidden;
   border: 4rpx solid rgba(237, 108, 0, 0.08);
   transition: all 0.3s ease;
+}
+
+.no-managed {
+  margin: 40rpx 20rpx;
+  font-size: 30rpx;
+  color: #999;
+  text-align: center;
+  padding: 60rpx 40rpx;
+  background: rgba(237, 108, 0, 0.03);
+  border-radius: 20rpx;
+  border: 1rpx dashed rgba(237, 108, 0, 0.2);
 }

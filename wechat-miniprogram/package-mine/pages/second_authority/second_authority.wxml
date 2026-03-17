@@ -5,19 +5,22 @@
       <view class="block-title">引导</view>
     </view>
     <view class="block-main">
-      <view>
-        您的权限为二级权限，由南方科技大学体育中心授权。
+      <view class="hint-text">
+        - 您的权限为二级权限，由南方科技大学体育中心授权。
       </view>
-      <view style="margin-top: 40rpx;">
-        您的权限包含：球队、友谊赛、赛事的创建和管理，以及三级权限的授权。
+      <view class="hint-text">
+        - 您的权限包含：球队、友谊赛、赛事的创建和管理，以及三级权限的授权。
       </view>
-      <view style="margin-top: 40rpx;">
-        三级权限：可以创建并管理球队和友谊赛；不允许创建赛事。
+      <view class="hint-text">
+        - 三级权限：可以创建并管理球队和友谊赛；不允许创建赛事。
       </view>
     </view>
   </view>
 
   <!-- 功能 -->
+  <view class="block-top">
+    <text class="block-title">功能</text>
+  </view>
   <view class="function-container">
     <view bindtap="gotoTeamsPage" class="function-button">
       <image src="/assets/team.png" mode="scaleToFill" class="function-image" />

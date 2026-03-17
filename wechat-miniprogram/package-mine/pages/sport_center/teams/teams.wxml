@@ -4,10 +4,10 @@
       <view class="block-title">球队管理</view>
     </view>
     <view class="block-main">
-      <view>您可以在本页面：</view>
-      <view>- 审阅全部已存在的球队</view>
-      <view>- 创建新球队</view>
-      <view>- 编辑或删除全部已存在的球队</view>
+      <view class="hint-text">您可以在本页面：</view>
+      <view class="hint-text">- 审阅全部已存在的球队</view>
+      <view class="hint-text">- 创建新球队</view>
+      <view class="hint-text">- 编辑或删除全部已存在的球队</view>
     </view>
   </view>
 </view>
@@ -24,7 +24,9 @@
   </view>
 </view>
 
+<view class="block-container">
   <team-card-big wx:for="{{teamList}}" wx:key="teamId" name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerList.length}}" teamId="{{item.teamId}}" has_button="{{true}}">
     <view class="check-btn" bindtap="gotoEditTeam" data-id="{{item.teamId}}">编辑</view>
     <view class="delete-btn" bindtap="showCancelModal" data-id="{{item.teamId}}">删除</view>
   </team-card-big>
+</view>

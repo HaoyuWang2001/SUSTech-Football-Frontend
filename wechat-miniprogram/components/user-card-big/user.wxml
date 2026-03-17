@@ -10,10 +10,16 @@
       <text wx:if="{{isPlayer}}" class="role">{{"球员"}}</text>
       <text wx:if="{{isReferee}}" class="role">{{"裁判"}}</text>
       <text wx:if="{{isCoach}}" class="role">{{"教练"}}</text>
+      <text wx:if="{{has_number}}" class="number">号码: {{number === 0 ? '暂无' : number}}</text>
     </view>
     <view class="id-container" wx:if="{{userId}}">
       <text class="id-label">{{idLabel}}</text>
       <text class="id-value">{{userId}}</text>
     </view>
+  </view>
+
+  <!-- 按钮插槽 -->
+  <view class="coach-actions" wx:if="{{has_button}}">
+    <slot></slot>
   </view>
 </view>

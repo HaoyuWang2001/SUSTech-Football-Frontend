@@ -12,6 +12,7 @@ Page({
   data: {
     avatarUrl: '',
     nickName: '',
+    userId: -1,
 
     playerId: Number,
     coachId: Number,
@@ -68,7 +69,8 @@ Page({
    */
   onShow() {
     this.setData({
-      isLoading: true, // 开始加载
+      isLoading: true,
+      userId: userId
     })
     appInstance.addToRequestQueue(this.fetchData)
   },
@@ -92,7 +94,8 @@ Page({
    */
   onPullDownRefresh() {
     this.setData({
-      isLoading: true // 开始加载
+      isLoading: true,
+      userId: userId
     })
     appInstance.addToRequestQueue(this.fetchData)
     wx.stopPullDownRefresh()

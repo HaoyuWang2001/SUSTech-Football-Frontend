@@ -3,9 +3,9 @@
     <text class="block-title">友谊赛管理</text>
   </view>
   <view class="block-main">
-    <view>您可以在本页面：</view>
-    <view>- 创建新的友谊赛</view>
-    <view>- 管理全部友谊赛</view>
+    <view class="hint-text">您可以在本页面：</view>
+    <view class="hint-text">- 创建新的友谊赛</view>
+    <view class="hint-text">- 管理全部友谊赛</view>
   </view>
 </view>
 
@@ -15,13 +15,17 @@
     <view class="block-more button-custom" bind:tap="createNewMatch">新建</view>
   </view>
   <view class="block-main">
-    点击“新建”按钮，填写比赛信息并新建比赛。
+    <view class="hint-text">
+      点击“新建”按钮，填写比赛信息并新建比赛。
+    </view>
   </view>
 </view>
 
-<scroll-view scroll-y enable-flex>
-  <view wx:for="{{matchList}}" wx:key="matchId">
-    <match-card-big name="友谊赛" status="{{item.status}}" team1="{{item.homeTeam.name}}" team2="{{item.awayTeam.name}}" icon1="{{item.homeTeam.logoUrl}}" icon2="{{item.awayTeam.logoUrl}}" score1="{{item.homeTeamScore}}" score2="{{item.awayTeamScore}}" time="{{item.strTime}}" hasBegun="{{item.hasBegun}}" bindtap="gotoEditMatch" data-id="{{item.matchId}}">
-    </match-card-big>
-  </view>
-</scroll-view>
+<view class="block-container">
+  <scroll-view scroll-y enable-flex>
+    <view wx:for="{{matchList}}" wx:key="matchId">
+      <match-card-big name="友谊赛" status="{{item.status}}" team1="{{item.homeTeam.name}}" team2="{{item.awayTeam.name}}" icon1="{{item.homeTeam.logoUrl}}" icon2="{{item.awayTeam.logoUrl}}" score1="{{item.homeTeamScore}}" score2="{{item.awayTeamScore}}" time="{{item.strTime}}" hasBegun="{{item.hasBegun}}" bindtap="gotoEditMatch" data-id="{{item.matchId}}">
+      </match-card-big>
+    </view>
+  </scroll-view>
+</view>

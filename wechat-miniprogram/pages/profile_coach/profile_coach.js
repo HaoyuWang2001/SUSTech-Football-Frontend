@@ -23,7 +23,8 @@ Page({
 
   onShow() {
     this.setData({
-      isLoading: true, // 开始加载
+      isLoading: true,
+      showRedDot: false,
     })
     app.addToRequestQueue(this.fetchCoachId)
   },
@@ -47,7 +48,8 @@ Page({
    */
   onPullDownRefresh() {
     this.setData({
-      isLoading: true // 开始加载
+      isLoading: true,
+      showRedDot: false,
     })
     app.addToRequestQueue(this.fetchCoachId)
     wx.stopPullDownRefresh()

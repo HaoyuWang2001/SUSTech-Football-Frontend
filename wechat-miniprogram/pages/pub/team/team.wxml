@@ -152,23 +152,45 @@
       </view>
     </view>
 
+    <view class="block-container modern-card" wx:if="{{captainId}}">
+      <view class="modern-card-header"></view>
+      <view class="block-top">
+        <text class="block-title primary-color text-bold">队长</text>
+      </view>
+      <view class="block-main">
+        <view class="coach-list">
+          <user-card-big
+            wx:if="{{captainId !== 0}}"
+            wx:key="captainId"
+            img="{{captainPhotoUrl}}"
+            name="{{captainName}}"
+            isPlayer="true"
+            bind:tap="gotoPlayerPage"
+            data-id="{{captainId}}">
+          </user-card-big>
+        </view>
+      </view>
+    </view>
+
     <!-- 球员卡片 -->
     <view class="block-container modern-card">
       <view class="modern-card-header"></view>
       <view class="block-top">
-        <text class="block-title primary-color text-bold">球员</text>
+        <text class="block-title primary-color text-bold">队员</text>
       </view>
       <view class="block-main">
-        <scroll-view scroll-x enable-flex class="scroll-container">
-          <player-card-small
+        <scroll-view wx:if="{{playerList.length}}" scroll-y class="player-card-list">
+          <user-card-big
             wx:for="{{playerList}}"
             wx:key="playerId"
-            img="{{item.photoUrl}}"
             name="{{item.name}}"
+            img="{{item.photoUrl}}"
+            isPlayer="true"
+            has_number="true"
             number="{{item.number}}"
             bind:tap="gotoPlayerPage"
             data-id="{{item.playerId}}">
-          </player-card-small>
+          </user-card-big>
         </scroll-view>
 
         <!-- 查看统计数据按钮 -->

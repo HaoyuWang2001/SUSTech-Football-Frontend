@@ -42,6 +42,7 @@
   </view> -->
   <!-- 球队列表 -->
   <view class="team-card-container">
+    <view class="no-managed" wx:if="{{teamList.length==0}}">您还没有管理的球队</view>
     <block wx:for="{{teamList}}" wx:key="teamId">
       <team-card-big name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerList.length}}" teamId="{{item.teamId}}" has_button="{{true}}">
         <view>

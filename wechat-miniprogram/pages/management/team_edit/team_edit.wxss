@@ -5,13 +5,90 @@
   margin-bottom: 20rpx;
   border: 1rpx solid #cccccc;
   background-color: white;
+}
+
+.coach-op-panel{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 20rpx;
+  gap: 20rpx;
+  min-width: 100rpx;
+}
+
+.coach-op-btn{
+  height: 48rpx;
+  line-height: 48rpx;
+  font-size: 24rpx;
   border-radius: 20rpx;
-  padding: 5rpx;
+  text-align: center;
+  padding: 10rpx 26rpx;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.coach-op-btn.danger{
+  color: white;
+  background: #ff373a;
+}
+
+.coach-op-btn.primary{
+  color: white;
+  background-color: #ed6c00;
+}
+
+.coach-op-btn:active{
+  transform: scale(0.95);
+  opacity: 0.8;
+}
+
+.player-card-list {
+  max-height: 70vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  margin-bottom: 10rpx;
+}
+
+.player-op-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 20rpx;
+  gap: 12rpx;
+  min-width: 100rpx;
+}
+
+.player-op-btn{
+  height: 48rpx;
+  line-height: 48rpx;
+  font-size: 24rpx;
+  border-radius: 20rpx;
+  text-align: center;
+  padding: 10rpx 26rpx;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.player-op-btn.danger{
+  color: white;
+  background: #ff373a;
+}
+
+.player-op-btn.primary{
+  color: white;
+  background-color: #ed6c00;
+}
+
+.player-op-btn:active{
+  transform: scale(0.95);
+  opacity: 0.8;
 }
 
 .info-container {
-  display: flex; /* 使用 Flexbox 布局 */
-  justify-content: space-around; /* 水平对齐，元素间距会自动填充 */
+  display: flex;
+  justify-content: space-around;
   align-items: center;
   padding: 20rpx;
   width: 90%;
@@ -19,16 +96,15 @@
 
 .teamname {
   font-size: medium;
-  white-space: normal; /* 允许文本换行 */
-  word-wrap: break-word; /* 单词换行 */
+  white-space: normal;
+  word-wrap: break-word;
   flex-grow: 1;
-  font-size: medium;
 }
 
 .name-edit {
   font-size: small;
   color: gray;
-  display: inline-block; 
+  display: inline-block;
   border-bottom: 1px solid gray;
   margin-left: 3%;
   flex-shrink: 0;
@@ -46,10 +122,10 @@
 
 .description {
   font-size: small;
-  width: 100%; /* 调整宽度 */
-  height: 80px; /* 调整高度 */
-  resize: none; /* 禁止用户手动调整文本区域大小 */
-  overflow: auto; /* 当内容超出时显示滚动条 */
+  width: 100%;
+  height: 80px;
+  resize: none;
+  overflow: auto;
 }
 
 .description-edit {
@@ -90,32 +166,18 @@
   border-radius: 20px;
   cursor: pointer;
   background-color: #eb6c00;
-  color: white; 
+  color: white;
   font-size: medium;
   max-width: 40%;
   margin: 20rpx 0 60rpx 0;
 }
 
 .icon {
-  padding: 5rpx;
-  border-radius: 20rpx;
-  width: 40rpx;
-  height: 40rpx;
-  margin-top: 5rpx;
-  margin-left: 10rpx;
-  margin-right: 10rpx;
-}
-
-.icon_eye {
-  background-color: #eb6c00;
-}
-
-.icon_cloth {
-  background-color: #51b0d6;
-}
-
-.icon_delete {
-  background-color: red;
+  width: 32rpx;
+  height: 32rpx;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
 }
 
 .icon_retire {
@@ -133,7 +195,7 @@
 
 .player-name {
   font-size: small;
-  max-width: 150rpx;
+  max-width: 120rpx;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -175,24 +237,3 @@ input {
   font-size: small;
 }
 
-.table {
-  display: table;
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.row {
-  display: table-row;
-}
-
-.header {
-  font-weight: bold;
-}
-
-.cell {
-  display: table-cell;
-  padding: 8px;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-}

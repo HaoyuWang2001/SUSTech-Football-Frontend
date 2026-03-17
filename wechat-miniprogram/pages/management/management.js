@@ -232,6 +232,7 @@ Page({
   },
 
   formatManageEventInvitationTeam: function (invitations) {
+    console.log(invitations)
     const that = this
     const informs = invitations.map(invitation => {
       const formattedDate = (invitation.lastUpdated != null) ? new Date(invitation.lastUpdated).toLocaleString() : '未知';

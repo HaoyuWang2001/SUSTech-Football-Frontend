@@ -5,19 +5,22 @@
       <view class="block-title">引导</view>
     </view>
     <view class="block-main">
-      <view>
+      <view class="hint-text">
         本页面为“体育中心”管理页面，具有最高权限，功能包含：全部球队的管理、全部比赛的管理、全部赛事的管理和二级权限的管理（通过指定用户名、密码进行授权）。
       </view>
-      <view style="margin-top: 40rpx;">
+      <view class="hint-text">
         二级权限（用户名+密码登录）：可以创建球队、创建友谊赛、创建赛事；管理自己创建的内容；授予三级权限（通过指定用户ID进行授予）
       </view>
-      <view style="margin-top: 40rpx;">
+      <view class="hint-text">
         三级权限（无需手动输入用户名或密码）：可以创建球队、创建友谊赛；管理自己创建的内容；不允许创建赛事。
       </view>
     </view>
   </view>
 
   <!-- 功能 -->
+  <view class="block-top">
+    <text class="block-title">功能</text>
+  </view>
   <view class="function-container">
     <view bindtap="gotoTeamsPage" class="function-button">
       <image src="/assets/team.png" mode="scaleToFill" class="function-image" />
@@ -42,6 +45,8 @@
       <text class="function-text">更改密码</text>
     </view>
   </view>
+
+  
 </view>
 
 <modal hidden="{{!isChangePasswordModalVisible}}" bindconfirm="updatePassword" bindcancel="closeModal">

@@ -238,7 +238,7 @@ Page({
     var team = this.data.selectedTeam;
     
     wx.navigateTo({
-      url: '/pages/management/event_roster/event_roster?eventId=' + event.eventId + '&teamId=' + team.teamId + '&eventName=' + encodeURIComponent(event.name) + '&teamName=' + encodeURIComponent(team.name) + '&rosterSize=' + (event.rosterSize || 23) + '&matchPlayerCount=' + (event.matchPlayerCount || 11) + '&isExpired=' + (event.isExpired ? '1' : '0')
+      url: '/pages/management/event_roster/event_roster?eventId=' + event.eventId + '&teamId=' + team.teamId + '&eventName=' + encodeURIComponent(event.name) + '&teamName=' + encodeURIComponent(team.name) + '&rosterSize=' + (event.rosterSize) + '&matchPlayerCount=' + (event.matchPlayerCount) + '&isExpired=' + (event.isExpired ? '1' : '0')
     });
   }
 })

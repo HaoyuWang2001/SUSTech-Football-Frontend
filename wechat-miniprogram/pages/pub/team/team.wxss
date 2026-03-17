@@ -107,10 +107,10 @@ page {
 /* 球队简介样式 */
 .team-description {
   display: block;
-  font-size: 28rpx; /* Tokens.fontSizeMedium */
+  font-size: 32rpx; /* Tokens.fontSizeMedium */
   color: #666666; /* Colors.grayDark */
   line-height: 1.6;
-  padding: 16rpx 0;
+  padding: 10rpx 20rpx 30rpx;
 }
 
 /* ============================================================================
@@ -216,6 +216,15 @@ page {
   color: #ed6c00; /* Colors.primary */
 }
 
+.player-card-list {
+  max-height: 50vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  margin-bottom: 10rpx;
+}
+
 /* ============================================================================
  * 响应式设计
  * ============================================================================ */
@@ -311,6 +320,7 @@ page {
   flex-direction: column;
   gap: 20rpx;
   padding: 0 8rpx;
+  margin-bottom: 20rpx;
 }
 
 .coach-list user-card-big {

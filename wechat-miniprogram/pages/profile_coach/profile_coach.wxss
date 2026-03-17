@@ -68,10 +68,14 @@
 }
 
 .no-favorite {
-  width: 100%;
-  margin-left: 20rpx;
-  margin-bottom: 10rpx;
-  font-size: small;
+  margin: 40rpx 20rpx;
+  font-size: 30rpx;
+  color: #999;
+  text-align: center;
+  padding: 60rpx 40rpx;
+  background: rgba(237, 108, 0, 0.03);
+  border-radius: 20rpx;
+  border: 1rpx dashed rgba(237, 108, 0, 0.2);
 }
 
 .notification-container {
@@ -121,6 +125,8 @@
 .function-container {
   display: flex;
   gap: 15rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
 }
 
 .function-button {

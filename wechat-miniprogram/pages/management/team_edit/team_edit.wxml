@@ -75,12 +75,17 @@
   </view>
   <view class="block-main">
     <scroll-view wx:if="{{coachList.length}}" scroll-x enable-flex style="flex-direction: row; white-space: nowrap;">
-      <player-card-small wx:for="{{coachList}}" wx:key="index" name="{{item.name}}" img="{{item.photoUrl}}">
-        <view>
-          <image src="/assets/eye.png" class="icon icon_eye" bind:tap="gotoCoachPage" data-id="{{item.coachId}}"></image>
-          <image src="/assets/delete.png" class="icon icon_delete" bind:tap="showDeleteCoachModal" data-id="{{item.coachId}}"></image>
+      <user-card-big wx:for="{{coachList}}" wx:key="coachId" 
+      name="{{item.name}}" 
+      img="{{item.photoUrl}}"
+      isCoach="true"
+      has_button="{{true}}"
+      data-id="{{item.coachId}}">
+        <view class="coach-op-panel">
+          <view class="coach-op-btn primary" bindtap="gotoCoachPage" data-id="{{item.coachId}}">教练主页</view>
+          <view class="coach-op-btn danger" bindtap="showDeleteCoachModal" data-id="{{item.coachId}}">删除教练</view>
         </view>
-      </player-card-small>
+      </user-card-big>
     </scroll-view>
     <view wx:else class="hint-text">暂无球队教练</view>
   </view>
@@ -95,7 +100,15 @@
     </view>
   </view>
   <view class="block-main">
-    <player-card-small wx:if="{{captainId !== 0}}" name="{{captain.name}}" img="{{captain.photoUrl}}" bind:tap="gotoPlayerPage" data-id="{{captain.playerId}}"></player-card-small>
+    <user-card-big 
+      wx:if="{{captainId !== 0}}" 
+      wx:key="captainId"
+      img="{{captain.photoUrl}}"
+      name="{{captain.name}}" 
+      isPlayer="true" 
+      bind:tap="gotoPlayerPage" 
+      data-id="{{captain.playerId}}">
+    </user-card-big>
     <view wx:else class="hint-text">暂未选择球队队长</view>
   </view>
 </view>
@@ -110,35 +123,23 @@
   </view>
 
   <view class="block-main">
-    <view wx:if="{{playerList.length}}" class="table">
-      <!-- 表头 -->
-      <view class="row header">
-        <view class="cell"></view>
-        <view class="cell">球员</view>
-        <view class="cell">查看</view>
-        <view class="cell">号码</view>
-        <view class="cell">删除</view>
-      </view>
-
-      <!-- 球员信息 -->
-      <view class="row" wx:for="{{playerList}}" wx:key="index">
-        <view class="cell">{{item.number}}</view>
-        <view class="cell table" style="max-width: 250rpx;">
-          <image src="{{item.photoUrl}}" class="player-avatar cell"></image>
-          <text class="cell player-name">{{item.name}}</text>
+    <scroll-view wx:if="{{playerList.length}}" scroll-y class="player-card-list">
+      <user-card-big
+        wx:for="{{playerList}}"
+        wx:key="playerId"
+        name="{{item.name}}"
+        img="{{item.photoUrl}}"
+        isPlayer="true"
+        has_button="{{true}}"
+        has_number="true"
+        number="{{item.number}}">
+        <view class="player-op-panel">
+          <view class="player-op-btn primary" bindtap="showEditPlayerModal" data-id="{{item.playerId}}">球员号码</view>
+          <view class="player-op-btn danger" bindtap="showDeletePlayerModal" data-id="{{item.playerId}}">删除球员</view>
         </view>
-        <view class="cell">
-          <image src="/assets/eye.png" class="icon icon_eye" bind:tap="gotoPlayerPage" data-id="{{item.playerId}}"></image>
-        </view>
-        <view class="cell">
-          <image src="/assets/cloth.png" class="icon icon_cloth" bind:tap="showEditPlayerModal" data-id="{{item.playerId}}"></image>
-        </view>
-        <view class="cell">
-          <image src="/assets/delete.png" class="icon icon_delete" bind:tap="showDeletePlayerModal" data-id="{{item.playerId}}"></image>
-        </view>
-      </view>
-    </view>
-    <view wx:else>目前球队里没有球员</view>
+      </user-card-big>
+    </scroll-view>
+    <view wx:else class="hint-text">目前球队里没有球员</view>
   </view>
 </view>
 

@@ -163,6 +163,7 @@
   color: white; /* 文字颜色 */
   font-size: medium;
   max-width: 45%;
+  margin-top: 30rpx;
 }
 
 .confirm-btn:hover{

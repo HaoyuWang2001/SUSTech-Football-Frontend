@@ -15,7 +15,11 @@ Page({
     id: -1,
     name: String,
     logoUrl: String,
+
     captainId: String,
+    captainPhotoUrl: String,
+    captainName: String,
+
     coachList: Array,
     playerIdList: Array,
     eventList: Array,
@@ -109,7 +113,6 @@ Page({
     const that = this
     wx.request({
       url: URL + "/team/get?id=" + id,
-
       success(res) {
         console.log("/team/get?id=" + id + " ->")
         console.log(res.data)
@@ -120,16 +123,18 @@ Page({
           match.strTime = formatTime(date)
           match.hasBegun = match.status == 'PENDING' ? false : true
         }
+        const sortedPlayers = that.sortPlayerList(res.data.playerList || [])
         that.setData({
           name: res.data.name,
           logoUrl: res.data.logoUrl,
           captainId: res.data.captainId,
           coachList: res.data.coachList,
-          playerList: res.data.playerList,
+          playerList: sortedPlayers,
           eventList: eventList,
           matchList: matchList,
           description: res.data.description
         })
+        that.fetchCaptain(that.data.captainId)
         that.calculateTeamStats()
       },
       fail(err) {
@@ -142,6 +147,57 @@ Page({
       }
     })
   },
+
+  fetchCaptain: function (id) {
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    });
+
+    const that = this
+    wx.request({
+      url: URL + "/player/get?id=" + id,
+      success(res) {
+        console.log("/player/get?id=" + id + " ->")
+        console.log(res.data)
+        that.setData({
+          captainPhotoUrl: res.data.photoUrl,
+          captainName: res.data.name,
+        })
+      },
+      fail(err) {
+        console.log("请求失败：", err)
+        console.log("errMsg:", err.errMsg)
+      },
+      complete() {
+        wx.hideLoading();
+      }
+    })
+  },
+
+  // 将有号码的球员按号码升序排列，无号码的置底
+  sortPlayerList(list = []) {
+    const withNumber = []
+    const withoutNumber = []
+
+    list.forEach(player => {
+      const num = Number(player.number)
+      const isValidNumber = !Number.isNaN(num) && num >= 1 && num <= 99
+      if (isValidNumber) {
+        withNumber.push({ ...player, _numberValue: num })
+      } else {
+        withoutNumber.push(player)
+      }
+    })
+
+    withNumber.sort((a, b) => a._numberValue - b._numberValue)
+
+    return [...withNumber.map(p => {
+      const { _numberValue, ...rest } = p
+      return rest
+    }), ...withoutNumber]
+  },
+
 
   ////////////////////////////////////////////////////////////////
   // 页面响应

@@ -100,6 +100,18 @@
   margin-right: 8rpx;
 }
 
+.number {
+  font-size: 26rpx; /* Tokens.fontSizeSmall */
+  color: #666666; /* Colors.grayDark */
+  font-weight: 500;
+  letter-spacing: 0.2rpx;
+  display: inline-block;
+  padding: 4rpx 12rpx;
+  background-color: rgba(237, 108, 0, 0.08); /* Colors.primaryAlpha12 变体 */
+  border-radius: 8rpx; /* Tokens.borderRadiusSmall */
+  margin-right: 8rpx;
+}
+
 .container:active .role {
   background-color: rgba(237, 108, 0, 0.15); /* Colors.primaryAlpha25 变体 */
   color: #ed6c00; /* Colors.primary */
@@ -133,5 +145,15 @@
   color: #ed6c00;
   font-weight: 500;
   font-family: monospace;
+}
+
+.user-actions {
+  flex-shrink: 0;
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* padding-left: 20rpx; */
+  min-width: 80rpx;
 }
 

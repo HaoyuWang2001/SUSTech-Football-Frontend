@@ -6,11 +6,17 @@ Component({
     isPlayer: Boolean,
     isReferee: Boolean,
     isCoach: Boolean,
+    has_number: Boolean,
     userId: String,
     idLabel: {
       type: String,
       value: 'ID：'
-    }
+    },
+    has_button: {
+      type: Boolean,
+      value: false 
+    },
+    number: Number, 
   },
 
   data: {

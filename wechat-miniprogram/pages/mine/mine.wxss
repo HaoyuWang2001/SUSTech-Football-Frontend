@@ -4,6 +4,7 @@
   .info-section {
     width: 100%;
     margin-left: 20rpx;
+    margin-right: 20rpx;
     margin-bottom: 40rpx;
     font-size: small;
   }
@@ -31,6 +32,8 @@
   .function-container {
     display: flex;
     gap: 15rpx;
+    margin-top: 20rpx;
+    margin-bottom: 20rpx;
   }
 
   .function-image {

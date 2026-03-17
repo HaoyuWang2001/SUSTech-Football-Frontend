@@ -30,7 +30,7 @@ Page({
     tuNumber: 0,
     
     // 比赛人数和大名单人数
-    matchPlayerCountList: [5, 7, 8, 11],
+    matchPlayerCountList: [0, 5, 7, 8, 11],
     matchPlayerCount: 0,
     rosterSize: 0,
   },
@@ -188,22 +188,26 @@ Page({
         title: '请选择联赛轮数',
         icon: "error",
       });
-    } else if (that.data.matchPlayerCount === 0) {
-      wx.showToast({
-        title: '请选择比赛人数',
-        icon: "error",
-      });
-    } else if (that.data.rosterSize === 0) {
-      wx.showToast({
-        title: '请输入大名单人数',
-        icon: "error",
-      });
-    } else if (that.data.rosterSize < that.data.matchPlayerCount) {
-      wx.showToast({
-        title: '大名单人数不能小于比赛人数',
-        icon: "error",
-      });
-    } else {
+    } 
+    // else if (that.data.matchPlayerCount === 0) {
+    //   wx.showToast({
+    //     title: '请选择比赛人数',
+    //     icon: "error",
+    //   });
+    // } 
+    // else if (that.data.rosterSize === 0) {
+    //   wx.showToast({
+    //     title: '请输入大名单人数',
+    //     icon: "error",
+    //   });
+    // } 
+    // else if (that.data.rosterSize < that.data.matchPlayerCount) {
+    //   wx.showToast({
+    //     title: '大名单人数不能小于比赛人数',
+    //     icon: "error",
+    //   });
+    // } 
+    else {
       if (that.data.eventType === '杯赛') {
         // 杯赛有两个阶段：小组赛和淘汰赛
         var groupStage = {

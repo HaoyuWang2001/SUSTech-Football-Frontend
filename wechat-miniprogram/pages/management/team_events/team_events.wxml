@@ -39,11 +39,11 @@
         <view class="info-grid">
           <view class="info-item">
             <text class="info-label">赛制</text>
-            <text class="info-value">{{item.matchPlayerCount || 11}}人制</text>
+            <text class="info-value">{{item.matchPlayerCount}}人制</text>
           </view>
           <view class="info-item">
             <text class="info-label">大名单上限</text>
-            <text class="info-value">{{item.rosterSize || 23}}人</text>
+            <text class="info-value">{{item.rosterSize}}人</text>
           </view>
           <view class="info-item">
             <text class="info-label">已选人数</text>

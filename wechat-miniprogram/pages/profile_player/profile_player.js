@@ -38,7 +38,8 @@ Page({
    */
   onShow() {
     this.setData({
-      isLoading: true // 开始加载
+      isLoading: true,
+      showRedDot: false,
     })
     app.addToRequestQueue(this.fetchPlayerId)
   },
@@ -62,7 +63,8 @@ Page({
    */
   onPullDownRefresh() {
     this.setData({
-      isLoading: true // 开始加载
+      isLoading: true,
+      showRedDot: false,
     })
     app.addToRequestQueue(this.fetchPlayerId)
     wx.stopPullDownRefresh()

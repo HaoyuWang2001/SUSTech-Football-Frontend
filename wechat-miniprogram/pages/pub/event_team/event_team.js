@@ -110,15 +110,28 @@ Page({
       redCards: player.redCards ?? 0,
     }))
 
-    normalized.sort((a, b) => {
-      const aNum = parseInt(a.number, 10)
-      const bNum = parseInt(b.number, 10)
-      const aVal = Number.isNaN(aNum) ? 9999 : aNum
-      const bVal = Number.isNaN(bNum) ? 9999 : bNum
-      return aVal - bVal
+    const withNumber = []
+    const withoutNumber = []
+
+    normalized.forEach((player) => {
+      const num = Number(player.number)
+      const isValid = !Number.isNaN(num) && num >= 1 && num <= 99
+      if (isValid) {
+        withNumber.push({ ...player, _num: num })
+      } else {
+        withoutNumber.push({ ...player, number: '' })
+      }
     })
 
-    return normalized
+    withNumber.sort((a, b) => a._num - b._num)
+
+    return [
+      ...withNumber.map((player) => {
+        const { _num, ...rest } = player
+        return rest
+      }),
+      ...withoutNumber,
+    ]
   },
 
   formatMatches(list) {

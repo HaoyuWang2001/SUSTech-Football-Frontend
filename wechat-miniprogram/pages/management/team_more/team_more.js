@@ -15,6 +15,7 @@ Page({
   onLoad(options) {
     this.setData({
       authorityId: options.authorityId,
+      showRedDot: false,
     })
   },
 
@@ -23,6 +24,9 @@ Page({
   },
 
   onPullDownRefresh() {
+    this.setData({
+      showRedDot: false,
+    })
     this.fetchData(userId)
     wx.stopPullDownRefresh()
   },

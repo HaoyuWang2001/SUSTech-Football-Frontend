@@ -1,1 +1,6 @@
 /* pages/mine/sport_center/matches/matches.wxss */
+.hint-text {
+  margin-left: 20rpx;
+  margin-bottom: 20rpx;
+  font-size: small;
+}

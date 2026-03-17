@@ -34,15 +34,37 @@ Page({
       });
     }
 
+    const sortedPlayers = this.sortPlayersByNumber(playerList)
+
     this.setData({
-      playerList,
+      playerList: sortedPlayers,
       teamName
     });
   },
 
   onReady() {
-    wx.setNavigationBarTitle({
-      title: this.data.teamName + ' - 球员统计'
-    });
+    
+  }
+
+  ,sortPlayersByNumber(players = []) {
+    const withNumber = []
+    const withoutNumber = []
+
+    players.forEach((player) => {
+      const num = Number(player.number)
+      const isValid = !Number.isNaN(num) && num >= 1 && num <= 99
+      if (isValid) {
+        withNumber.push({ ...player, _num: num })
+      } else {
+        withoutNumber.push({ ...player, number: '' })
+      }
+    })
+
+    withNumber.sort((a, b) => a._num - b._num)
+
+    return [
+      ...withNumber.map(({ _num, ...rest }) => rest),
+      ...withoutNumber,
+    ]
   }
 })

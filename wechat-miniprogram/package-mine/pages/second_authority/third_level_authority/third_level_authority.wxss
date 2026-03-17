@@ -37,3 +37,25 @@ image {
   width: 90rpx;
   height: 90rpx;
 }
+
+.table {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.row {
+  display: table-row;
+}
+
+.header {
+  font-weight: bold;
+}
+
+.cell {
+  display: table-cell;
+  padding: 8px;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+}

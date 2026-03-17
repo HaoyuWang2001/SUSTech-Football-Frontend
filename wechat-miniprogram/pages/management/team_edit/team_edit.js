@@ -81,6 +81,7 @@ Page({
           return
         }
         console.log(res.data)
+        const sortedPlayers = that.sortPlayerList(res.data.playerList || [])
         that.setData({
           teamId: res.data.teamId,
           name: res.data.name,
@@ -89,7 +90,7 @@ Page({
           eventList: res.data.eventList,
           managerList: res.data.managerList,
           matchList: res.data.matchList,
-          playerList: res.data.playerList,
+          playerList: sortedPlayers,
           description: res.data.description,
           managerList: res.data.managerList
         });
@@ -132,6 +133,29 @@ Page({
         console.log('请求失败', err);
       },
     })
+  },
+
+  // 将有号码的球员按号码升序排列，无号码的置底
+  sortPlayerList(list = []) {
+    const withNumber = []
+    const withoutNumber = []
+
+    list.forEach(player => {
+      const num = Number(player.number)
+      const isValidNumber = !Number.isNaN(num) && num >= 1 && num <= 99
+      if (isValidNumber) {
+        withNumber.push({ ...player, _numberValue: num })
+      } else {
+        withoutNumber.push(player)
+      }
+    })
+
+    withNumber.sort((a, b) => a._numberValue - b._numberValue)
+
+    return [...withNumber.map(p => {
+      const { _numberValue, ...rest } = p
+      return rest
+    }), ...withoutNumber]
   },
 
   // 上传数据进行更新
