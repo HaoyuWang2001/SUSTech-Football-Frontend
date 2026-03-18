@@ -88,6 +88,7 @@
         <image src="/assets/down.png" class="icon-down" bindtap="toggleDropdown"></image>
       </view>
     </picker>
+    <view class="no-info" wx:if="{{matchesOfCurrentTag.length == 0}}">暂无比赛！</view>
     <match-card-big wx:for="{{matchesOfCurrentTag}}" wx:key="matchId" name="" status="{{item.status}}" tag="" team1="{{item.homeTeam.name}}" team2="{{item.awayTeam.name}}" icon1="{{item.homeTeam.logoUrl}}" icon2="{{item.awayTeam.logoUrl}}" score1="{{item.homeTeamScore}}" score2="{{item.awayTeamScore}}" penalty1="{{item.homeTeamPenalty}}" penalty2="{{item.awayTeamPenalty}}" time="{{item.strTime}}" hasBegun="{{item.hasBegun}}" bind:tap="gotoMatchPage" data-id="{{item.matchId}}" data-event="{{name}}"> </match-card-big>
   </view>
 

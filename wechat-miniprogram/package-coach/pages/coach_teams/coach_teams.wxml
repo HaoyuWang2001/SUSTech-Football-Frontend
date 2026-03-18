@@ -1,5 +1,17 @@
 <view class="block-container">
   <view class="block-top">
+    <text class="block-title">执教球队</text>
+  </view>
+  <view class="block-main">
+    <view class="no-info" wx:if="{{teamList.length==0}}">您还未执教任何球队！</view>
+    <team-card-big wx:for="{{teamList}}" wx:key="teamId" name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerList.length}}" teamId="{{item.teamId}}" has_button="{{true}}" bind:tap="gotoTeam" data-id="{{item.teamId}}">
+      <view class="delete-btn" catch:tap="showExitModal" data-id="{{item.teamId}}">离职</view>
+    </team-card-big>
+  </view>
+</view>
+
+<!-- <view class="block-container">
+  <view class="block-top">
     <view class="block-title">执教球队</view>
   </view>
   <view class="block-main">
@@ -9,4 +21,4 @@
 
 <team-card-big wx:for="{{teamList}}" wx:key="teamId" name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerList.length}}" teamId="{{item.teamId}}" has_button="{{true}}" bind:tap="gotoTeam" data-id="{{item.teamId}}">
   <view class="delete-btn" catch:tap="showExitModal" data-id="{{item.teamId}}">离职</view>
-</team-card-big>
+</team-card-big> -->

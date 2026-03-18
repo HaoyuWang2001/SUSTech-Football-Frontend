@@ -1,8 +1,46 @@
 <!-- pages/pub/team/player_stats/player_stats.wxml -->
-<view class="container">
+<view class="block-container">
+  <view class="block-top">
+    <text class="block-title">球员详细数据</text>
+  </view>
+  <view class="container">
+    <view class="table-container modern-card">
+      <view class="table fancy-table">
+        <!-- 表头 -->
+        <view class="row header">
+          <view class="cell cell-number-column">号码</view>
+          <view class="cell cell-player-column-header">球员</view>
+          <view class="cell">出场</view>
+          <view class="cell">进球</view>
+          <view class="cell">助攻</view>
+          <view class="cell">黄牌</view>
+          <view class="cell">红牌</view>
+        </view>
+
+        <!-- 球员信息 -->
+        <view class="row" wx:for="{{playerList}}" wx:key="playerId">
+          <view class="cell cell-number-column">{{item.number || ''}}</view>
+          <view class="cell cell-player-column">
+            <view class="player-info">
+              <image src="{{item.photoUrl}}" class="player-avatar"></image>
+              <view class="player-name">{{item.name}}</view>
+            </view>
+          </view>
+          <view class="cell stat-cell">{{item.appearances || 0}}</view>
+          <view class="cell stat-cell">{{item.goals || 0}}</view>
+          <view class="cell stat-cell">{{item.assists || 0}}</view>
+          <view class="cell stat-cell warning">{{item.yellowCards || 0}}</view>
+          <view class="cell stat-cell danger">{{item.redCards || 0}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- <view class="container">
   <view class="table-container modern-card">
     <view class="table fancy-table">
-      <!-- 表头 -->
+
       <view class="row header">
         <view class="cell cell-number-column">号码</view>
         <view class="cell cell-player-column-header">球员</view>
@@ -13,7 +51,7 @@
         <view class="cell">红牌</view>
       </view>
 
-      <!-- 球员信息 -->
+
       <view class="row" wx:for="{{playerList}}" wx:key="playerId">
         <view class="cell cell-number-column">{{item.number || ''}}</view>
         <view class="cell cell-player-column">
@@ -30,4 +68,4 @@
       </view>
     </view>
   </view>
-</view>
+</view> -->

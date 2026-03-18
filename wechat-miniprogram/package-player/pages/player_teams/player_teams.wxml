@@ -1,12 +1,16 @@
 <view class="block-container">
   <view class="block-top">
-    <view class="block-title">球队</view>
+    <text class="block-title">加入的球队</text>
   </view>
   <view class="block-main">
-    这里是您加入的球队。
+    <view class="no-info" wx:if="{{teamList.length==0}}">您还未加入任何球队！</view>
+    <team-card-big wx:for="{{teamList}}" wx:key="teamId" name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerList.length}}" teamId="{{item.teamId}}" has_button="{{true}}" catch:tap="gotoTeam" data-id="{{item.teamId}}">
+      <view class="delete-btn" catch:tap="showExitModal" data-id="{{item.teamId}}">退出</view>
+    </team-card-big>
   </view>
 </view>
 
-<team-card-big wx:for="{{teamList}}" wx:key="teamId" name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerList.length}}" teamId="{{item.teamId}}" has_button="{{true}}" catch:tap="gotoTeam" data-id="{{item.teamId}}">
+<!-- <team-card-big wx:for="{{teamList}}" wx:key="teamId" name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerList.length}}" teamId="{{item.teamId}}" has_button="{{true}}" catch:tap="gotoTeam" data-id="{{item.teamId}}">
   <view class="delete-btn" catch:tap="showExitModal" data-id="{{item.teamId}}">退出</view>
-</team-card-big>
+</team-card-big> -->
+

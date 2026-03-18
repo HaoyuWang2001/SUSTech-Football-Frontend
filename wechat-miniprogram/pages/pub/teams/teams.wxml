@@ -1,5 +1,15 @@
-<view class="container">
-  <view style="width: 100%">
+<view class="block-container">
+  <view class="block-top">
+    <text class="block-title">关注的球队</text>
+  </view>
+  <view class="block-main">
+    <view class="no-info" wx:if="{{teamList.length==0}}">您还未关注任何球队！</view>
     <team-card-big wx:for="{{teamList}}" wx:key="teamId" name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerList.length}}" teamId="{{item.teamId}}" bind:tap="gotoTeam" data-id="{{item.teamId}}"> </team-card-big>
   </view>
 </view>
+
+<!-- <view class="container">
+  <view style="width: 100%">
+    <team-card-big wx:for="{{teamList}}" wx:key="teamId" name="{{item.name}}" img="{{item.logoUrl}}" number="{{item.playerList.length}}" teamId="{{item.teamId}}" bind:tap="gotoTeam" data-id="{{item.teamId}}"> </team-card-big>
+  </view>
+</view> -->

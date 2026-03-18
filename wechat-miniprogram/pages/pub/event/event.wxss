@@ -337,7 +337,7 @@ scroll-view {
 }
 
 .no-info {
-  margin: 0 20rpx;
+  margin: 20rpx 20rpx;
   font-size: 30rpx;
   color: #999;
   text-align: center;

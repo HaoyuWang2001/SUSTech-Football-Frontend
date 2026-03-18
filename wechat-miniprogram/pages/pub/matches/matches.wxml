@@ -1,7 +1,17 @@
-<view class="container">
+<view class="block-container">
+  <view class="block-top">
+    <text class="block-title">赛程</text>
+  </view>
+  <view class="block-main">
+    <view class="no-info" wx:if="{{matchList.length==0}}">暂无赛程！</view>
+    <match-card-big wx:for="{{matchList}}" wx:key="matchId" status="{{item.status}}" team1="{{item.homeTeam.name}}" team2="{{item.awayTeam.name}}" icon1="{{item.homeTeam.logoUrl}}" icon2="{{item.awayTeam.logoUrl}}" score1="{{item.homeTeamScore}}" score2="{{item.awayTeamScore}}" penalty1="{{item.homeTeamPenalty}}" penalty2="{{item.awayTeamPenalty}}" time="{{item.strTime}}" hasBegun="{{item.hasBegun}}" bind:tap="gotoMatch" data-id="{{item.matchId}}"> </match-card-big>
+  </view>
+</view>
+
+<!-- <view class="container">
   <view style="width: 100%;">
     <view class="match-container">
       <match-card-big wx:for="{{matchList}}" wx:key="matchId" status="{{item.status}}" team1="{{item.homeTeam.name}}" team2="{{item.awayTeam.name}}" icon1="{{item.homeTeam.logoUrl}}" icon2="{{item.awayTeam.logoUrl}}" score1="{{item.homeTeamScore}}" score2="{{item.awayTeamScore}}" penalty1="{{item.homeTeamPenalty}}" penalty2="{{item.awayTeamPenalty}}" time="{{item.strTime}}" hasBegun="{{item.hasBegun}}" bind:tap="gotoMatch" data-id="{{item.matchId}}"> </match-card-big>
     </view>
   </view>
-</view>
+</view> -->
