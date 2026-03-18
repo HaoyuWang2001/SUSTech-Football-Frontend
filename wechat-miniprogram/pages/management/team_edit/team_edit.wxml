@@ -61,7 +61,7 @@
       <player-card-small wx:for="{{managerList}}" wx:key="index" name="{{item.nickName === null? '未命名' : item.nickName}}" img="{{item.avatarUrl}}" bind:tap="gotoUserPage" data-id="{{item.userId}}">
       </player-card-small>
     </scroll-view>
-    <view wx:else class="hint-text">暂无球队管理员</view>
+    <view wx:else class="no-info">暂无球队管理员</view>
   </view>
 </view>
 
@@ -87,7 +87,7 @@
         </view>
       </user-card-big>
     </scroll-view>
-    <view wx:else class="hint-text">暂无球队教练</view>
+    <view wx:else class="no-info">暂无球队教练</view>
   </view>
 </view>
 
@@ -109,7 +109,7 @@
       bind:tap="gotoPlayerPage" 
       data-id="{{captain.playerId}}">
     </user-card-big>
-    <view wx:else class="hint-text">暂未选择球队队长</view>
+    <view wx:else class="no-info">暂未选择球队队长</view>
   </view>
 </view>
 
@@ -139,7 +139,7 @@
         </view>
       </user-card-big>
     </scroll-view>
-    <view wx:else class="hint-text">目前球队里没有球员</view>
+    <view wx:else class="no-info">目前球队里没有球员</view>
   </view>
 </view>
 

@@ -132,13 +132,13 @@
 
   <view wx:if="{{activeIndex == 2}}">
     <!-- 教练团队卡片 -->
-    <view class="block-container modern-card" wx:if="{{coachList}}">
+    <view class="block-container modern-card">
       <view class="modern-card-header"></view>
       <view class="block-top">
         <text class="block-title primary-color text-bold">教练团队</text>
       </view>
-      <view class="block-main">
-        <view class="coach-list">
+      <view class="block-main" >
+        <view class="coach-list" wx:if="{{coachList}}">
           <user-card-big
             wx:for="{{coachList}}"
             wx:key="coachId"
@@ -149,16 +149,17 @@
             data-id="{{item.coachId}}">
           </user-card-big>
         </view>
+        <view wx:else class="no-info">暂无教练！</view>
       </view>
     </view>
 
-    <view class="block-container modern-card" wx:if="{{captainId}}">
+    <view class="block-container modern-card" >
       <view class="modern-card-header"></view>
       <view class="block-top">
         <text class="block-title primary-color text-bold">队长</text>
       </view>
-      <view class="block-main">
-        <view class="coach-list">
+      <view class="block-main" >
+        <view class="coach-list" wx:if="{{captainId}}">
           <user-card-big
             wx:if="{{captainId !== 0}}"
             wx:key="captainId"
@@ -169,6 +170,7 @@
             data-id="{{captainId}}">
           </user-card-big>
         </view>
+        <view wx:else class="no-info" >暂无队长！</view>
       </view>
     </view>
 

@@ -89,18 +89,18 @@ page {
 }
 
 .block-title {
-  font-size: 32rpx; /* Tokens.fontSizeLarge */
+  font-size: 32rpx;
   font-weight: 600;
 }
 
 .block-more {
-  font-size: 24rpx; /* Tokens.fontSizeSmall */
-  color: #ed6c00; /* Colors.primary */
+  font-size: 24rpx;
+  color: #ed6c00;
   text-decoration: underline;
 }
 
 .block-main {
-  padding: 0 8rpx;
+  padding: 0 10rpx;
 }
 
 
@@ -325,4 +325,15 @@ page {
 
 .coach-list user-card-big {
   margin: 0;
+}
+
+.no-info {
+  margin: 30rpx 20rpx;
+  font-size: 30rpx;
+  color: #999;
+  text-align: center;
+  padding: 60rpx 40rpx;
+  background: rgba(237, 108, 0, 0.03);
+  border-radius: 20rpx;
+  border: 1rpx dashed rgba(237, 108, 0, 0.2);
 }
