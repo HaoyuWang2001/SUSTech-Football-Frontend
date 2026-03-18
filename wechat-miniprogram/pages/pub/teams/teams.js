@@ -138,7 +138,7 @@ Page({
   gotoTeam: function (e) {
     const id = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: '/pages/pub/event_team/event_team?id=' + id,
+      url: '/pages/pub/team/team?id=' + id,
     })
   },
 })

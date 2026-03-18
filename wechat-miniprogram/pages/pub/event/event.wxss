@@ -445,16 +445,56 @@ scroll-view {
   .statistic-title {
     font-size: 24rpx;
   }
+}
 
-  /* 积分榜表格响应式 */
-  .cell {
-    padding: 20rpx 8rpx;
-    font-size: 24rpx;
-  }
+.table {
+  width: 100%;
+}
 
-  .cell-team-icon {
-    width: 40rpx;
-    height: 40rpx;
-    margin-right: 12rpx;
-  }
+.row {
+  display: flex;
+  width: 100%;
+}
+
+.cell {
+  flex: none;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.cell-team-column {
+  width: 35%;
+}
+
+.cell:nth-child(2) {
+  width: 20%;
+}
+
+.cell:nth-child(3) {
+  width: 15%;
+}
+
+.cell:nth-child(4) {
+  width: 10%;
+}
+
+.cell-team {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.cell-team-name {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.cell-team-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 12rpx;
+  flex-shrink: 0;   /* 防止队徽被挤压 */
 }

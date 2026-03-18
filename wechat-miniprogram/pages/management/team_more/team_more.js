@@ -20,6 +20,9 @@ Page({
   },
 
   onShow() {
+    this.setData({
+      showRedDot: false,
+    })
     this.fetchData(userId)
   },
 

@@ -84,7 +84,7 @@ Page({
           title:"球员申请入队通知",
           visible:true,
           open:false,
-          showRedDot:this.data.showApplicationDot,
+          showRedDot:this.data.showManageTeamApplicationDot,
           list:this.data.manageTeamApplicationsInform,
           hint:"点击审核可选择接受或拒绝",
           emptyText:"您还没有收到任何球员发出的申请",
@@ -315,10 +315,10 @@ Page({
       }
       return null;
     }).filter(inform => inform !== null);
-    let showDot = informs.length > 0 ? true : false;
+    const mergedList = this.data.manageTeamApplicationsInform.concat(informs);
     this.setData({
-      manageTeamApplicationsInform: this.data.manageTeamApplicationsInform.concat(informs),
-      showManageTeamApplicationDot: showDot
+      manageTeamApplicationsInform: mergedList,
+      showManageTeamApplicationDot: mergedList.length > 0
     });
     this.initNotifications()
   },
@@ -340,10 +340,10 @@ Page({
       }
       return null;
     }).filter(inform => inform !== null);
-    let showDot = informs.length > 0 ? true : false;
+    const mergedList = this.data.manageTeamInvitationMatchInform.concat(informs);
     that.setData({
-      manageTeamInvitationMatchInform: this.data.manageTeamInvitationMatchInform.concat(informs),
-      showManageTeamInvitationMatchDot: showDot
+      manageTeamInvitationMatchInform: mergedList,
+      showManageTeamInvitationMatchDot: mergedList.length > 0
     });
     that.initNotifications()
   },
@@ -365,10 +365,10 @@ Page({
       }
       return null;
     }).filter(inform => inform !== null);
-    let showDot = informs.length > 0 ? true : false;
+    const mergedList = this.data.manageTeamInvitationEventInform.concat(informs);
     that.setData({
-      manageTeamInvitationEventInform: this.data.manageTeamInvitationEventInform.concat(informs),
-      showManageTeamInvitationEventDot: showDot
+      manageTeamInvitationEventInform: mergedList,
+      showManageTeamInvitationEventDot: mergedList.length > 0
     });
     that.initNotifications()
   },
@@ -392,7 +392,8 @@ Page({
       }
       return null;
     }).filter(inform => inform !== null);
-    let showDot = false
+    const mergedList = this.data.manageTeamInvitationPlayerInform.concat(informs);
+    let showDot = this.data.showManageTeamInvitationPlayerDot
     for (let invitation of invitations) {
       if (invitation.hasRead === false) {
         showDot = true
@@ -400,7 +401,7 @@ Page({
       }
     }
     that.setData({
-      manageTeamInvitationPlayerInform: this.data.manageTeamInvitationPlayerInform.concat(informs),
+      manageTeamInvitationPlayerInform: mergedList,
       showManageTeamInvitationPlayerDot: showDot
     });
     that.initNotifications()
@@ -525,7 +526,7 @@ Page({
       },
       complete() {
         wx.hideLoading()
-        that.fetchManageTeamList(that.data.userId)
+        that.fetchManageTeamList(userId)
       }
     })
   },
@@ -569,7 +570,7 @@ Page({
       },
       complete() {
         wx.hideLoading()
-        that.fetchManageTeamList(that.data.userId)
+        that.fetchManageTeamList(userId)
       }
     })
   },
@@ -613,7 +614,7 @@ Page({
       },
       complete() {
         wx.hideLoading()
-        that.fetchManageTeamList(that.data.userId)
+        that.fetchManageTeamList(userId)
       }
     })
   },
