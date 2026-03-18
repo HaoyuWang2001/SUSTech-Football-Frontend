@@ -53,9 +53,7 @@
               <text class="score-number">{{score2}}</text>
             </view>
             <text class="group-info">{{group}}</text>
-            <text class="penalty-info" wx:if="{{score1 == score2  && penalty1 != 0 && penalty2 != 0}}">
-              点球 {{penalty1}}-{{penalty2}}
-            </text>
+            <text class="penalty-info" wx:if="{{score1 == score2  && penalty1 != 0 && penalty2 != 0}}">点球 {{penalty1}}-{{penalty2}}</text>
           </block>
           <block wx:else>
             <view class="upcoming-display">
