@@ -6,7 +6,7 @@
         <view class="block-title">赛事编辑</view>
       </view>
       <view class="block-main">
-        您可以在此页面编辑赛事信息、邀请赛事管理员及赛事裁判、管理球队及比赛。请注意，赛事类型及相关的内容不可更改！
+       <view class="hint-text">您可以在此页面编辑赛事信息、邀请赛事管理员及赛事裁判、管理球队及比赛。请注意，赛事类型及相关的内容不可更改！</view>
       </view>
     </view>
 
@@ -102,6 +102,7 @@
         </view>
       </view>
       <view class="block-main">
+        <view class="no-info" wx:if="{{managerList.length==0}}">暂无管理员</view>
         <scroll-view scroll-x enable-flex style="flex-direction: row; white-space: nowrap;">
           <player-card-small wx:for="{{managerList}}" wx:key="index" name="{{item.nickName}}" img="{{item.avatarUrl}}" bind:tap="gotoUserPage" data-id="{{item.userId}}">
           </player-card-small>
@@ -117,6 +118,7 @@
         </view>
       </view>
       <view class="block-main">
+        <view class="no-info" wx:if="{{refereeList.length==0}}">暂无裁判</view>
         <scroll-view scroll-x enable-flex style="flex-direction: row; white-space: nowrap;">
           <player-card-small wx:for="{{refereeList}}" wx:key="index" name="{{item.name}}" img="{{item.photoUrl}}" bindtap="gotoRefereePage" data-id="{{item.refereeId}}"></player-card-small>
         </scroll-view>
@@ -131,6 +133,7 @@
         </view>
       </view>
       <view class="block-main">
+        <view class="no-info" wx:if="{{teamList.length==0}}">暂无球队</view>
         <scroll-view scroll-x enable-flex style="flex-direction: row; white-space: nowrap;">
           <team-card-small wx:for="{{teamList}}" wx:key="id" name="{{item.name}}" img="{{item.logoUrl}}" bind:tap="gotoTeamPage" data-id="{{item.id}}"></team-card-small>
         </scroll-view>
@@ -145,6 +148,7 @@
         </view>
       </view>
       <view class="block-main">
+        <view class="no-info" wx:if="{{matchList.length==0}}">暂无比赛</view>
         <scroll-view scroll-x enable-flex style="flex-direction: row; white-space: nowrap;">
           <match-card-small wx:for="{{matchList}}" wx:key="matchId" name="{{item.stage + ' ' + item.tag}}" team1="{{item.homeTeam.name}}" team2="{{item.awayTeam.name}}" icon1="{{item.homeTeam.logoUrl}}" icon2="{{item.awayTeam.logoUrl}}" score1="{{item.homeTeamScore}}" score2="{{item.awayTeamScore}}" penalty1="{{item.homeTeamPenalty}}" penalty2="{{item.awayTeamPenalty}}" time="{{item.strTime}}" hasBegun="{{item.hasBegun}}" bind:tap="gotoMatchPage" data-id="{{item.matchId}}"> </match-card-small>
         </scroll-view>
@@ -161,7 +165,7 @@
 <!-- modal: 邀请赛事管理员 -->
 <modal hidden="{{modalHidden_inviteManager}}" bindconfirm="confirmInviteManager" bindcancel="cancelInviteManager">
   <view class="modal-content">
-    <text>请输入被邀请者的userId：</text>
-    <input bindinput="inputManagerId" placeholder="输入 userId" type="number" />
+    <text>请输入被邀请者的用户Id (userId):</text>
+    <input bindinput="inputManagerId" placeholder="在此输入用户Id" type="number" />
   </view>
 </modal>

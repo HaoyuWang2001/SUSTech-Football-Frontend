@@ -62,6 +62,7 @@
         <text class="block-more" bind:tap="gotoTeamsPage">查看更多</text>
       </view>
       <view class="block-main">
+        <view class="no-info" wx:if="{{teamList.length==0}}">暂无球队</view>
         <scroll-view scroll-x enable-flex class="team-scroll-container" style="flex-direction: row; white-space: nowrap;">
           <team-card-small wx:for="{{teamList}}" wx:key="id" name="{{item.name}}" img="{{item.logoUrl}}" bind:tap="gotoTeamPage" data-id="{{item.id}}"></team-card-small>
         </scroll-view>
@@ -73,6 +74,7 @@
         <!-- <text class="block-more" bind:tap="gotoMatchesPage">查看更多</text> -->
       </view>
       <view class="block-main">
+        <view class="no-info" wx:if="{{matchList.length==0}}">暂无比赛</view>
         <scroll-view scroll-x enable-flex class="match-scroll-container" style="flex-direction: row; white-space: nowrap;">
           <match-card-small wx:for="{{matchList}}" wx:key="matchId" name="{{item.stage + ' ' + item.tag}}" team1="{{item.homeTeam.name}}" team2="{{item.awayTeam.name}}" icon1="{{item.homeTeam.logoUrl}}" icon2="{{item.awayTeam.logoUrl}}" score1="{{item.homeTeamScore}}" score2="{{item.awayTeamScore}}" penalty1="{{item.homeTeamPenalty}}" penalty2="{{item.awayTeamPenalty}}" time="{{item.strTime}}" hasBegun="{{item.hasBegun}}" bind:tap="gotoMatchPage" data-id="{{item.matchId}}" data-event="{{name}}"> </match-card-small>
         </scroll-view>
