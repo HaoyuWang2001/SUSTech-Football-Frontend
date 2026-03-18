@@ -7,6 +7,10 @@
   background-color: white;
 }
 
+.block-main {
+  padding: 20rpx 10rpx;
+}
+
 .coach-op-panel{
   display: flex;
   flex-direction: column;
@@ -231,9 +235,20 @@ input {
   border-radius: 5px;
 }
 
+.no-info {
+  margin: 30rpx 20rpx;
+  font-size: 30rpx;
+  color: #999;
+  text-align: center;
+  padding: 60rpx 40rpx;
+  background: rgba(237, 108, 0, 0.03);
+  border-radius: 20rpx;
+  border: 1rpx dashed rgba(237, 108, 0, 0.2);
+}
+
 .hint-text {
-  margin-left: 20rpx;
+  margin-left: 30rpx;
   margin-bottom: 10rpx;
-  font-size: small;
+  font-size: smaller;
 }
 
