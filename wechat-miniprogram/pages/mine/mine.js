@@ -234,25 +234,18 @@ Page({
     list[index].open = !list[index].open
     switch(type){
       case "playerTeamInvitation":
-        this.showPlayerTeamInvitationModal(item)
         break
       case "coachTeamInvitation":
-        this.showCoachTeamInvitationModal(item)
         break
       case "refereeEventInvitation":
-        this.showRefereeEventInvitationModal(item)
         break
       case "refereeMatchInvitation":
-        this.showRefereeMatchInvitationModal(item)
         break
       case "managerTeamApplicationPlayer":
-        this.showManageTeamApplicationModal(item)
         break
       case "managerTeamInvitationMatch":
-        this.showManageTeamInvitationMatchModal(item)
         break
       case "managerTeamInvitationEvent":
-        this.showManageTeamInvitationEventModal(item)
         break
     }
     list[index].showRedDot = false
