@@ -38,6 +38,8 @@ Page({
       url: URL + '/event/roster/get?eventId=' + that.data.eventId + '&teamId=' + that.data.teamId,
       method: 'GET',
       success: function(res) {
+        console.log("pages/management/event_edit/event_roster_view --> fetchRostor")
+        console.log(res.data)
         if (res.statusCode === 200 && res.data) {
           that.setData({
             rosterList: res.data,

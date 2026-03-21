@@ -2,6 +2,7 @@
 const appInstance = getApp()
 const URL = appInstance.globalData.URL
 const {formatTime} = require("../../../utils/timeFormatter")
+const { sortMatchList } = require("../../../utils/matchSorter")
 
 Page({
 
@@ -120,10 +121,11 @@ Page({
         }
         let matchList = res.data
         for(let match of matchList) {
-          let date = new Date(match.time)
+          const date = new Date(match.time)
           match.strTime = formatTime(date)
-          match.hasBegun = match.status != "PENDING"
+          match.hasBegun = match.status !== "PENDING"
         }
+        matchList = sortMatchList(matchList)
         that.setData({
           matchList: matchList
         })

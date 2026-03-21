@@ -4,6 +4,7 @@ const URL = app.globalData.URL
 const {
   formatTime
 } = require("../../utils/timeFormatter")
+const { sortMatchList } = require("../../utils/matchSorter")
 
 Page({
 
@@ -205,6 +206,7 @@ Page({
           match.strTime = formatTime(date)
           match.hasBegun = match.status == 'PENDING' ? false : true
         }
+        matchList = sortMatchList(matchList)
         that.setData({
           matchList,
         })
@@ -362,4 +364,5 @@ Page({
       url: '/package-referee/pages/profile_referee_notice/profile_referee_notice',
     })
   },
+
 })

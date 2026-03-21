@@ -64,7 +64,7 @@
       <view class="block-main">
         <view class="no-info" wx:if="{{teamList.length==0}}">暂无球队</view>
         <scroll-view scroll-x enable-flex class="team-scroll-container" style="flex-direction: row; white-space: nowrap;">
-          <team-card-small wx:for="{{teamList}}" wx:key="id" name="{{item.name}}" img="{{item.logoUrl}}" bind:tap="gotoTeamPage" data-id="{{item.id}}"></team-card-small>
+          <team-card-small wx:for="{{teamList}}" wx:key="id" name="{{item.name}}" img="{{item.logoUrl}}" bind:tap="gotoEventTeamPage" data-id="{{item.id}}"></team-card-small>
         </scroll-view>
       </view>
     </view>

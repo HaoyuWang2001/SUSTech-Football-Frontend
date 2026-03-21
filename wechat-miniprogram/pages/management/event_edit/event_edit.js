@@ -540,10 +540,11 @@ Page({
     })
   },
 
-  gotoTeamPage: function (e) {
-    const dataset = e.currentTarget.dataset
+  gotoEventTeamPage: function (e) {
+    const eventId = this.data.eventId
+    const teamId = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: '/pages/pub/team/team?id=' + dataset.id,
+      url: '/pages/pub/event_team/event_team?eventId=' + eventId + '&teamId=' + teamId,
     })
   },
 

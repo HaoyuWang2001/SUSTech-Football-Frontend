@@ -5,6 +5,7 @@ import { Colors, Shadows, Gradients, Borders, Tokens } from '../../../../utils/c
 const {
   formatTime
 } = require("../../../../utils/timeFormatter")
+const { sortMatchList } = require("../../../../utils/matchSorter")
 
 Page({
 
@@ -155,6 +156,7 @@ Page({
           match.strTime = formatTime(date)
           match.hasBegun = match.status == 'PENDING' ? false : true
         }
+        matchList = sortMatchList(matchList)
         that.setData({
           matchList,
         })

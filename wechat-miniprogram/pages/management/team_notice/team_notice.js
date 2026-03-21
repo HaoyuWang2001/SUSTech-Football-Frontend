@@ -502,6 +502,7 @@ Page({
       url: URL + '/team/player/replyApplication?teamId=' + teamId + '&playerId=' + playerId + '&accept=' + accept,
       method: "POST",
       success(res) {
+        wx.hideLoading()
         console.log("pages/management/team_notice/team_notice: Team Reply Player Application ->")
         if (res.statusCode != 200) {
           console.error("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
@@ -518,6 +519,7 @@ Page({
         console.log("回复球员申请成功")
       },
       fail(err) {
+        wx.hideLoading()
         console.error('请求失败：', err.statusCode, err.errMsg)
         wx.showToast({
           title: '回复失败',
@@ -525,7 +527,6 @@ Page({
         })
       },
       complete() {
-        wx.hideLoading()
         that.fetchManageTeamList(userId)
       }
     })
@@ -546,6 +547,7 @@ Page({
       url: URL + '/team/match/replyInvitation?teamId=' + teamId + '&matchId=' + matchId + '&accept=' + accept,
       method: "POST",
       success(res) {
+        wx.hideLoading()
         console.log("pages/management/team_notice/team_notice: Team Reply Match Invitation ->")
         if (res.statusCode != 200) {
           console.error("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
@@ -562,6 +564,7 @@ Page({
         console.log("回复比赛邀请成功")
       },
       fail(err) {
+        wx.hideLoading()
         console.error('请求失败：', err.statusCode, err.errMsg)
         wx.showToast({
           title: '回复失败',
@@ -569,7 +572,6 @@ Page({
         })
       },
       complete() {
-        wx.hideLoading()
         that.fetchManageTeamList(userId)
       }
     })
@@ -590,6 +592,7 @@ Page({
       url: URL + '/team/event/replyInvitation?teamId=' + teamId + '&eventId=' + eventId + '&accept=' + accept,
       method: "POST",
       success(res) {
+        wx.hideLoading()
         console.log("pages/management/team_notice/team_notice: Team Reply Event Invitation ->")
         if (res.statusCode != 200) {
           console.error("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
@@ -606,6 +609,7 @@ Page({
         console.log("回复赛事邀请成功")
       },
       fail(err) {
+        wx.hideLoading()
         console.error('请求失败：', err.statusCode, err.errMsg)
         wx.showToast({
           title: '回复失败',
@@ -613,7 +617,6 @@ Page({
         })
       },
       complete() {
-        wx.hideLoading()
         that.fetchManageTeamList(userId)
       }
     })

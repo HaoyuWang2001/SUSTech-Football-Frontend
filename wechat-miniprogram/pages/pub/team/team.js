@@ -5,6 +5,7 @@ let userId = null
 const {
   formatTime
 } = require("../../../utils/timeFormatter")
+const { sortMatchList } = require("../../../utils/matchSorter")
 import { Colors, Shadows, Gradients, Borders, Tokens } from '../../../utils/colors.js'
 
 Page({
@@ -119,10 +120,11 @@ Page({
         let eventList = res.data.eventList ?? []
         let matchList = res.data.matchList ?? []
         for (let match of matchList) {
-          let date = new Date(match.time)
+          const date = new Date(match.time)
           match.strTime = formatTime(date)
-          match.hasBegun = match.status == 'PENDING' ? false : true
+          match.hasBegun = match.status === 'PENDING' ? false : true
         }
+        matchList = sortMatchList(matchList)
         const sortedPlayers = that.sortPlayerList(res.data.playerList || [])
         that.setData({
           name: res.data.name,

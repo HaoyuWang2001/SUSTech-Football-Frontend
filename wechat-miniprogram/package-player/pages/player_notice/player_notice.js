@@ -313,6 +313,7 @@ Page({
       url: URL + '/player/team/replyInvitation?playerId=' + playerId + '&teamId=' + teamId + '&accept=' + accept,
       method: "POST",
       success(res) {
+        wx.hideLoading()
         console.log("mine page: player Reply Team Invitation ->")
         if (res.statusCode != 200) {
           console.error("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
@@ -329,6 +330,7 @@ Page({
         console.log("回复球队邀请成功")
       },
       fail(err) {
+        wx.hideLoading()
         console.error('请求失败：', err.statusCode, err.errMsg)
         wx.showToast({
           title: '回复失败',
@@ -336,7 +338,6 @@ Page({
         })
       },
       complete() {
-        wx.hideLoading()
         that.fetchPlayerTeamInvitations(that.data.playerId)
       }
     })

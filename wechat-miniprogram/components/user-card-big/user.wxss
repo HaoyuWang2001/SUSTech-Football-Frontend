@@ -60,7 +60,7 @@
 }
 
 .name-container {
-  width: 280rpx;
+  width: 400rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

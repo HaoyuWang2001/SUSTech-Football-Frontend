@@ -132,10 +132,12 @@
         isPlayer="true"
         has_button="{{true}}"
         has_number="true"
-        number="{{item.number}}">
+        number="{{item.number}}"
+        bind:tap="gotoPlayerPage"
+        data-id="{{item.playerId}}">
         <view class="player-op-panel">
-          <view class="player-op-btn primary" bindtap="showEditPlayerModal" data-id="{{item.playerId}}">球员号码</view>
-          <view class="player-op-btn danger" bindtap="showDeletePlayerModal" data-id="{{item.playerId}}">删除球员</view>
+          <view class="player-op-btn primary" catchtap="showEditPlayerModal" data-id="{{item.playerId}}">球员号码</view>
+          <view class="player-op-btn danger" catchtap="showDeletePlayerModal" data-id="{{item.playerId}}">删除球员</view>
         </view>
       </user-card-big>
     </scroll-view>

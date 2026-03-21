@@ -392,6 +392,7 @@ Page({
       url: URL + '/referee/event/replyInvitation?refereeId=' + refereeId + '&eventId=' + eventId + '&accept=' + accept,
       method: "POST",
       success(res) {
+        wx.hideLoading()
         console.log("mine page: referee Reply Event Invitation ->")
         if (res.statusCode != 200) {
           console.error("请求失败，状态码为：" + res.statusCode + "; 错误信息为：" + res.data)
@@ -408,6 +409,7 @@ Page({
         console.log("回复赛事邀请成功")
       },
       fail(err) {
+        wx.hideLoading()
         console.error('请求失败：', err.statusCode, err.errMsg);
         wx.showToast({
           title: '回复失败',
@@ -415,7 +417,6 @@ Page({
         })
       },
       complete() {
-        wx.hideLoading()
         that.fetchRefereeInvitationsForEvent(that.data.refereeId)
       }
     })
@@ -436,6 +437,7 @@ Page({
       url: URL + '/referee/match/replyInvitation?refereeId=' + refereeId + '&matchId=' + matchId + '&accept=' + accept,
       method: "POST",
       success(res) {
+        wx.hideLoading()
         console.log("mine page: referee Reply Match Invitation ->")
         if (res.statusCode != 200) {
           console.error("请求失败" + res.statusCode + "; 错误信息为：" + res.data)
@@ -452,6 +454,7 @@ Page({
         console.log("回复比赛邀请成功")
       },
       fail(err) {
+        wx.hideLoading()
         console.error('请求失败：', err.statusCode, err.errMsg);
         wx.showToast({
           title: '回复失败',
@@ -459,7 +462,6 @@ Page({
         })
       },
       complete() {
-        wx.hideLoading()
         that.fetchRefereeInvitationsForMatch(that.data.refereeId)
       }
     })

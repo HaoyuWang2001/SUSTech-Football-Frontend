@@ -253,7 +253,7 @@ Page({
 
   // 页面跳转方法
 
-  gotoTeamPage: function (e) {
+  gotoEventTeamPage: function (e) {
     const eventId = this.data.id
     const teamId = e.currentTarget.dataset.id
     wx.navigateTo({
