@@ -7,7 +7,7 @@
     <text class="block-more"></text>
   </view>
   <view class="block-main">
-    您将作为裁判，在本页面中更新比赛信息，您可以独立更新以下模块。
+    <view class="hint-text">您将作为裁判，在本页面中更新比赛信息，您可以独立更新以下模块</view>
   </view>
 </view>
 
@@ -18,14 +18,14 @@
     <text class="block-more button-custom" bind:tap="showAddSourceModal">添加</text>
   </view>
   <view class="block-main">
-    <view>您可以添加或删除直播源或回放源，只需输入其直播名称和网址即可。</view>
-    <view style="margin-top: 20rpx;">直播：</view>
+    <view class="hint-text">您可以添加或删除直播源或回放源，只需输入其直播名称和网址即可。</view>
+    <view class="hint-text">直播：</view>
     <view style="margin-top: 20rpx;" wx:for="{{liveList}}" wx:key="index">
       <text class="videoOrLive" >{{item.liveName}}</text>
       <text class="videoOrLive_goto" bind:tap="goToLiveOrVideo" data-url="{{item.liveUrl}}">跳转</text>
       <text class="videoOrLive_delete" bind:tap="showDeleteSourceDialog" data-id="{{item.liveId}}" data-type="live">删除</text>
     </view>
-    <view style="margin-top: 20rpx;">回放：</view>
+    <view class="hint-text">回放：</view>
     <view style="margin-top: 20rpx;" wx:for="{{videoList}}" wx:key="index">
       <text class="videoOrLive" >{{item.videoName}}</text>
       <text class="videoOrLive_goto" bind:tap="goToLiveOrVideo" data-url="{{item.videoUrl}}">跳转</text>
@@ -46,9 +46,9 @@
     </view>
   </view>
   <view class="block-main">
-    <view>在此选择比赛球员名单及首发球员，您只有在比赛开始前才能设置首发。比赛开始后该功能禁用。</view>
+    <view class="hint-text">在此选择比赛球员名单及首发球员，您只有在比赛开始前才能设置首发。比赛开始后该功能禁用</view>
 
-    <view style="margin-top: 20rpx;">主队：{{match.homeTeam.name}}</view>
+    <view class="hint-text">主队：{{match.homeTeam.name}}</view>
     <view class="grid-container">
       <!-- 表头 -->
       <view class="grid-header grid-item">号码</view>
@@ -67,7 +67,7 @@
       </block>
     </view>
 
-    <view style="margin-top: 20rpx;">客队：{{match.awayTeam.name}}</view>
+    <view class="hint-text">客队：{{match.awayTeam.name}}</view>
     <view class="grid-container">
       <!-- 表头 -->
       <view class="grid-header grid-item">号码</view>
@@ -96,7 +96,7 @@
     <text class="block-more button-update" bind:tap="changeMatchStatus" data-status="FINISHED" wx:if="{{match.status == 'ONGOING'}}">结束比赛</text>
   </view>
   <view class="block-main">
-    <view style="margin-bottom: 20rpx;">设置比赛状态（未开始->正在进行->已结束），状态不可重置，更新状态请谨慎。</view>
+    <view class="hint-text">设置比赛状态（未开始->正在进行->已结束），状态不可重置，更新状态请谨慎</view>
     <view class="process-container">
       <view class="stage-container">
         <image src="/assets/stage1-a.png" class="stage-icon" />
@@ -115,7 +115,7 @@
         <!-- <view>已结束</view> -->
       </view>
     </view>
-    <view style="margin-top: 20rpx;">当前比赛状态为：{{match.strStatus}}</view>
+    <view class="hint-text">当前比赛状态为：{{match.strStatus}}</view>
   </view>
 </view>
 
@@ -128,13 +128,32 @@
     </block>
   </view>
   <view class="block-main">
-    <view style="margin-bottom: 20rpx;">在此更新比赛分数及点球分数</view>
-    <view>主队：{{match.homeTeam.name}}</view>
-    <view>进球数：{{match.homeTeam.score}}</view>
-    <view>点球进球数：{{match.homeTeam.penalty}}</view>
-    <view style="margin-top: 20rpx;">客队：{{match.awayTeam.name}}</view>
-    <view>进球数：{{match.awayTeam.score}}</view>
-    <view>点球进球数：{{match.awayTeam.penalty}}</view>
+    <view class="hint-text">在此更新比赛分数及点球分数</view>
+    <view class="score-card">
+      <view class="score-row">
+        <view class="team-name">{{match.homeTeam.name}}</view>
+        <view class="score-box">
+          <text class="score-label">进球</text>
+          <text class="score-number">{{match.homeTeam.score}}</text>
+        </view>
+        <view class="score-box">
+          <text class="score-label">点球</text>
+          <text class="score-number">{{match.homeTeam.penalty}}</text>
+        </view>
+      </view>
+      <view class="score-divider"></view>
+      <view class="score-row">
+        <view class="team-name">{{match.awayTeam.name}}</view>
+        <view class="score-box">
+          <text class="score-label">进球</text>
+          <text class="score-number">{{match.awayTeam.score}}</text>
+        </view>
+        <view class="score-box">
+          <text class="score-label">点球</text>
+          <text class="score-number">{{match.awayTeam.penalty}}</text>
+        </view>
+      </view>
+    </view>
   </view>
 </view>
 
@@ -147,14 +166,36 @@
     </block>
   </view>
   <view class="block-main">
-    <view style="margin-bottom: 40rpx;">包括进球、助攻、黄牌、红牌、上场、下场</view>
-    <view wx:for="{{match.matchPlayerActionList}}" wx:key="index">
-      <view>时间：{{item.time}}min</view>
-      <view>球队：{{item.teamId == match.homeTeam.teamId ? match.homeTeam.name : match.awayTeam.name}}</view>
-      <view>球员：{{item.player.number}}号 {{item.player.name}}</view>
-      <view>{{item.action}}</view>
-      <button class="button-delete-action" bind:tap="showDeletePlayerActionDialog" data-action="{{item}}">删除事件</button>
-      <view>----------</view>
+    <view class="hint-text">包括进球、助攻、黄牌、红牌、上场、下场</view>
+    <view class="table" wx:if="{{match.matchPlayerActionList.length > 0}}">
+      <view class="row header">
+        <view class="cell time">时间</view>
+        <view class="cell team">球队</view>
+        <view class="cell player">球员</view>
+        <view class="cell action">事件</view>
+        <view class="cell ops">操作</view>
+      </view>
+      <view wx:for="{{match.matchPlayerActionList}}" wx:key="index" class="row">
+        <view class="cell time">{{item.time}}min</view>
+        <view class="cell team">{{item.teamId == match.homeTeam.teamId ? match.homeTeam.name : match.awayTeam.name}}</view>
+        <view class="cell player">{{item.player.number}}号 {{item.player.name}}</view>
+        <view class="cell action">{{
+          item.action == 'GOAL' ? '进球' :
+          item.action == 'ASSIST' ? '助攻' :
+          item.action == 'ON' ? '上场' :
+          item.action == 'OFF' ? '下场' :
+          item.action == 'RED_CARD' ? '红牌' :
+          item.action == 'YELLOW_CARD' ? '黄牌' : item.action
+        }}</view>
+        <view class="cell ops">
+          <view class="ops-buttons">
+            <button class="delete-btn" bind:tap="showDeletePlayerActionDialog" data-action="{{item}}">删除</button>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:else class="empty-state">
+      <text>暂无比赛事件</text>
     </view>
   </view>
 </view>

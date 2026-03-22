@@ -102,8 +102,10 @@ Page({
         }
         console.log(res.data)
 
+        const team = res.data
+        team.players = that.sortPlayersByNumber(team.players)
         that.setData({
-          team: res.data
+          team
         })
       },
       fail(err) {
@@ -128,6 +130,11 @@ Page({
     this.setData({
       team
     })
+  },
+
+  sortPlayersByNumber(players) {
+    if (!Array.isArray(players)) return []
+    return players.slice().sort((a, b) => Number(a.number) - Number(b.number))
   },
 
   // 确认更改

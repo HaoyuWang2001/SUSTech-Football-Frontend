@@ -151,6 +151,8 @@ Page({
         } else {
           match.strStatus = "未知状态"
         }
+        match.homeTeam.players = that.sortPlayersByNumber(match.homeTeam.players)
+        match.awayTeam.players = that.sortPlayersByNumber(match.awayTeam.players)
         that.setData({
           match: match,
         })
@@ -162,6 +164,11 @@ Page({
         wx.hideLoading();
       }
     })
+  },
+
+  sortPlayersByNumber(players) {
+    if (!Array.isArray(players)) return []
+    return players.slice().sort((a, b) => Number(a.number) - Number(b.number))
   },
 
   fetchLiveList(matchId) {
