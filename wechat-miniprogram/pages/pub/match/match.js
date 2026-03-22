@@ -61,6 +61,10 @@ Page({
     replyText: '', // 用于存储输入框中的回复内容
     expandList: [],
     likesList: [],
+
+    lineupTabIndex: 0,
+    homeStarters: [],
+    awayStarters: [],
   },
 
   /**
@@ -165,17 +169,24 @@ Page({
           action: actionMap[item.action] || item.action
         }))
 
+        const homePlayers = that.sortPlayersByNumber(res.data.homeTeam.players)
+        const awayPlayers = that.sortPlayersByNumber(res.data.awayTeam.players)
+        const homeStarters = homePlayers.filter(p => p.isStart)
+        const awayStarters = awayPlayers.filter(p => p.isStart)
+
         that.setData({
           matchPlayerActionList: actionList,
-          awayTeam: res.data.awayTeam,
+          awayTeam: { ...res.data.awayTeam, players: awayPlayers },
           matchEvent: res.data.matchEvent,
-          homeTeam: res.data.homeTeam,
+          homeTeam: { ...res.data.homeTeam, players: homePlayers },
           managerList: res.data.managerList,
           refereeList: res.data.refereeList,
           status: res.data.status,
           time: res.data.time,
           hasBegun: hasBegun,
           strTime: strTime,
+          homeStarters,
+          awayStarters,
         })
 
         let refereeList = res.data.refereeList
@@ -202,6 +213,11 @@ Page({
         that.fetchComment(that.data.id)
       }
     })
+  },
+
+  sortPlayersByNumber(players) {
+    if (!Array.isArray(players)) return []
+    return players.slice().sort((a, b) => Number(a.number) - Number(b.number))
   },
 
   fetchComment: function (id) {
@@ -275,7 +291,15 @@ Page({
       this.loadTabData(tabIndex);
     }
     this.setData({
-      activeIndex: tabIndex
+      activeIndex: tabIndex,
+      lineupTabIndex: 0
+    })
+  },
+
+  switchLineupTab(e) {
+    const tabIndex = e.currentTarget.dataset.index
+    this.setData({
+      lineupTabIndex: tabIndex
     })
   },
 

@@ -161,7 +161,7 @@
 
 .tab-text {
   display: block;
-  font-size: 28rpx;
+  font-size: 32rpx;
   font-weight: 500;
   transition: color 0.3s ease;
 }
@@ -257,7 +257,7 @@
 }
 
 .cell {
-  padding: 20rpx 10rpx;
+  padding: 8rpx 10rpx;
 }
 
 .time {
@@ -293,6 +293,77 @@
   border-radius: 16rpx;
   border: 2rpx dashed rgba(237, 108, 0, 0.12);
   margin: 20rpx;
+}
+
+/* 比赛赛况子选项卡 */
+.subtabs {
+  display: flex;
+  margin: 0 20rpx 20rpx 20rpx;
+  border: 2rpx solid rgba(237, 108, 0, 0.12);
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+
+.subtab {
+  flex: 1;
+  text-align: center;
+  padding: 20rpx 0;
+  color: #666;
+  background: #fff;
+  transition: all 0.2s ease;
+  font-size: 30rpx;
+}
+
+.subtab.active {
+  color: #ed6c00;
+  font-weight: 700;
+  background: rgba(237, 108, 0, 0.08);
+}
+
+.lineup-columns {
+  display: flex;
+  gap: 20rpx;
+}
+
+.lineup-column {
+  flex: 1;
+  background: #ffffff;
+  border: 2rpx solid rgba(237, 108, 0, 0.12);
+  border-radius: 16rpx;
+  padding: 20rpx;
+  box-shadow: 0 4rpx 12rpx rgba(237, 108, 0, 0.08);
+}
+
+.lineup-title {
+  font-weight: 700;
+  font-size: 30rpx;
+  margin-bottom: 16rpx;
+  color: #333;
+}
+
+.lineup-item {
+  display: flex;
+  align-items: center;
+  padding: 12rpx 0;
+  border-bottom: 1rpx solid rgba(237, 108, 0, 0.08);
+}
+
+.lineup-item:last-child {
+  border-bottom: none;
+}
+
+.lineup-number {
+  width: 80rpx;
+  color: #ed6c00;
+  font-weight: 700;
+}
+
+.lineup-name {
+  flex: 1;
+  color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* ============================================================================

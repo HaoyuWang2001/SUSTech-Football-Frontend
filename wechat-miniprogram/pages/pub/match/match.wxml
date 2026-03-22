@@ -148,7 +148,48 @@
   </view>
 
   <view wx:if="{{activeIndex == 2}}">
-    <view class="block-container">
+    <view class="subtabs">
+      <view class="subtab {{lineupTabIndex==0?'active':''}}" data-index="0" bindtap="switchLineupTab">首发名单</view>
+      <view class="subtab {{lineupTabIndex==1?'active':''}}" data-index="1" bindtap="switchLineupTab">比赛事件</view>
+    </view>
+
+    <view wx:if="{{lineupTabIndex == 0}}" class="block-container">
+      <view class="block-top">
+        <text class="block-title">首发名单</text>
+        <text class="block-more"></text>
+      </view>
+      <view class="block-main">
+        <view class="lineup-columns">
+          <view class="lineup-column">
+            <view class="lineup-title">{{homeTeam.name}}</view>
+            <view wx:if="{{homeStarters.length == 0}}" class="empty-state">暂无首发</view>
+            <view wx:else>
+              <view wx:for="{{homeStarters}}" wx:key="playerId" class="lineup-item">
+                <view class="lineup-number">{{item.number}}</view>
+                <view class="lineup-name">{{item.name}}</view>
+              </view>
+            </view>
+          </view>
+
+          <view class="lineup-column">
+            <view class="lineup-title">{{awayTeam.name}}</view>
+            <view wx:if="{{awayStarters.length == 0}}" class="empty-state">暂无首发</view>
+            <view wx:else>
+              <view wx:for="{{awayStarters}}" wx:key="playerId" class="lineup-item">
+                <view class="lineup-number">{{item.number}}</view>
+                <view class="lineup-name">{{item.name}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{lineupTabIndex == 1}}" class="block-container">
+      <view class="block-top">
+        <text class="block-title">比赛事件</text>
+        <text class="block-more"></text>
+      </view>
       <view class="block-main">
         <view wx:if="{{matchPlayerActionList.length == 0}}" class="empty-state">
           <text>暂无进球、助攻或红黄牌信息</text>
