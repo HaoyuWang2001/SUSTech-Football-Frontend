@@ -7,6 +7,62 @@ const {
 } = require("../../../utils/timeFormatter")
 import { Colors, Shadows, Gradients } from '../../../utils/colors.js'
 
+const ACTION_META = {
+  GOAL: { label: '进球', short: '球', className: 'goal' },
+  ASSIST: { label: '助攻', short: '助', className: 'assist' },
+  YELLOW_CARD: { label: '黄牌', short: '黄', className: 'yellow' },
+  RED_CARD: { label: '红牌', short: '红', className: 'red' },
+  ON: { label: '上场', short: '上', className: 'on' },
+  OFF: { label: '下场', short: '下', className: 'off' },
+  进球: { label: '进球', short: '球', className: 'goal' },
+  助攻: { label: '助攻', short: '助', className: 'assist' },
+  黄牌: { label: '黄牌', short: '黄', className: 'yellow' },
+  红牌: { label: '红牌', short: '红', className: 'red' },
+  上场: { label: '上场', short: '上', className: 'on' },
+  下场: { label: '下场', short: '下', className: 'off' }
+}
+
+const ACTION_DISPLAY_META = {
+  GOAL: { label: '\u8fdb\u7403', short: '\u7403', className: 'goal', iconType: 'text', iconSymbol: '\u26bd', iconClass: 'icon-goal' },
+  ASSIST: { label: '\u52a9\u653b', short: '\u52a9', className: 'assist', iconType: '', iconSymbol: '', iconClass: '' },
+  YELLOW_CARD: { label: '\u9ec4\u724c', short: '\u9ec4', className: 'yellow', iconType: 'card', iconSymbol: '', iconClass: 'icon-yellow-card' },
+  RED_CARD: { label: '\u7ea2\u724c', short: '\u7ea2', className: 'red', iconType: 'card', iconSymbol: '', iconClass: 'icon-red-card' },
+  ON: { label: '\u4e0a\u573a', short: '\u4e0a', className: 'on', iconType: 'text', iconSymbol: '\u2191', iconClass: 'icon-on' },
+  OFF: { label: '\u4e0b\u573a', short: '\u4e0b', className: 'off', iconType: 'text', iconSymbol: '\u2193', iconClass: 'icon-off' },
+  '\u8fdb\u7403': { label: '\u8fdb\u7403', short: '\u7403', className: 'goal', iconType: 'text', iconSymbol: '\u26bd', iconClass: 'icon-goal' },
+  '\u52a9\u653b': { label: '\u52a9\u653b', short: '\u52a9', className: 'assist', iconType: '', iconSymbol: '', iconClass: '' },
+  '\u9ec4\u724c': { label: '\u9ec4\u724c', short: '\u9ec4', className: 'yellow', iconType: 'card', iconSymbol: '', iconClass: 'icon-yellow-card' },
+  '\u7ea2\u724c': { label: '\u7ea2\u724c', short: '\u7ea2', className: 'red', iconType: 'card', iconSymbol: '', iconClass: 'icon-red-card' },
+  '\u4e0a\u573a': { label: '\u4e0a\u573a', short: '\u4e0a', className: 'on', iconType: 'text', iconSymbol: '\u2191', iconClass: 'icon-on' },
+  '\u4e0b\u573a': { label: '\u4e0b\u573a', short: '\u4e0b', className: 'off', iconType: 'text', iconSymbol: '\u2193', iconClass: 'icon-off' }
+}
+
+const GOAL_ACTION_SET = new Set(['GOAL', '\u8fdb\u7403'])
+
+function getActionMeta(actionCode) {
+  if (ACTION_DISPLAY_META[actionCode]) {
+    return ACTION_DISPLAY_META[actionCode]
+  }
+  if (ACTION_META[actionCode]) {
+    return {
+      label: ACTION_META[actionCode].label || (actionCode || '\u4e8b\u4ef6'),
+      short: ACTION_META[actionCode].short || '\u4e8b',
+      className: ACTION_META[actionCode].className || 'neutral',
+      iconType: '',
+      iconSymbol: '',
+      iconClass: ''
+    }
+  }
+  return {
+    label: actionCode || '\u4e8b\u4ef6',
+    short: '\u4e8b',
+    className: 'neutral',
+    iconType: '',
+    iconSymbol: '',
+    iconClass: ''
+  }
+}
+
 Page({
   data: {
     colors: Colors,
@@ -16,6 +72,7 @@ Page({
     id: 0,
 
     matchPlayerActionList: [],
+    timelineActionList: [],
     awayTeam: {
       logoUrl: "",
       name: "",
@@ -155,19 +212,13 @@ Page({
         let strTime = formatTime(date)
         let hasBegun = res.data.status != "PENDING"
 
-        const actionMap = {
-          GOAL: "进球",
-          ASSIST: "助攻",
-          YELLOW_CARD: "黄牌",
-          RED_CARD: "红牌",
-          ON: "上场",
-          OFF: "下场"
-        }
-      
-        const actionList = res.data.matchPlayerActionList.map(item => ({
-          ...item,
-          action: actionMap[item.action] || item.action
-        }))
+        const timelineActionList = that.buildEnhancedTimelineActions(
+          res.data.matchPlayerActionList,
+          res.data.homeTeam,
+          res.data.awayTeam,
+          res.data.status
+        )
+        const actionList = timelineActionList.filter(item => !item.isMilestone)
 
         const homePlayers = that.sortPlayersByNumber(res.data.homeTeam.players)
         const awayPlayers = that.sortPlayersByNumber(res.data.awayTeam.players)
@@ -176,6 +227,7 @@ Page({
 
         that.setData({
           matchPlayerActionList: actionList,
+          timelineActionList: timelineActionList,
           awayTeam: { ...res.data.awayTeam, players: awayPlayers },
           matchEvent: res.data.matchEvent,
           homeTeam: { ...res.data.homeTeam, players: homePlayers },
@@ -215,9 +267,212 @@ Page({
     })
   },
 
+<<<<<<< HEAD
   sortPlayersByNumber(players) {
     if (!Array.isArray(players)) return []
     return players.slice().sort((a, b) => Number(a.number) - Number(b.number))
+=======
+  buildTimelineActions(actionList, homeTeam, awayTeam, matchStatus) {
+    if (!Array.isArray(actionList)) {
+      return []
+    }
+
+    const homeTeamId = homeTeam && homeTeam.teamId
+    const awayTeamId = awayTeam && awayTeam.teamId
+
+    return actionList
+      .map((item, index) => {
+        const actionMeta = ACTION_META[item.action] || {
+          label: item.action || '事件',
+          short: '事',
+          className: 'neutral'
+        }
+
+        const player = item.player || {}
+        const hasNumber = player.number !== undefined && player.number !== null && player.number !== ''
+        const playerName = player.name || '未知球员'
+        const playerDisplay = hasNumber ? `${player.number}号 ${playerName}` : playerName
+
+        const isHomeTeam = item.teamId === homeTeamId
+        const isAwayTeam = item.teamId === awayTeamId
+        const side = isHomeTeam ? 'left' : (isAwayTeam ? 'right' : (index % 2 === 0 ? 'left' : 'right'))
+        const teamName = isHomeTeam ? homeTeam.name : (isAwayTeam ? awayTeam.name : '未知球队')
+
+        const minute = Number(item.time)
+        const minuteLabel = Number.isFinite(minute) ? `${minute}'` : `${item.time || ''}'`
+
+        return {
+          ...item,
+          actionCode: item.action,
+          action: actionMeta.label,
+          actionShort: actionMeta.short,
+          actionClass: actionMeta.className,
+          side,
+          teamName,
+          playerDisplay,
+          minuteLabel,
+          minuteSort: Number.isFinite(minute) ? minute : Number.MAX_SAFE_INTEGER,
+          timelineKey: `${item.teamId || 'team'}-${player.playerId || index}-${item.time}-${item.action || 'action'}-${index}`
+        }
+      })
+      .sort((left, right) => {
+        if (left.minuteSort === right.minuteSort) {
+          return 0
+        }
+        return left.minuteSort - right.minuteSort
+      })
+  },
+
+  buildEnhancedTimelineActions(actionList, homeTeam, awayTeam, matchStatus) {
+    if (!Array.isArray(actionList)) {
+      return []
+    }
+
+    const homeTeamId = homeTeam && homeTeam.teamId
+    const awayTeamId = awayTeam && awayTeam.teamId
+
+    const normalizedList = actionList
+      .map((item, index) => {
+        const actionMeta = getActionMeta(item.action)
+        const player = item.player || {}
+        const hasNumber = player.number !== undefined && player.number !== null && player.number !== ''
+        const playerName = player.name || '\u672a\u77e5\u7403\u5458'
+        const playerDisplay = hasNumber ? `${player.number}\u53f7 ${playerName}` : playerName
+
+        const isHomeTeam = item.teamId === homeTeamId
+        const isAwayTeam = item.teamId === awayTeamId
+        const side = isHomeTeam ? 'left' : (isAwayTeam ? 'right' : (index % 2 === 0 ? 'left' : 'right'))
+
+        const minute = Number(item.time)
+        const minuteSort = Number.isFinite(minute) ? minute : Number.MAX_SAFE_INTEGER
+        const minuteLabel = Number.isFinite(minute) ? `${minute}'` : `${item.time || ''}'`
+
+        return {
+          ...item,
+          actionCode: item.action,
+          action: actionMeta.label,
+          actionShort: actionMeta.short,
+          actionClass: actionMeta.className,
+          iconType: actionMeta.iconType,
+          iconSymbol: actionMeta.iconSymbol,
+          iconClass: actionMeta.iconClass,
+          side,
+          playerDisplay,
+          minuteLabel,
+          minuteSort,
+          sourceIndex: index
+        }
+      })
+      .sort((left, right) => {
+        if (left.minuteSort === right.minuteSort) {
+          return left.sourceIndex - right.sourceIndex
+        }
+        return left.minuteSort - right.minuteSort
+      })
+
+    const ON_ACTION_SET = new Set(['ON', '\u4e0a\u573a'])
+    const OFF_ACTION_SET = new Set(['OFF', '\u4e0b\u573a'])
+    const isSubAction = (actionCode) => ON_ACTION_SET.has(actionCode) || OFF_ACTION_SET.has(actionCode)
+
+    const timelineActionList = []
+    const subGroupMap = new Map()
+
+    normalizedList.forEach(item => {
+      if (!isSubAction(item.actionCode)) {
+        timelineActionList.push({
+          ...item,
+          isSubGroup: false,
+          groupEntries: [{
+            entryKey: `${item.sourceIndex}-single`,
+            iconType: item.iconType,
+            iconSymbol: item.iconSymbol,
+            iconClass: item.iconClass,
+            action: item.action,
+            playerDisplay: item.playerDisplay,
+            showAction: true
+          }],
+          timelineKey: `${item.teamId || 'team'}-${item.player && item.player.playerId ? item.player.playerId : item.sourceIndex}-${item.time}-${item.actionCode || 'action'}-${item.sourceIndex}`,
+          groupSort: item.sourceIndex
+        })
+        return
+      }
+
+      const subGroupKey = `${item.minuteSort}|${item.side}|${item.teamId || 'team'}`
+      if (!subGroupMap.has(subGroupKey)) {
+        const groupItem = {
+          ...item,
+          isSubGroup: true,
+          groupEntries: [],
+          timelineKey: `sub-${subGroupKey}`,
+          groupSort: item.sourceIndex
+        }
+        subGroupMap.set(subGroupKey, groupItem)
+        timelineActionList.push(groupItem)
+      }
+
+      const groupItem = subGroupMap.get(subGroupKey)
+      groupItem.groupEntries.push({
+        entryKey: `${item.sourceIndex}-sub`,
+        iconType: item.iconType,
+        iconSymbol: item.iconSymbol,
+        iconClass: item.iconClass,
+        action: item.action,
+        playerDisplay: item.playerDisplay,
+        showAction: false,
+        order: ON_ACTION_SET.has(item.actionCode) ? 0 : 1
+      })
+    })
+
+    timelineActionList.forEach(item => {
+      if (!item.isSubGroup) {
+        return
+      }
+      item.groupEntries.sort((left, right) => {
+        if (left.order === right.order) {
+          return 0
+        }
+        return left.order - right.order
+      })
+    })
+
+    const hasSecondHalfEvent = normalizedList.some(item => Number.isFinite(item.minuteSort) && item.minuteSort > 45)
+    const shouldInsertHalfTime = matchStatus === 'FINISHED' || hasSecondHalfEvent
+
+    if (shouldInsertHalfTime) {
+      let halfHomeScore = 0
+      let halfAwayScore = 0
+
+      normalizedList.forEach(item => {
+        const isGoalAction = GOAL_ACTION_SET.has(item.actionCode)
+        const isFirstHalfGoal = isGoalAction && Number.isFinite(item.minuteSort) && item.minuteSort <= 45
+        if (!isFirstHalfGoal) {
+          return
+        }
+        if (item.teamId === homeTeamId) {
+          halfHomeScore += 1
+        } else if (item.teamId === awayTeamId) {
+          halfAwayScore += 1
+        }
+      })
+
+      timelineActionList.push({
+        timelineKey: 'milestone-halftime',
+        isMilestone: true,
+        side: 'center',
+        minuteSort: 45.5,
+        minuteLabel: `45'`,
+        milestoneText: `\u534a\u573a ${halfHomeScore}-${halfAwayScore}`,
+        groupSort: Number.MAX_SAFE_INTEGER
+      })
+    }
+
+    return timelineActionList.sort((left, right) => {
+      if (left.minuteSort === right.minuteSort) {
+        return (left.groupSort || 0) - (right.groupSort || 0)
+      }
+      return left.minuteSort - right.minuteSort
+    })
+>>>>>>> 1b7f424 ([update] 比赛事件时间线二次升级与红黄牌图标优化)
   },
 
   fetchComment: function (id) {
