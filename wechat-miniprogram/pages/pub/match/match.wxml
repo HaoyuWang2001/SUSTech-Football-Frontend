@@ -148,7 +148,6 @@
   </view>
 
   <view wx:if="{{activeIndex == 2}}">
-<<<<<<< HEAD
     <view class="subtabs">
       <view class="subtab {{lineupTabIndex==0?'active':''}}" data-index="0" bindtap="switchLineupTab">首发名单</view>
       <view class="subtab {{lineupTabIndex==1?'active':''}}" data-index="1" bindtap="switchLineupTab">比赛事件</view>
@@ -189,13 +188,7 @@
     <view wx:if="{{lineupTabIndex == 1}}" class="block-container">
       <view class="block-top">
         <text class="block-title">比赛事件</text>
-        <text class="block-more"></text>
-=======
-    <view class="block-container">
-      <view class="block-top">
-        <text class="block-title">比赛事件</text>
         <text class="timeline-team-tag">{{homeTeam.name}} vs {{awayTeam.name}}</text>
->>>>>>> 1b7f424 ([update] 比赛事件时间线二次升级与红黄牌图标优化)
       </view>
       <view class="block-main">
         <view wx:if="{{timelineActionList.length == 0}}" class="empty-state">

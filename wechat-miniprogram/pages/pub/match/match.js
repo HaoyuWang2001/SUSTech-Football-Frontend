@@ -267,11 +267,11 @@ Page({
     })
   },
 
-<<<<<<< HEAD
   sortPlayersByNumber(players) {
     if (!Array.isArray(players)) return []
     return players.slice().sort((a, b) => Number(a.number) - Number(b.number))
-=======
+  },
+
   buildTimelineActions(actionList, homeTeam, awayTeam, matchStatus) {
     if (!Array.isArray(actionList)) {
       return []
@@ -472,7 +472,6 @@ Page({
       }
       return left.minuteSort - right.minuteSort
     })
->>>>>>> 1b7f424 ([update] 比赛事件时间线二次升级与红黄牌图标优化)
   },
 
   fetchComment: function (id) {

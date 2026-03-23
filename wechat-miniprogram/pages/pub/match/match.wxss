@@ -253,7 +253,7 @@
 }
 
 .timeline-team-tag {
-  font-size: 22rpx;
+  font-size: 26rpx;
   color: #ed6c00;
   font-weight: 600;
   padding: 6rpx 14rpx;
@@ -298,14 +298,9 @@
   display: flex;
 }
 
-<<<<<<< HEAD
-.cell {
-  padding: 8rpx 10rpx;
-=======
 .timeline-side-left {
   justify-content: flex-end;
   padding-right: 20rpx;
->>>>>>> 1b7f424 ([update] 比赛事件时间线二次升级与红黄牌图标优化)
 }
 
 .timeline-side-right {
@@ -526,9 +521,12 @@
 
 .lineup-title {
   font-weight: 700;
-  font-size: 30rpx;
+  font-size: 28rpx;
   margin-bottom: 16rpx;
   color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .lineup-item {
