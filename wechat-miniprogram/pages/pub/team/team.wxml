@@ -109,9 +109,9 @@
           <match-card-small 
           wx:for="{{matchList}}" 
           wx:key="matchId" 
-          name="" 
-          stage="" 
-          tag="" 
+          name="{{item.matchEvent.eventName ? item.matchEvent.eventName : '友谊赛'}}" 
+          stage="{{item.matchEvent.matchStage ? item.matchEvent.matchStage : ''}}"
+          tag="{{item.matchEvent.matchTag ? item.matchEvent.matchTag : ''}}" 
           team1="{{item.homeTeam.name}}" 
           team2="{{item.awayTeam.name}}" 
           icon1="{{item.homeTeam.logoUrl}}" 

@@ -19,6 +19,25 @@
       </view>
       <view class="text">未找到比赛</view>
     </view>
-    <match-card-big wx:for="{{matchList}}" wx:key="matchId" name="" status="{{item.status}}" tag="" team1="{{item.homeTeam.name}}" team2="{{item.awayTeam.name}}" icon1="{{item.homeTeam.logoUrl}}" icon2="{{item.awayTeam.logoUrl}}" score1="{{item.homeTeamScore}}" score2="{{item.awayTeamScore}}" penalty1="{{item.homeTeamPenalty}}" penalty2="{{item.awayTeamPenalty}}" time="{{item.strTime}}" hasBegun="{{item.hasBegun}}" bind:tap="gotoMatchPage" data-id="{{item.matchId}}"> </match-card-big>
+    <match-card-big 
+    wx:for="{{matchList}}" 
+    wx:key="matchId" 
+    name="" 
+    status="{{item.status}}" 
+    stage=""
+    tag="" 
+    team1="{{item.homeTeam.name}}" 
+    team2="{{item.awayTeam.name}}" 
+    icon1="{{item.homeTeam.logoUrl}}" 
+    icon2="{{item.awayTeam.logoUrl}}" 
+    score1="{{item.homeTeamScore}}" 
+    score2="{{item.awayTeamScore}}" 
+    penalty1="{{item.homeTeamPenalty}}" 
+    penalty2="{{item.awayTeamPenalty}}" 
+    time="{{item.strTime}}" 
+    hasBegun="{{item.hasBegun}}" 
+    bind:tap="gotoMatchPage" 
+    data-id="{{item.matchId}}">
+    </match-card-big>
   </view>
 </view>

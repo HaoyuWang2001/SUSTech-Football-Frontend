@@ -29,7 +29,25 @@
   <view class="block-main">
     <view class="no-favorite" wx:if="{{matchList.length==0}}">该裁判目前没有执法的比赛。</view>
     <scroll-view scroll-x enable-flex style="flex-direction: row; white-space: nowrap;">
-      <match-card-small wx:for="{{matchList}}" wx:key="matchId" name="" stage="{{item.event.stage}}" tag="" team1="{{item.homeTeam.name}}" team2="{{item.awayTeam.name}}" icon1="{{item.homeTeam.logoUrl}}" icon2="{{item.awayTeam.logoUrl}}" score1="{{item.homeTeam.score}}" score2="{{item.awayTeam.score}}" penalty1="{{item.homeTeam.penalty}}" penalty2="{{item.awayTeam.penalty}}" time="{{item.strTime}}" hasBegun="{{item.hasBegun}}" bind:tap="gotoMatchPage" data-id="{{item.matchId}}" data-event="{{name}}"> </match-card-small>
+      <match-card-small 
+      wx:for="{{matchList}}" 
+      wx:key="matchId" 
+      name="{{item.event.eventName ? item.event.eventName : '友谊赛'}}" 
+      stage="{{item.event.stage ? item.event.stage : ''}}" 
+      tag="{{item.event.tag ? item.event.tag : ''}}" 
+      team1="{{item.homeTeam.name}}" 
+      team2="{{item.awayTeam.name}}" 
+      icon1="{{item.homeTeam.logoUrl}}" 
+      icon2="{{item.awayTeam.logoUrl}}" 
+      score1="{{item.homeTeam.score}}" 
+      score2="{{item.awayTeam.score}}" 
+      penalty1="{{item.homeTeam.penalty}}" 
+      penalty2="{{item.awayTeam.penalty}}" 
+      time="{{item.strTime}}" 
+      hasBegun="{{item.hasBegun}}" 
+      bind:tap="gotoMatchPage" 
+      data-id="{{item.matchId}}" 
+      data-event="{{name}}"></match-card-small>
     </scroll-view>
   </view>
 </view>

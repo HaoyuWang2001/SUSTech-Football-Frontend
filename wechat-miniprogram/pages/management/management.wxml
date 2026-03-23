@@ -49,7 +49,20 @@
     <view class="block-main">
       <view class="no-managed" wx:if="{{matches.length==0}}">您还没有管理的友谊赛</view>
       <scroll-view scroll-x enable-flex style="flex-direction: row; white-space: nowrap;">
-        <match-card-small wx:for="{{matches}}" wx:key="index" name="友谊赛" team1="{{item.homeTeam.name}}" team2="{{item.awayTeam.name}}" icon1="{{item.homeTeam.logoUrl}}" icon2="{{item.awayTeam.logoUrl}}" score1="{{item.homeTeamScore}}" score2="{{item.awayTeamScore}}" time="{{item.strTime}}" hasBegun="{{item.hasBegun}}" bindtap="gotoMatchPage" data-id="{{item.matchId}}"></match-card-small>
+        <match-card-small 
+        wx:for="{{matches}}" 
+        wx:key="index" 
+        name="友谊赛" 
+        team1="{{item.homeTeam.name}}" 
+        team2="{{item.awayTeam.name}}" 
+        icon1="{{item.homeTeam.logoUrl}}" 
+        icon2="{{item.awayTeam.logoUrl}}" 
+        score1="{{item.homeTeamScore}}" 
+        score2="{{item.awayTeamScore}}" 
+        time="{{item.strTime}}" 
+        hasBegun="{{item.hasBegun}}" 
+        bindtap="gotoMatchPage" 
+        data-id="{{item.matchId}}"></match-card-small>
       </scroll-view>
     </view>
   </view>

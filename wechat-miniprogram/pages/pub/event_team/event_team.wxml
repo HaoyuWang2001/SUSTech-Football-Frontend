@@ -77,9 +77,7 @@
           <match-card-small
             wx:for="{{matchList}}"
             wx:key="matchId"
-            name=""
-            stage="{{item.stage || ''}}"
-            tag="{{item.tag || ''}}"
+            name="{{item.matchEvent.matchStage + ' ' + item.matchEvent.matchTag}}"
             team1="{{item.homeTeam.name}}"
             team2="{{item.awayTeam.name}}"
             icon1="{{item.homeTeam.logoUrl}}"

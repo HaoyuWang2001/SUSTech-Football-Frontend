@@ -8,7 +8,20 @@
   <view class="block-main">
     <view wx:if="{{matchList.length === 0}}">您的赛事还没有比赛，请点击新建比赛按钮，建立比赛。</view>
     <view wx:for="{{matchList}}" wx:key="matchId">
-      <match-card-big name="{{item.stage + ' ' + item.tag}}" status="{{item.status}}" team1="{{item.homeTeam.name}}" team2="{{item.awayTeam.name}}" icon1="{{item.homeTeam.logoUrl}}" icon2="{{item.awayTeam.logoUrl}}" score1="{{item.homeTeamScore}}" score2="{{item.awayTeamScore}}" time="{{item.strTime}}" hasBegun="{{item.hasBegun}}" bindtap="gotoEditMatch" data-id="{{item.matchId}}"></match-card-big>
+      <match-card-big 
+      name="{{item.stage + ' ' + item.tag}}" 
+      status="{{item.status}}" 
+      team1="{{item.homeTeam.name}}" 
+      team2="{{item.awayTeam.name}}" 
+      icon1="{{item.homeTeam.logoUrl}}" 
+      icon2="{{item.awayTeam.logoUrl}}" 
+      score1="{{item.homeTeamScore}}" 
+      score2="{{item.awayTeamScore}}" 
+      time="{{item.strTime}}" 
+      hasBegun="{{item.hasBegun}}" 
+      bindtap="gotoEditMatch" 
+      data-id="{{item.matchId}}">
+      </match-card-big>
     </view>
   </view>
 </view>
