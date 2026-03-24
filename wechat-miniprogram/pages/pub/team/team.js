@@ -42,7 +42,7 @@ Page({
    */
   onLoad(options) {
     this.setData({
-      id: options.id,
+      id: Number(options.id),
     })
     URL = appInstance.globalData.URL
     userId = appInstance.globalData.userId
