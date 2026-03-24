@@ -5,7 +5,7 @@
   border-radius: 16rpx;
   border: 2rpx solid rgba(237, 108, 0, 0.12);
   box-shadow: 0 4rpx 24rpx rgba(237, 108, 0, 0.1);
-  padding: 40rpx 20rpx;
+  padding: 40rpx 10rpx;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -60,7 +60,7 @@
 }
 
 .name-container {
-  width: 400rpx;
+  max-width: 350rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
